@@ -1,0 +1,370 @@
+{% extends "base.html" %}
+{% import "components/macros.html" as macros %}
+
+{% block title %}Inicio | Organización FEM{% endblock %}
+
+{% block content %}
+<!-- Sección 1: Hero (Presentación General) -->
+<section class="hero-section">
+    <div class="container hero-container">
+        <span class="placeholder-tag">Fundación Educación y Misión</span>
+        <h1 class="hero-title">Acompañamiento, conducción y sustentabilidad de obras educativas</h1>
+        <p class="hero-subtitle">Una respuesta eclesial creada por FAERA para sostener y dar continuidad a proyectos escolares y carismas fundacionales en contextos de transición.</p>
+        <div class="hero-actions">
+            {{ macros.render_button("Ver Colegios Acompañados", "#colegios", "primary") }}
+            {{ macros.render_button("Contacto Institucional", "#contacto", "secondary") }}
+        </div>
+    </div>
+</section>
+
+<!-- Sección 2: Quiénes Somos (La Fundación) -->
+<section class="home-section" id="identidad">
+    <div class="container grid-two-cols">
+        <div class="editorial-block">
+            <span class="placeholder-tag">Quiénes Somos</span>
+            <h2>Nuestra Identidad</h2>
+            <p>La Fundación "Educación y Misión" (FEM) es una persona jurídica civil de bien público constituida por la <strong>FAERA (Federación de Asociaciones Educativas de la República Argentina)</strong>.</p>
+        </div>
+        <div class="text-block-accent">
+            <p>Nuestro objetivo principal es la gestión de escuelas o establecimientos educativos de todos los niveles, la creación y organización de ellos cuando sea conveniente, el acompañamiento de obras educativas y todas las actividades conexas que sean útiles para garantizar su sustentabilidad y fines pastorales.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Sección 3: Misión y Visión -->
+<section class="home-section" id="mision-vision">
+    <div class="container">
+        <h2 class="section-title text-center">Misión y Visión</h2>
+        <p class="section-subtitle text-center">Los ejes rectores y compromisos de nuestro acompañamiento.</p>
+        
+        <div class="grid-two-cols">
+            <div class="card mission-card">
+                <h3 class="card-title">Misión</h3>
+                <p class="card-text">Se propone un nuevo paradigma para acompañar y sostener los carismas de las congregaciones que por diversos motivos no pueden continuar con su servicio en las escuelas. Es una respuesta a las necesidades reales de las congregaciones, para no perder la riqueza de tantos proyectos educativos evangelizadores.</p>
+            </div>
+            <div class="card mission-card vision">
+                <h3 class="card-title">Visión</h3>
+                <p class="card-text">En estos momentos complejos para la sociedad, el Espíritu Santo nos regala un don para poder trabajar eclesialmente y continuar con cada carisma: nos sentimos llamados a trabajar fuertemente con cada congregación, teniendo en cuenta los sentimientos de pertenencia de las comunidades educativas involucradas en el proceso de discernimiento para la entrega de una obra, preparando a la comunidad para el traspaso.</p>
+                <p class="card-text mt-2">En este camino, se procura el compromiso de la congregación para seguir acompañando la obra desde lo carismático. La Fundación también puede ayudar en el análisis y en la reorganización institucional para asistir al asociado frente a problemas que requieran reorientar la gestión.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección 4: Cómo Acompañamos (Dimensiones) -->
+<section class="home-section" id="acompanamiento">
+    <div class="container">
+        <h2 class="section-title text-center">Dimensiones del Acompañamiento</h2>
+        <p class="section-subtitle text-center">Los tres ejes de trabajo con los cuales estructuramos el desarrollo de las escuelas asociadas.</p>
+        
+        <div class="grid-three-cols">
+            {{ macros.render_card(
+                "Área Pedagógico Pastoral",
+                "Coordinación y animación del proyecto educativo y pastoral. Cuidado y actualización curricular alineada al carisma institucional de cada obra escolar.",
+                "📖"
+            ) }}
+            
+            {{ macros.render_card(
+                "Gestión y Animación",
+                "Conducción general, representación legal y toma de decisiones orgánicas para el ordenamiento y desarrollo a largo plazo de las escuelas.",
+                "💼"
+            ) }}
+            
+            {{ macros.render_card(
+                "Área Económico Financiera",
+                "Saneamiento fiscal, planificación presupuestaria, control de gestión administrativa y optimización de recursos para la sustentabilidad de la obra.",
+                "📊"
+            ) }}
+        </div>
+    </div>
+</section>
+
+<!-- Sección 5: Organización y Gobierno -->
+<section class="home-section" id="organizacion">
+    <div class="container">
+        <h2 class="section-title text-center">Gobierno y Estructura Organizativa</h2>
+        <p class="section-subtitle text-center">La gobernanza, conducción y equipos de trabajo de la Fundación.</p>
+        
+        <div class="grid-two-cols">
+            <div>
+                <h3 class="org-section-title">Consejo de Administración (FAERA)</h3>
+                <ul class="org-list">
+                    <li class="org-item">
+                        <strong>Hermano Fabián Maragliano (Lasallanos)</strong>
+                        <span>Presidente</span>
+                        <a href="mailto:presidente@fundacionfem.org" class="org-email">✉️ presidente@fundacionfem.org</a>
+                    </li>
+                    <li class="org-item">
+                        <strong>Zunilda Rossi</strong>
+                        <span>Secretaria</span>
+                        <a href="mailto:secretario@fundacionfem.org" class="org-email">✉️ secretario@fundacionfem.org</a>
+                    </li>
+                    <li class="org-item">
+                        <strong>Karina Luquin</strong>
+                        <span>Tesorera</span>
+                        <a href="mailto:tesorero@fundacionfem.org" class="org-email">✉️ tesorero@fundacionfem.org</a>
+                    </li>
+                    <li class="org-item">
+                        <strong>Hermano Alberto Aparicio (Maristas)</strong>
+                        <span>Vocal</span>
+                    </li>
+                    <li class="org-item">
+                        <strong>Padre Jorge Ledesma (Salesianos)</strong>
+                        <span>Vocal</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="org-section-title">Conducción y Áreas Operativas</h3>
+                <ul class="org-list">
+                    <li class="org-item">
+                        <strong>Juan Pablo Gasme</strong>
+                        <span>Director Ejecutivo - Centro Directivo de Animación</span>
+                        <a href="mailto:directorejecutivo@fundacionfem.org" class="org-email">✉️ directorejecutivo@fundacionfem.org</a>
+                    </li>
+                    <li class="org-item">
+                        <strong>Zunilda Rossi</strong>
+                        <span>Secretaría Ejecutiva - Centro Directivo de Animación</span>
+                        <a href="mailto:secretaria.ejecutiva@fundacionfem.org" class="org-email">✉️ secretaria.ejecutiva@fundacionfem.org</a>
+                    </li>
+                    <li class="org-item">
+                        <strong>Área Pedagógico Pastoral</strong>
+                        <span>Coordinación y animación del proyecto educativo y pastoral de las obras escolares.</span>
+                    </li>
+                    <li class="org-item">
+                        <strong>Área Económico Financiera</strong>
+                        <span>Saneamiento, planificación y control de gestión administrativa de las instituciones.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección 6: Colegios Acompañados -->
+<section class="home-section" id="colegios">
+    <div class="container">
+        <h2 class="section-title text-center">Comunidades Educativas</h2>
+        <p class="section-subtitle text-center">Obras escolares y establecimientos bajo la conducción y el acompañamiento de la Fundación.</p>
+        
+        <div class="provinces-container">
+            <!-- CABA -->
+            <div class="province-block-item">
+                <h3 class="province-title">Ciudad Autónoma de Buenos Aires (CABA)</h3>
+                <div class="grid-two-cols">
+                    <div class="card school-card">
+                        <div class="school-header">
+                            <span class="school-carisma">Congregación Hijas de Santa Ana</span>
+                        </div>
+                        <h4 class="school-name">Instituto Santa Ana y San Joaquín</h4>
+                        <p class="school-info">📍 Olazábal 1440, Belgrano</p>
+                        <p class="school-info">📞 011 4784 7650</p>
+                    </div>
+                    <div class="card school-card">
+                        <div class="school-header">
+                            <span class="school-carisma">Congregación Hijas de Santa Ana</span>
+                        </div>
+                        <h4 class="school-name">Instituto Superior Santa Ana</h4>
+                        <p class="school-info">📍 Av. del Libertador 6155, Belgrano</p>
+                        <p class="school-info">📞 011 4784 6795</p>
+                        <div class="school-footer">
+                            <a href="http://www.santaanaysanjoaquin.edu.ar" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
+                        </div>
+                    </div>
+                    <div class="card school-card">
+                        <div class="school-header">
+                            <span class="school-carisma">Congregación Esclavas del Divino Corazón</span>
+                        </div>
+                        <h4 class="school-name">Instituto Plácido Marín</h4>
+                        <p class="school-info">📍 Larrazábal 1551, Mataderos</p>
+                        <p class="school-info">📞 011 4635 0115</p>
+                        <div class="school-footer">
+                            <a href="http://www.placidomarin.edu.ar" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
+                        </div>
+                    </div>
+                    <div class="card school-card">
+                        <div class="school-header">
+                            <span class="school-carisma">Hermandad Sacerdotes Operarios Diocesanos</span>
+                        </div>
+                        <h4 class="school-name">Instituto San Pío X</h4>
+                        <p class="school-info">📍 Basualdo 780, Mataderos</p>
+                        <p class="school-info">📞 011 4635 1710</p>
+                        <div class="school-footer">
+                            <a href="http://www.institutosanpiox.edu.ar" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Provincia de Buenos Aires -->
+            <div class="province-block-item mt-3">
+                <h3 class="province-title">Provincia de Buenos Aires</h3>
+                <div class="grid-three-cols">
+                    <div class="card school-card">
+                        <div class="school-header">
+                            <span class="school-carisma">Congregación Catequistas de Dolores Sopeña</span>
+                        </div>
+                        <h4 class="school-name">Instituto Dolores Rodríguez Sopeña</h4>
+                        <p class="school-info">📍 España 620, Avellaneda</p>
+                        <p class="school-info">📞 011 4222 6814</p>
+                    </div>
+                    <div class="card school-card">
+                        <div class="school-header">
+                            <span class="school-carisma">Congregación Esclavas del Divino Corazón</span>
+                        </div>
+                        <h4 class="school-name">Colegio Cardenal Spínola</h4>
+                        <p class="school-info">📍 Maestro Santana 349, San Isidro</p>
+                        <p class="school-info">📞 011 4723 4394</p>
+                        <div class="school-footer">
+                            <a href="http://www.cardenalspinola.com.ar" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
+                        </div>
+                    </div>
+                    <div class="card school-card">
+                        <div class="school-header">
+                            <span class="school-carisma">Congregación Hijas de la Cruz</span>
+                        </div>
+                        <h4 class="school-name">Colegio Sagrada Familia (Zárate)</h4>
+                        <p class="school-info">📍 Félix Pagola 125, Zárate</p>
+                        <p class="school-info">📞 03487 422423</p>
+                        <div class="school-footer">
+                            <a href="http://www.csfamilia.com.ar" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
+                        </div>
+                    </div>
+                    <div class="card school-card">
+                        <div class="school-header">
+                            <span class="school-carisma">Congregación Hijas de la Cruz</span>
+                        </div>
+                        <h4 class="school-name">I.S.F.D. Sagrada Familia</h4>
+                        <p class="school-info">📍 Félix Pagola 125, Zárate</p>
+                        <p class="school-info">✉️ nivelsuperior@csfamilia.com.ar</p>
+                    </div>
+                    <div class="card school-card">
+                        <div class="school-header">
+                            <span class="school-carisma">Congregación Hijas de la Cruz</span>
+                        </div>
+                        <h4 class="school-name">Colegio Sagrada Familia e Inst. Hijas de la Cruz</h4>
+                        <p class="school-info">📍 Calle 15 (entre 51 y 53) Nº 961, La Plata</p>
+                        <p class="school-info">📞 0221 4212231</p>
+                        <div class="school-footer">
+                            <a href="http://www.csfamilialp.com.ar" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
+                        </div>
+                    </div>
+                    <div class="card school-card">
+                        <div class="school-header">
+                            <span class="school-carisma">Orden Carmelita</span>
+                        </div>
+                        <h4 class="school-name">Instituto Nuestra Señora del Carmen</h4>
+                        <p class="school-info">📍 Fonrouge 855, Lomas de Zamora</p>
+                        <p class="school-info">💬 WhatsApp: +54 9 11 4243 9089</p>
+                        <div class="school-footer">
+                            <a href="http://www.inscarmen.edu.ar" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
+                        </div>
+                    </div>
+                    <div class="card school-card">
+                        <div class="school-header">
+                            <span class="school-carisma">Orden Carmelita</span>
+                        </div>
+                        <h4 class="school-name">Colegio San Juan de la Cruz</h4>
+                        <p class="school-info">📍 General Pintos 1450, Banfield</p>
+                        <p class="school-info">📞 011 4245 0614</p>
+                        <div class="school-footer">
+                            <a href="http://www.sanjuandelacruz.edu.ar" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Otras Provincias -->
+            <div class="province-block-item mt-3">
+                <h3 class="province-title">Presencia Federal (Jujuy, Mendoza, Santa Fe y Tucumán)</h3>
+                <div class="grid-three-cols">
+                    <div class="card school-card">
+                        <div class="school-header">
+                            <span class="school-carisma">Congregación Esclavas del Divino Corazón</span>
+                        </div>
+                        <h4 class="school-name">Colegio Sagrado Corazón (Jujuy)</h4>
+                        <p class="school-info">📍 Av. Luciano Catalano 198, Palpalá</p>
+                        <p class="school-info">📞 0388 427 0198</p>
+                    </div>
+                    <div class="card school-card">
+                        <div class="school-header">
+                            <span class="school-carisma">Congregación Esclavas del Divino Corazón</span>
+                        </div>
+                        <h4 class="school-name">Instituto Corazón de Jesús (Santa Fe)</h4>
+                        <p class="school-info">📍 Rivadavia 713, San Carlos Centro</p>
+                        <p class="school-info">📞 03404 42 0055</p>
+                        <div class="school-footer">
+                            <a href="https://instagram.com/corazondejesus_sc" target="_blank" rel="noopener" class="school-link">📷 Instagram</a>
+                        </div>
+                    </div>
+                    <div class="card school-card">
+                        <div class="school-header">
+                            <span class="school-carisma">Hermandad Sacerdotes Operarios Diocesanos</span>
+                        </div>
+                        <h4 class="school-name">Colegio e Instituto Montserrat (Tucumán)</h4>
+                        <p class="school-info">📍 Colombia 2937, San Miguel de Tucumán</p>
+                        <p class="school-info">📞 0381 254 7338</p>
+                        <div class="school-footer">
+                            <a href="http://www.colegio-e-instituto-montserrat.com" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
+                        </div>
+                    </div>
+                    <div class="card school-card">
+                        <div class="school-header">
+                            <span class="school-carisma">Compasionistas</span>
+                        </div>
+                        <h4 class="school-name">Colegio Nuestra Señora de la Compasión (Mendoza)</h4>
+                        <p class="school-info">📍 Soberanía Nacional y Congreso de Tucumán, Palmira</p>
+                        <p class="school-info">📞 0263 4461778</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección 7: Contacto Institucional -->
+<section class="home-section" id="contacto">
+    <div class="container">
+        <h2 class="section-title text-center">Contacto Institucional</h2>
+        <p class="section-subtitle text-center">Canales oficiales para consultas con las áreas de la Fundación.</p>
+        
+        <div class="contact-grid">
+            <div class="contact-info-list">
+                <div class="contact-item">
+                    <h4>Correo Electrónico</h4>
+                    <p><a href="mailto:fundacionfem@fundacionfem.org">fundacionfem@fundacionfem.org</a></p>
+                </div>
+                <div class="contact-item">
+                    <h4>Domicilio Legal</h4>
+                    <p>Lavalle 1527, Piso 11, Oficina 44, Ciudad Autónoma de Buenos Aires (C1048 AAK)</p>
+                </div>
+                <div class="contact-item">
+                    <h4>Entidad Madre</h4>
+                    <p>FAERA (Federación de Asociaciones Educativas de la República Argentina)</p>
+                </div>
+            </div>
+            
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Formulario configurado como placeholder en esta etapa.');">
+                <div class="form-group">
+                    <label for="name">Nombre Completo</label>
+                    <input type="text" id="name" required placeholder="Ej. Juan Pérez">
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" required placeholder="nombre@correo.com">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Asunto</label>
+                    <input type="text" id="subject" required placeholder="Área o tipo de consulta">
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" required placeholder="Escribí tu mensaje aquí..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; border: none;">Enviar Consulta</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

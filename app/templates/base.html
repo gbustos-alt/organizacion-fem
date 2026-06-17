@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Organización FEM{% endblock %}</title>
+    
+    <!-- Meta tags SEO basicos -->
+    <meta name="description" content="Organización FEM - Espacio institucional de desarrollo y empoderamiento.">
+    <meta name="color-scheme" content="light">
+
+    <!-- Tipografia moderna (Outfit e Inter de Google Fonts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Estilo principal del sistema de diseno -->
+    <link rel="stylesheet" href="{{ url_for('static', path='dist/css/main.css') }}?v=1.0.3">
+    
+    {% block styles %}{% endblock %}
+</head>
+<body>
+    <div class="site-wrapper">
+        <!-- Encabezado de navegacion -->
+        {% include "partials/header.html" %}
+
+        <!-- Area de contenido principal -->
+        <main class="main-content" id="main-content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- Pie de pagina -->
+        {% include "partials/footer.html" %}
+    </div>
+
+    <!-- Script de interactividad basica -->
+    <script src="{{ url_for('static', path='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

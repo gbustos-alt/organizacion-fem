@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% import "components/macros.html" as macros %}
+
+{% block title %}Nosotros | Organización FEM{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <span class="placeholder-tag">La Fundación</span>
+        <h1 class="page-title">Sobre Nosotros</h1>
+        <p class="page-subtitle">Nuestra historia, misión e institucionalidad orientada al servicio escolar.</p>
+    </div>
+</section>
+
+<section class="home-section" id="identidad-nosotros">
+    <div class="container grid-two-cols">
+        <div class="text-block">
+            <h2>Nuestra Identidad</h2>
+            <p>La <strong>Fundación Educación y Misión (FEM)</strong> es una entidad civil de bien público constituida por la <strong>Federación de Asociaciones Educativas Católicas de la República Argentina (FAERA)</strong>.</p>
+            <p class="mt-2">Nacemos como una respuesta eclesial y comunitaria para dar soporte organizativo, administrativo y pedagógico a instituciones educativas cuyas congregaciones originarias no pueden continuar directamente con su conducción, velando por la preservación de su historia y carisma.</p>
+        </div>
+        <div class="text-block">
+            <h2>Nuestra Misión y Visión</h2>
+            <p><strong>Misión:</strong> Acompañar, organizar y sostener las obras educativas escolares. Asumir de forma responsable el traspaso y la conducción pedagógico-pastoral y económico-financiera de las escuelas, asegurando la continuidad de su servicio a la comunidad.</p>
+            <p class="mt-2"><strong>Visión:</strong> Ser un instrumento eclesial eficaz y confiable en el discernimiento y traspaso de las obras, sosteniendo la vitalidad de cada carisma fundador y promoviendo el compromiso comunitario e institucional.</p>
+        </div>
+    </div>
+</section>
+
+<section class="home-section" id="organizacion-nosotros">
+    <div class="container">
+        <h2 class="section-title text-center">Estructura Organizativa</h2>
+        <p class="section-subtitle text-center">La gobernanza y equipos de trabajo encargados de velar por los fines de la Fundación.</p>
+        
+        <div class="grid-two-cols">
+            <ul class="org-list">
+                <li class="org-item">
+                    <strong>Consejo de Administración</strong>
+                    <span>Órgano máximo de decisión y planeamiento estratégico de la fundación.</span>
+                </li>
+                <li class="org-item">
+                    <strong>Centro Directivo de Animación</strong>
+                    <span>Encargado del seguimiento y articulación ejecutiva de las políticas institucionales de FEM.</span>
+                </li>
+            </ul>
+            <ul class="org-list">
+                <li class="org-item">
+                    <strong>Área Pedagógico Pastoral</strong>
+                    <span>Equipo técnico y espiritual dedicado al desarrollo formativo, curricular y doctrinal.</span>
+                </li>
+                <li class="org-item">
+                    <strong>Área Económico Financiera</strong>
+                    <span>Unidad técnica a cargo del control fiscal, contable e impositivo de las obras educativas.</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="text-center mt-3">
+            {{ macros.render_button("Volver al Inicio", "/", "primary") }}
+        </div>
+    </div>
+</section>
+{% endblock %}

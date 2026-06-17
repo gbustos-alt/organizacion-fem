@@ -1,0 +1,13 @@
+{
+  "name": "organizacion-fem",
+  "version": "1.0.0",
+  "description": "Sitio institucional de Organizacion FEM",
+  "main": "app/main.py",
+  "scripts": {
+    "build:css": "sass app/static/src/scss/main.scss app/static/dist/css/main.css",
+    "watch:css": "sass --watch app/static/src/scss/main.scss app/static/dist/css/main.css"
+  },
+  "devDependencies": {
+    "sass": "^1.83.0"
+  }
+}

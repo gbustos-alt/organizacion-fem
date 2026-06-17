@@ -1,0 +1,321 @@
+// Estilos específicos para la página de Inicio (Home) e Interiores
+
+// Secciones del Home
+.home-section {
+  padding: var(--space-3xl) 0;
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  
+  &:nth-child(even) {
+    background-color: var(--color-bg-alt);
+  }
+}
+
+// Hero Home Custom
+.hero-section {
+  background-color: var(--color-bg-alt);
+  border-bottom: 1px solid var(--color-border);
+}
+
+// Misión / Visión Cards Custom
+.mission-card {
+  border-left: 4px solid var(--color-primary);
+  box-shadow: var(--shadow-sm);
+  
+  &.vision {
+    border-left-color: var(--color-accent-warm);
+  }
+}
+
+// Lista de Estructura Organizativa
+.org-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  
+  .org-item {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: calc(var(--space-lg) + 8px);
+    transition: var(--transition-smooth);
+    
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background-color: var(--color-primary);
+      border-top-left-radius: var(--radius-sm);
+      border-bottom-left-radius: var(--radius-sm);
+    }
+    
+    &:nth-child(even)::before {
+      background-color: var(--color-accent-warm);
+    }
+    
+    &:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+    }
+    
+    strong {
+      color: var(--color-primary);
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      margin-bottom: var(--space-xxs);
+    }
+    
+    span {
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+    }
+  }
+}
+
+// Bloque de Presencia (Placeholder)
+.presence-block {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-accent-warm);
+  padding: var(--space-xl);
+  border-radius: var(--radius-md);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  margin-top: var(--space-lg);
+  
+  .placeholder-tag {
+    display: inline-block;
+    background-color: #fcf6e8;
+    border: 1px solid rgba(241, 190, 72, 0.3);
+    color: #b77a1a;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-sm);
+  }
+  
+  p {
+    max-width: 650px;
+    margin: 0 auto;
+    color: var(--color-text-muted);
+  }
+}
+
+// Contacto
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  margin-top: var(--space-lg);
+  
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1.2fr;
+  }
+}
+
+.contact-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  
+  .contact-item {
+    h4 {
+      font-size: 0.9rem;
+      font-family: var(--font-heading);
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-xxs);
+    }
+    
+    p, a {
+      font-size: 1.1rem;
+      color: var(--color-primary);
+      font-weight: 500;
+    }
+    
+    a:hover {
+      color: var(--color-primary-hover);
+      text-decoration: underline;
+    }
+  }
+}
+
+// Formulario de Contacto (Diseño Plano e Institucional)
+.contact-form {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  
+  .form-group {
+    margin-bottom: var(--space-md);
+    
+    label {
+      display: block;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      margin-bottom: var(--space-xs);
+      color: var(--color-text);
+    }
+    
+    input, textarea {
+      width: 100%;
+      padding: var(--space-sm) var(--space-md);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background-color: var(--color-bg-alt);
+      color: var(--color-text);
+      transition: var(--transition-smooth);
+      
+      &:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        background-color: var(--color-card);
+        box-shadow: 0 0 0 3px rgba(26, 80, 139, 0.1);
+      }
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+  }
+}
+
+// Estilo editorial para la sección de Identidad
+.editorial-block {
+  border-left: 4px solid var(--color-primary);
+  padding-left: var(--space-lg);
+  
+  h2 {
+    margin-bottom: var(--space-xs);
+  }
+  
+  p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-text);
+  }
+}
+
+.text-block-accent {
+  display: flex;
+  align-items: center;
+  
+  p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    border-left: 3px solid var(--color-accent-warm);
+    padding-left: var(--space-md);
+  }
+}
+
+// Estilos de Colegios Acompañados
+.province-title {
+  font-family: var(--font-heading);
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-accent-warm);
+  display: inline-block;
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-xxs);
+  font-size: 1.35rem;
+}
+
+.school-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  
+  .school-header {
+    margin-bottom: var(--space-xs);
+    
+    .school-carisma {
+      display: inline-block;
+      background-color: var(--color-bg);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: var(--space-xxs) var(--space-xs);
+      border-radius: var(--radius-sm);
+    }
+  }
+  
+  .school-name {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    margin-bottom: var(--space-sm);
+  }
+  
+  .school-info {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xxs);
+    line-height: 1.4;
+  }
+  
+  .school-footer {
+    margin-top: var(--space-md);
+    padding-top: var(--space-xs);
+    border-top: 1px dashed var(--color-border);
+    
+    .school-link {
+      font-size: 0.85rem;
+      color: var(--color-celeste);
+      font-weight: 600;
+      
+      &:hover {
+        color: var(--color-primary-hover);
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Estilos de la Estructura Organizativa
+.org-section-title {
+  font-family: var(--font-heading);
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-accent-warm);
+  display: inline-block;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-xxs);
+  font-size: 1.25rem;
+}
+
+.org-email {
+  font-size: 0.8rem;
+  color: var(--color-celeste);
+  margin-top: var(--space-xxs);
+  display: block;
+  font-weight: 500;
+  
+  &:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+  }
+}
+
+
+
+

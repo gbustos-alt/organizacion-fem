@@ -1,0 +1,19 @@
+{# Macro para botones estandar del sitio #}
+{% macro render_button(text, href, variant='primary', class='') %}
+<a href="{{ href }}" class="btn btn-{{ variant }} {{ class }}">
+    {{ text }}
+</a>
+{% endmacro %}
+
+{# Macro para tarjetas institucionales #}
+{% macro render_card(title, description, icon_name=None, class='') %}
+<div class="card {{ class }}">
+    {% if icon_name %}
+    <div class="card-icon">
+        <span class="icon-placeholder">{{ icon_name }}</span>
+    </div>
+    {% endif %}
+    <h3 class="card-title">{{ title }}</h3>
+    <p class="card-text">{{ description }}</p>
+</div>
+{% endmacro %}

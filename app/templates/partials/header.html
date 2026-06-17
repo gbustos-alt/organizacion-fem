@@ -1,0 +1,44 @@
+<header class="main-header">
+    <div class="container header-container">
+        <a href="/" class="brand-logo" aria-label="Inicio - Organización FEM">
+            <img src="{{ url_for('static', path='img/logo-fem-color.png') }}" alt="Logo Organización FEM" class="header-logo">
+        </a>
+
+        <!-- Boton menu mobile -->
+        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <!-- Menu de navegacion -->
+        <nav class="main-nav" id="main-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="{% if active_page == 'home' %}#main-content{% else %}/{% endif %}" class="nav-link {% if active_page == 'home' %}active{% endif %}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% if active_page == 'home' %}#identidad{% else %}/#identidad{% endif %}" class="nav-link">Identidad</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% if active_page == 'home' %}#mision-vision{% else %}/#mision-vision{% endif %}" class="nav-link">Misión</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% if active_page == 'home' %}#acompanamiento{% else %}/#acompanamiento{% endif %}" class="nav-link">Dimensiones</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% if active_page == 'home' %}#colegios{% else %}/#colegios{% endif %}" class="nav-link">Colegios</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% if active_page == 'home' %}#organizacion{% else %}/#organizacion{% endif %}" class="nav-link">Organización</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% if active_page == 'home' %}#contacto{% else %}/#contacto{% endif %}" class="nav-link">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/nosotros" class="nav-link {% if active_page == 'nosotros' %}active{% endif %}">Nosotros</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

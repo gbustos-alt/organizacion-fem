@@ -1,0 +1,2209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundación Educación y Misión - Home Page</title>
+    <!-- Google Fonts: Inter (Cuerpo) y Lora (Citas y Serif Complementaria) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           1. SISTEMA DE TOKENS VISUALES (Hojas de Estilo CSS Vanilla)
+           ========================================================================== */
+        :root {
+            /* Colores Oficiales (Manual de Marca) */
+            --color-oro: #F1B434;          /* PANTONE 142 C (Flama / Resalte) */
+            --color-gris-brand: #888B8D;   /* PANTONE Cool Grey 8 C (Neutralidad) */
+            --color-negro: #000000;
+            --color-blanco: #FFFFFF;
+
+            /* Colores del Lema 2026 e Interfaz */
+            --color-crema: #FBFBF9;        /* Fondo Primario Cálido */
+            --color-azul-catedral: #0C1E36;/* Fondo Secundario de Contraste */
+            --color-coral: #F16536;        /* Acento dinámico Lema 2026 */
+            --color-rojo-ladrillo: #D24238;/* Fuego de la misión */
+            --color-texto-principal: #1E293B; /* Gris Pizarra de lectura cómoda */
+            --color-texto-muted: #64748B;
+            --color-borde: #E2E8F0;
+
+            /* Tipografías */
+            --font-display: 'Lora', 'Georgia', serif;
+            --font-brand-condensed: 'D-DIN', 'Barlow', 'Arial Condensed', sans-serif;
+            --font-brand-black: 'Geometr415 Blk BT', 'Arial Black', sans-serif;
+            --font-body: 'Inter', sans-serif;
+
+            /* Transiciones y Sombras */
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-subtle: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-premium: 0 20px 25px -5px rgba(12, 30, 54, 0.08), 0 10px 10px -5px rgba(12, 30, 54, 0.04);
+            --shadow-glow: 0 0 15px rgba(241, 180, 52, 0.5);
+        }
+
+        /* Reset general y accesibilidad */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-crema);
+            color: var(--color-texto-principal);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--color-negro);
+            font-weight: 700;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        button, input, select, textarea {
+            font-family: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ==========================================================================
+           2. COMPONENTES COMUNES Y DISEÑO DE INTERFAZ PREMIUM
+           ========================================================================== */
+        
+        /* Botones */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            border-radius: 4px;
+            font-family: var(--font-brand-condensed);
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-primary {
+            background-color: var(--color-oro);
+            color: var(--color-negro);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-negro);
+            color: var(--color-oro);
+            border-color: var(--color-oro);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-negro);
+            border-color: var(--color-negro);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-negro);
+            color: var(--color-blanco);
+            transform: translateY(-2px);
+        }
+
+        .btn-white-outline {
+            background-color: transparent;
+            color: var(--color-blanco);
+            border-color: var(--color-blanco);
+        }
+
+        .btn-white-outline:hover {
+            background-color: var(--color-blanco);
+            color: var(--color-azul-catedral);
+            transform: translateY(-2px);
+        }
+
+        /* Sección títulos y eyebrows */
+        .eyebrow {
+            font-family: var(--font-brand-condensed);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--color-coral);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.25rem;
+            line-height: 1.25;
+            margin-bottom: 16px;
+            color: var(--color-azul-catedral);
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--color-texto-muted);
+            max-width: 700px;
+            margin-bottom: 48px;
+        }
+
+        /* ==========================================================================
+           3. NAVBAR / HEADER
+           ========================================================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(251, 251, 249, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-borde);
+            transition: var(--transition-smooth);
+        }
+
+        header.scrolled {
+            box-shadow: var(--shadow-subtle);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo-container a {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 52px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            font-family: var(--font-brand-condensed);
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: var(--color-texto-principal);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-oro);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--color-oro);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: flex;
+            align-items: center;
+        }
+
+        /* ==========================================================================
+           4. HERO SECTION
+           ========================================================================== */
+        .hero {
+            padding-top: 160px;
+            padding-bottom: 90px;
+            position: relative;
+            background: linear-gradient(180deg, rgba(241, 180, 52, 0.03) 0%, rgba(251, 251, 249, 1) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 50%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(241, 180, 52, 0.06) 0%, transparent 70%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-display);
+            font-size: 3.25rem;
+            line-height: 1.15;
+            color: var(--color-azul-catedral);
+            margin-bottom: 24px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--color-texto-muted);
+            margin-bottom: 36px;
+            max-width: 620px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+        }
+
+        .hero-media {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lema-card {
+            background-color: var(--color-blanco);
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-premium);
+            border: 1px solid var(--color-borde);
+            transform: rotate(1deg);
+            transition: var(--transition-smooth);
+        }
+
+        .lema-card:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .lema-img {
+            max-height: 250px;
+            width: auto;
+            border-radius: 4px;
+        }
+
+        /* ==========================================================================
+           5. LA RED EN CIFRAS (Data Highlights)
+           ========================================================================== */
+        .cifras {
+            padding: 80px 0;
+            background-color: var(--color-blanco);
+            border-top: 1px solid var(--color-borde);
+            border-bottom: 1px solid var(--color-borde);
+        }
+
+        .cifras-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .cifra-card {
+            text-align: center;
+            padding: 24px;
+            border-radius: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .cifra-card:hover {
+            background-color: var(--color-crema);
+            transform: translateY(-4px);
+        }
+
+        .cifra-num {
+            font-family: var(--font-brand-condensed);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--color-oro);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .cifra-label {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--color-texto-principal);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cifra-sub {
+            font-size: 0.85rem;
+            color: var(--color-texto-muted);
+            margin-top: 4px;
+        }
+
+        /* ==========================================================================
+           6. FIRMA VISUAL: LA CONSTELACIÓN CARISMÁTICA (Canvas Interactiva)
+           ========================================================================== */
+        .constelacion-section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .constelacion-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 36px;
+            align-items: start;
+        }
+
+        .constelacion-workspace {
+            background-color: var(--color-azul-catedral);
+            border-radius: 12px;
+            height: 600px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-premium);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #constelacionCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .constelacion-help {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .constelacion-controls {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .constelacion-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--color-blanco);
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-family: var(--font-brand-condensed);
+            text-transform: uppercase;
+        }
+
+        .constelacion-btn:hover, .constelacion-btn.active {
+            background-color: var(--color-oro);
+            color: var(--color-negro);
+            border-color: var(--color-oro);
+        }
+
+        /* Ficha del Colegio (Detalle Sidebar) */
+        .school-card-container {
+            background-color: var(--color-blanco);
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: var(--shadow-premium);
+            border: 1px solid var(--color-borde);
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .school-card-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 100%;
+            color: var(--color-texto-muted);
+        }
+
+        .school-card-empty svg {
+            margin-bottom: 16px;
+            stroke: var(--color-gris-brand);
+            opacity: 0.5;
+        }
+
+        .school-card-content {
+            display: none;
+        }
+
+        .school-card-content.active {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        .school-badge {
+            align-self: flex-start;
+            padding: 4px 12px;
+            background-color: rgba(241, 180, 52, 0.1);
+            color: var(--color-coral);
+            border: 1px solid rgba(241, 180, 52, 0.2);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .school-title {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            color: var(--color-azul-catedral);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .school-carisma {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-texto-muted);
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--color-borde);
+            padding-bottom: 16px;
+        }
+
+        .school-info-item {
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .school-info-item svg {
+            flex-shrink: 0;
+            margin-top: 3px;
+            stroke: var(--color-oro);
+        }
+
+        .school-info-label {
+            font-weight: 600;
+            color: var(--color-negro);
+        }
+
+        .school-info-val {
+            color: var(--color-texto-principal);
+        }
+
+        .school-card-actions {
+            margin-top: auto;
+            padding-top: 24px;
+            border-top: 1px solid var(--color-borde);
+            display: flex;
+            gap: 12px;
+        }
+
+        /* ==========================================================================
+           7. NUESTROS PILARES (Propósito)
+           ========================================================================== */
+        .pilares-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--color-crema) 0%, rgba(241, 180, 52, 0.02) 100%);
+        }
+
+        .pilares-quote {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 64px auto;
+        }
+
+        .pilares-quote q {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            line-height: 1.4;
+            font-style: italic;
+            color: var(--color-azul-catedral);
+        }
+
+        .pilares-quote span {
+            display: block;
+            margin-top: 16px;
+            font-family: var(--font-brand-condensed);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            color: var(--color-gris-brand);
+        }
+
+        .pilares-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .pilar-card {
+            background-color: var(--color-blanco);
+            border-radius: 8px;
+            padding: 32px 24px;
+            border: 1px solid var(--color-borde);
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pilar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--color-oro);
+            transition: var(--transition-smooth);
+        }
+
+        .pilar-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-premium);
+        }
+
+        .pilar-card:hover::before {
+            width: 8px;
+            background-color: var(--color-coral);
+        }
+
+        .pilar-icon {
+            margin-bottom: 24px;
+            width: 48px;
+            height: 48px;
+            border-radius: 4px;
+            background-color: rgba(241, 180, 52, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-oro);
+        }
+
+        .pilar-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--color-azul-catedral);
+        }
+
+        .pilar-card p {
+            font-size: 0.95rem;
+            color: var(--color-texto-muted);
+        }
+
+        /* ==========================================================================
+           8. ESTRATEGIAS FORMATIVAS (Tabs Component)
+           ========================================================================== */
+        .formativas-section {
+            padding: 100px 0;
+            background-color: var(--color-blanco);
+        }
+
+        .tabs-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 48px;
+            margin-top: 48px;
+            align-items: start;
+        }
+
+        .tab-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            border-right: 2px solid var(--color-borde);
+            padding-right: 24px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 14px 20px;
+            font-family: var(--font-brand-condensed);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--color-texto-muted);
+            cursor: pointer;
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+        }
+
+        .tab-btn:hover {
+            color: var(--color-oro);
+            background-color: var(--color-crema);
+        }
+
+        .tab-btn.active {
+            color: var(--color-blanco);
+            background-color: var(--color-azul-catedral);
+        }
+
+        .tab-content-wrapper {
+            position: relative;
+            min-height: 300px;
+        }
+
+        .tab-panel {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .tab-panel h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--color-azul-catedral);
+            margin-bottom: 16px;
+        }
+
+        .tab-instancias {
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: rgba(241, 101, 54, 0.1);
+            color: var(--color-coral);
+            border: 1px solid rgba(241, 101, 54, 0.2);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .tab-panel p {
+            font-size: 1.1rem;
+            color: var(--color-texto-principal);
+            margin-bottom: 24px;
+            max-width: 800px;
+        }
+
+        .tab-list {
+            list-style: none;
+        }
+
+        .tab-list-item {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 1rem;
+            color: var(--color-texto-muted);
+        }
+
+        .tab-list-item svg {
+            flex-shrink: 0;
+            margin-top: 4px;
+            stroke: var(--color-coral);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==========================================================================
+           9. AUDITORÍAS DE GESTIÓN (Servicio)
+           ========================================================================== */
+        .auditorias-section {
+            padding: 100px 0;
+            background-color: var(--color-azul-catedral);
+            color: var(--color-blanco);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auditorias-section::before {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 40%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(241, 180, 52, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .auditorias-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .auditorias-info h2 {
+            color: var(--color-blanco);
+        }
+
+        .auditorias-info p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            margin-bottom: 36px;
+        }
+
+        .auditorias-areas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .auditoria-area-card {
+            background-color: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 6px;
+            transition: var(--transition-smooth);
+        }
+
+        .auditoria-area-card:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            border-color: var(--color-oro);
+            transform: translateY(-2px);
+        }
+
+        .auditoria-area-card h4 {
+            color: var(--color-oro);
+            font-family: var(--font-brand-condensed);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .auditoria-area-card p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0;
+        }
+
+        .auditoria-form-container {
+            background-color: var(--color-blanco);
+            color: var(--color-texto-principal);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-premium);
+        }
+
+        .auditoria-form-container h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-azul-catedral);
+            margin-bottom: 8px;
+        }
+
+        .auditoria-form-container p {
+            font-size: 0.9rem;
+            color: var(--color-texto-muted);
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--color-negro);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--color-borde);
+            background-color: var(--color-crema);
+            border-radius: 4px;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-oro);
+            background-color: var(--color-blanco);
+            box-shadow: 0 0 0 3px rgba(241, 180, 52, 0.15);
+        }
+
+        /* ==========================================================================
+           10. GOBIERNO & ALIANZAS
+           ========================================================================== */
+        .gobierno-section {
+            padding: 100px 0;
+            background-color: var(--color-crema);
+        }
+
+        .gobierno-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .org-card {
+            background-color: var(--color-blanco);
+            border: 1px solid var(--color-borde);
+            border-radius: 8px;
+            padding: 36px;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .org-section-title {
+            font-family: var(--font-brand-condensed);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-coral);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--color-borde);
+            padding-bottom: 8px;
+        }
+
+        .org-group {
+            margin-bottom: 36px;
+        }
+
+        .org-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .org-members-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .org-member {
+            padding: 12px;
+            border-left: 3px solid var(--color-oro);
+            background-color: var(--color-crema);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .org-member-name {
+            font-weight: 600;
+            color: var(--color-negro);
+            font-size: 0.95rem;
+        }
+
+        .org-member-role {
+            font-size: 0.85rem;
+            color: var(--color-texto-muted);
+            font-weight: 500;
+        }
+
+        .org-member-cong {
+            font-size: 0.75rem;
+            color: var(--color-coral);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Alianzas y Respaldo */
+        .alianzas-card {
+            background-color: var(--color-blanco);
+            border: 1px solid var(--color-borde);
+            border-radius: 8px;
+            padding: 36px;
+            text-align: center;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .faera-logo-box {
+            background-color: var(--color-crema);
+            border-radius: 8px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 24px 0;
+            border: 1px solid var(--color-borde);
+        }
+
+        .faera-logo-temp {
+            font-family: var(--font-brand-condensed);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--color-azul-catedral);
+            letter-spacing: 1px;
+        }
+
+        .alianzas-card p {
+            font-size: 0.95rem;
+            color: var(--color-texto-muted);
+        }
+
+        /* ==========================================================================
+           11. FOOTER
+           ========================================================================== */
+        footer {
+            background-color: var(--color-azul-catedral);
+            color: var(--color-blanco);
+            padding: 80px 0 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h3 {
+            color: var(--color-blanco);
+            font-family: var(--font-brand-condensed);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        .footer-logo-box img {
+            height: 60px;
+            width: auto;
+            margin-bottom: 16px;
+        }
+
+        .footer-col p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-oro);
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* ==========================================================================
+           12. SECCIÓN LA FUNDACIÓN (Identidad, Misión, Visión)
+           ========================================================================== */
+        .fundacion-section {
+            padding: 96px 0;
+            background-color: var(--color-blanco);
+            border-top: 1px solid var(--color-borde);
+            border-bottom: 1px solid var(--color-borde);
+        }
+
+        .fundacion-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-bottom: 56px;
+        }
+
+        .fundacion-card {
+            background-color: var(--color-crema);
+            border-radius: 8px;
+            padding: 36px 28px;
+            border: 1px solid var(--color-borde);
+            transition: var(--transition-smooth);
+        }
+
+        .fundacion-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-premium);
+            border-color: rgba(241, 180, 52, 0.35);
+        }
+
+        .fundacion-card--highlight {
+            background-color: var(--color-azul-catedral);
+            border-color: var(--color-azul-catedral);
+        }
+
+        .fundacion-card--highlight h3 {
+            color: var(--color-oro) !important;
+        }
+
+        .fundacion-card--highlight p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .fundacion-card--highlight .fundacion-icon {
+            background-color: rgba(241, 180, 52, 0.15);
+            color: var(--color-oro);
+        }
+
+        .fundacion-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 8px;
+            background-color: rgba(241, 180, 52, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-oro);
+            margin-bottom: 24px;
+        }
+
+        .fundacion-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--color-azul-catedral);
+            margin-bottom: 12px;
+        }
+
+        .fundacion-card p {
+            font-size: 1rem;
+            color: var(--color-texto-muted);
+            line-height: 1.75;
+        }
+
+        .fundacion-blockquote {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 48px;
+            background: linear-gradient(135deg, rgba(241, 180, 52, 0.04), rgba(12, 30, 54, 0.03));
+            border-radius: 8px;
+            border: 1px solid rgba(241, 180, 52, 0.2);
+            text-align: center;
+        }
+
+        .fundacion-blockquote blockquote {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--color-azul-catedral);
+            line-height: 1.65;
+            margin-bottom: 16px;
+        }
+
+        .fundacion-blockquote cite {
+            font-family: var(--font-brand-condensed);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-gris-brand);
+            font-style: normal;
+        }
+
+        /* ==========================================================================
+           13. DISEÑO RESPONSIVO (Media Queries)
+           ========================================================================== */
+        @media (max-width: 1024px) {
+            .hero-grid, .constelacion-grid, .auditorias-grid, .gobierno-grid, .fundacion-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .tabs-container {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .tab-menu {
+                border-right: none;
+                border-bottom: 2px solid var(--color-borde);
+                padding-right: 0;
+                padding-bottom: 16px;
+                flex-direction: row;
+                overflow-x: auto;
+            }
+
+            .school-card-container, .constelacion-workspace {
+                height: 500px;
+            }
+
+            .cifras-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pilares-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                height: 70px;
+            }
+
+            .nav-links, .nav-cta {
+                display: none; /* Simplificación para responsive móvil */
+            }
+
+            .hero {
+                padding-top: 120px;
+                padding-bottom: 60px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.25rem;
+            }
+
+            .cifras-grid, .pilares-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. HEADER / NAVBAR -->
+    <header id="mainHeader">
+        <div class="container navbar">
+            <div class="logo-container">
+                <a href="#inicio">
+                    <!-- Referencia al Logo Colores Oficial del Workspace -->
+                    <img class="logo-img" src="./Logo-20260617T131315Z-3-001/Logo/Logo FEM - colores.png" alt="Logo Fundación FEM" onerror="this.src='https://placehold.co/180x60?text=FUNDACION+FEM'">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#fundacion">La Fundación</a></li>
+                <li><a href="#colegios">Colegios</a></li>
+                <li><a href="#nuestro-proyecto">Proyecto</a></li>
+                <li><a href="#formativas">Formación</a></li>
+                <li><a href="#auditorias">Auditorías</a></li>
+                <li><a href="#gobierno">Gobierno</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="#contacto" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">Contacto</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <section class="hero" id="inicio">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="eyebrow">Acompañamiento Inter-Carismático</span>
+                <h1>Preservando el tesoro carismático, sosteniendo el futuro de la educación católica.</h1>
+                <p>Un paradigma colaborativo para acompañar, reorganizar y fortalecer obras educativas frente a los retos del presente. Creado por FAERA.</p>
+                <div class="hero-actions">
+                    <a href="#colegios" class="btn btn-primary">Ver red de Colegios</a>
+                    <a href="#auditorias" class="btn btn-secondary">Proceso de Acompañamiento</a>
+                </div>
+            </div>
+            <div class="hero-media">
+                <div class="lema-card">
+                    <!-- Referencia al Lema Oficial del Workspace -->
+                    <img class="lema-img" src="./Lema-20260617T131301Z-3-001/Lema/Copia de Copia de Lema FEM 2026 - PNG color.png" alt="Lema FEM 2026" onerror="this.src='https://placehold.co/250x250?text=Lema+Anual+2026'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. LA FUNDACIÓN: Identidad, Misión, Visión -->
+    <section class="fundacion-section" id="fundacion">
+        <div class="container">
+            <span class="eyebrow">Nuestra Identidad</span>
+            <h2 class="section-title">¿Qué es la Fundación FEM?</h2>
+            <p class="section-desc">Una respuesta eclesial colaborativa para preservar el tesoro carismático de congregaciones educativas que enfrentan los retos del presente.</p>
+
+            <div class="fundacion-grid">
+                <!-- Card Identidad -->
+                <div class="fundacion-card">
+                    <div class="fundacion-icon">
+                        <svg width="26" height="26" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    </div>
+                    <h3>Identidad</h3>
+                    <p>La Fundación "Educación y Misión" es una persona jurídica creada por FAERA. Tiene como objetivo la gestión, creación y acompañamiento de obras educativas de todos los niveles, preservando la herencia carismática de cada congregación.</p>
+                </div>
+
+                <!-- Card Misión (destacada) -->
+                <div class="fundacion-card fundacion-card--highlight">
+                    <div class="fundacion-icon">
+                        <svg width="26" height="26" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h3>Misión</h3>
+                    <p>Proponer un nuevo paradigma para acompañar y sostener los carismas de congregaciones que no pueden continuar su servicio en las escuelas. Una respuesta concreta para no perder la riqueza de tantos proyectos educativos evangelizadores.</p>
+                </div>
+
+                <!-- Card Visión -->
+                <div class="fundacion-card">
+                    <div class="fundacion-icon">
+                        <svg width="26" height="26" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    </div>
+                    <h3>Visión</h3>
+                    <p>Trabajar junto a cada congregación en el proceso de discernimiento, preservando los sentimientos de pertenencia de las comunidades educativas y asegurando la continuidad del carisma evangelizador en cada obra.</p>
+                </div>
+            </div>
+
+            <!-- Cita institucional -->
+            <div class="fundacion-blockquote">
+                <blockquote>"Se procura el compromiso de la congregación para seguir acompañando la obra desde lo carismático."</blockquote>
+                <cite>— Folleto Institucional FEM 2026</cite>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. LA RED EN CIFRAS -->
+    <section class="cifras" id="red">
+        <div class="container cifras-grid">
+            <div class="cifra-card">
+                <div class="cifra-num" data-val="15">0</div>
+                <div class="cifra-label">Colegios Incorporados</div>
+                <div class="cifra-sub">13 Colegios y 2 Terciarios</div>
+            </div>
+            <div class="cifra-card">
+                <div class="cifra-num" data-val="9802">0</div>
+                <div class="cifra-label">Alumnos de la Red</div>
+                <div class="cifra-sub">En todos los niveles educativos</div>
+            </div>
+            <div class="cifra-card">
+                <div class="cifra-num" data-val="1282">0</div>
+                <div class="cifra-label">Educadores</div>
+                <div class="cifra-sub">Docentes y personal auxiliar</div>
+            </div>
+            <div class="cifra-card">
+                <div class="cifra-num" data-val="31">0</div>
+                <div class="cifra-label">Auditorías</div>
+                <div class="cifra-sub">Realizadas y en proceso en 2026</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. FIRMA VISUAL: LA CONSTELACIÓN CARISMÁTICA (DIRECTORIO INTERACTIVO) -->
+    <section class="constelacion-section" id="colegios">
+        <div class="container">
+            <span class="eyebrow" style="text-align: center; display: block;">Directorio Dinámico</span>
+            <h2 class="section-title" style="text-align: center;">La Constelación Carismática</h2>
+            <p class="section-desc" style="text-align: center; margin-left: auto; margin-right: auto;">
+                Explore nuestra red federal de instituciones asociadas. Cada nodo representa un colegio; las conexiones reflejan el caminar compartido y la unidad en lo inter-carismático.
+            </p>
+            
+            <div class="constelacion-grid">
+                <!-- Workspace de la Constelación (Canvas interactivo) -->
+                <div class="constelacion-workspace">
+                    <div class="constelacion-controls">
+                        <button class="constelacion-btn active" onclick="filterConstellation('todos')">Todos</button>
+                        <button class="constelacion-btn" onclick="filterConstellation('provincia')">Por Provincia</button>
+                        <button class="constelacion-btn" onclick="filterConstellation('carisma')">Por Congregación</button>
+                    </div>
+                    <canvas id="constelacionCanvas"></canvas>
+                    <div class="constelacion-help">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
+                        <span>Pase el cursor por los nodos o haga clic para ver detalles del colegio</span>
+                    </div>
+                </div>
+                
+                <!-- Sidebar de Ficha del Colegio -->
+                <div class="school-card-container" id="schoolDetailCard">
+                    <!-- Estado vacío -->
+                    <div class="school-card-empty" id="schoolDetailEmpty">
+                        <svg width="64" height="64" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                        <h3>Seleccione una institución</h3>
+                        <p>Interactúe con la constelación o los filtros de provincia y congregación para desplegar los datos y mística de la obra educativa.</p>
+                    </div>
+                    
+                    <!-- Ficha de Datos (se activa dinámicamente) -->
+                    <div class="school-card-content" id="schoolDetailContent">
+                        <div>
+                            <div class="school-badge" id="detailBadge">Hijas de Santa Ana</div>
+                            <h3 class="school-title" id="detailTitle">Instituto Santa Ana y San Joaquín</h3>
+                            <div class="school-carisma" id="detailCarisma">Carisma: Educación asistencial y fe</div>
+                            
+                            <div class="school-info-item">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                <div>
+                                    <span class="school-info-label">Ubicación:</span>
+                                    <span class="school-info-val" id="detailUbicacion">Olazábal 1440, Belgrano (CABA)</span>
+                                </div>
+                            </div>
+                            
+                            <div class="school-info-item">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                                <div>
+                                    <span class="school-info-label">Teléfono:</span>
+                                    <span class="school-info-val" id="detailTelefono">011 4784 7650</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="school-card-actions">
+                            <a href="#" class="btn btn-primary" id="detailWebLink" target="_blank" style="padding: 10px 20px; font-size: 0.85rem; width: 100%;">Visitar Web Oficial</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. NUESTRO PROYECTO: Pilares Operativos -->
+    <section class="pilares-section" id="nuestro-proyecto">
+        <div class="container">
+            <div class="pilares-quote">
+                <q>Lo inter-carismático es un crecer colaborativo en unidad preservando lo distintivo, lo propio. Hay un delicado respeto a la historia del caminar institucional de cada congregación.</q>
+                <span>Consejo de Animación - Fundación FEM</span>
+            </div>
+            
+            <div class="pilares-grid">
+                <div class="pilar-card">
+                    <div class="pilar-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                    </div>
+                    <h3>Centralidad Evangelizadora</h3>
+                    <p>Trabajamos con paciencia histórica para poner cada vez más en clave evangelizadora nuestras prácticas pedagógicas diarias.</p>
+                </div>
+                
+                <div class="pilar-card">
+                    <div class="pilar-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    </div>
+                    <h3>Unidad en la Diversidad</h3>
+                    <p>Procuramos el enriquecimiento y la unión inter-carismática, al mismo tiempo que alentamos la resignificación de la identidad propia de cada obra.</p>
+                </div>
+                
+                <div class="pilar-card">
+                    <div class="pilar-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <h3>Discernimiento Compartido</h3>
+                    <p>Buscamos favorecer la comunión de criterios, la coherencia institucional y los procesos de discernimiento en la conducción escolar.</p>
+                </div>
+                
+                <div class="pilar-card">
+                    <div class="pilar-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    </div>
+                    <h3>Animación & Gobierno</h3>
+                    <p>Coordinación de red centralizada para resguardo de políticas, potenciando el protagonismo local de los Equipos de Conducción.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. ESTRATEGIAS FORMATIVAS (TABS) -->
+    <section class="formativas-section" id="formativas">
+        <div class="container">
+            <span class="eyebrow">Construyendo Capacidades</span>
+            <h2 class="section-title">Estrategias Formativas Dinamizadoras</h2>
+            <p class="section-desc">Diseñamos itinerarios sistemáticos de capacitación para todos los estamentos de las comunidades educativas que integran la red.</p>
+            
+            <div class="tabs-container">
+                <div class="tab-menu">
+                    <button class="tab-btn active" onclick="openTab(event, 'formativa-1')">Equipos de Gestión</button>
+                    <button class="tab-btn" onclick="openTab(event, 'formativa-2')">Pastoral Educativa</button>
+                    <button class="tab-btn" onclick="openTab(event, 'formativa-3')">Jóvenes Estudiantes</button>
+                    <button class="tab-btn" onclick="openTab(event, 'formativa-4')">Admin y RRLL</button>
+                    <button class="tab-btn" onclick="openTab(event, 'formativa-5')">Coordinadores Pastoral</button>
+                    <button class="tab-btn" onclick="openTab(event, 'formativa-6')">Inducción General</button>
+                </div>
+                
+                <div class="tab-content-wrapper">
+                    <!-- Tab 1 -->
+                    <div id="formativa-1" class="tab-panel active">
+                        <h3>Capacitación para Equipos de Gestión</h3>
+                        <div class="tab-instancias">4 Instancias Anuales Presenciales</div>
+                        <p>Espacios destinados al encuentro fraterno, la reflexión profunda y el intercambio de experiencias sobre temas transversales de conducción pedagógico-pastoral en la red.</p>
+                        <ul class="tab-list">
+                            <li class="tab-list-item">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Definición de acuerdos y organización institucional.</span>
+                            </li>
+                            <li class="tab-list-item">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Gobierno pedagógico y animación de procesos escolares.</span>
+                            </li>
+                            <li class="tab-list-item">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Políticas de cuidado en comunidades educativas.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Tab 2 -->
+                    <div id="formativa-2" class="tab-panel">
+                        <h3>Formación en Pastoral Educativa</h3>
+                        <div class="tab-instancias">3 Instancias Anuales</div>
+                        <p>Itinerarios orientados a retomar el sentido profundamente evangelizador de la tarea escolar. Fomenta la sensibilización del rol educativo eclesial.</p>
+                        <ul class="tab-list">
+                            <li class="tab-list-item">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Creación y maduración de la mística de red organizacional.</span>
+                            </li>
+                            <li class="tab-list-item">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Metodología de proyectos de impacto socio-pastoral en escuelas.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Tab 3 -->
+                    <div id="formativa-3" class="tab-panel">
+                        <h3>Liderazgo para Jóvenes Estudiantes</h3>
+                        <div class="tab-instancias">2 Instancias Anuales</div>
+                        <p>Encuentros diseñados para motivar el protagonismo escolar de los jóvenes líderes estudiantiles dentro de sus propios colegios, fortaleciendo la participación colegial activa.</p>
+                        <ul class="tab-list">
+                            <li class="tab-list-item">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Habilidades de comunicación, discernimiento y liderazgo.</span>
+                            </li>
+                            <li class="tab-list-item">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Coordinación de iniciativas juveniles locales y pastoral escolar.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Tab 4 -->
+                    <div id="formativa-4" class="tab-panel">
+                        <h3>Representantes Legales y Administradores</h3>
+                        <div class="tab-instancias">2 Instancias Anuales</div>
+                        <p>Jornadas anuales específicas enfocadas en la actualización técnica administrativa, legal y de economía de comunión en red para los administradores locales.</p>
+                        <ul class="tab-list">
+                            <li class="tab-list-item">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Economía de comunión centralizada.</span>
+                            </li>
+                            <li class="tab-list-item">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Marco regulatorio, laboral, legal y auditoría patrimonial.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Tab 5 -->
+                    <div id="formativa-5" class="tab-panel">
+                        <h3>Red de Coordinadores de Pastoral</h3>
+                        <div class="tab-instancias">Encuentros de Reflexión y Planificación</div>
+                        <p>Espacios destinados a coordinadores pedagógico-pastorales de todos los niveles. Pensar de forma unificada para accionar localmente con coherencia institucional.</p>
+                        <ul class="tab-list">
+                            <li class="tab-list-item">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Reflexión teológica sobre realidades juveniles y niñez.</span>
+                            </li>
+                            <li class="tab-list-item">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Plan de Pastoral FEM con Puntos de Referencia unificados.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Tab 6 -->
+                    <div id="formativa-6" class="tab-panel">
+                        <h3>Inducción General para Educadores</h3>
+                        <div class="tab-instancias">Formato Virtual Autogestionado</div>
+                        <p>Breve espacio interactivo virtual para capacitar a todos los docentes, directivos y adultos que se incorporan por primera vez a los colegios de la red FEM.</p>
+                        <ul class="tab-list">
+                            <li class="tab-list-item">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Identidad, historia y propósito de la Fundación FEM.</span>
+                            </li>
+                            <li class="tab-list-item">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Orientación pedagógica y acompañamiento del carisma escolar.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. AUDITORÍAS DE GESTIÓN INSTITUCIONAL -->
+    <section class="auditorias-section" id="auditorias">
+        <div class="container auditorias-grid">
+            <div class="auditorias-info">
+                <span class="eyebrow" style="color: var(--color-oro);">Nuestro Servicio</span>
+                <h2>Auditorías de Gestión Integral</h2>
+                <p>
+                    Concebimos la auditoría como un servicio de acompañamiento constructivo y fraterno enfocado en la calidad educativa y pastoral, nunca como una fiscalización de castigo. Asistimos a congregaciones y colegios en el diagnóstico y la reorganización de sus obras.
+                </p>
+                <div class="auditorias-areas">
+                    <div class="auditoria-area-card">
+                        <h4>Pedagógica</h4>
+                        <p>Evaluación de metodologías y prácticas de enseñanza curriculares.</p>
+                    </div>
+                    <div class="auditoria-area-card">
+                        <h4>Pastoral</h4>
+                        <p>Preservación de la centralidad evangelizadora y la identidad.</p>
+                    </div>
+                    <div class="auditoria-area-card">
+                        <h4>Económica</h4>
+                        <p>Diagnóstico financiero, costos de operación y optimización de recursos.</p>
+                    </div>
+                    <div class="auditoria-area-card">
+                        <h4>Legal</h4>
+                        <p>Control legal institucional, normativo, laboral y estatutos escolares.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auditoria-form-container">
+                <h3>Contacto & Solicitudes</h3>
+                <p>Si su congregación u obra educativa necesita acompañamiento técnico o auditoría de viabilidad, contáctenos.</p>
+                <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="nombre">Nombre y Apellido</label>
+                        <input class="form-control" type="text" id="nombre" required placeholder="Ej. Prof. María Paz">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="colegio">Colegio / Congregación</label>
+                        <input class="form-control" type="text" id="colegio" required placeholder="Ej. Congregación Carmelitas">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="correo">Correo Electrónico</label>
+                        <input class="form-control" type="email" id="correo" required placeholder="Ej. maria@colegio.edu.ar">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="motivo">Motivo del Acompañamiento</label>
+                        <select class="form-control" id="motivo">
+                            <option value="solicitud">Solicitud de Auditoría Integral</option>
+                            <option value="informacion">Información para sumarse a la red</option>
+                            <option value="reorganizacion">Asesoramiento en reorganización</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" type="submit" style="width: 100%;">Enviar Solicitud</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. GOBIERNO & ALIANZAS -->
+    <section class="gobierno-section" id="gobierno">
+        <div class="container gobierno-grid">
+            <div class="org-card">
+                <h2 class="org-section-title">Gobierno y Animación (Consejo 2026-2028)</h2>
+                
+                <div class="org-group">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 12px; color: var(--color-azul-catedral)">Consejo de Administración</h3>
+                    <div class="org-members-grid">
+                        <div class="org-member">
+                            <div class="org-member-name">Hno. Fabián Maragliano</div>
+                            <div class="org-member-role">Presidente</div>
+                            <div class="org-member-cong">Lasallanos</div>
+                        </div>
+                        <div class="org-member">
+                            <div class="org-member-name">Zunilda Rossi</div>
+                            <div class="org-member-role">Secretaria</div>
+                            <div class="org-member-cong">FEM</div>
+                        </div>
+                        <div class="org-member">
+                            <div class="org-member-name">Karina Luquin</div>
+                            <div class="org-member-role">Tesorera</div>
+                            <div class="org-member-cong">FEM</div>
+                        </div>
+                        <div class="org-member">
+                            <div class="org-member-name">Hno. Alberto Aparicio / P. Jorge Ledesma</div>
+                            <div class="org-member-role">Vocales</div>
+                            <div class="org-member-cong">Maristas / Salesianos</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="org-group">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 12px; color: var(--color-azul-catedral)">Centro Directivo de Animación</h3>
+                    <div class="org-members-grid">
+                        <div class="org-member">
+                            <div class="org-member-name">Prof. Juan Pablo Gasme</div>
+                            <div class="org-member-role">Director Ejecutivo</div>
+                        </div>
+                        <div class="org-member">
+                            <div class="org-member-name">Erica Eberhard / Prof. Hugo Tissera</div>
+                            <div class="org-member-role">Área Pedagógico Pastoral</div>
+                        </div>
+                        <div class="org-member">
+                            <div class="org-member-name">Cra. Karina Luquin / Nelson Domínguez</div>
+                            <div class="org-member-role">Área Económico Financiera y Legal</div>
+                        </div>
+                        <div class="org-member">
+                            <div class="org-member-name">Joaquín Casaburro</div>
+                            <div class="org-member-role">Equipo de Animación</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="alianzas-card">
+                <h3 style="font-family: var(--font-display); font-size: 1.4rem; color: var(--color-azul-catedral);">Respaldo Institucional</h3>
+                <div class="faera-logo-box">
+                    <span class="faera-logo-temp">FAERA</span>
+                </div>
+                <p>La Fundación Educación y Misión es una entidad civil creada y respaldada activamente por la Federación de Asociaciones Educativas de la República Argentina (FAERA), velando por la continuidad de la educación católica nacional.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. FOOTER -->
+    <footer id="contacto">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo-box">
+                    <!-- Referencia al Logo Blanco del Workspace -->
+                    <img src="./Logo-20260617T131315Z-3-001/Logo/logo FEM blanco png.png" alt="Logo FEM Blanco" onerror="this.src='https://placehold.co/180x60?text=FEM+BLANCO'">
+                </div>
+                <p>Preservando el tesoro carismático, sosteniendo el futuro de la educación católica.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Enlaces Útiles</h3>
+                <ul class="footer-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#red">La Red</a></li>
+                    <li><a href="#colegios">Colegios Federados</a></li>
+                    <li><a href="#formativas">Calendario Formativo</a></li>
+                    <li><a href="#auditorias">Auditorías</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Datos Legales</h3>
+                <p>Lavalle 1527, Piso 11, Ofic. 44<br>CABA (C1048 AAK) - Argentina</p>
+                <p>Correo Oficial:<br><a href="mailto:fundacionfem@fundacionfem.org" style="color: var(--color-oro);">fundacionfem@fundacionfem.org</a></p>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <div>&copy; 2026 Fundación Educación y Misión. Todos los derechos reservados.</div>
+            <div>Una obra creada por FAERA</div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+       13. LOGIC & DATA (JavaScript)
+       ========================================================================== */ -->
+    <script>
+        // BASE DE DATOS DE LOS 15 COLEGIOS (Sincronizada con la Arquitectura)
+        // Coordenadas geográficas calibradas para la silueta del SVG de Argentina (viewBox 0 0 800 1752)
+        // El área de Buenos Aires y CABA se despliega como un "racimo estelar" concéntrico para evitar la superposición física.
+        const colegiosData = [
+            { id: 1, name: "Inst. Santa Ana y San Joaquín", carisma: "Hijas de Santa Ana", local: "Belgrano (CABA)", tel: "011 4784 7650", web: "http://www.santaanaysanjoaquin.edu.ar", prov: "CABA", cong: "santa_ana", x: 525, y: 730 },
+            { id: 2, name: "Inst. Superior Santa Ana", carisma: "Hijas de Santa Ana", local: "Belgrano (CABA)", tel: "011 4784 6795", web: "http://www.santaanaysanjoaquin.edu.ar", prov: "CABA", cong: "santa_ana", x: 535, y: 725 },
+            { id: 3, name: "Inst. Plácido Marín", carisma: "Esclavas del Divino Corazón", local: "Mataderos (CABA)", tel: "011 4635 0115", web: "http://www.placidomarin.edu.ar", prov: "CABA", cong: "esclavas", x: 520, y: 745 },
+            { id: 4, name: "Colegio Sagrado Corazón", carisma: "Esclavas del Divino Corazón", local: "Palpalá (Jujuy)", tel: "0388 427 0198", web: "#", prov: "Jujuy", cong: "esclavas", x: 320, y: 220 },
+            { id: 5, name: "Inst. Dolores Rodríguez Sopeña", carisma: "Catequistas de Dolores Sopeña", local: "Avellaneda (Bs. As.)", tel: "011 4222 6814", web: "#", prov: "Buenos Aires", cong: "sopena", x: 545, y: 740 },
+            { id: 6, name: "Inst. Corazón de Jesús", carisma: "Esclavas del Divino Corazón", local: "San Carlos Centro (Santa Fe)", tel: "03404 42 0055", web: "https://instagram.com/corazondejesus_sc", prov: "Santa Fe", cong: "esclavas", x: 460, y: 620 },
+            { id: 7, name: "Colegio Cardenal Spínola", carisma: "Esclavas del Divino Corazón", local: "San Isidro (Bs. As.)", tel: "011 4723 4394", web: "http://www.cardenalspinola.com.ar", prov: "Buenos Aires", cong: "esclavas", x: 510, y: 720 },
+            { id: 8, name: "Colegio Sagrada Familia", carisma: "Hijas de la Cruz", local: "Zárate (Bs. As.)", tel: "03487 422423", web: "http://www.csfamilia.com.ar", prov: "Buenos Aires", cong: "hijas_cruz", x: 490, y: 705 },
+            { id: 9, name: "ISFD Sagrada Familia (Sup.)", carisma: "Hijas de la Cruz", local: "Zárate (Bs. As.)", tel: "nivelsuperior@csfamilia.com.ar", web: "http://www.csfamilia.com.ar", prov: "Buenos Aires", cong: "hijas_cruz", x: 500, y: 695 },
+            { id: 10, name: "Col. Sagrada Familia e Inst. Hijas de la Cruz", carisma: "Hijas de la Cruz", local: "La Plata (Bs. As.)", tel: "0221 4212231", web: "http://www.csfamilialp.com.ar", prov: "Buenos Aires", cong: "hijas_cruz", x: 565, y: 775 },
+            { id: 11, name: "Inst. Nuestra Señora del Carmen", carisma: "Orden Carmelita", local: "Lomas de Zamora (Bs. As.)", tel: "+54 9 11 4243 9089", web: "http://www.inscarmen.edu.ar", prov: "Buenos Aires", cong: "carmelita", x: 550, y: 755 },
+            { id: 12, name: "Colegio San Juan de la Cruz", carisma: "Orden Carmelita", local: "Banfield (Bs. As.)", tel: "011 4245 0614", web: "http://www.sanjuandelacruz.edu.ar", prov: "Buenos Aires", cong: "carmelita", x: 540, y: 760 },
+            { id: 13, name: "Colegio e Instituto Montserrat", carisma: "Sacerdotes Operarios Diocesanos", local: "S. M. de Tucumán", tel: "0381 254 7338", web: "http://www.colegio-e-instituto-montserrat.com", prov: "Tucumán", cong: "operarios", x: 340, y: 340 },
+            { id: 14, name: "Inst. San Pío X", carisma: "Sacerdotes Operarios Diocesanos", local: "Mataderos (CABA)", tel: "011 4635 1710", web: "http://www.institutosanpiox.edu.ar", prov: "CABA", cong: "operarios", x: 530, y: 750 },
+            { id: 15, name: "Colegio Nuestra Señora de la Compasión", carisma: "Compasionistas", local: "Palmira (Mendoza)", tel: "0263 4461778", web: "#", prov: "Mendoza", cong: "compasionistas", x: 240, y: 680 }
+        ];
+
+        // Efecto scroll en el navbar
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Tabs de estrategias formativas
+        function openTab(evt, tabId) {
+            const panels = document.querySelectorAll('.tab-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        // Animación de Cifras Dinámicas (Intersection Observer)
+        const countElements = document.querySelectorAll('.cifra-num');
+        const observerOptions = { threshold: 0.5 };
+        
+        const countObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    const maxVal = parseInt(target.getAttribute('data-val'));
+                    let currentVal = 0;
+                    const increment = Math.ceil(maxVal / 50);
+                    const timer = setInterval(() => {
+                        currentVal += increment;
+                        if (currentVal >= maxVal) {
+                            target.innerText = maxVal + (maxVal === 9802 || maxVal === 1282 || maxVal === 624 ? "" : "");
+                            if(maxVal === 9802) target.innerText = "9.800+";
+                            if(maxVal === 1282) target.innerText = "1.280+";
+                            if(maxVal === 624) target.innerText = "620+";
+                            clearInterval(timer);
+                        } else {
+                            target.innerText = currentVal;
+                        }
+                    }, 25);
+                    observer.unobserve(target);
+                }
+            });
+        }, observerOptions);
+
+        countElements.forEach(el => countObserver.observe(el));
+
+        // ==========================================================================
+        // DIBUJO Y LÓGICA DE "LA CONSTELACIÓN CARISMÁTICA"
+        // ==========================================================================
+        const canvas = document.getElementById('constelacionCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Ajustar resolución de Canvas
+        function resizeCanvas() {
+            const rect = canvas.parentElement.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+        }
+        
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        let constellationMode = 'todos'; // todos, provincia, carisma
+        let selectedNode = null;
+        let hoveredNode = null;
+        let mouseX = 0;
+        let mouseY = 0;
+
+        // Configuración de visualización de nodos
+        const nodeRadius = 8;
+        const hoverNodeRadius = 12;
+
+        // Asignación de colores por carisma/congregación
+        const carismaColores = {
+            santa_ana: '#FF5733',     // Naranja intenso
+            esclavas: '#33FF57',      // Verde brillante
+            sopena: '#3357FF',        // Azul eléctrico
+            hijas_cruz: '#FF33F5',    // Magenta
+            carmelita: '#33FFF5',     // Cyan
+            operarios: '#F5FF33',     // Amarillo ácido
+            compasionistas: '#9333FF' // Violeta
+        };
+
+        const provinciaColores = {
+            CABA: '#00FA9A',
+            Jujuy: '#FFD700',
+            "Buenos Aires": '#1E90FF',
+            "Santa Fe": '#FF4500',
+            Tucumán: '#FF1493',
+            Mendoza: '#8A2BE2'
+        };
+
+        // Cargar el mapa SVG de fondo para dibujarlo directamente en el Canvas con zoom
+        const mapImg = new Image();
+        mapImg.src = './argentina.svg';
+        mapImg.onload = () => {
+            drawConstellation();
+        };
+
+        // Centro de la constelación (Nodo de la Fundación)
+        const centerNode = {
+            name: "Fundación FEM",
+            isCenter: true,
+            x: 533, // Geográficamente en CABA en la proyección 800x1752
+            y: 742
+        };
+
+        // Subregión de interés del mapa de Argentina (Corta la Patagonia vacía y hace zoom en el centro/norte)
+        const subMapXMin = 180;
+        const subMapXMax = 620; // Ancho de la ventana de interés: 440
+        const subMapYMin = 180;
+        const subMapYMax = 820; // Alto de la ventana de interés: 640
+        
+        // Aspect ratio de la ventana recortada
+        const mapAspectRatio = (subMapXMax - subMapXMin) / (subMapYMax - subMapYMin); // 440 / 640 = 0.6875
+
+        function updateCenterNode() {
+            // El nodo central se actualiza dinámicamente según la proyección en getAbsoluteCoords
+        }
+
+        // Transformar coordenadas geográficas del SVG recortado a coordenadas absolutas de Canvas
+        function getAbsoluteCoords(node) {
+            const w = canvas.width;
+            const h = canvas.height;
+            
+            // Simular background-size: contain de la subregión de interés
+            let mapWidth, mapHeight;
+            let mapOffsetX, mapOffsetY;
+            
+            if (w / h > mapAspectRatio) {
+                // El canvas es más ancho que el mapa de interés (caso común en desktop)
+                mapHeight = h;
+                mapWidth = h * mapAspectRatio;
+                mapOffsetX = (w - mapWidth) / 2;
+                mapOffsetY = 0;
+            } else {
+                // El canvas es más alto que el mapa (móviles)
+                mapWidth = w;
+                mapHeight = w / mapAspectRatio;
+                mapOffsetX = 0;
+                mapOffsetY = (h - mapHeight) / 2;
+            }
+
+            // Normalizar coordenadas respecto a la ventana de interés [subMapXMin..subMapXMax]
+            const xNorm = (node.x - subMapXMin) / (subMapXMax - subMapXMin);
+            const yNorm = (node.y - subMapYMin) / (subMapYMax - subMapYMin);
+
+            // Retornar coordenadas mapeadas al Canvas
+            return {
+                x: mapOffsetX + xNorm * mapWidth,
+                y: mapOffsetY + yNorm * mapHeight
+            };
+        }
+
+        // Renderizado del Canvas
+        function drawConstellation() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 0. Dibujar el recorte de Argentina como fondo del Canvas
+            const w = canvas.width;
+            const h = canvas.height;
+            
+            let mapWidth, mapHeight;
+            let mapOffsetX, mapOffsetY;
+            
+            if (w / h > mapAspectRatio) {
+                mapHeight = h;
+                mapWidth = h * mapAspectRatio;
+                mapOffsetX = (w - mapWidth) / 2;
+                mapOffsetY = 0;
+            } else {
+                mapWidth = w;
+                mapHeight = w / mapAspectRatio;
+                mapOffsetX = 0;
+                mapOffsetY = (h - mapHeight) / 2;
+            }
+
+            if (mapImg.complete) {
+                // Recorta del SVG original (800x1752) la ventana de interés [180..620] y [180..820]
+                // y la proyecta exactamente en la caja calculada del Canvas, alineada con los nodos.
+                ctx.drawImage(mapImg, subMapXMin, subMapYMin, subMapXMax - subMapXMin, subMapYMax - subMapYMin, mapOffsetX, mapOffsetY, mapWidth, mapHeight);
+            }
+
+            updateCenterNode();
+            const center = getAbsoluteCoords(centerNode);
+
+            // 1. Dibujar líneas de conexión (De fondo)
+            colegiosData.forEach(node => {
+                const nodePos = getAbsoluteCoords(node);
+                
+                // Opacidad por defecto de líneas
+                ctx.beginPath();
+                ctx.moveTo(center.x, center.y);
+                ctx.lineTo(nodePos.x, nodePos.y);
+                
+                let isLineHighlighted = false;
+                if (hoveredNode && (hoveredNode.id === node.id)) isLineHighlighted = true;
+                if (selectedNode && (selectedNode.id === node.id)) isLineHighlighted = true;
+
+                if (isLineHighlighted) {
+                    ctx.strokeStyle = '#F16536'; // Naranja Coral del lema
+                    ctx.lineWidth = 2.5;
+                    ctx.shadowColor = '#F16536';
+                    ctx.shadowBlur = 10;
+                } else {
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+                    ctx.lineWidth = 1;
+                    ctx.shadowBlur = 0;
+                }
+                ctx.stroke();
+            });
+            ctx.shadowBlur = 0; // Reset sombra
+
+            // Dibujar conexiones entre nodos vecinos para dar aspecto de red de constelación
+            for (let i = 0; i < colegiosData.length; i++) {
+                for (let j = i + 1; j < colegiosData.length; j++) {
+                    const nodeA = colegiosData[i];
+                    const nodeB = colegiosData[j];
+                    
+                    // Conectar solo si son de la misma provincia o congregación (según modo) o si están cerca
+                    let shouldConnect = false;
+                    const posA = getAbsoluteCoords(nodeA);
+                    const posB = getAbsoluteCoords(nodeB);
+                    const distance = Math.hypot(posA.x - posB.x, posA.y - posB.y);
+
+                    if (constellationMode === 'provincia' && nodeA.prov === nodeB.prov) {
+                        shouldConnect = true;
+                    } else if (constellationMode === 'carisma' && nodeA.cong === nodeB.cong) {
+                        shouldConnect = true;
+                    } else if (constellationMode === 'todos' && distance < 180) {
+                        shouldConnect = true;
+                    }
+
+                    if (shouldConnect) {
+                        ctx.beginPath();
+                        ctx.moveTo(posA.x, posA.y);
+                        ctx.lineTo(posB.x, posB.y);
+                        
+                        let isHighlighted = false;
+                        if (hoveredNode && (hoveredNode.id === nodeA.id || hoveredNode.id === nodeB.id)) isHighlighted = true;
+                        
+                        if (isHighlighted) {
+                            ctx.strokeStyle = 'rgba(241, 180, 52, 0.4)'; // Amarillo Oro suave
+                            ctx.lineWidth = 1.5;
+                        } else {
+                            ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+                            ctx.lineWidth = 0.5;
+                        }
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // 2. Dibujar Nodos Escolares
+            colegiosData.forEach(node => {
+                const pos = getAbsoluteCoords(node);
+                const isHovered = hoveredNode && (hoveredNode.id === node.id);
+                const isSelected = selectedNode && (selectedNode.id === node.id);
+                
+                // Color del nodo basado en filtros
+                let nodeColor = varColor = varColor = '#FFFFFF';
+                if (constellationMode === 'carisma') {
+                    nodeColor = carismaColores[node.cong] || '#FFFFFF';
+                } else if (constellationMode === 'provincia') {
+                    nodeColor = provinciaColores[node.prov] || '#FFFFFF';
+                } else {
+                    nodeColor = varColor = varColor = '#F1B434'; // Amarillo Oro de flama por defecto
+                }
+
+                // Brillo radial de fondo en hover o selección
+                if (isHovered || isSelected) {
+                    const gradient = ctx.createRadialGradient(pos.x, pos.y, 2, pos.x, pos.y, hoverNodeRadius * 2);
+                    gradient.addColorStop(0, nodeColor);
+                    gradient.addColorStop(1, 'transparent');
+                    ctx.fillStyle = gradient;
+                    ctx.beginPath();
+                    ctx.arc(pos.x, pos.y, hoverNodeRadius * 2.5, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                // Nodo físico central
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, isHovered || isSelected ? hoverNodeRadius : nodeRadius, 0, Math.PI * 2);
+                ctx.fillStyle = nodeColor;
+                ctx.fill();
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = '#FFFFFF';
+                ctx.stroke();
+
+                // Dibujar etiqueta de texto encima del nodo en hover
+                if (isHovered) {
+                    ctx.font = 'bold 12px Inter, sans-serif';
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.shadowColor = '#000000';
+                    ctx.shadowBlur = 4;
+                    ctx.textAlign = 'center';
+                    ctx.fillText(node.name, pos.x, pos.y - 18);
+                    ctx.shadowBlur = 0; // Reset
+                }
+            });
+
+            // 3. Dibujar Nodo Central de la Fundación
+            ctx.beginPath();
+            ctx.arc(center.x, center.y, 16, 0, Math.PI * 2);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fill();
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = '#F1B434'; // Borde amarillo
+            ctx.stroke();
+
+            // Símbolo de la flama simple
+            ctx.fillStyle = '#F1B434';
+            ctx.beginPath();
+            ctx.moveTo(center.x, center.y - 8);
+            ctx.quadraticCurveTo(center.x + 6, center.y, center.x, center.y + 8);
+            ctx.quadraticCurveTo(center.x - 6, center.y, center.x, center.y - 8);
+            ctx.fill();
+
+            // Etiqueta del centro
+            ctx.font = 'bold 12px Barlow, sans-serif';
+            ctx.fillStyle = '#F1B434';
+            ctx.textAlign = 'center';
+            ctx.fillText("FUNDACIÓN FEM", center.x, center.y + 32);
+        }
+
+        // Filtro de Nodos
+        function filterConstellation(mode) {
+            constellationMode = mode;
+            
+            const btns = document.querySelectorAll('.constelacion-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+            
+            // Buscar cuál activar
+            if (mode === 'todos') btns[0].classList.add('active');
+            if (mode === 'provincia') btns[1].classList.add('active');
+            if (mode === 'carisma') btns[2].classList.add('active');
+
+            drawConstellation();
+        }
+
+        // Detección del nodo bajo el mouse
+        function getNodeAtCoords(x, y) {
+            for (let i = 0; i < colegiosData.length; i++) {
+                const node = colegiosData[i];
+                const pos = getAbsoluteCoords(node);
+                const distance = Math.hypot(pos.x - x, pos.y - y);
+                if (distance <= hoverNodeRadius * 1.5) {
+                    return node;
+                }
+            }
+            return null;
+        }
+
+        // Eventos del Mouse
+        canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+
+            const previouslyHovered = hoveredNode;
+            hoveredNode = getNodeAtCoords(mouseX, mouseY);
+
+            if (previouslyHovered !== hoveredNode) {
+                drawConstellation();
+            }
+        });
+
+        canvas.addEventListener('click', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const clickedNode = getNodeAtCoords(x, y);
+            if (clickedNode) {
+                selectColegio(clickedNode);
+            }
+        });
+
+        // Activar la ficha de detalle del colegio
+        function selectColegio(node) {
+            selectedNode = node;
+            
+            const emptyEl = document.getElementById('schoolDetailEmpty');
+            const contentEl = document.getElementById('schoolDetailContent');
+            
+            emptyEl.style.display = 'none';
+            contentEl.classList.add('active');
+
+            // Cargar datos
+            document.getElementById('detailBadge').innerText = node.carisma;
+            document.getElementById('detailTitle').innerText = node.name;
+            document.getElementById('detailCarisma').innerText = "Congregación: " + node.carisma;
+            document.getElementById('detailUbicacion').innerText = node.local + " (Provincia de " + node.prov + ")";
+            document.getElementById('detailTelefono').innerText = node.tel;
+            
+            const webBtn = document.getElementById('detailWebLink');
+            if (node.web === "#") {
+                webBtn.innerText = "Sitio Web en Desarrollo";
+                webBtn.setAttribute('href', '#colegios');
+                webBtn.style.opacity = '0.5';
+            } else {
+                webBtn.innerText = "Visitar Web Oficial";
+                webBtn.setAttribute('href', node.web);
+                webBtn.style.opacity = '1';
+            }
+
+            drawConstellation();
+        }
+
+        // Inicializar canvas
+        drawConstellation();
+
+        // Enviar Formulario (Simulación)
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            alert("¡Muchas gracias! Su solicitud ha sido enviada con éxito. Un miembro del Centro Directivo de Animación de la Fundación FEM se pondrá en contacto pronto.");
+            document.getElementById('contactForm').reset();
+        }
+    </script>
+</body>
+</html>

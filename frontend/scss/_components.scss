@@ -2,38 +2,59 @@
 
 // Botones
 .btn {
-  display: inline-block;
-  padding: var(--space-xs) var(--space-lg);
-  font-family: var(--font-display);
-  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
   border-radius: var(--radius-sm);
-  text-align: center;
+  font-family: var(--font-brand-condensed);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 2px solid transparent;
   cursor: pointer;
-  border: 1px solid transparent;
   transition: var(--transition-smooth);
+  text-align: center;
 }
 
 .btn-primary {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  border-color: var(--color-primary);
+  background-color: var(--color-accent-warm);
+  color: var(--color-black);
+  border-color: var(--color-accent-warm);
   
   &:hover {
-    background-color: var(--color-primary-hover);
-    color: var(--color-white);
-    box-shadow: var(--shadow-sm);
+    background-color: var(--color-black);
+    color: var(--color-accent-warm);
+    border-color: var(--color-accent-warm);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
   }
 }
 
 .btn-secondary {
   background-color: transparent;
-  color: var(--color-primary);
-  border-color: var(--color-primary);
+  color: var(--color-black);
+  border-color: var(--color-black);
   
   &:hover {
-    background-color: var(--color-primary);
+    background-color: var(--color-black);
     color: var(--color-white);
-    box-shadow: var(--shadow-sm);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-subtle);
+  }
+}
+
+.btn-white-outline {
+  background-color: transparent;
+  color: var(--color-white);
+  border-color: var(--color-white);
+  
+  &:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-subtle);
   }
 }
 
@@ -43,25 +64,47 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: var(--space-lg);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-subtle);
   transition: var(--transition-smooth);
   
   &:hover {
-    box-shadow: var(--shadow-md);
-    border-color: var(--color-primary);
-    transform: translateY(-2px); // Elevación sutil para dar jerarquía
+    box-shadow: var(--shadow-premium);
+    border-color: rgba(241, 180, 52, 0.35);
+    transform: translateY(-4px); // Elevación sutil para dar jerarquía
   }
   
   .card-title {
     margin-bottom: var(--space-xs);
     font-size: 1.25rem;
     color: var(--color-primary);
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
+    font-weight: 700;
   }
   
   .card-text {
     color: var(--color-text-muted);
     font-size: 0.95rem;
+  }
+}
+
+.pilar-card {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--color-accent-warm);
+    transition: var(--transition-smooth);
+  }
+  
+  &:hover::before {
+    width: 8px;
+    background-color: var(--color-coral);
   }
 }
 
@@ -73,9 +116,9 @@
   justify-content: center;
   width: 3.5rem;
   height: 3.5rem;
-  background-color: #fcf6e8; // Soft warm yellow tint behind icon
-  border-radius: 50%;
-  border: 1px solid rgba(241, 190, 72, 0.2);
+  background-color: rgba(241, 180, 52, 0.1);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(241, 180, 52, 0.2);
   line-height: 1;
   color: var(--color-accent-warm);
 }
@@ -185,26 +228,28 @@
   }
 }
 
-// Nosotros e Interiores
+// Nosotros e Interiores (Page Hero)
 .page-hero {
-  padding: var(--space-2xl) 0;
-  background-color: var(--color-card);
+  padding: 5rem 0 4rem 0;
+  background: linear-gradient(180deg, rgba(241, 180, 52, 0.02) 0%, var(--color-bg) 100%);
   border-bottom: 1px solid var(--color-border);
   text-align: center;
-}
-
-.page-title {
-  font-size: 2.25rem;
-  color: var(--color-primary);
-  margin-bottom: var(--space-xs);
-}
-
-.page-subtitle {
-  font-size: 1.1rem;
-  color: var(--color-text-muted);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  
+  .page-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: var(--space-xs);
+    font-weight: 700;
+  }
+  
+  .page-subtitle {
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .content-section {
@@ -280,14 +325,25 @@
 // Badge/Tag Institucional Decorativo
 .placeholder-tag {
   display: inline-block;
-  background-color: #fcf6e8;
-  border: 1px solid rgba(241, 190, 72, 0.3);
+  background-color: rgba(241, 180, 52, 0.1);
+  border: 1px solid rgba(241, 180, 52, 0.3);
   color: #b77a1a;
-  font-family: var(--font-heading);
+  font-family: var(--font-brand-condensed);
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
   padding: var(--space-xs) var(--space-sm);
   border-radius: var(--radius-sm);
   margin-bottom: var(--space-sm);
+}
+
+.eyebrow {
+  font-family: var(--font-brand-condensed);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-coral);
+  margin-bottom: 8px;
+  display: block;
 }

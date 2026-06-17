@@ -3,35 +3,37 @@
 // Header Principal
 .main-header {
   background-color: var(--color-navbar-bg);
-  border-top: 3px solid var(--color-accent-warm);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition-smooth);
 }
 
 .header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 4.5rem;
+  height: 5rem;
 }
 
 .brand-logo {
   display: flex;
   align-items: center;
-  width: 80px;
+  width: 90px;
 }
 
 .header-logo {
   height: auto;
   display: block;
-  width: 80px;
+  width: 90px;
 }
 
 .footer-logo {
-  height: 2.25rem;
+  height: 3rem;
   width: auto;
   display: block;
   margin-bottom: var(--space-xs);
@@ -45,21 +47,38 @@
 .nav-list {
   display: flex;
   align-items: center;
-  gap: 0.15rem; // Brecha pequeña para delegar el espacio al padding interno
+  gap: 1.25rem; // Espaciado elegante para barra de navegación
 }
 
 .nav-link {
-  font-size: 0.8rem; // Menú más pequeño y estilizado (13px)
-  font-weight: 500;
-  color: var(--color-text-muted);
-  padding: 0.25rem 0.45rem; // Padding más compacto
-  border-radius: var(--radius-sm);
+  font-family: var(--font-brand-condensed);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-text);
+  padding: 0.4rem 0.2rem;
   display: inline-block;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.5px;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent-warm);
+    transition: var(--transition-smooth);
+  }
   
   &:hover, &.active {
-    color: var(--color-primary);
-    background-color: rgba(26, 80, 139, 0.05); // Hover azul suave
+    color: var(--color-accent-warm);
+    background-color: transparent;
+    
+    &::after {
+      width: 100%;
+    }
   }
 }
 
@@ -129,18 +148,24 @@
 .main-footer {
   background-color: var(--color-footer-bg);
   color: var(--color-footer-text);
-  padding: var(--space-xxl) 0;
-  border-top: 1px solid var(--color-border);
+  padding: 5rem 0 3rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: var(--space-3xl);
   
   h4, h5 {
     color: var(--color-white);
-    margin-bottom: var(--space-xs);
+    font-family: var(--font-brand-condensed);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--space-md);
   }
   
   p {
-    color: #a0aec0;
-    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 }
 
@@ -160,12 +185,13 @@
   gap: var(--space-xs);
   
   a {
-    color: #cbd5e1; // Color con buen contraste para fondo oscuro
+    color: rgba(255, 255, 255, 0.6);
     font-size: 0.95rem;
+    transition: var(--transition-smooth);
     
     &:hover {
-      color: var(--color-accent-warm); // Hover ocre cálido institucional
-      text-decoration: underline;
+      color: var(--color-accent-warm); // Hover oro de acento
+      text-decoration: none;
     }
   }
 }

@@ -4,43 +4,46 @@
      PALETA DE MARCA OFICIAL
      ========================================================================== */
   --color-white: #ffffff;
-  --color-black: #1a202c;              // Negro carbón para contrastes de marca
+  --color-black: #000000;
   --color-pantone-grey-raw: #888B8D;   // PANTONE Cool Grey 8 C
-  --color-pantone-yellow-raw: #F1BE48; // PANTONE 142 C (Ocre de acento)
+  --color-pantone-yellow-raw: #F1B434; // PANTONE 142 C (Oro de acento)
 
   /* ==========================================================================
      ROLES DE INTERFAZ EQUILIBRADA (BASE CLARA Y PERSONALIDAD)
      ========================================================================== */
   /* Estructura y Superficies */
-  --color-bg: #f0f3f7;                 // Fondo general gris perla entonado en azul
-  --color-bg-alt: #f8fafc;             // Gris frío ultra-claro para alternar bloques
+  --color-bg: #FBFBF9;                 // Fondo primario cálido crema
+  --color-bg-alt: #F6F6F2;             // Fondo secundario cálido alterno
   --color-card: var(--color-white);    // Blanco puro para tarjetas
-  --color-border: #cbd5e1;             // Gris claro estructurado y visible
+  --color-border: #E2E8F0;             // Gris claro estructurado y visible
 
   /* Textos */
-  --color-text: #1e293b;               // Gris grafito oscuro
-  --color-text-muted: #475569;         // Gris medio para soporte
+  --color-text: #1E293B;               // Gris grafito oscuro
+  --color-text-muted: #64748B;         // Gris medio para soporte
 
-  /* Acciones y Botones (Azul/Celeste Institucional y Ocre de Marca) */
-  --color-primary: #1a508b;            // Azul de la marca oficial
-  --color-primary-hover: #113862;      // Azul profundo hover
+  /* Acciones y Botones (Azul Catedral e Integración con Colores de Marca) */
+  --color-primary: #0C1E36;            // Azul Catedral oficial del Lema
+  --color-primary-hover: #000000;
   --color-celeste: #2a75d3;            // Celeste de marca auxiliar
   --color-secondary: var(--color-pantone-grey-raw); // Gris de soporte
   
-  --color-accent-warm: var(--color-pantone-yellow-raw);  // Ocre de acento corporativo
+  --color-accent-warm: var(--color-pantone-yellow-raw);  // Oro de acento corporativo
   --color-accent-hover: #dba853;
+  --color-coral: #F16536;              // Acento dinámico coral
+  --color-rojo-ladrillo: #D24238;      // Fuego de la misión
 
   /* Componentes Estructurales */
-  --color-navbar-bg: var(--color-white);
-  --color-footer-bg: #2d3238;          // Gris grafito profundo
-  --color-footer-text: #eaeaea;
+  --color-navbar-bg: rgba(251, 251, 249, 0.85); // Crema translúcido para glassmorphism
+  --color-footer-bg: var(--color-primary);      // Azul catedral profundo
+  --color-footer-text: rgba(255, 255, 255, 0.7);
 
   /* ==========================================================================
      SISTEMA DE DISEÑO (ESPACIADO, RADIOS, SOMBRAS)
      ========================================================================== */
-  --font-sans: 'D-DIN', 'Inter', -apple-system, sans-serif;
-  --font-display: 'D-DIN-Bold', 'Trebuchet MS', 'Arial Black', sans-serif;
-  --font-brand: 'Geometr415 Blk BT', 'Montserrat', 'Futura', sans-serif;
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --font-display: 'Lora', 'Georgia', serif;
+  --font-brand-condensed: 'Barlow', 'Arial Condensed', sans-serif;
+  --font-body: 'Inter', sans-serif;
 
   --space-xxs: 0.25rem;
   --space-xs: 0.5rem;   /* 8px */
@@ -51,15 +54,15 @@
   --space-xxl: 3rem;    /* 48px */
   --space-3xl: 4rem;    /* 64px */
 
-  --radius-sm: 3px;     // Radios de esquina discretos
-  --radius-md: 6px;
+  --radius-sm: 4px;     // Radios de esquina discretos
+  --radius-md: 8px;
   
-  // Sombras modernas con tinte de marca azulado
-  --shadow-sm: 0 2px 8px rgba(26, 80, 139, 0.04);
-  --shadow-md: 0 4px 16px rgba(26, 80, 139, 0.06);
-  --shadow-flat: var(--shadow-sm);
+  // Sombras premium del prototipo
+  --shadow-subtle: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-premium: 0 20px 25px -5px rgba(12, 30, 54, 0.08), 0 10px 10px -5px rgba(12, 30, 54, 0.04);
+  --shadow-glow: 0 0 15px rgba(241, 180, 52, 0.5);
   
-  --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --container-max-width: 1120px;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --container-max-width: 1200px;
 }
 

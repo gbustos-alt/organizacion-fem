@@ -1,10 +1,11 @@
 // Estilos específicos para la página de Inicio (Home) e Interiores
 
-// Secciones del Home
+// Secciones del Home e Interiores
 .home-section {
-  padding: var(--space-3xl) 0;
+  padding: 5rem 0;
   background-color: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
+  position: relative;
   
   &:nth-child(even) {
     background-color: var(--color-bg-alt);
@@ -13,17 +14,99 @@
 
 // Hero Home Custom
 .hero-section {
-  background-color: var(--color-bg-alt);
+  background: linear-gradient(180deg, rgba(241, 180, 52, 0.03) 0%, rgba(251, 251, 249, 1) 100%);
   border-bottom: 1px solid var(--color-border);
+  padding: 8rem 0 5rem 0;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 50%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(241, 180, 52, 0.06) 0%, transparent 70%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .hero-container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+    
+    @media (min-width: 768px) {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+
+  .hero-content {
+    h1 {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      line-height: 1.2;
+      color: var(--color-primary);
+      margin-bottom: var(--space-md);
+      font-weight: 700;
+      
+      @media (min-width: 768px) {
+        font-size: 3rem;
+      }
+    }
+    
+    p {
+      font-size: 1.15rem;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-xl);
+    }
+  }
+}
+
+// Lema 2026 Card
+.lema-card {
+  background-color: var(--color-white);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-premium);
+  border: 1px solid var(--color-border);
+  transform: rotate(1deg);
+  transition: var(--transition-smooth);
+  max-width: 300px;
+  margin: 0 auto;
+  
+  &:hover {
+    transform: rotate(0deg) scale(1.02);
+  }
+  
+  .lema-img {
+    max-height: 250px;
+    width: auto;
+    border-radius: var(--radius-sm);
+    margin: 0 auto;
+  }
 }
 
 // Misión / Visión Cards Custom
 .mission-card {
   border-left: 4px solid var(--color-primary);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-subtle);
   
   &.vision {
     border-left-color: var(--color-accent-warm);
+  }
+  
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-primary);
   }
 }
 
@@ -39,7 +122,7 @@
     border: 1px solid var(--color-border);
     padding: var(--space-md) var(--space-lg);
     border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-subtle);
     display: flex;
     flex-direction: column;
     position: relative;
@@ -63,13 +146,13 @@
     }
     
     &:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-1px);
+      box-shadow: var(--shadow-premium);
+      transform: translateY(-2px);
     }
     
     strong {
       color: var(--color-primary);
-      font-family: var(--font-heading);
+      font-family: var(--font-sans);
       font-size: 1.1rem;
       margin-bottom: var(--space-xxs);
     }
@@ -81,39 +164,7 @@
   }
 }
 
-// Bloque de Presencia (Placeholder)
-.presence-block {
-  background: var(--color-card);
-  border: 1px solid var(--color-border);
-  border-top: 3px solid var(--color-accent-warm);
-  padding: var(--space-xl);
-  border-radius: var(--radius-md);
-  text-align: center;
-  box-shadow: var(--shadow-sm);
-  margin-top: var(--space-lg);
-  
-  .placeholder-tag {
-    display: inline-block;
-    background-color: #fcf6e8;
-    border: 1px solid rgba(241, 190, 72, 0.3);
-    color: #b77a1a;
-    font-family: var(--font-heading);
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: var(--radius-sm);
-    margin-bottom: var(--space-sm);
-  }
-  
-  p {
-    max-width: 650px;
-    margin: 0 auto;
-    color: var(--color-text-muted);
-  }
-}
-
-// Contacto
+// Contacto Layout
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -132,45 +183,48 @@
   
   .contact-item {
     h4 {
-      font-size: 0.9rem;
-      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-family: var(--font-brand-condensed);
       text-transform: uppercase;
-      color: var(--color-text-muted);
+      color: var(--color-coral);
+      letter-spacing: 1px;
       margin-bottom: var(--space-xxs);
     }
     
     p, a {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       color: var(--color-primary);
       font-weight: 500;
+      font-family: var(--font-display);
     }
     
     a:hover {
-      color: var(--color-primary-hover);
-      text-decoration: underline;
+      color: var(--color-accent-warm);
+      text-decoration: none;
     }
   }
 }
 
-// Formulario de Contacto (Diseño Plano e Institucional)
+// Formulario de Contacto (Premium)
 .contact-form {
   background: var(--color-card);
   border: 1px solid var(--color-border);
-  padding: var(--space-lg);
+  padding: var(--space-xl);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-premium);
   
   .form-group {
     margin-bottom: var(--space-md);
     
     label {
       display: block;
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 0.8rem;
+      font-family: var(--font-brand-condensed);
+      font-weight: 600;
+      font-size: 0.85rem;
       text-transform: uppercase;
       margin-bottom: var(--space-xs);
-      color: var(--color-text);
+      color: var(--color-black);
+      letter-spacing: 0.5px;
     }
     
     input, textarea {
@@ -181,12 +235,13 @@
       background-color: var(--color-bg-alt);
       color: var(--color-text);
       transition: var(--transition-smooth);
+      font-size: 0.95rem;
       
       &:focus {
         outline: none;
-        border-color: var(--color-primary);
-        background-color: var(--color-card);
-        box-shadow: 0 0 0 3px rgba(26, 80, 139, 0.1);
+        border-color: var(--color-accent-warm);
+        background-color: var(--color-white);
+        box-shadow: 0 0 0 3px rgba(241, 180, 52, 0.15);
       }
     }
     
@@ -199,15 +254,18 @@
 
 // Estilo editorial para la sección de Identidad
 .editorial-block {
-  border-left: 4px solid var(--color-primary);
+  border-left: 4px solid var(--color-coral);
   padding-left: var(--space-lg);
   
   h2 {
-    margin-bottom: var(--space-xs);
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    color: var(--color-primary);
+    margin-bottom: var(--space-sm);
   }
   
   p {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     line-height: 1.7;
     color: var(--color-text);
   }
@@ -218,7 +276,7 @@
   align-items: center;
   
   p {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     line-height: 1.7;
     color: var(--color-text-muted);
     border-left: 3px solid var(--color-accent-warm);
@@ -228,14 +286,17 @@
 
 // Estilos de Colegios Acompañados
 .province-title {
-  font-family: var(--font-heading);
-  color: var(--color-primary);
-  border-bottom: 2px solid var(--color-accent-warm);
+  font-family: var(--font-brand-condensed);
+  color: var(--color-coral);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-bottom: 2px solid var(--color-border);
   display: inline-block;
   margin-top: var(--space-xl);
   margin-bottom: var(--space-md);
   padding-bottom: var(--space-xxs);
-  font-size: 1.35rem;
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 .school-card {
@@ -249,28 +310,31 @@
     
     .school-carisma {
       display: inline-block;
-      background-color: var(--color-bg);
-      border: 1px solid var(--color-border);
-      color: var(--color-text-muted);
+      background-color: rgba(241, 180, 52, 0.1);
+      border: 1px solid rgba(241, 180, 52, 0.2);
+      color: var(--color-coral);
       font-size: 0.75rem;
-      font-weight: 600;
+      font-weight: 700;
       padding: var(--space-xxs) var(--space-xs);
-      border-radius: var(--radius-sm);
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
   }
   
   .school-name {
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
     color: var(--color-primary);
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     margin-bottom: var(--space-sm);
+    font-weight: 700;
   }
   
   .school-info {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--color-text-muted);
     margin-bottom: var(--space-xxs);
-    line-height: 1.4;
+    line-height: 1.5;
   }
   
   .school-footer {
@@ -279,13 +343,15 @@
     border-top: 1px dashed var(--color-border);
     
     .school-link {
+      font-family: var(--font-brand-condensed);
       font-size: 0.85rem;
-      color: var(--color-celeste);
-      font-weight: 600;
+      color: var(--color-primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
       
       &:hover {
-        color: var(--color-primary-hover);
-        text-decoration: underline;
+        color: var(--color-accent-warm);
       }
     }
   }
@@ -293,29 +359,27 @@
 
 // Estilos de la Estructura Organizativa
 .org-section-title {
-  font-family: var(--font-heading);
-  color: var(--color-primary);
-  border-bottom: 2px solid var(--color-accent-warm);
+  font-family: var(--font-brand-condensed);
+  color: var(--color-coral);
+  border-bottom: 2px solid var(--color-border);
   display: inline-block;
   margin-top: var(--space-lg);
   margin-bottom: var(--space-md);
   padding-bottom: var(--space-xxs);
-  font-size: 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
 .org-email {
-  font-size: 0.8rem;
-  color: var(--color-celeste);
+  font-size: 0.85rem;
+  color: var(--color-primary);
   margin-top: var(--space-xxs);
   display: block;
-  font-weight: 500;
+  font-weight: 600;
   
   &:hover {
-    color: var(--color-primary-hover);
-    text-decoration: underline;
+    color: var(--color-accent-warm);
   }
 }
-
-
-
-

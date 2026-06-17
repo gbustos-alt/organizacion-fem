@@ -6,13 +6,20 @@
 {% block content %}
 <!-- Sección 1: Hero (Presentación General) -->
 <section class="hero-section">
-    <div class="container hero-container">
-        <span class="placeholder-tag">Fundación Educación y Misión</span>
-        <h1 class="hero-title">Acompañamiento, conducción y sustentabilidad de obras educativas</h1>
-        <p class="hero-subtitle">Una respuesta eclesial creada por FAERA para sostener y dar continuidad a proyectos escolares y carismas fundacionales en contextos de transición.</p>
-        <div class="hero-actions">
-            {{ macros.render_button("Ver Colegios Acompañados", "/colegios", "primary") }}
-            {{ macros.render_button("Contacto Institucional", "/contacto", "secondary") }}
+    <div class="container hero-container hero-grid">
+        <div class="hero-content">
+            <span class="eyebrow">Acompañamiento Inter-Carismático</span>
+            <h1>Preservando el tesoro carismático, sosteniendo el futuro de la educación católica.</h1>
+            <p>Un paradigma colaborativo para acompañar, organizar y fortalecer obras educativas frente a los retos del presente. Creado por la Federación de Asociaciones Educativas de la República Argentina (FAERA).</p>
+            <div class="hero-actions">
+                {{ macros.render_button("Ver Colegios Acompañados", "/colegios", "primary") }}
+                {{ macros.render_button("Contacto Institucional", "/contacto", "secondary") }}
+            </div>
+        </div>
+        <div class="hero-media">
+            <div class="lema-card">
+                <img class="lema-img" src="{{ url_for('static', path='img/lema-fem.png') }}" alt="Lema FEM 2026 - Educación y Misión">
+            </div>
         </div>
     </div>
 </section>
@@ -21,7 +28,7 @@
 <section class="home-section" id="identidad-summary">
     <div class="container grid-two-cols">
         <div class="editorial-block">
-            <span class="placeholder-tag">Quiénes Somos</span>
+            <span class="eyebrow">Quiénes Somos</span>
             <h2>Nuestra Identidad</h2>
             <p>La <strong>Fundación "Educación y Misión" (FEM)</strong> es una persona jurídica civil de bien público constituida por la <strong>FAERA (Federación de Asociaciones Educativas de la República Argentina)</strong>.</p>
             <p class="mt-2">Surgimos como una respuesta eclesial orgánica para acompañar, administrar y dar continuidad a proyectos escolares en contextos de transición carismática o reorientación de gestión.</p>
@@ -29,7 +36,9 @@
                 {{ macros.render_button("Leer más sobre nuestra Identidad", "/identidad", "secondary") }}
             </div>
         </div>
-        <div class="text-block-accent">
+        <div class="editorial-block" style="border-left-color: var(--color-accent-warm);">
+            <span class="eyebrow" style="color: var(--color-accent-warm);">Nuestro Rol</span>
+            <h2>Gestión y Sostenibilidad</h2>
             <p>Trabajamos articuladamente con cada congregación y comunidad educativa para garantizar la sustentabilidad, los fines pastorales y la preservación del carisma fundacional de cada establecimiento.</p>
         </div>
     </div>

@@ -38,19 +38,24 @@
 }
 
 // Menu de Navegacion
+.main-nav {
+  margin-left: auto;
+}
+
 .nav-list {
   display: flex;
   align-items: center;
-  gap: 0.25rem; // Brecha pequeña para delegar el espacio al padding interno
+  gap: 0.15rem; // Brecha pequeña para delegar el espacio al padding interno
 }
 
 .nav-link {
-  font-size: 0.875rem; // Menú más pequeño y estilizado (14px)
+  font-size: 0.8rem; // Menú más pequeño y estilizado (13px)
   font-weight: 500;
   color: var(--color-text-muted);
-  padding: 0.35rem 0.6rem; // Padding más compacto
+  padding: 0.25rem 0.45rem; // Padding más compacto
   border-radius: var(--radius-sm);
   display: inline-block;
+  letter-spacing: 0.01em;
   
   &:hover, &.active {
     color: var(--color-primary);

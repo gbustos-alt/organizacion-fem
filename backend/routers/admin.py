@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
-from app.core.templates import templates
+from backend.core.templates import templates
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 

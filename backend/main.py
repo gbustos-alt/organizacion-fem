@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
-from app.routers import public, admin
-from app.core.templates import templates
+from backend.routers import public, admin
+from backend.core.templates import templates
 
 app = FastAPI(
     title="Organización FEM",
@@ -11,7 +11,7 @@ app = FastAPI(
 )
 
 # Montar archivos estáticos
-app.mount("/static", StaticFiles(directory="app/static"), name="static")
+app.mount("/static", StaticFiles(directory="frontend"), name="static")
 
 # Registrar routers
 app.include_router(public.router)

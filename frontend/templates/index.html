@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% import "components/macros.html" as macros %}
+
+{% block title %}Inicio | Organización FEM{% endblock %}
+
+{% block content %}
+<!-- Sección 1: Hero (Presentación General) -->
+<section class="hero-section">
+    <div class="container hero-container">
+        <span class="placeholder-tag">Fundación Educación y Misión</span>
+        <h1 class="hero-title">Acompañamiento, conducción y sustentabilidad de obras educativas</h1>
+        <p class="hero-subtitle">Una respuesta eclesial creada por FAERA para sostener y dar continuidad a proyectos escolares y carismas fundacionales en contextos de transición.</p>
+        <div class="hero-actions">
+            {{ macros.render_button("Ver Colegios Acompañados", "/colegios", "primary") }}
+            {{ macros.render_button("Contacto Institucional", "/contacto", "secondary") }}
+        </div>
+    </div>
+</section>
+
+<!-- Sección 2: Quiénes Somos - Resumen -->
+<section class="home-section" id="identidad-summary">
+    <div class="container grid-two-cols">
+        <div class="editorial-block">
+            <span class="placeholder-tag">Quiénes Somos</span>
+            <h2>Nuestra Identidad</h2>
+            <p>La <strong>Fundación "Educación y Misión" (FEM)</strong> es una persona jurídica civil de bien público constituida por la <strong>FAERA (Federación de Asociaciones Educativas de la República Argentina)</strong>.</p>
+            <p class="mt-2">Surgimos como una respuesta eclesial orgánica para acompañar, administrar y dar continuidad a proyectos escolares en contextos de transición carismática o reorientación de gestión.</p>
+            <div class="mt-3">
+                {{ macros.render_button("Leer más sobre nuestra Identidad", "/identidad", "secondary") }}
+            </div>
+        </div>
+        <div class="text-block-accent">
+            <p>Trabajamos articuladamente con cada congregación y comunidad educativa para garantizar la sustentabilidad, los fines pastorales y la preservación del carisma fundacional de cada establecimiento.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Sección 3: Novedades y Noticias (Vacío/Placeholder) -->
+<section class="home-section" id="noticias" style="background-color: var(--color-bg-alt);">
+    <div class="container">
+        <h2 class="section-title text-center">Novedades y Noticias</h2>
+        <p class="section-subtitle text-center">Últimas novedades de la Fundación y nuestras comunidades educativas.</p>
+        
+        <div style="max-width: 650px; margin: 0 auto;" class="card text-center">
+            <div class="card-icon">📰</div>
+            <h3 class="card-title">Espacio en Desarrollo</h3>
+            <p class="card-text">Próximamente se publicarán en esta sección los comunicados institucionales, novedades pedagógicas y noticias de las comunidades acompañadas.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

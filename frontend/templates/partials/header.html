@@ -1,0 +1,41 @@
+<header class="main-header">
+    <div class="container header-container">
+        <a href="/" class="brand-logo" aria-label="Inicio - Organización FEM">
+            <img src="{{ url_for('static', path='img/logo-fem-color.png') }}" alt="Logo Organización FEM" class="header-logo">
+        </a>
+
+        <!-- Boton menu mobile -->
+        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <!-- Menu de navegacion -->
+        <nav class="main-nav" id="main-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="/" class="nav-link {% if active_page == 'home' %}active{% endif %}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/identidad" class="nav-link {% if active_page == 'identidad' %}active{% endif %}">Identidad</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/mision" class="nav-link {% if active_page == 'mision' %}active{% endif %}">Misión</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/dimensiones" class="nav-link {% if active_page == 'dimensiones' %}active{% endif %}">Dimensiones</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/organizacion" class="nav-link {% if active_page == 'organizacion' %}active{% endif %}">Organización</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/colegios" class="nav-link {% if active_page == 'colegios' %}active{% endif %}">Colegios</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/contacto" class="nav-link {% if active_page == 'contacto' %}active{% endif %}">Contacto</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

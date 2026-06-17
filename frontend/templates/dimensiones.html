@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% import "components/macros.html" as macros %}
+
+{% block title %}Dimensiones del Acompañamiento | Organización FEM{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <span class="placeholder-tag">Áreas de Trabajo</span>
+        <h1 class="page-title">Dimensiones del Acompañamiento</h1>
+        <p class="page-subtitle">Los tres ejes con los que estructuramos y aseguramos el desarrollo y sustentabilidad de las obras escolares.</p>
+    </div>
+</section>
+
+<section class="home-section" id="acompanamiento" style="border-top: none;">
+    <div class="container">
+        <div class="grid-three-cols">
+            {{ macros.render_card(
+                "Área Pedagógico Pastoral",
+                "Coordinación y animación del proyecto educativo y pastoral. Cuidado y actualización curricular alineada al carisma institucional de cada obra escolar.",
+                "📖"
+            ) }}
+            
+            {{ macros.render_card(
+                "Gestión y Animación",
+                "Conducción general, representación legal y toma de decisiones orgánicas para el ordenamiento y desarrollo a largo plazo de las escuelas.",
+                "💼"
+            ) }}
+            
+            {{ macros.render_card(
+                "Área Económico Financiera",
+                "Saneamiento fiscal, planificación presupuestaria, control de gestión administrativa y optimización de recursos para la sustentabilidad de la obra.",
+                "📊"
+            ) }}
+        </div>
+    </div>
+</section>
+{% endblock %}

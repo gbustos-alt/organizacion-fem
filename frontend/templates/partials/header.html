@@ -1,6 +1,6 @@
 <header class="main-header">
-    <!-- Fila Superior: Logo y Datos de Contacto/Redes -->
-    <div class="header-top-bar">
+    <!-- Fila Superior: Logo y Datos de Contacto/Redes (Solo Desktop) -->
+    <div class="header-top-bar d-none-mobile">
         <div class="container header-top-container">
             <a href="/" class="brand-logo" aria-label="Inicio - Organización FEM">
                 <img src="{{ url_for('static', path='img/logo-fem-color.png') }}" alt="Logo Organización FEM" class="header-logo">
@@ -39,6 +39,11 @@
     <!-- Barra de Navegación Principal -->
     <div class="header-nav-bar">
         <div class="container nav-bar-container">
+            <!-- Logo para mobile (oculto en desktop) -->
+            <a href="/" class="brand-logo-mobile d-none-desktop" aria-label="Inicio - Organización FEM">
+                <img src="{{ url_for('static', path='img/logo-fem-color.png') }}" alt="Logo Organización FEM" class="header-logo-mobile">
+            </a>
+
             <!-- Botón menú mobile -->
             <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
                 <span class="bar"></span>
@@ -46,69 +51,91 @@
                 <span class="bar"></span>
             </button>
 
-            <!-- Menú de navegación -->
+            <!-- Menú de navegación (se convierte en Drawer en mobile) -->
             <nav class="main-nav" id="main-nav">
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="/" class="nav-link {% if active_page == 'home' %}active{% endif %}">Inicio</a>
-                    </li>
-                    
-                    <!-- Item con Mega Menú: Nuestra Fundación -->
-                    <li class="nav-item has-mega-menu">
-                        <a href="#" class="nav-link {% if active_page in ['identidad', 'mision', 'organizacion'] %}active{% endif %}">
-                            Nuestra Fundación <span class="arrow-down">▼</span>
-                        </a>
-                        <div class="mega-menu-dropdown">
-                            <div class="mega-menu-container">
-                                <div class="mega-menu-column">
-                                    <h5>Quiénes Somos</h5>
-                                    <ul>
-                                        <li><a href="/identidad">Identidad Institucional</a></li>
-                                        <li><a href="/mision">Misión y Visión</a></li>
-                                    </ul>
-                                </div>
-                                <div class="mega-menu-column">
-                                    <h5>Estructura</h5>
-                                    <ul>
-                                        <li><a href="/organizacion">Gobierno y Organización</a></li>
-                                    </ul>
+                <!-- Capa oscura trasera para cerrar en mobile -->
+                <div class="drawer-overlay d-none-desktop" id="drawer-overlay"></div>
+                
+                <div class="drawer-content">
+                    <div class="drawer-header d-none-desktop">
+                        <img src="{{ url_for('static', path='img/logo-fem-color.png') }}" alt="Logo Organización FEM" class="drawer-logo">
+                        <button class="drawer-close" id="drawer-close" aria-label="Cerrar menú">×</button>
+                    </div>
+
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link {% if active_page == 'home' %}active{% endif %}">Inicio</a>
+                        </li>
+                        
+                        <!-- Item con Mega Menú / Acordeón: Nuestra Fundación -->
+                        <li class="nav-item has-mega-menu">
+                            <a href="#" class="nav-link dropdown-toggle {% if active_page in ['identidad', 'mision', 'organizacion'] %}active{% endif %}">
+                                Nuestra Fundación <span class="arrow-down">▼</span>
+                            </a>
+                            <div class="mega-menu-dropdown">
+                                <div class="mega-menu-container">
+                                    <div class="mega-menu-column">
+                                        <h5>Quiénes Somos</h5>
+                                        <ul>
+                                            <li><a href="/identidad">Identidad Institucional</a></li>
+                                            <li><a href="/mision">Misión y Visión</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="mega-menu-column">
+                                        <h5>Estructura</h5>
+                                        <ul>
+                                            <li><a href="/organizacion">Gobierno y Organización</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
 
-                    <!-- Item con Mega Menú: Qué Hacemos -->
-                    <li class="nav-item has-mega-menu">
-                        <a href="/dimensiones" class="nav-link {% if active_page == 'dimensiones' %}active{% endif %}">
-                            Qué Hacemos <span class="arrow-down">▼</span>
-                        </a>
-                        <div class="mega-menu-dropdown">
-                            <div class="mega-menu-container">
-                                <div class="mega-menu-column">
-                                    <h5>Dimensiones de Acompañamiento</h5>
-                                    <ul>
-                                        <li><a href="/dimensiones">Dimensión Pedagógica</a></li>
-                                        <li><a href="/dimensiones">Dimensión Administrativa</a></li>
-                                    </ul>
-                                </div>
-                                <div class="mega-menu-column">
-                                    <h5>Gestión Legal & Pastoral</h5>
-                                    <ul>
-                                        <li><a href="/dimensiones">Dimensión Legal</a></li>
-                                        <li><a href="/dimensiones">Dimensión Pastoral</a></li>
-                                    </ul>
+                        <!-- Item con Mega Menú / Acordeón: Qué Hacemos -->
+                        <li class="nav-item has-mega-menu">
+                            <a href="#" class="nav-link dropdown-toggle {% if active_page == 'dimensiones' %}active{% endif %}">
+                                Qué Hacemos <span class="arrow-down">▼</span>
+                            </a>
+                            <div class="mega-menu-dropdown">
+                                <div class="mega-menu-container">
+                                    <div class="mega-menu-column">
+                                        <h5>Dimensiones de Acompañamiento</h5>
+                                        <ul>
+                                            <li><a href="/dimensiones">Dimensión Pedagógica</a></li>
+                                            <li><a href="/dimensiones">Dimensión Administrativa</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="mega-menu-column">
+                                        <h5>Gestión Legal & Pastoral</h5>
+                                        <ul>
+                                            <li><a href="/dimensiones">Dimensión Legal</a></li>
+                                            <li><a href="/dimensiones">Dimensión Pastoral</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
 
-                    <li class="nav-item">
-                        <a href="/colegios" class="nav-link {% if active_page == 'colegios' %}active{% endif %}">Colegios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/contacto" class="nav-link {% if active_page == 'contacto' %}active{% endif %}">Contacto</a>
-                    </li>
-                </ul>
+                        <li class="nav-item">
+                            <a href="/colegios" class="nav-link {% if active_page == 'colegios' %}active{% endif %}">Colegios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/contacto" class="nav-link {% if active_page == 'contacto' %}active{% endif %}">Contacto</a>
+                        </li>
+                    </ul>
+
+                    <!-- Redes y contacto al fondo del Drawer en mobile -->
+                    <div class="drawer-footer d-none-desktop">
+                        <div class="drawer-contact-item">
+                            <span>✉️</span> <a href="mailto:fundacionfem@fundacionfem.org">fundacionfem@fundacionfem.org</a>
+                        </div>
+                        <div class="drawer-social-links">
+                            <a href="#" aria-label="Facebook">📘</a>
+                            <a href="#" aria-label="Instagram">📸</a>
+                            <a href="#" aria-label="YouTube">🎥</a>
+                        </div>
+                    </div>
+                </div>
             </nav>
         </div>
     </div>

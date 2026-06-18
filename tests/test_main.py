@@ -70,6 +70,21 @@ def test_read_admin_placeholder():
     assert response.status_code == 200
     assert "Panel Administrativo" in response.text
 
+def test_post_contacto():
+    """
+    Verifica que el formulario de contacto se envie correctamente por POST
+    y que se persista en la base de datos simulada.
+    """
+    data = {
+        "nombre": "Test User",
+        "email": "test@user.com",
+        "telefono": "12345678",
+        "mensaje": "Mensaje de prueba para contacto"
+    }
+    response = client.post("/contacto", data=data)
+    assert response.status_code == 200
+    assert "Hemos recibido tu mensaje" in response.text
+
 def test_404_custom_error_page():
     """
     Verifica que las rutas inexistentes sean capturadas y 
@@ -78,3 +93,4 @@ def test_404_custom_error_page():
     response = client.get("/ruta-inexistente-para-test")
     assert response.status_code == 404
     assert "Página No Encontrada" in response.text
+

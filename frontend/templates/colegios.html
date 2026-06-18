@@ -12,7 +12,7 @@
     </div>
 </section>
 
-<!-- Sección 6: Colegios Acompañados -->
+<!-- Sección: Colegios Acompañados -->
 <section class="home-section" id="colegios" style="border-top: none; padding-top: 2rem;">
     <div class="container">
         
@@ -21,47 +21,23 @@
             <div class="province-block-item">
                 <h3 class="province-title">Ciudad Autónoma de Buenos Aires (CABA)</h3>
                 <div class="grid-two-cols">
+                    {% for col in colegios if col.provincia == 'CABA' %}
                     <div class="card school-card">
                         <div class="school-header">
-                            <span class="school-carisma">Congregación Hijas de Santa Ana</span>
+                            <span class="school-carisma">{{ col.congregacion }}</span>
                         </div>
-                        <h4 class="school-name">Instituto Santa Ana y San Joaquín</h4>
-                        <p class="school-info">📍 Olazábal 1440, Belgrano</p>
-                        <p class="school-info">📞 011 4784 7650</p>
-                    </div>
-                    <div class="card school-card">
-                        <div class="school-header">
-                            <span class="school-carisma">Congregación Hijas de Santa Ana</span>
-                        </div>
-                        <h4 class="school-name">Instituto Superior Santa Ana</h4>
-                        <p class="school-info">📍 Av. del Libertador 6155, Belgrano</p>
-                        <p class="school-info">📞 011 4784 6795</p>
+                        <h4 class="school-name">{{ col.nombre }}</h4>
+                        <p class="school-info">📍 {{ col.ubicacion }}</p>
+                        {% if col.telefono %}
+                        <p class="school-info">📞 {{ col.telefono }}</p>
+                        {% endif %}
+                        {% if col.web_url %}
                         <div class="school-footer">
-                            <a href="http://www.santaanaysanjoaquin.edu.ar" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
+                            <a href="{{ col.web_url }}" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
                         </div>
+                        {% endif %}
                     </div>
-                    <div class="card school-card">
-                        <div class="school-header">
-                            <span class="school-carisma">Congregación Esclavas del Divino Corazón</span>
-                        </div>
-                        <h4 class="school-name">Instituto Plácido Marín</h4>
-                        <p class="school-info">📍 Larrazábal 1551, Mataderos</p>
-                        <p class="school-info">📞 011 4635 0115</p>
-                        <div class="school-footer">
-                            <a href="http://www.placidomarin.edu.ar" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
-                        </div>
-                    </div>
-                    <div class="card school-card">
-                        <div class="school-header">
-                            <span class="school-carisma">Hermandad Sacerdotes Operarios Diocesanos</span>
-                        </div>
-                        <h4 class="school-name">Instituto San Pío X</h4>
-                        <p class="school-info">📍 Basualdo 780, Mataderos</p>
-                        <p class="school-info">📞 011 4635 1710</p>
-                        <div class="school-footer">
-                            <a href="http://www.institutosanpiox.edu.ar" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
 
@@ -69,122 +45,55 @@
             <div class="province-block-item mt-3">
                 <h3 class="province-title">Provincia de Buenos Aires</h3>
                 <div class="grid-three-cols">
+                    {% for col in colegios if col.provincia == 'Provincia de Buenos Aires' %}
                     <div class="card school-card">
                         <div class="school-header">
-                            <span class="school-carisma">Congregación Catequistas de Dolores Sopeña</span>
+                            <span class="school-carisma">{{ col.congregacion }}</span>
                         </div>
-                        <h4 class="school-name">Instituto Dolores Rodríguez Sopeña</h4>
-                        <p class="school-info">📍 España 620, Avellaneda</p>
-                        <p class="school-info">📞 011 4222 6814</p>
-                    </div>
-                    <div class="card school-card">
-                        <div class="school-header">
-                            <span class="school-carisma">Congregación Esclavas del Divino Corazón</span>
-                        </div>
-                        <h4 class="school-name">Colegio Cardenal Spínola</h4>
-                        <p class="school-info">📍 Maestro Santana 349, San Isidro</p>
-                        <p class="school-info">📞 011 4723 4394</p>
+                        <h4 class="school-name">{{ col.nombre }}</h4>
+                        <p class="school-info">📍 {{ col.ubicacion }}</p>
+                        {% if col.telefono %}
+                        <p class="school-info">📞 {{ col.telefono }}</p>
+                        {% endif %}
+                        {% if col.web_url %}
                         <div class="school-footer">
-                            <a href="http://www.cardenalspinola.com.ar" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
+                            {% if col.web_url.startswith('mailto:') %}
+                            <a href="{{ col.web_url }}" class="school-link">✉️ Contactar</a>
+                            {% else %}
+                            <a href="{{ col.web_url }}" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
+                            {% endif %}
                         </div>
+                        {% endif %}
                     </div>
-                    <div class="card school-card">
-                        <div class="school-header">
-                            <span class="school-carisma">Congregación Hijas de la Cruz</span>
-                        </div>
-                        <h4 class="school-name">Colegio Sagrada Familia (Zárate)</h4>
-                        <p class="school-info">📍 Félix Pagola 125, Zárate</p>
-                        <p class="school-info">📞 03487 422423</p>
-                        <div class="school-footer">
-                            <a href="http://www.csfamilia.com.ar" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
-                        </div>
-                    </div>
-                    <div class="card school-card">
-                        <div class="school-header">
-                            <span class="school-carisma">Congregación Hijas de la Cruz</span>
-                        </div>
-                        <h4 class="school-name">I.S.F.D. Sagrada Familia</h4>
-                        <p class="school-info">📍 Félix Pagola 125, Zárate</p>
-                        <p class="school-info">✉️ nivelsuperior@csfamilia.com.ar</p>
-                    </div>
-                    <div class="card school-card">
-                        <div class="school-header">
-                            <span class="school-carisma">Congregación Hijas de la Cruz</span>
-                        </div>
-                        <h4 class="school-name">Colegio Sagrada Familia e Inst. Hijas de la Cruz</h4>
-                        <p class="school-info">📍 Calle 15 (entre 51 y 53) Nº 961, La Plata</p>
-                        <p class="school-info">📞 0221 4212231</p>
-                        <div class="school-footer">
-                            <a href="http://www.csfamilialp.com.ar" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
-                        </div>
-                    </div>
-                    <div class="card school-card">
-                        <div class="school-header">
-                            <span class="school-carisma">Orden Carmelita</span>
-                        </div>
-                        <h4 class="school-name">Instituto Nuestra Señora del Carmen</h4>
-                        <p class="school-info">📍 Fonrouge 855, Lomas de Zamora</p>
-                        <p class="school-info">💬 WhatsApp: +54 9 11 4243 9089</p>
-                        <div class="school-footer">
-                            <a href="http://www.inscarmen.edu.ar" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
-                        </div>
-                    </div>
-                    <div class="card school-card">
-                        <div class="school-header">
-                            <span class="school-carisma">Orden Carmelita</span>
-                        </div>
-                        <h4 class="school-name">Colegio San Juan de la Cruz</h4>
-                        <p class="school-info">📍 General Pintos 1450, Banfield</p>
-                        <p class="school-info">📞 011 4245 0614</p>
-                        <div class="school-footer">
-                            <a href="http://www.sanjuandelacruz.edu.ar" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
 
-            <!-- Otras Provincias -->
+            <!-- Otras Provincias (Presencia Federal) -->
             <div class="province-block-item mt-3">
                 <h3 class="province-title">Presencia Federal (Jujuy, Mendoza, Santa Fe y Tucumán)</h3>
                 <div class="grid-three-cols">
+                    {% for col in colegios if col.provincia == 'Presencia Federal' %}
                     <div class="card school-card">
                         <div class="school-header">
-                            <span class="school-carisma">Congregación Esclavas del Divino Corazón</span>
+                            <span class="school-carisma">{{ col.congregacion }}</span>
                         </div>
-                        <h4 class="school-name">Colegio Sagrado Corazón (Jujuy)</h4>
-                        <p class="school-info">📍 Av. Luciano Catalano 198, Palpalá</p>
-                        <p class="school-info">📞 0388 427 0198</p>
-                    </div>
-                    <div class="card school-card">
-                        <div class="school-header">
-                            <span class="school-carisma">Congregación Esclavas del Divino Corazón</span>
-                        </div>
-                        <h4 class="school-name">Instituto Corazón de Jesús (Santa Fe)</h4>
-                        <p class="school-info">📍 Rivadavia 713, San Carlos Centro</p>
-                        <p class="school-info">📞 03404 42 0055</p>
+                        <h4 class="school-name">{{ col.nombre }}</h4>
+                        <p class="school-info">📍 {{ col.ubicacion }}</p>
+                        {% if col.telefono %}
+                        <p class="school-info">📞 {{ col.telefono }}</p>
+                        {% endif %}
+                        {% if col.web_url %}
                         <div class="school-footer">
-                            <a href="https://instagram.com/corazondejesus_sc" target="_blank" rel="noopener" class="school-link">📷 Instagram</a>
+                            {% if 'instagram.com' in col.web_url %}
+                            <a href="{{ col.web_url }}" target="_blank" rel="noopener" class="school-link">📷 Instagram</a>
+                            {% else %}
+                            <a href="{{ col.web_url }}" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
+                            {% endif %}
                         </div>
+                        {% endif %}
                     </div>
-                    <div class="card school-card">
-                        <div class="school-header">
-                            <span class="school-carisma">Hermandad Sacerdotes Operarios Diocesanos</span>
-                        </div>
-                        <h4 class="school-name">Colegio e Instituto Montserrat (Tucumán)</h4>
-                        <p class="school-info">📍 Colombia 2937, San Miguel de Tucumán</p>
-                        <p class="school-info">📞 0381 254 7338</p>
-                        <div class="school-footer">
-                            <a href="http://www.colegio-e-instituto-montserrat.com" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
-                        </div>
-                    </div>
-                    <div class="card school-card">
-                        <div class="school-header">
-                            <span class="school-carisma">Compasionistas</span>
-                        </div>
-                        <h4 class="school-name">Colegio Nuestra Señora de la Compasión (Mendoza)</h4>
-                        <p class="school-info">📍 Soberanía Nacional y Congreso de Tucumán, Palmira</p>
-                        <p class="school-info">📞 0263 4461778</p>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

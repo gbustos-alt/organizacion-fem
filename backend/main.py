@@ -3,6 +3,10 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from backend.routers import public, admin
 from backend.core.templates import templates
+from backend.core.database import Base, engine
+
+# Crear tablas en base de datos al iniciar
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Organización FEM",

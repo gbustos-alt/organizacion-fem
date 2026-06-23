@@ -1,6 +1,7 @@
 import hashlib
 from backend.core.database import SessionLocal, Base, engine
-from backend.models import Colegio, Noticia, Usuario
+from backend.models import Colegio, Noticia, Usuario, Rol, UsuarioRol
+from backend.services.import_service import sincronizar_roles_y_permisos
 
 def get_password_hash(password: str) -> str:
     return hashlib.sha256(password.encode()).hexdigest()
@@ -150,16 +151,76 @@ def seed_db():
     ]
     db.add_all(noticias)
     
-    # 3. Agregar Usuario Administrador
+    # 3. Sincronizar Roles y Permisos desde archivo de configuración
+    print("🔑 Sincronizando roles y permisos desde semilla...")
+    sincronizar_roles_y_permisos(db)
+
+    # 4. Obtener roles creados
+    rol_admin = db.query(Rol).filter(Rol.nombre == "Administrador General").first()
+    rol_director = db.query(Rol).filter(Rol.nombre == "Director de Colegio").first()
+
+    # 5. Agregar Usuario Administrador (Global)
     admin_user = Usuario(
         username="admin",
-        hashed_password=get_password_hash("admin123")
+        email="admin@fundacionfem.org",
+        hashed_password=get_password_hash("admin123"),
+        tipo="HUMANO",
+        activo=True
     )
     db.add(admin_user)
-    
+    db.flush()
+
+    # Asignar rol Administrador General (Global: colegio_id=None)
+    admin_rol_asoc = UsuarioRol(
+        usuario_id=admin_user.id,
+        rol_id=rol_admin.id,
+        colegio_id=None
+    )
+    db.add(admin_rol_asoc)
+
+    # 6. Agregar Usuario Director (Limitado al primer colegio de la lista)
+    primer_colegio = db.query(Colegio).first()
+    director_user = Usuario(
+        username="director",
+        email="director@fundacionfem.org",
+        hashed_password=get_password_hash("director123"),
+        tipo="HUMANO",
+        activo=True
+    )
+    db.add(director_user)
+    db.flush()
+
+    if primer_colegio:
+        # Asignar rol Director de Colegio (Local: colegio_id del primer colegio)
+        director_rol_asoc = UsuarioRol(
+            usuario_id=director_user.id,
+            rol_id=rol_director.id,
+            colegio_id=primer_colegio.id
+        )
+        db.add(director_rol_asoc)
+        print(f"👤 Creado usuario director asignado a: {primer_colegio.nombre}")
+
+    # 7. Agregar Agente Automatizado (Global)
+    agente_user = Usuario(
+        username="agente_auditor",
+        email="agente@fundacionfem.org",
+        hashed_password=get_password_hash("agente123"),
+        tipo="AGENTE",
+        activo=True
+    )
+    db.add(agente_user)
+    db.flush()
+
+    agente_rol_asoc = UsuarioRol(
+        usuario_id=agente_user.id,
+        rol_id=rol_admin.id,
+        colegio_id=None
+    )
+    db.add(agente_rol_asoc)
+
     db.commit()
     db.close()
-    print("✅ Base de datos poblada exitosamente con colegios reales.")
+    print("✅ Base de datos poblada y RBAC inicial configurado exitosamente.")
 
 if __name__ == "__main__":
     seed_db()

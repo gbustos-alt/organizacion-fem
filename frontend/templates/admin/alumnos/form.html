@@ -1,0 +1,68 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}
+  {% if alumno %}Editar Alumno | Intranet{% else %}Registrar Alumno | Intranet{% endif %}
+{% endblock %}
+
+{% block navbar_title %}
+  {% if alumno %}Editar Alumno #{{ alumno.id }}{% else %}Registrar Alumno{% endif %}
+{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: var(--space-lg);">
+    <a href="/admin/alumnos/" style="text-decoration: none; color: var(--color-text-muted); font-size: 0.85rem; display: inline-flex; align-items: center; gap: 4px;">
+        ← Volver al listado
+    </a>
+</div>
+
+{% if error %}
+<div class="alert-admin alert-admin-error">
+    {{ error }}
+</div>
+{% endif %}
+
+<div class="form-card">
+    <form action="{% if alumno %}/admin/alumnos/editar/{{ alumno.id }}{% else %}/admin/alumnos/crear{% endif %}" method="POST">
+        <div style="display: grid; grid-template-cols: 1fr 1fr; gap: var(--space-md);">
+            <div class="form-group">
+                <label for="nombre">Nombres *</label>
+                <input type="text" id="nombre" name="nombre" class="form-control" value="{{ alumno.nombre if alumno else '' }}" required placeholder="E.g., Juan Manuel">
+            </div>
+            
+            <div class="form-group">
+                <label for="apellido">Apellidos *</label>
+                <input type="text" id="apellido" name="apellido" class="form-control" value="{{ alumno.apellido if alumno else '' }}" required placeholder="E.g., Pérez">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="documento">Documento de Identidad (DNI) *</label>
+            <input type="text" id="documento" name="documento" class="form-control" value="{{ alumno.documento if alumno else '' }}" required placeholder="E.g., 42345678">
+        </div>
+
+        <div class="form-group">
+            <label for="colegio_id">Colegio Asignado *</label>
+            <select id="colegio_id" name="colegio_id" class="form-control" required>
+                <option value="" disabled {% if not alumno %}selected{% endif %}>-- Seleccionar Institución --</option>
+                {% for col in colegios %}
+                <option value="{{ col.id }}" {% if alumno and alumno.colegio_id == col.id %}selected{% endif %}>
+                    {{ col.nombre }} ({{ col.ubicacion or '' }})
+                </option>
+                {% endfor %}
+            </select>
+            <small style="color: var(--color-text-muted); font-size: 0.8rem; margin-top: 2px;">
+                Solo se muestran los colegios habilitados para su cuenta de usuario.
+            </small>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: var(--space-sm); margin-top: var(--space-lg);">
+            <a href="/admin/alumnos/" class="btn-admin btn-admin-secondary">
+                Cancelar
+            </a>
+            <button type="submit" class="btn-admin btn-admin-primary">
+                {% if alumno %}Guardar Cambios{% else %}Registrar Alumno{% endif %}
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

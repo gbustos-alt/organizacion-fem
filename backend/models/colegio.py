@@ -1,6 +1,7 @@
 import datetime
 from sqlalchemy import Column, Integer, String, Text, Boolean, DateTime
-from backend.core.database import Base
+from sqlalchemy.orm import relationship
+from backend.models.base import Base
 
 class Colegio(Base):
     __tablename__ = "colegios"
@@ -15,6 +16,11 @@ class Colegio(Base):
     web_url = Column(String(255), nullable=True)
     descripcion = Column(Text, nullable=True)
     imagen_url = Column(String(255), nullable=True)
+    activo = Column(Boolean, default=True)
+
+    # Relación con la asignación de roles con scope de colegio
+    usuarios_asociados = relationship("UsuarioRol", back_populates="colegio", cascade="all, delete-orphan")
+
 
 class Noticia(Base):
     __tablename__ = "noticias"
@@ -26,6 +32,7 @@ class Noticia(Base):
     fecha_publicacion = Column(DateTime, default=datetime.datetime.utcnow)
     activa = Column(Boolean, default=True)
 
+
 class MensajeContacto(Base):
     __tablename__ = "mensajes_contacto"
 
@@ -35,10 +42,3 @@ class MensajeContacto(Base):
     telefono = Column(String(50), nullable=True)
     mensaje = Column(Text, nullable=False)
     fecha_envio = Column(DateTime, default=datetime.datetime.utcnow)
-
-class Usuario(Base):
-    __tablename__ = "usuarios"
-
-    id = Column(Integer, primary_key=True, index=True)
-    username = Column(String(50), unique=True, index=True, nullable=False)
-    hashed_password = Column(String(255), nullable=False)

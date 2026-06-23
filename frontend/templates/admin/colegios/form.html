@@ -1,0 +1,69 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}
+  {% if colegio %}Editar Colegio | Intranet{% else %}Registrar Colegio | Intranet{% endif %}
+{% endblock %}
+
+{% block navbar_title %}
+  {% if colegio %}Editar Colegio #{{ colegio.id }}{% else %}Registrar Colegio{% endif %}
+{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: var(--space-lg);">
+    <a href="/admin/colegios/" style="text-decoration: none; color: var(--color-text-muted); font-size: 0.85rem; display: inline-flex; align-items: center; gap: 4px;">
+        ← Volver al listado
+    </a>
+</div>
+
+<div class="form-card">
+    <form action="{% if colegio %}/admin/colegios/editar/{{ colegio.id }}{% else %}/admin/colegios/crear{% endif %}" method="POST">
+        <div class="form-group">
+            <label for="nombre">Nombre del Colegio *</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" value="{{ colegio.nombre if colegio else '' }}" required placeholder="E.g., Colegio Cardenal Spínola">
+        </div>
+
+        <div style="display: grid; grid-template-cols: 1fr 1fr; gap: var(--space-md);">
+            <div class="form-group">
+                <label for="congregacion">Congregación</label>
+                <input type="text" id="congregacion" name="congregacion" class="form-control" value="{{ (colegio.congregacion if colegio else '') or '' }}" placeholder="E.g., Congregación Hijas de la Cruz">
+            </div>
+            
+            <div class="form-group">
+                <label for="diocesis">Diócesis</label>
+                <input type="text" id="diocesis" name="diocesis" class="form-control" value="{{ (colegio.diocesis if colegio else '') or '' }}" placeholder="E.g., Diócesis de San Isidro">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="ubicacion">Dirección / Ubicación</label>
+            <input type="text" id="ubicacion" name="ubicacion" class="form-control" value="{{ (colegio.ubicacion if colegio else '') or '' }}" placeholder="E.g., España 620, Avellaneda">
+        </div>
+
+        <div style="display: grid; grid-template-cols: 1fr 1fr; gap: var(--space-md);">
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="text" id="telefono" name="telefono" class="form-control" value="{{ (colegio.telefono if colegio else '') or '' }}" placeholder="E.g., 011 4222 6814">
+            </div>
+            
+            <div class="form-group">
+                <label for="web_url">Sitio Web</label>
+                <input type="url" id="web_url" name="web_url" class="form-control" value="{{ (colegio.web_url if colegio else '') or '' }}" placeholder="E.g., http://www.colegiospinola.edu.ar">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <textarea id="descripcion" name="descripcion" class="form-control" rows="4" placeholder="Breve historia o detalles del colegio...">{{ (colegio.descripcion if colegio else '') or '' }}</textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: var(--space-sm); margin-top: var(--space-lg);">
+            <a href="/admin/colegios/" class="btn-admin btn-admin-secondary">
+                Cancelar
+            </a>
+            <button type="submit" class="btn-admin btn-admin-primary">
+                Guardar Cambios
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

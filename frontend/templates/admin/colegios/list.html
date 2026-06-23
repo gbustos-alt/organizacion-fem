@@ -1,0 +1,63 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Colegios | Intranet Fundación FEM{% endblock %}
+{% block navbar_title %}Gestión de Colegios{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg); flex-wrap: wrap; gap: var(--space-sm);">
+    <div>
+        <p style="color: var(--color-text-muted); margin: 0; font-size: 0.9rem;">
+            Listado de colegios oficiales registrados bajo la administración de la fundación.
+        </p>
+    </div>
+    <!-- Solo directores de fundación/globales (colegio_id = None) pueden crear nuevos colegios -->
+    {% if None in request.state.colegios_permitidos %}
+    <a href="/admin/colegios/crear" class="btn-admin btn-admin-primary">
+        + Registrar Nuevo Colegio
+    </a>
+    {% endif %}
+</div>
+
+<div class="data-table-wrapper">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th style="width: 80px;">ID</th>
+                <th>Nombre del Colegio</th>
+                <th>Congregación</th>
+                <th>Ubicación</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for col in colegios %}
+            <tr>
+                <td><strong>#{{ col.id }}</strong></td>
+                <td style="font-weight: 550;">{{ col.nombre }}</td>
+                <td><span style="color: var(--color-text-muted);">{{ col.congregacion or '-' }}</span></td>
+                <td>{{ col.ubicacion or '-' }}</td>
+                <td>
+                    <span style="background-color: #dcfce7; color: #15803d; padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; display: inline-block;">
+                        Activo
+                    </span>
+                </td>
+                <td>
+                    <div class="actions-cell">
+                        <a href="/admin/colegios/editar/{{ col.id }}" class="btn-action btn-action-edit">
+                            Editar Ficha
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" style="text-align: center; color: var(--color-text-muted); padding: var(--space-xl);">
+                    No se encontraron colegios registrados o permitidos bajo su scope de usuario.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

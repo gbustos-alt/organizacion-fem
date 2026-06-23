@@ -1,0 +1,91 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Alumnos | Intranet Fundación FEM{% endblock %}
+{% block navbar_title %}Gestión de Alumnos{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg); flex-wrap: wrap; gap: var(--space-sm);">
+    <div style="display: flex; align-items: center; gap: var(--space-md); flex-wrap: wrap; flex-grow: 1;">
+        <input type="text" id="alumnoSearch" class="form-control" style="max-width: 280px; padding: 6px 12px; font-size: 0.85rem;" placeholder="🔍 Buscar por nombre o DNI..." onkeyup="filterAlumnos()">
+    </div>
+    <a href="/admin/alumnos/crear" class="btn-admin btn-admin-primary">
+        + Registrar Nuevo Alumno
+    </a>
+</div>
+
+<div class="data-table-wrapper">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th style="width: 80px;">ID</th>
+                <th>Apellido y Nombre</th>
+                <th>Documento (DNI)</th>
+                <th>Colegio Pertenencia</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for alum in alumnos %}
+            <tr>
+                <td><strong>#{{ alum.id }}</strong></td>
+                <td style="font-weight: 550;">{{ alum.apellido }}, {{ alum.nombre }}</td>
+                <td>{{ alum.documento }}</td>
+                <td><span style="font-weight: 550; color: var(--color-primary);">{{ alum.colegio.nombre }}</span></td>
+                <td>
+                    <span style="background-color: #dcfce7; color: #15803d; padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; display: inline-block;">
+                        Regular
+                    </span>
+                </td>
+                <td>
+                    <div class="actions-cell">
+                        <a href="/admin/alumnos/editar/{{ alum.id }}" class="btn-action btn-action-edit">
+                            Editar Ficha
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" style="text-align: center; color: var(--color-text-muted); padding: var(--space-xl);">
+                    No se encontraron alumnos registrados bajo los colegios asignados a su cuenta.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function filterAlumnos() {
+        const input = document.getElementById("alumnoSearch");
+        const filter = input.value.toLowerCase().trim();
+        const table = document.querySelector(".data-table");
+        const tr = table.getElementsByTagName("tr");
+        
+        for (let i = 1; i < tr.length; i++) {
+            const tdName = tr[i].getElementsByTagName("td")[1];
+            const tdDni = tr[i].getElementsByTagName("td")[2];
+            const tdColegio = tr[i].getElementsByTagName("td")[3];
+            
+            if (tdName || tdDni || tdColegio) {
+                const txtName = tdName.textContent || tdName.innerText;
+                const txtDni = tdDni.textContent || tdDni.innerText;
+                const txtColegio = tdColegio.textContent || tdColegio.innerText;
+                
+                if (
+                    txtName.toLowerCase().indexOf(filter) > -1 || 
+                    txtDni.toLowerCase().indexOf(filter) > -1 ||
+                    txtColegio.toLowerCase().indexOf(filter) > -1
+                ) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+{% endblock %}

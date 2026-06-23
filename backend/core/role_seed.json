@@ -1,0 +1,72 @@
+{
+  "permisos_sistema": [
+    {
+      "recurso": "colegio",
+      "acciones": ["crear", "leer", "editar", "eliminar"],
+      "descripcion": "Gestión de Colegios de la Red"
+    },
+    {
+      "recurso": "alumno",
+      "acciones": ["crear", "leer", "editar", "eliminar"],
+      "descripcion": "Gestión de Alumnos"
+    },
+    {
+      "recurso": "matricula",
+      "acciones": ["crear", "leer", "editar", "aprobar", "rechazar"],
+      "descripcion": "Gestión de Matrículas e inscripciones"
+    },
+    {
+      "recurso": "usuario",
+      "acciones": ["crear", "leer", "editar", "suspender"],
+      "descripcion": "Administración de Usuarios y Agentes"
+    },
+    {
+      "recurso": "auditoria",
+      "acciones": ["leer"],
+      "descripcion": "Visualización de logs de seguridad"
+    }
+  ],
+  "roles": [
+    {
+      "nombre": "Administrador General",
+      "descripcion": "Acceso total a todas las herramientas de la fundación",
+      "scope_tipo": "GLOBAL",
+      "permisos": [
+        {
+          "recurso": "*",
+          "acciones": ["*"]
+        }
+      ]
+    },
+    {
+      "nombre": "Director de Colegio",
+      "descripcion": "Acceso de lectura y escritura limitado a su colegio",
+      "scope_tipo": "COLEGIO",
+      "permisos": [
+        {
+          "recurso": "alumno",
+          "acciones": ["crear", "leer", "editar"]
+        },
+        {
+          "recurso": "matricula",
+          "acciones": ["crear", "leer", "editar", "aprobar", "rechazar"]
+        }
+      ]
+    },
+    {
+      "nombre": "Secretario",
+      "descripcion": "Operaciones administrativas de carga de alumnos",
+      "scope_tipo": "COLEGIO",
+      "permisos": [
+        {
+          "recurso": "alumno",
+          "acciones": ["crear", "leer", "editar"]
+        },
+        {
+          "recurso": "matricula",
+          "acciones": ["crear", "leer"]
+        }
+      ]
+    }
+  ]
+}

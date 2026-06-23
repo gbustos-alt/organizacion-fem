@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Intranet | Fundación FEM{% endblock %}</title>
+    
+    <!-- Meta tags basicos -->
+    <meta name="color-scheme" content="light">
+
+    <!-- Tipografías: Inter, Lora, Barlow -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Estilo principal del sistema de diseno -->
+    <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}?v=1.0.5">
+    
+    <!-- Estilos específicos de admin -->
+    <style>
+        :root {
+            --sidebar-width: 260px;
+        }
+        
+        body {
+            background-color: var(--color-bg-alt);
+            color: var(--color-text);
+            font-family: var(--font-sans);
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Contenedor principal de la intranet */
+        .admin-container {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* Sidebar de navegación lateral */
+        .admin-sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-brand {
+            padding: var(--space-lg);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xxs);
+        }
+
+        .sidebar-brand h2 {
+            font-family: var(--font-brand-condensed);
+            font-size: 1.4rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-pantone-yellow-raw);
+        }
+
+        .sidebar-brand span {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: var(--space-md) 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .menu-item a {
+            display: flex;
+            align-items: center;
+            padding: var(--space-sm) var(--space-lg);
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            border-left: 4px solid transparent;
+            font-size: 0.95rem;
+        }
+
+        .menu-item a:hover {
+            background-color: rgba(255,255,255,0.05);
+            color: var(--color-white);
+        }
+
+        .menu-item.active a {
+            background-color: rgba(255,255,255,0.08);
+            color: var(--color-white);
+            border-left-color: var(--color-pantone-yellow-raw);
+        }
+
+        .sidebar-footer {
+            padding: var(--space-md) var(--space-lg);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            background-color: rgba(0, 0, 0, 0.2);
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .sidebar-footer .user-info {
+            font-weight: 600;
+            color: var(--color-white);
+        }
+
+        /* Cuerpo principal de contenido */
+        .admin-main {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        /* Navbar superior */
+        .admin-navbar {
+            height: 64px;
+            background-color: var(--color-white);
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--space-xl);
+            position: sticky;
+            top: 0;
+            z-index: 90;
+        }
+
+        .navbar-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .btn-logout {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border);
+            transition: var(--transition-smooth);
+        }
+
+        .btn-logout:hover {
+            background-color: #fee2e2;
+            color: var(--color-rojo-ladrillo);
+            border-color: #fca5a5;
+        }
+
+        /* Área de contenido del panel */
+        .admin-content-area {
+            padding: var(--space-xl);
+            flex-grow: 1;
+            max-width: var(--container-max-width);
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Tarjetas de Dashboard */
+        .admin-stats-grid {
+            display: grid;
+            grid-template-cols: repeat(auto-fit, minmax(240px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .stat-card {
+            background: var(--color-card);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid var(--color-border);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-premium);
+        }
+
+        .stat-card h3 {
+            margin: 0;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--color-text-muted);
+        }
+
+        .stat-card .stat-number {
+            font-size: 2.25rem;
+            font-family: var(--font-brand-condensed);
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 0;
+        }
+
+        .stat-card .stat-desc {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            margin: 0;
+        }
+
+        /* Tablas */
+        .data-table-wrapper {
+            background: var(--color-white);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-subtle);
+            overflow: hidden;
+            margin-bottom: var(--space-xl);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .data-table th {
+            background-color: var(--color-bg-alt);
+            padding: var(--space-md);
+            font-weight: 600;
+            color: var(--color-text);
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        .data-table td {
+            padding: var(--space-md);
+            border-bottom: 1px solid var(--color-border);
+            color: var(--color-text);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tr:hover td {
+            background-color: rgba(246, 246, 242, 0.5);
+        }
+
+        /* Formularios */
+        .form-card {
+            background: var(--color-white);
+            border-radius: var(--radius-md);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid var(--color-border);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: var(--space-md);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xxs);
+        }
+
+        .form-group label {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--color-text);
+        }
+
+        .form-control {
+            padding: var(--space-sm) var(--space-md);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(12, 30, 54, 0.15);
+        }
+
+        /* Botones generales */
+        .btn-admin {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-sm) var(--space-lg);
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-radius: var(--radius-sm);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+        }
+
+        .btn-admin-primary {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .btn-admin-primary:hover {
+            background-color: var(--color-primary-hover);
+        }
+
+        .btn-admin-secondary {
+            background-color: var(--color-bg-alt);
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-admin-secondary:hover {
+            background-color: var(--color-border);
+        }
+
+        .actions-cell {
+            display: flex;
+            gap: var(--space-xs);
+        }
+
+        .btn-action {
+            padding: var(--space-xxs) var(--space-sm);
+            font-size: 0.8rem;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .btn-action-edit {
+            background-color: #e0f2fe;
+            color: #0369a1;
+        }
+
+        .btn-action-edit:hover {
+            background-color: #bae6fd;
+        }
+
+        /* Mensajes de Alerta */
+        .alert-admin {
+            padding: var(--space-md);
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--space-lg);
+            font-size: 0.9rem;
+            border-left: 4px solid transparent;
+        }
+
+        .alert-admin-error {
+            background-color: #fee2e2;
+            color: var(--color-rojo-ladrillo);
+            border-left-color: var(--color-rojo-ladrillo);
+        }
+
+        .alert-admin-success {
+            background-color: #dcfce7;
+            color: #15803d;
+            border-left-color: #15803d;
+        }
+    </style>
+    {% block styles %}{% endblock %}
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Barra lateral -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-brand">
+                <h2>Fundación FEM</h2>
+                <span>Módulo de Intranet</span>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="menu-item {% if active_page == 'dashboard' %}active{% endif %}">
+                    <a href="/admin/">
+                        Dashboard
+                    </a>
+                </li>
+                <li class="menu-item {% if active_page == 'colegios' %}active{% endif %}">
+                    <a href="/admin/colegios/">
+                        Colegios
+                    </a>
+                </li>
+                <li class="menu-item {% if active_page == 'alumnos' %}active{% endif %}">
+                    <a href="/admin/alumnos/">
+                        Alumnos
+                    </a>
+                </li>
+                <li class="menu-item {% if active_page == 'agente' %}active{% endif %}" style="margin-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--space-md);">
+                    <a href="/admin/agente/" style="color: var(--color-pantone-yellow-raw);">
+                        ✨ Asistente de Gestión
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                Conectado como:<br>
+                <span class="user-info">@{{ user.username }}</span>
+            </div>
+        </aside>
+
+        <!-- Cuerpo principal -->
+        <div class="admin-main">
+            <header class="admin-navbar">
+                <h1 class="navbar-title">
+                    {% block navbar_title %}Panel Administrativo{% endblock %}
+                </h1>
+                
+                <div class="navbar-actions">
+                    <a href="/" target="_blank" class="btn-admin btn-admin-secondary" style="padding: var(--space-xs) var(--space-sm); font-size: 0.85rem;">
+                        Ver Sitio Público
+                    </a>
+                    <a href="/admin/auth/logout" class="btn-logout">
+                        Cerrar Sesión
+                    </a>
+                </div>
+            </header>
+            
+            <main class="admin-content-area">
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+    </div>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

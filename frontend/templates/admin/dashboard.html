@@ -1,0 +1,102 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Dashboard | Intranet Fundación FEM{% endblock %}
+{% block navbar_title %}Dashboard General{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: var(--space-xl); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-md);">
+    <div>
+        <h2 style="font-family: var(--font-display); font-size: 1.6rem; margin: 0 0 var(--space-xxs) 0; font-weight: 600;">
+            ¡Hola de nuevo, {{ user.username }}!
+        </h2>
+        <p style="color: var(--color-text-muted); margin: 0; font-size: 0.95rem;">
+            Bienvenido al panel centralizado de administración de la red de colegios de Fundación FEM.
+        </p>
+    </div>
+    <div style="background-color: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: var(--space-xs) var(--space-md); font-size: 0.85rem; font-weight: 550; display: flex; align-items: center; gap: var(--space-xs); box-shadow: var(--shadow-subtle);">
+        <span style="display: inline-block; width: 8px; height: 8px; background-color: #22c55e; border-radius: 50%;"></span>
+        Sistema Operativo
+    </div>
+</div>
+
+<!-- Grid de tarjetas de métricas MVP (5 KPIs arancelarios y de gestión) -->
+<div class="admin-stats-grid" style="grid-template-cols: repeat(auto-fit, minmax(200px, 1fr));">
+    <div class="stat-card">
+        <h3>Colegios Activos</h3>
+        <p class="stat-number">{{ colegios_count }}</p>
+        <p class="stat-desc">Instituciones bajo la fundación</p>
+    </div>
+    
+    <div class="stat-card">
+        <h3>Alumnos Registrados</h3>
+        <p class="stat-number">{{ alumnos_count }}</p>
+        <p class="stat-desc">Matrícula escolar activa</p>
+    </div>
+    
+    <div class="stat-card">
+        <h3>Matrículas Pendientes</h3>
+        <p class="stat-number" style="color: var(--color-coral);">{{ matriculas_count }}</p>
+        <p class="stat-desc">Inscripciones por revisar</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Ingreso Proyectado</h3>
+        <p class="stat-number" style="color: #16a34a;">${{ "{:,.0f}".format(ingresos_estimados) }}</p>
+        <p class="stat-desc">Base mensual estimada</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Usuarios Activos</h3>
+        <p class="stat-number">{{ usuarios_activos }}</p>
+        <p class="stat-desc">Sesiones administrativas concurrentes</p>
+    </div>
+</div>
+
+<!-- Bloque del Agente Asistente de Gestión (Destacado comercial) -->
+<div class="stat-card" style="background: linear-gradient(135deg, var(--color-white) 70%, rgba(241, 180, 52, 0.05) 100%); border: 1px solid var(--color-pantone-yellow-raw); border-left-width: 6px; padding: var(--space-xl); margin-bottom: var(--space-xl); gap: var(--space-md);">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--space-sm);">
+        <div>
+            <span style="font-family: var(--font-brand-condensed); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--color-pantone-yellow-raw); letter-spacing: 1px;">Asistente Inteligente</span>
+            <h3 style="font-family: var(--font-display); font-size: 1.4rem; color: var(--color-primary); margin: var(--space-xxs) 0; font-weight: 700;">
+                ✨ Agente Asistente FEM
+            </h3>
+            <p style="color: var(--color-text); font-size: 0.95rem; line-height: 1.5; margin: 0; max-width: 800px;">
+                Esta intranet cuenta con un asistente analítico preparado para resolver consultas operativas y estimaciones financieras en tiempo real utilizando la base de datos de la fundación.
+            </p>
+        </div>
+        <a href="/admin/agente/" class="btn-admin btn-admin-primary" style="background-color: var(--color-primary); color: var(--color-white); border: 1px solid var(--color-primary);">
+            Abrir Asistente
+        </a>
+    </div>
+
+    <div style="border-top: 1px solid var(--color-border); padding-top: var(--space-md); margin-top: var(--space-xs);">
+        <p style="font-weight: 600; font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: var(--space-sm); text-transform: uppercase; letter-spacing: 0.5px;">
+            Consultas Rápidas Recomendadas:
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: var(--space-xs);">
+            <a href="/admin/agente/?query=Resumime+el+estado+general+de+colegios+y+alumnos" class="btn-admin btn-admin-secondary" style="font-size: 0.82rem; padding: var(--space-xs) var(--space-sm); border-radius: 20px; background-color: var(--color-bg);">
+                📊 Resumen General
+            </a>
+            <a href="/admin/agente/?query=Calcula+ingresos+estimados+para+colegios+y+alumnos" class="btn-admin btn-admin-secondary" style="font-size: 0.82rem; padding: var(--space-xs) var(--space-sm); border-radius: 20px; background-color: var(--color-bg);">
+                💸 Estimar Ingresos Proyectados
+            </a>
+            <a href="/admin/agente/?query=Que+modulo+tiene+mas+carga+pendiente" class="btn-admin btn-admin-secondary" style="font-size: 0.82rem; padding: var(--space-xs) var(--space-sm); border-radius: 20px; background-color: var(--color-bg);">
+                ⚡ Diagnóstico de Pendientes
+            </a>
+            <a href="/admin/agente/?query=Que+informacion+falta+para+cerrar+un+reporte" class="btn-admin btn-admin-secondary" style="font-size: 0.82rem; padding: var(--space-xs) var(--space-sm); border-radius: 20px; background-color: var(--color-bg);">
+                🔍 Faltantes de Información
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Bloque sobre el Estado del Sistema -->
+<div class="stat-card" style="gap: var(--space-sm);">
+    <h3 style="border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-xs); color: var(--color-primary); font-weight: 700; font-size: 1rem;">
+        Sobre la Red Fundación FEM
+    </h3>
+    <p style="font-size: 0.9rem; line-height: 1.5; color: var(--color-text); margin: 0;">
+        La base de datos dinámica contiene el registro consolidado de aranceles, colegios y alumnos. Los accesos están segmentados mediante el protocolo RBAC dinámico con scopes territoriales y roles editables directamente desde la base de datos (sembrados inicialmente vía <code>role_seed.json</code>).
+    </p>
+</div>
+{% endblock %}

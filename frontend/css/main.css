@@ -1306,4 +1306,268 @@ button, input, select, textarea {
   color: var(--color-accent-warm);
 }
 
+.colegios-dashboard-section {
+  padding: 3rem 0;
+  background-color: var(--color-bg);
+}
+
+.compact-controls {
+  background-color: var(--color-white);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1.5px solid var(--color-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.compact-controls .search-input-container input {
+  width: 100%;
+  padding: 0.8rem 1.25rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  font-family: "Inter", sans-serif;
+  transition: all 0.25s ease;
+}
+.compact-controls .search-input-container input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(241, 190, 72, 0.15);
+}
+.compact-controls .compact-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.compact-controls .filter-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+@media (max-width: 768px) {
+  .compact-controls .filter-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+.compact-controls .filter-row .row-label {
+  font-family: "Barlow", sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  min-width: 90px;
+}
+.compact-controls .filter-row .pills-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+  .compact-controls .filter-row .pills-group.scrollable-pills {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100%;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .compact-controls .filter-row .pills-group.scrollable-pills::-webkit-scrollbar {
+    height: 5px;
+  }
+  .compact-controls .filter-row .pills-group.scrollable-pills::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: 3px;
+  }
+}
+.compact-controls .filter-row .pills-group .pill-btn {
+  background-color: var(--color-bg-alt);
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.compact-controls .filter-row .pills-group .pill-btn:hover {
+  border-color: var(--color-accent);
+  background-color: var(--color-white);
+}
+.compact-controls .filter-row .pills-group .pill-btn.active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.results-header .results-title {
+  font-family: "Lora", serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+.results-header .count-badge {
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+}
+
+.schools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.school-card {
+  background-color: var(--color-white);
+  border: 1.5px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+}
+.school-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+.school-card .card-header-badge {
+  align-self: flex-start;
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 0.75rem;
+}
+.school-card .card-title {
+  font-family: "Lora", serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.35;
+  margin-bottom: 0.25rem;
+}
+.school-card .card-province-label {
+  font-family: "Barlow", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.25rem;
+}
+.school-card .card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+.school-card .card-details .detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+.school-card .card-details .detail-item .detail-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.school-card .card-details .detail-item .detail-text {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+}
+.school-card .card-actions {
+  margin-top: auto;
+}
+.school-card .card-actions .btn-card-link {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+.empty-state {
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: var(--color-white);
+  border-radius: 12px;
+  border: 1.5px solid var(--color-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+.empty-state .empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.6;
+}
+.empty-state h4 {
+  font-family: "Lora", serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+.empty-state p {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+}
+.empty-state .btn {
+  padding: 0.6rem 1.5rem;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.school-card {
+  animation: cardFadeIn 0.3s ease forwards;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
 /*# sourceMappingURL=main.css.map */

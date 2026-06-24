@@ -1,0 +1,300 @@
+// ==============================================================================
+// Estilos de Grid de Folios: Comunidades Educativas (Colegios)
+// ==============================================================================
+
+.colegios-dashboard-section {
+  padding: 3rem 0;
+  background-color: var(--color-bg);
+}
+
+// 1. Panel de Controles (Buscador y Filtros en Ancho Completo)
+.compact-controls {
+  background-color: var(--color-white);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1.5px solid var(--color-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  .search-input-container {
+    input {
+      width: 100%;
+      padding: 0.8rem 1.25rem;
+      border: 1.5px solid var(--color-border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      color: var(--color-text);
+      font-family: 'Inter', sans-serif;
+      transition: all 0.25s ease;
+
+      &:focus {
+        outline: none;
+        border-color: var(--color-accent);
+        box-shadow: 0 0 0 4px rgba(241, 190, 72, 0.15);
+      }
+    }
+  }
+
+  .compact-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .filter-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .row-label {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      min-width: 90px;
+    }
+
+    .pills-group {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+
+      &.scrollable-pills {
+        @media (max-width: 768px) {
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          width: 100%;
+          padding-bottom: 6px;
+          -webkit-overflow-scrolling: touch;
+          
+          &::-webkit-scrollbar {
+            height: 5px;
+          }
+          &::-webkit-scrollbar-thumb {
+            background-color: var(--color-border);
+            border-radius: 3px;
+          }
+        }
+      }
+
+      .pill-btn {
+        background-color: var(--color-bg-alt);
+        border: 1.5px solid var(--color-border);
+        color: var(--color-text);
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+
+        &:hover {
+          border-color: var(--color-accent);
+          background-color: var(--color-white);
+        }
+
+        &.active {
+          background-color: var(--color-primary);
+          border-color: var(--color-primary);
+          color: var(--color-white);
+        }
+      }
+    }
+  }
+}
+
+// 2. Encabezado de Resultados
+.results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+
+  .results-title {
+    font-family: 'Lora', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .count-badge {
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+  }
+}
+
+// 3. Grid de Tarjetas (Colegios)
+.schools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.school-card {
+  background-color: var(--color-white);
+  border: 1.5px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+
+  &:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  }
+
+  .card-header-badge {
+    align-self: flex-start;
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-title {
+    font-family: 'Lora', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.35;
+    margin-bottom: 0.25rem;
+  }
+
+  .card-province-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.25rem;
+  }
+
+  .card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    flex: 1;
+    margin-bottom: 1.5rem;
+
+    .detail-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      line-height: 1.4;
+
+      .detail-icon {
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+
+      .detail-text {
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .card-actions {
+    margin-top: auto;
+    
+    .btn-card-link {
+      width: 100%;
+      padding: 0.65rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+    }
+  }
+}
+
+// 4. Estado Vacío
+.empty-state {
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: var(--color-white);
+  border-radius: 12px;
+  border: 1.5px solid var(--color-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+
+  .empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+  }
+
+  h4 {
+    font-family: 'Lora', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .btn {
+    padding: 0.6rem 1.5rem;
+  }
+}
+
+.d-none {
+  display: none !important;
+}
+
+// Transición suave de fade al filtrar
+.school-card {
+  animation: cardFadeIn 0.3s ease forwards;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

@@ -1,7 +1,6 @@
 {% extends "base.html" %}
-{% import "components/macros.html" as macros %}
 
-{% block title %}Colegios Acompañados | Organización FEM{% endblock %}
+{% block title %}Comunidades Educativas | Organización FEM{% endblock %}
 
 {% block content %}
 <section class="page-hero">
@@ -12,91 +11,126 @@
     </div>
 </section>
 
-<!-- Sección: Colegios Acompañados -->
-<section class="home-section" id="colegios" style="border-top: none; padding-top: 2rem;">
+<section class="colegios-dashboard-section">
     <div class="container">
         
-        <div class="provinces-container">
-            <!-- CABA -->
-            <div class="province-block-item">
-                <h3 class="province-title">Ciudad Autónoma de Buenos Aires (CABA)</h3>
-                <div class="grid-two-cols">
-                    {% for col in colegios if col.provincia == 'CABA' %}
-                    <div class="card school-card">
-                        <div class="school-header">
-                            <span class="school-carisma">{{ col.congregacion }}</span>
-                        </div>
-                        <h4 class="school-name">{{ col.nombre }}</h4>
-                        <p class="school-info">📍 {{ col.ubicacion }}</p>
-                        {% if col.telefono %}
-                        <p class="school-info">📞 {{ col.telefono }}</p>
-                        {% endif %}
-                        {% if col.web_url %}
-                        <div class="school-footer">
-                            <a href="{{ col.web_url }}" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
-                        </div>
-                        {% endif %}
-                    </div>
-                    {% endfor %}
-                </div>
+        <!-- Controles de búsqueda y filtros fluidos y en ancho completo -->
+        <div class="compact-controls">
+            <div class="search-input-container">
+                <input type="text" id="school-search" placeholder="🔍 Buscar por nombre, carisma o provincia..." aria-label="Buscar colegios">
             </div>
-
-            <!-- Provincia de Buenos Aires -->
-            <div class="province-block-item mt-3">
-                <h3 class="province-title">Provincia de Buenos Aires</h3>
-                <div class="grid-three-cols">
-                    {% for col in colegios if col.provincia == 'Provincia de Buenos Aires' %}
-                    <div class="card school-card">
-                        <div class="school-header">
-                            <span class="school-carisma">{{ col.congregacion }}</span>
-                        </div>
-                        <h4 class="school-name">{{ col.nombre }}</h4>
-                        <p class="school-info">📍 {{ col.ubicacion }}</p>
-                        {% if col.telefono %}
-                        <p class="school-info">📞 {{ col.telefono }}</p>
-                        {% endif %}
-                        {% if col.web_url %}
-                        <div class="school-footer">
-                            {% if col.web_url.startswith('mailto:') %}
-                            <a href="{{ col.web_url }}" class="school-link">✉️ Contactar</a>
-                            {% else %}
-                            <a href="{{ col.web_url }}" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
-                            {% endif %}
-                        </div>
-                        {% endif %}
+            
+            <div class="compact-filters">
+                <div class="filter-row">
+                    <span class="row-label">Provincia:</span>
+                    <div class="pills-group" id="filter-provincia">
+                        <button class="pill-btn active" data-provincia="all">Todas</button>
+                        <button class="pill-btn" data-provincia="CABA">CABA</button>
+                        <button class="pill-btn" data-provincia="Provincia de Buenos Aires">Buenos Aires</button>
+                        <button class="pill-btn" data-provincia="Presencia Federal">Federal</button>
                     </div>
-                    {% endfor %}
                 </div>
-            </div>
-
-            <!-- Otras Provincias (Presencia Federal) -->
-            <div class="province-block-item mt-3">
-                <h3 class="province-title">Presencia Federal (Jujuy, Mendoza, Santa Fe y Tucumán)</h3>
-                <div class="grid-three-cols">
-                    {% for col in colegios if col.provincia == 'Presencia Federal' %}
-                    <div class="card school-card">
-                        <div class="school-header">
-                            <span class="school-carisma">{{ col.congregacion }}</span>
-                        </div>
-                        <h4 class="school-name">{{ col.nombre }}</h4>
-                        <p class="school-info">📍 {{ col.ubicacion }}</p>
-                        {% if col.telefono %}
-                        <p class="school-info">📞 {{ col.telefono }}</p>
-                        {% endif %}
-                        {% if col.web_url %}
-                        <div class="school-footer">
-                            {% if 'instagram.com' in col.web_url %}
-                            <a href="{{ col.web_url }}" target="_blank" rel="noopener" class="school-link">📷 Instagram</a>
-                            {% else %}
-                            <a href="{{ col.web_url }}" target="_blank" rel="noopener" class="school-link">🌐 Visitar Sitio Web</a>
-                            {% endif %}
-                        </div>
-                        {% endif %}
+                <div class="filter-row">
+                    <span class="row-label">Carisma:</span>
+                    <div class="pills-group scrollable-pills" id="filter-carisma">
+                        <button class="pill-btn active" data-carisma="all">Todos</button>
+                        <button class="pill-btn" data-carisma="Santa Ana">Santa Ana</button>
+                        <button class="pill-btn" data-carisma="Divino Corazón">Esclavas</button>
+                        <button class="pill-btn" data-carisma="Hijas de la Cruz">Hijas de la Cruz</button>
+                        <button class="pill-btn" data-carisma="Operarios Diocesanos">Operarios</button>
+                        <button class="pill-btn" data-carisma="Carmelita">Carmelitas</button>
+                        <button class="pill-btn" data-carisma="Compasionistas">Compasionistas</button>
+                        <button class="pill-btn" data-carisma="Sopeña">Sopeña</button>
                     </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
+
+        <!-- Encabezado de Resultados -->
+        <div class="results-header">
+            <h3 class="results-title">Colegios Acompañados</h3>
+            <span class="count-badge"><span id="results-count">15</span> comunidades</span>
+        </div>
+
+        <!-- Grid de Tarjetas (Folios) de Colegios -->
+        <div class="schools-grid" id="schools-list">
+            {% for col in colegios %}
+            <div class="school-card" 
+                 data-id="{{ col.id }}"
+                 data-nombre="{{ col.nombre|lower }}"
+                 data-congregacion="{{ col.congregacion|lower }}"
+                 data-provincia="{{ col.provincia }}"
+                 data-carisma="{{ col.congregacion }}">
+                <div class="card-header-badge">{{ col.congregacion }}</div>
+                <h4 class="card-title">{{ col.nombre }}</h4>
+                <div class="card-province-label">{{ col.provincia }}</div>
+                
+                <div class="card-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📍</span>
+                        <span class="detail-text">{{ col.ubicacion }}</span>
+                    </div>
+                    {% if col.telefono %}
+                    <div class="detail-item">
+                        <span class="detail-icon">📞</span>
+                        <span class="detail-text">{{ col.telefono }}</span>
+                    </div>
+                    {% endif %}
+                    {% if col.diocesis %}
+                    <div class="detail-item">
+                        <span class="detail-icon">⛪</span>
+                        <span class="detail-text">{{ col.diocesis }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+
+                {% if col.web_url %}
+                <div class="card-actions">
+                    <a href="{{ col.web_url }}" target="_blank" rel="noopener" class="btn btn-secondary btn-card-link">
+                        {% if col.web_url.startswith('mailto:') %}
+                            ✉️ Contactar por Email
+                        {% elif 'instagram.com' in col.web_url %}
+                            📷 Visitar Instagram
+                        {% else %}
+                            🌐 Visitar Sitio Web
+                        {% endif %}
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Estado Vacío -->
+        <div class="empty-state d-none" id="empty-state">
+            <div class="empty-icon">🔍</div>
+            <h4>Sin resultados</h4>
+            <p>Prueba limpiando los filtros o buscando otra palabra.</p>
+            <button class="btn btn-primary btn-sm" id="btn-reset-filters">Limpiar Filtros</button>
+        </div>
+
     </div>
 </section>
+
+<!-- Datos de colegios inyectados en formato JSON -->
+<script id="colegios-data" type="application/json">
+[
+    {% for col in colegios %}
+    {
+        "id": {{ col.id }},
+        "nombre": "{{ col.nombre }}",
+        "congregacion": "{{ col.congregacion }}",
+        "diocesis": "{{ col.diocesis or '' }}",
+        "ubicacion": "{{ col.ubicacion or '' }}",
+        "provincia": "{{ col.provincia or '' }}",
+        "telefono": "{{ col.telefono or '' }}",
+        "web_url": "{{ col.web_url or '' }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+]
+</script>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', path='js/colegios.js') }}?v=2.0.1"></script>
 {% endblock %}

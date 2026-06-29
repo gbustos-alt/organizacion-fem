@@ -383,3 +383,415 @@
     color: var(--color-accent-warm);
   }
 }
+
+/* ==========================================================================
+   ESTILOS COMPONENTES /FRONTEND-DESIGN (CIFRAS, CLAVES, ORGANIGRAMA, ESTRATEGIAS)
+   ========================================================================== */
+
+/* 1. Dashboard de Cifras de Impacto (index.html) */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.stat-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-subtle);
+  text-align: center;
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  
+  &:hover {
+    box-shadow: var(--shadow-premium);
+    transform: translateY(-4px);
+    border-color: var(--color-accent-warm);
+    
+    .stat-number {
+      color: var(--color-coral);
+    }
+  }
+  
+  .stat-icon {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-xs);
+    opacity: 0.85;
+  }
+  
+  .stat-number {
+    font-family: var(--font-brand-condensed);
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.1;
+    margin-bottom: var(--space-xs);
+    transition: var(--transition-smooth);
+  }
+  
+  .stat-label {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+/* 2. Claves del Funcionamiento (index.html) */
+.keys-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.key-card {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  transition: var(--transition-smooth);
+  background-color: var(--color-bg-alt);
+  border-left: 4px solid var(--color-primary);
+  
+  &:hover {
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-subtle);
+    border-left-color: var(--color-coral);
+    
+    .key-indicator {
+      color: var(--color-coral);
+      transform: translateX(3px);
+    }
+  }
+  
+  .key-indicator {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    transition: var(--transition-smooth);
+    line-height: 1;
+    padding-top: 2px;
+  }
+  
+  .key-content {
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-xs);
+      font-weight: 700;
+    }
+    
+    p {
+      font-size: 0.95rem;
+      color: var(--color-text);
+      line-height: 1.6;
+      margin: 0;
+    }
+  }
+}
+
+/* 3. Organigrama de Gobernanza CSS (organizacion.html) */
+.org-tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  margin: var(--space-xl) auto;
+  max-width: 900px;
+  position: relative;
+}
+
+.tree-connector-v {
+  width: 2px;
+  height: 30px;
+  background-color: var(--color-border);
+}
+
+.tree-node {
+  background: var(--color-card);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition-smooth);
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+  z-index: 2;
+
+  &:hover {
+    box-shadow: var(--shadow-premium);
+    transform: translateY(-2px);
+    border-color: var(--color-accent-warm);
+  }
+
+  h4 {
+    font-family: var(--font-brand-condensed);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: var(--space-xs);
+    color: var(--color-primary);
+    letter-spacing: 0.5px;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+  
+  .node-email {
+    font-size: 0.8rem;
+    color: var(--color-coral);
+    font-weight: 600;
+    margin-top: var(--space-xxs);
+    display: inline-block;
+  }
+}
+
+.node-root {
+  border-color: var(--color-accent-warm);
+}
+
+.node-middle {
+  background-color: var(--color-bg-alt);
+  border-color: var(--color-primary);
+  
+  .sub-pills {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-xs);
+    margin-top: var(--space-sm);
+    
+    .pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: var(--space-xxs) var(--space-xs);
+      background-color: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      box-shadow: var(--shadow-subtle);
+    }
+  }
+}
+
+.tree-branches {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  width: 100%;
+  position: relative;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    
+    // Horizontal connecting line between areas
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 25%;
+      right: 25%;
+      height: 2px;
+      background-color: var(--color-border);
+      z-index: 1;
+      pointer-events: none;
+      border-style: dashed;
+    }
+  }
+  
+  .branch-card {
+    background: var(--color-card);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-subtle);
+    transition: var(--transition-smooth);
+    z-index: 2;
+    
+    &:hover {
+      box-shadow: var(--shadow-premium);
+      transform: translateY(-2px);
+    }
+    
+    h4 {
+      font-family: var(--font-brand-condensed);
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-sm);
+      color: var(--color-primary);
+      letter-spacing: 0.5px;
+    }
+    
+    .role-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      
+      li {
+        font-size: 0.85rem;
+        color: var(--color-text);
+        display: flex;
+        align-items: center;
+        gap: var(--space-xs);
+        line-height: 1.4;
+      }
+    }
+  }
+  
+  .branch-pastoral {
+    border-left: 5px solid var(--color-celeste);
+    &:hover { border-color: var(--color-celeste); }
+    .role-list li::before {
+      content: "📖";
+      font-size: 0.8rem;
+    }
+  }
+  
+  .branch-financiera {
+    border-left: 5px solid var(--color-accent-warm);
+    &:hover { border-color: var(--color-accent-warm); }
+    .role-list li::before {
+      content: "📊";
+      font-size: 0.8rem;
+    }
+  }
+}
+
+/* 4. Timeline / Cuadrícula de Estrategias Formativas (organizacion.html) */
+.strategies-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.strategy-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  position: relative;
+  overflow: hidden;
+  
+  &:hover {
+    box-shadow: var(--shadow-premium);
+    transform: translateY(-3px);
+  }
+  
+  .strategy-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .strategy-icon {
+    font-size: 1.1rem;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    color: var(--color-white);
+    font-weight: 700;
+  }
+  
+  .strategy-badge {
+    font-family: var(--font-brand-condensed);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    background-color: var(--color-bg-alt);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .strategy-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-top: var(--space-xs);
+  }
+  
+  .strategy-text {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  // Modificadores de color oficiales
+  &.strategy-purple {
+    border-top: 3px solid #7C3AED;
+    .strategy-icon { background-color: #7C3AED; }
+  }
+  &.strategy-pink {
+    border-top: 3px solid #DB2777;
+    .strategy-icon { background-color: #DB2777; }
+  }
+  &.strategy-magenta {
+    border-top: 3px solid #EC4899;
+    .strategy-icon { background-color: #EC4899; }
+  }
+  &.strategy-violet {
+    border-top: 3px solid #8B5CF6;
+    .strategy-icon { background-color: #8B5CF6; }
+  }
+  &.strategy-indigo {
+    border-top: 3px solid #6366F1;
+    .strategy-icon { background-color: #6366F1; }
+  }
+  &.strategy-amber {
+    border-top: 3px solid #D97706;
+    .strategy-icon { background-color: #D97706; }
+  }
+}
+

@@ -54,9 +54,26 @@ async def server_error_exception_handler(request: Request, exc: Exception):
     """
     Manejador personalizado para errores 500 (Error Interno del Servidor).
     """
+    import traceback
+    try:
+        with open("backend_error.log", "a", encoding="utf-8") as f:
+            f.write(f"\n--- Error at {request.url} ---\n")
+            traceback.print_exception(type(exc), exc, exc.__traceback__, file=f)
+    except Exception:
+        pass
     return templates.TemplateResponse(
         request=request,
         name="500.html",
         context={"active_page": None},
         status_code=500
     )
+
+@app.get("/debug-logs-temp", response_class=HTMLResponse)
+async def get_debug_logs():
+    import os
+    if os.path.exists("backend_error.log"):
+        with open("backend_error.log", "r", encoding="utf-8") as f:
+            content = f.read()
+        return HTMLResponse(content=f"<pre>{content}</pre>")
+    return HTMLResponse(content="No hay logs de error registrados aún.")
+

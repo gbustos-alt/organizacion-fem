@@ -2,6 +2,34 @@
 
 {% block title %}Comunidades Educativas | Organización FEM{% endblock %}
 
+{% block styles %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<style>
+    /* Marcadores CSS Personalizados */
+    .custom-marker {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .marker-pin {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background-color: var(--color-coral);
+        border: 2px solid var(--color-white);
+        box-shadow: 0 0 6px rgba(241, 101, 54, 0.5);
+        transition: var(--transition-smooth);
+    }
+    
+    .custom-marker.active .marker-pin {
+        background-color: var(--color-accent-warm);
+        box-shadow: 0 0 10px rgba(241, 180, 52, 0.8);
+        transform: scale(1.3);
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <section class="page-hero">
     <div class="container">
@@ -42,6 +70,25 @@
                         <button class="pill-btn" data-carisma="Compasionistas">Compasionistas</button>
                         <button class="pill-btn" data-carisma="Sopeña">Sopeña</button>
                     </div>
+                </div>
+        </div>
+
+        <!-- Mapas Interactivos Divididos (Nacional + AMBA) -->
+        <div class="maps-split-container">
+            <div class="map-box">
+                <h4 class="map-box-title">Presencia Nacional</h4>
+                <div id="map-argentina" class="map-instance"></div>
+            </div>
+            <div class="map-box">
+                <h4 class="map-box-title">Detalle AMBA y Buenos Aires</h4>
+                <div id="map-amba" class="map-instance"></div>
+            </div>
+            
+            <!-- Tarjeta Flotante Informativa -->
+            <div id="map-floating-card" class="map-floating-overlay d-none">
+                <button class="close-card-btn" id="close-floating-card" aria-label="Cerrar">&times;</button>
+                <div class="floating-card-body" id="floating-card-body">
+                    <!-- Contenido inyectado por JS -->
                 </div>
             </div>
         </div>
@@ -132,5 +179,6 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ url_for('static', path='js/colegios.js') }}?v=2.0.1"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="{{ url_for('static', path='js/colegios.js') }}?v=2.0.2"></script>
 {% endblock %}

@@ -12,60 +12,129 @@
     </div>
 </section>
 
-<section class="home-section" id="organizacion" style="border-top: none;">
+<section class="home-section" id="organizacion" style="border-top: none; padding-top: var(--space-xl);">
     <div class="container">
-        <div class="grid-two-cols">
-            <div>
-                <h3 class="org-section-title">Consejo de Administración (FAERA)</h3>
-                <ul class="org-list">
-                    <li class="org-item">
-                        <strong>Hermano Fabián Maragliano (Lasallanos)</strong>
-                        <span>Presidente</span>
-                        <a href="mailto:presidente@fundacionfem.org" class="org-email">✉️ presidente@fundacionfem.org</a>
-                    </li>
-                    <li class="org-item">
-                        <strong>Zunilda Rossi</strong>
-                        <span>Secretaria</span>
-                        <a href="mailto:secretario@fundacionfem.org" class="org-email">✉️ secretario@fundacionfem.org</a>
-                    </li>
-                    <li class="org-item">
-                        <strong>Karina Luquin</strong>
-                        <span>Tesorera</span>
-                        <a href="mailto:tesorero@fundacionfem.org" class="org-email">✉️ tesorero@fundacionfem.org</a>
-                    </li>
-                    <li class="org-item">
-                        <strong>Hermano Alberto Aparicio (Maristas)</strong>
-                        <span>Vocal</span>
-                    </li>
-                    <li class="org-item">
-                        <strong>Padre Jorge Ledesma (Salesianos)</strong>
-                        <span>Vocal</span>
-                    </li>
-                </ul>
+        <div class="org-tree">
+            <!-- Nivel 1: Consejo de Administración -->
+            <div class="tree-node node-root">
+                <h4>Consejo de Administración</h4>
+                <p><strong>Presidente:</strong> Hno. Fabián Maragliano (Lasallanos) <br><a class="node-email" href="mailto:presidente@fundacionfem.org">✉️ presidente@fundacionfem.org</a></p>
+                <p><strong>Secretaria:</strong> Zunilda Rossi <br><a class="node-email" href="mailto:secretario@fundacionfem.org">✉️ secretario@fundacionfem.org</a></p>
+                <p><strong>Tesorera:</strong> Karina Luquin <br><a class="node-email" href="mailto:tesorero@fundacionfem.org">✉️ tesorero@fundacionfem.org</a></p>
+                <p style="margin-top: 5px; font-size: 0.8rem; opacity: 0.85;"><strong>Vocales:</strong> Hno. Alberto Aparicio (Maristas) | P. Jorge Ledesma (Salesianos)</p>
             </div>
             
-            <div>
-                <h3 class="org-section-title">Conducción y Áreas Operativas</h3>
-                <ul class="org-list">
-                    <li class="org-item">
-                        <strong>Juan Pablo Gasme</strong>
-                        <span>Director Ejecutivo - Centro Directivo de Animación</span>
-                        <a href="mailto:directorejecutivo@fundacionfem.org" class="org-email">✉️ directorejecutivo@fundacionfem.org</a>
-                    </li>
-                    <li class="org-item">
-                        <strong>Zunilda Rossi</strong>
-                        <span>Secretaría Ejecutiva - Centro Directivo de Animación</span>
-                        <a href="mailto:secretaria.ejecutiva@fundacionfem.org" class="org-email">✉️ secretaria.ejecutiva@fundacionfem.org</a>
-                    </li>
-                    <li class="org-item">
-                        <strong>Área Pedagógico Pastoral</strong>
-                        <span>Coordinación y animación del proyecto educativo y pastoral de las obras escolares.</span>
-                    </li>
-                    <li class="org-item">
-                        <strong>Área Económico Financiera</strong>
-                        <span>Saneamiento, planificación y control de gestión administrativa de las instituciones.</span>
-                    </li>
-                </ul>
+            <div class="tree-connector-v"></div>
+            
+            <!-- Nivel 2: Centro Directivo de Animación -->
+            <div class="tree-node node-middle">
+                <h4>Centro Directivo de Animación</h4>
+                <p><strong>Director Ejecutivo:</strong> Juan Pablo Gasme <br><a class="node-email" href="mailto:directorejecutivo@fundacionfem.org">✉️ directorejecutivo@fundacionfem.org</a></p>
+                <p><strong>Secretaría Ejecutiva:</strong> Zunilda Rossi <br><a class="node-email" href="mailto:secretaria.ejecutiva@fundacionfem.org">✉️ secretaria.ejecutiva@fundacionfem.org</a></p>
+                <div class="sub-pills">
+                    <span class="pill">🔍 Auditorías</span>
+                    <span class="pill">⚖️ Asuntos Legales</span>
+                </div>
+            </div>
+            
+            <div class="tree-connector-v"></div>
+            
+            <!-- Nivel 3: Ramificaciones / Áreas de Acompañamiento -->
+            <div class="tree-branches">
+                <!-- Área Pedagógico Pastoral -->
+                <div class="branch-card branch-pastoral">
+                    <h4>Área Pedagógico Pastoral</h4>
+                    <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 10px;">Coordinación y animación del proyecto educativo y pastoral.</p>
+                    <ul class="role-list">
+                        <li>Coordinador / a de Área</li>
+                        <li>Miembros con perfil pedagógico pastoral</li>
+                        <li>Coordinadores de Pastoral de los colegios</li>
+                        <li>Equipos de Conducción Pedagógico Pastorales</li>
+                    </ul>
+                </div>
+                
+                <!-- Área Económico Financiera -->
+                <div class="branch-card branch-financiera">
+                    <h4>Área Económico Financiera</h4>
+                    <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 10px;">Planificación presupuestaria y control de gestión administrativa.</p>
+                    <ul class="role-list">
+                        <li>Coordinador / a de Área</li>
+                        <li>Miembros con perfil económico administrativo</li>
+                        <li>Administradores locales</li>
+                        <li>Representantes Legales (RRLL)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección: Estrategias Formativas Dinamizadoras -->
+<section class="home-section" id="estrategias-formativas" style="background-color: var(--color-bg-alt);">
+    <div class="container">
+        <span class="eyebrow text-center" style="display: block;">Acompañamiento Profesional</span>
+        <h2 class="section-title text-center">Estrategias Formativas Dinamizadoras</h2>
+        <p class="section-subtitle text-center">Instancias y encuentros formativos planteados para dinamizar todos los colegios integrados en la FEM.</p>
+        
+        <div class="strategies-grid">
+            <!-- Estrategia 1: Equipos de Gestión -->
+            <div class="strategy-card strategy-purple">
+                <div class="strategy-header">
+                    <div class="strategy-icon">🚩</div>
+                    <span class="strategy-badge">4 Instancias</span>
+                </div>
+                <h3 class="strategy-title">Equipos de Gestión</h3>
+                <p class="strategy-text">Encuentros anuales para la reflexión profunda, el intercambio de temas transversales de gestión, acuerdos operativos y la organización anual de la red.</p>
+            </div>
+            
+            <!-- Estrategia 2: Pastoral Educativa -->
+            <div class="strategy-card strategy-pink">
+                <div class="strategy-header">
+                    <div class="strategy-icon">🚩</div>
+                    <span class="strategy-badge">3 Instancias</span>
+                </div>
+                <h3 class="strategy-title">Pastoral Educativa</h3>
+                <p class="strategy-text">Espacios orientados a retomar el sentido evangelizador de la tarea educativa. Procesos de sensibilización y creación de mística organizacional compartida.</p>
+            </div>
+            
+            <!-- Estrategia 3: Jóvenes Estudiantes -->
+            <div class="strategy-card strategy-magenta">
+                <div class="strategy-header">
+                    <div class="strategy-icon">🚩</div>
+                    <span class="strategy-badge">2 Instancias</span>
+                </div>
+                <h3 class="strategy-title">Jóvenes Estudiantes</h3>
+                <p class="strategy-text">Experiencias pedagógicas y pastorales diseñadas para motivar el liderazgo y potenciar el protagonismo de los jóvenes dentro de la vida escolar diaria.</p>
+            </div>
+            
+            <!-- Estrategia 4: Representantes Legales y Administradores -->
+            <div class="strategy-card strategy-violet">
+                <div class="strategy-header">
+                    <div class="strategy-icon">🚩</div>
+                    <span class="strategy-badge">2 Instancias</span>
+                </div>
+                <h3 class="strategy-title">RRLL y Administradores</h3>
+                <p class="strategy-text">Dos encuentros anuales específicos para la revisión de procesos económico-financieros, formación en marcos regulatorios y acuerdos estratégicos.</p>
+            </div>
+            
+            <!-- Estrategia 5: Coordinadores de Pastoral -->
+            <div class="strategy-card strategy-indigo">
+                <div class="strategy-header">
+                    <div class="strategy-icon">🚩</div>
+                    <span class="strategy-badge">Red Cohesiva</span>
+                </div>
+                <h3 class="strategy-title">Coordinadores de Pastoral</h3>
+                <p class="strategy-text">Espacios de encuentro adaptables (todos, algunos o uno) orientados a reflexionar juntos sobre las prácticas locales y marchar de manera unificada.</p>
+            </div>
+            
+            <!-- Estrategia 6: Inducción General de Educadores -->
+            <div class="strategy-card strategy-amber">
+                <div class="strategy-header">
+                    <div class="strategy-icon">🚩</div>
+                    <span class="strategy-badge">Ciclo 2026</span>
+                </div>
+                <h3 class="strategy-title">Inducción a la FEM</h3>
+                <p class="strategy-text">Breve espacio virtual obligatorio para todos los adultos y educadores que se incorporan a los colegios pertenecientes a la red de la FEM.</p>
             </div>
         </div>
     </div>

@@ -1,0 +1,24 @@
+<svg width="400" height="250" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo neutro cálido -->
+  <rect width="400" height="250" fill="#F8F7F3" />
+  
+  <!-- Patrón de ondas suaves -->
+  <path d="M-50,200 Q50,150 150,200 T350,200 T550,200" fill="none" stroke="#E2E8F0" stroke-width="1.5" />
+  <path d="M-50,220 Q50,170 150,220 T350,220 T550,220" fill="none" stroke="#F1B434" stroke-width="1" opacity="0.3" />
+  
+  <!-- Contenedor central -->
+  <rect x="160" y="70" width="80" height="60" rx="4" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+  
+  <!-- Icono de periódico / novedad -->
+  <g transform="translate(188, 88)">
+    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" fill="#0C1E36" opacity="0.6" transform="scale(1.2)" />
+  </g>
+  
+  <!-- Texto descriptivo -->
+  <text x="200" y="170" font-family="'Lora', 'Georgia', serif" font-size="14" font-style="italic" fill="#0C1E36" text-anchor="middle" font-weight="500">
+    Imagen Novedad / Evento
+  </text>
+  <text x="200" y="195" font-family="'Inter', sans-serif" font-size="10" fill="#888B8D" text-anchor="middle" letter-spacing="1">
+    FORMATO EDITORIAL (400x250)
+  </text>
+</svg>

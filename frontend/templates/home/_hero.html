@@ -1,0 +1,24 @@
+<!-- Sección 1: Hero Principal (Narrativa Humana e Institucional) -->
+<section class="home-hero-section">
+    <div class="container hero-container hero-grid">
+        <div class="hero-content">
+            <span class="eyebrow">Acompañamiento Educativo y Pastoral</span>
+            <h1>Preservar el legado, sostener el porvenir de la educación católica.</h1>
+            <p>Caminamos junto a las comunidades escolares y congregaciones religiosas en sus procesos de transición, resguardando la riqueza de su carisma fundacional y promoviendo la viabilidad y el sostenimiento de sus obras en el país.</p>
+            <div class="hero-actions">
+                {{ macros.render_button("Conocer Colegios Acompañados", "/colegios", "primary", "btn-hero-primary") }}
+                {{ macros.render_button("Contacto Institucional", "/contacto", "secondary", "btn-hero-secondary") }}
+            </div>
+        </div>
+        <div class="hero-media">
+            <div class="hero-image-wrapper">
+                <img class="hero-main-img" src="{{ url_for('static', path='img/fotos prueba/escuela.jpeg') }}" alt="Colegio y comunidad de Organización FEM">
+                
+                <!-- Insignia del Lema Oficial solapada de forma elegante -->
+                <div class="hero-lema-badge">
+                    <img class="lema-badge-img" src="{{ url_for('static', path='img/lema-fem.png') }}" alt="Lema FEM - Educación y Misión">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

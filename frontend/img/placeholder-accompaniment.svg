@@ -1,0 +1,28 @@
+<svg width="400" height="600" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo cálido crema -->
+  <rect width="400" height="600" fill="#FAF9F5" />
+  
+  <!-- Patrón de fondo geométrico sutil (cruz del lema y redes) -->
+  <g opacity="0.3" stroke="#0C1E36" stroke-width="1">
+    <path d="M200 40 L200 560" stroke-dasharray="2 4" />
+    <path d="M40 300 L360 300" stroke-dasharray="2 4" />
+    <circle cx="200" cy="300" r="140" stroke="#F1B434" stroke-width="1.5" />
+    <circle cx="200" cy="300" r="80" stroke-dasharray="4 8" />
+  </g>
+  
+  <!-- Contenedor central de ilustración -->
+  <rect x="100" y="200" width="200" height="200" rx="100" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2" />
+  
+  <!-- Icono de caminar juntos / acompañamiento pastoral (cruz celta o camino) -->
+  <g transform="translate(168, 268)">
+    <path d="M32 2C15.43 2 2 15.43 2 32C2 48.57 15.43 62 32 62C48.57 62 62 48.57 62 32C62 15.43 48.57 2 32 2ZM32 10C35.31 10 38 12.69 38 16C38 19.31 35.31 22 32 22C28.69 22 26 19.31 26 16C26 12.69 28.69 10 32 10ZM32 54C22.61 54 14.54 48.14 11.29 40C11.37 33.37 24.8 29.8 32 29.8C39.18 29.8 52.61 33.37 52.71 40C49.46 48.14 41.39 54 32 54Z" fill="#0C1E36" opacity="0.8" />
+  </g>
+  
+  <!-- Texto descriptivo vertical/horizontal -->
+  <text x="200" y="470" font-family="'Lora', 'Georgia', serif" font-size="16" font-style="italic" fill="#0C1E36" text-anchor="middle" font-weight="500">
+    Acompañamiento Pastoral
+  </text>
+  <text x="200" y="495" font-family="'Inter', sans-serif" font-size="11" fill="#888B8D" text-anchor="middle" letter-spacing="1">
+    FOTO VERTICAL (400x600)
+  </text>
+</svg>

@@ -1,0 +1,26 @@
+<svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo con tono cálido alterno suave -->
+  <rect width="600" height="600" fill="#F0EFEA" />
+  
+  <!-- Elemento de fondo circular concéntrico -->
+  <g opacity="0.3">
+    <circle cx="300" cy="300" r="220" stroke="#0C1E36" stroke-width="1" stroke-dasharray="2 6" />
+    <circle cx="300" cy="300" r="160" stroke="#F1B434" stroke-width="1" />
+  </g>
+  
+  <!-- Contenedor central -->
+  <rect x="175" y="175" width="250" height="250" rx="4" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+  
+  <!-- Icono de manos cruzadas / acompañamiento / iglesia -->
+  <g transform="translate(268, 230)">
+    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 5C13.66 5 15 6.34 15 8C15 9.66 13.66 11 12 11C10.34 11 9 9.66 9 8C9 6.34 10.34 5 12 5ZM12 19.2C9.5 19.2 7.29 17.92 6 15.98C6.03 13.99 10 12.9 12 12.9C13.99 12.9 17.97 13.99 18 15.98C16.71 17.92 14.5 19.2 12 19.2Z" fill="#F1B434" opacity="0.8" transform="scale(2.5)" />
+  </g>
+  
+  <!-- Texto descriptivo -->
+  <text x="300" y="480" font-family="'Lora', 'Georgia', serif" font-size="16" font-style="italic" fill="#0C1E36" text-anchor="middle" font-weight="500">
+    Comunidad Educativa / Colegio
+  </text>
+  <text x="300" y="505" font-family="'Inter', sans-serif" font-size="11" fill="#888B8D" text-anchor="middle" letter-spacing="1">
+    FOTO DE ACOMPAÑAMIENTO (600x600)
+  </text>
+</svg>

@@ -1,0 +1,28 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo con tono cálido suave de la paleta crema de la fundación -->
+  <rect width="800" height="600" fill="#F4F4F0" />
+  
+  <!-- Patrón de fondo geométrico sutil e institucional -->
+  <g opacity="0.4">
+    <circle cx="400" cy="300" r="280" stroke="#0C1E36" stroke-width="1" stroke-dasharray="4 8" />
+    <circle cx="400" cy="300" r="200" stroke="#F1B434" stroke-width="1" stroke-dasharray="2 4" />
+    <line x1="120" y1="300" x2="680" y2="300" stroke="#E2E8F0" stroke-width="1" />
+    <line x1="400" y1="20" x2="400" y2="580" stroke="#E2E8F0" stroke-width="1" />
+  </g>
+  
+  <!-- Contenedor central -->
+  <rect x="250" y="200" width="300" height="200" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+  
+  <!-- Icono de comunidad/educación -->
+  <g transform="translate(376, 240)">
+    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 6C13.66 6 15 7.34 15 9C15 10.66 13.66 12 12 12C10.34 12 9 10.66 9 9C9 7.34 10.34 6 12 6ZM12 19.2C9.5 19.2 7.29 17.92 6 15.98C6.03 13.99 10 12.9 12 12.9C13.99 12.9 17.97 13.99 18 15.98C16.71 17.92 14.5 19.2 12 19.2Z" fill="#0C1E36" opacity="0.75" transform="scale(2)" />
+  </g>
+  
+  <!-- Texto descriptivo con tipografía serif simulada -->
+  <text x="400" y="470" font-family="'Lora', 'Georgia', serif" font-size="18" font-style="italic" fill="#0C1E36" text-anchor="middle" font-weight="500">
+    Fotografía Comunidad Educativa
+  </text>
+  <text x="400" y="495" font-family="'Inter', sans-serif" font-size="12" fill="#888B8D" text-anchor="middle" letter-spacing="1">
+    PROTAGONISTA Y CÁLIDA (800x600)
+  </text>
+</svg>

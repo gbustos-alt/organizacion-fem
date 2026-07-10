@@ -149,17 +149,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const coords = coordsMap[col.id];
         if (!coords) return;
 
-        // Marcador 1: Mapa Nacional (Todos los Colegios)
-        const iconArg = L.divIcon({
-            className: `custom-marker marker-id-${col.id}`,
-            html: `<div class="marker-pin"></div>`,
-            iconSize: [20, 20],
-            iconAnchor: [10, 10]
-        });
-
-        const markerArg = L.marker([coords.lat, coords.lng], { icon: iconArg }).addTo(mapArg);
-        markersArg[col.id] = markerArg;
-
         // Marcador 2: Mapa AMBA (Solo CABA y Provincia de Buenos Aires)
         const isAmbaOrPba = col.provincia === "CABA" || col.provincia === "Provincia de Buenos Aires";
         if (isAmbaOrPba) {
@@ -189,29 +178,35 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (floatingCard) floatingCard.classList.remove("on-left"); // Mostrar a la derecha (mapa AMBA)
                 showFloatingCard(col);
             });
+        } else {
+            // Marcador 1: Mapa Nacional (Solo los que NO son Buenos Aires/AMBA)
+            const iconArg = L.divIcon({
+                className: `custom-marker marker-id-${col.id}`,
+                html: `<div class="marker-pin"></div>`,
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+            });
+
+            const markerArg = L.marker([coords.lat, coords.lng], { icon: iconArg }).addTo(mapArg);
+            markersArg[col.id] = markerArg;
+
+            // Vincular Clic en Mapa Nacional
+            markerArg.on("click", () => {
+                mapArg.panTo([coords.lat, coords.lng]); // Centrado suave sin alterar el zoom
+                
+                // Resaltar marcador activo en ambos mapas
+                document.querySelectorAll(".custom-marker").forEach(m => m.classList.remove("active"));
+                document.querySelectorAll(`.custom-marker.marker-id-${col.id}`).forEach(m => m.classList.add("active"));
+
+                // Resaltar tarjeta correspondiente en el listado
+                schoolCards.forEach(c => c.classList.remove("active-card"));
+                const targetCard = document.querySelector(`.school-card[data-id="${col.id}"]`);
+                if (targetCard) targetCard.classList.add("active-card");
+
+                if (floatingCard) floatingCard.classList.add("on-left"); // Mostrar a la izquierda (mapa Argentina)
+                showFloatingCard(col);
+            });
         }
-
-        // Vincular Clic en Mapa Nacional
-        markerArg.on("click", () => {
-            mapArg.panTo([coords.lat, coords.lng]); // Centrado suave sin alterar el zoom
-            
-            // Si el colegio es de Buenos Aires/CABA, centrar y resaltar también en el mapa de AMBA
-            if (isAmbaOrPba && markersAmba[col.id]) {
-                mapAmba.panTo([coords.lat, coords.lng]);
-            }
-
-            // Resaltar marcador activo en ambos mapas
-            document.querySelectorAll(".custom-marker").forEach(m => m.classList.remove("active"));
-            document.querySelectorAll(`.custom-marker.marker-id-${col.id}`).forEach(m => m.classList.add("active"));
-
-            // Resaltar tarjeta correspondiente en el listado
-            schoolCards.forEach(c => c.classList.remove("active-card"));
-            const targetCard = document.querySelector(`.school-card[data-id="${col.id}"]`);
-            if (targetCard) targetCard.classList.add("active-card");
-
-            if (floatingCard) floatingCard.classList.add("on-left"); // Mostrar a la izquierda (mapa Argentina)
-            showFloatingCard(col);
-        });
     });
 
     // 4. Lógica de Filtrado y Búsqueda combinada
@@ -392,4 +387,11 @@ document.addEventListener("DOMContentLoaded", () => {
             mapAmba.setView(defaultCenterAmba, defaultZoomAmba, { animate: true });
         });
     }
+
+    // 10. Cerrar la tarjeta flotante al hacer scroll para evitar superposición con el header
+    window.addEventListener("scroll", () => {
+        if (floatingCard && !floatingCard.classList.contains("d-none")) {
+            closeFloatingCard();
+        }
+    });
 });

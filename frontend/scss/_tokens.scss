@@ -41,8 +41,11 @@
      SISTEMA DE DISEÑO (ESPACIADO, RADIOS, SOMBRAS)
      ========================================================================== */
   --font-sans: 'Inter', -apple-system, sans-serif;
-  --font-display: 'Lora', 'Georgia', serif;
-  --font-brand-condensed: 'Barlow', 'Arial Condensed', sans-serif;
+  --font-display: 'D-DIN-Bold', 'Barlow-Bold', 'Barlow', 'Arial Condensed', sans-serif;
+  --font-serif: 'Lora', 'Georgia', serif;
+  --font-brand-condensed: 'D-DIN', 'Barlow', 'Arial Condensed', sans-serif;
+  --font-brand-bold: 'D-DIN-Bold', 'Barlow-Bold', 'Barlow', 'Arial Condensed', sans-serif;
+  --font-brand-black: 'Geometr415 Blk BT', 'Montserrat', 'Arial Black', sans-serif;
   --font-body: 'Inter', sans-serif;
 
   --space-xxs: 0.25rem;

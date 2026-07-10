@@ -35,8 +35,11 @@
      SISTEMA DE DISEÑO (ESPACIADO, RADIOS, SOMBRAS)
      ========================================================================== */
   --font-sans: 'Inter', -apple-system, sans-serif;
-  --font-display: 'Lora', 'Georgia', serif;
-  --font-brand-condensed: 'Barlow', 'Arial Condensed', sans-serif;
+  --font-display: 'D-DIN-Bold', 'Barlow-Bold', 'Barlow', 'Arial Condensed', sans-serif;
+  --font-serif: 'Lora', 'Georgia', serif;
+  --font-brand-condensed: 'D-DIN', 'Barlow', 'Arial Condensed', sans-serif;
+  --font-brand-bold: 'D-DIN-Bold', 'Barlow-Bold', 'Barlow', 'Arial Condensed', sans-serif;
+  --font-brand-black: 'Geometr415 Blk BT', 'Montserrat', 'Arial Black', sans-serif;
   --font-body: 'Inter', sans-serif;
   --space-xxs: 0.25rem;
   --space-xs: 0.5rem; /* 8px */
@@ -83,7 +86,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
+  font-family: var(--font-brand-bold);
   color: var(--color-primary);
   font-weight: 700;
   line-height: 1.25;
@@ -1307,7 +1310,10 @@ button, input, select, textarea {
 }
 
 .home-hero-section {
-  background: linear-gradient(180deg, rgba(241, 180, 52, 0.04) 0%, rgb(251, 251, 249) 100%);
+  background: linear-gradient(180deg, rgba(12, 30, 54, 0.65) 0%, rgba(12, 30, 54, 0.7) 100%), url("/static/img/header_foundation-2048x1152.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-bottom: 1px solid var(--color-border);
   padding: 9.5rem 0 7.5rem 0;
   position: relative;
@@ -1320,7 +1326,7 @@ button, input, select, textarea {
   right: -10%;
   width: 50%;
   height: 60%;
-  background: radial-gradient(circle, rgba(241, 180, 52, 0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(241, 180, 52, 0.08) 0%, transparent 70%);
   z-index: 1;
   pointer-events: none;
 }
@@ -1340,10 +1346,10 @@ button, input, select, textarea {
   }
 }
 .home-hero-section .hero-content h1 {
-  font-family: var(--font-display);
+  font-family: var(--font-brand-bold);
   font-size: 2.5rem;
   line-height: 1.2;
-  color: var(--color-primary);
+  color: var(--color-white);
   margin-bottom: var(--space-md);
   font-weight: 700;
 }
@@ -1355,7 +1361,7 @@ button, input, select, textarea {
 .home-hero-section .hero-content p {
   font-size: 1.15rem;
   line-height: 1.7;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.85);
   margin-bottom: var(--space-xl);
   font-family: var(--font-sans);
 }
@@ -1455,7 +1461,7 @@ button, input, select, textarea {
   margin: var(--space-lg) 0;
 }
 .home-identity-section .identity-text-block .identity-quote p {
-  font-family: var(--font-display);
+  font-family: var(--font-serif);
   color: var(--color-primary);
   font-style: italic;
   font-size: 1.1rem;
@@ -1542,14 +1548,10 @@ button, input, select, textarea {
 }
 .home-accompaniment-section .accompaniment-visual-block .accomp-vertical-img {
   width: 100%;
-  height: 480px;
+  height: auto;
+  aspect-ratio: 3/4;
   object-fit: cover;
   display: block;
-}
-@media (max-width: 768px) {
-  .home-accompaniment-section .accompaniment-visual-block .accomp-vertical-img {
-    height: 320px;
-  }
 }
 .home-accompaniment-section .accompaniment-list {
   display: flex;
@@ -1622,7 +1624,7 @@ button, input, select, textarea {
   display: inline-block;
 }
 .home-mission-band .mission-quote {
-  font-family: var(--font-display);
+  font-family: var(--font-serif);
   font-size: 1.85rem;
   font-style: italic;
   line-height: 1.5;
@@ -1931,6 +1933,24 @@ button, input, select, textarea {
 }
 
 /* 2. Claves del Funcionamiento (index.html) */
+#claves-funcionamiento {
+  background: linear-gradient(180deg, rgba(12, 30, 54, 0.78) 0%, rgba(12, 30, 54, 0.88) 100%), url("/static/img/2015_10_21_ALTA_RESOLUCION_0110-scaled.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--color-white);
+  padding: 7.5rem 0;
+}
+#claves-funcionamiento .section-title {
+  color: var(--color-white);
+}
+#claves-funcionamiento .section-title::after {
+  background-color: var(--color-accent-warm);
+}
+#claves-funcionamiento .section-subtitle {
+  color: rgba(255, 255, 255, 0.85);
+}
+
 .keys-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1950,13 +1970,18 @@ button, input, select, textarea {
   padding: var(--space-lg);
   border-radius: var(--radius-md);
   transition: var(--transition-smooth);
-  background-color: var(--color-bg-alt);
-  border-left: 4px solid var(--color-primary);
+  background-color: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-left: 4px solid var(--color-accent-warm);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 .key-card:hover {
-  background-color: var(--color-white);
-  box-shadow: var(--shadow-subtle);
+  background-color: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
   border-left-color: var(--color-coral);
+  transform: translateY(-2px);
 }
 .key-card:hover .key-indicator {
   color: var(--color-coral);
@@ -1964,21 +1989,21 @@ button, input, select, textarea {
 }
 .key-card .key-indicator {
   font-size: 1.5rem;
-  color: var(--color-primary);
+  color: var(--color-accent-warm);
   transition: var(--transition-smooth);
   line-height: 1;
   padding-top: 2px;
 }
 .key-card .key-content h3 {
   font-family: var(--font-display);
-  font-size: 1.2rem;
-  color: var(--color-primary);
+  font-size: 1.25rem;
+  color: var(--color-accent-warm);
   margin-bottom: var(--space-xs);
   font-weight: 700;
 }
 .key-card .key-content p {
   font-size: 0.95rem;
-  color: var(--color-text);
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.6;
   margin: 0;
 }
@@ -1988,72 +2013,184 @@ button, input, select, textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-md);
+  gap: var(--space-lg);
   margin: var(--space-xl) auto;
-  max-width: 900px;
+  max-width: 1100px;
   position: relative;
 }
 
 .tree-connector-v {
   width: 2px;
-  height: 30px;
+  height: 20px;
   background-color: var(--color-border);
+  position: relative;
+  z-index: 1;
 }
 
-.tree-node {
-  background: var(--color-card);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-md) var(--space-lg);
-  box-shadow: var(--shadow-subtle);
-  transition: var(--transition-smooth);
-  text-align: center;
-  max-width: 420px;
+.org-section {
   width: 100%;
+  text-align: center;
+  position: relative;
   z-index: 2;
 }
-.tree-node:hover {
-  box-shadow: var(--shadow-premium);
-  transform: translateY(-2px);
-  border-color: var(--color-accent-warm);
-}
-.tree-node h4 {
-  font-family: var(--font-brand-condensed);
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 1rem;
-  margin-bottom: var(--space-xs);
+.org-section .org-section-title {
+  font-family: var(--font-brand-bold);
+  font-size: 1.5rem;
   color: var(--color-primary);
+  margin-bottom: var(--space-xxs);
+  text-transform: uppercase;
   letter-spacing: 0.5px;
 }
-.tree-node p {
-  font-size: 0.9rem;
+.org-section .org-section-years {
+  font-size: 0.85rem;
   color: var(--color-text-muted);
-  margin: 0;
-}
-.tree-node .node-email {
-  font-size: 0.8rem;
-  color: var(--color-coral);
   font-weight: 600;
-  margin-top: var(--space-xxs);
   display: inline-block;
+  margin-bottom: var(--space-sm);
+  background-color: var(--color-bg-alt);
+  padding: var(--space-xxs) var(--space-sm);
+  border-radius: var(--radius-sm);
 }
 
-.node-root {
+.members-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.members-row-two {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .members-row-two {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Ficha del Integrante (Horizontal y Compacta) */
+.member-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: var(--space-sm) var(--space-md);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  gap: var(--space-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: var(--transition-smooth);
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+.member-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
   border-color: var(--color-accent-warm);
 }
-
-.node-middle {
+.member-card .member-photo-wrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%; /* Foto Circular */
+  overflow: hidden;
+  flex-shrink: 0;
   background-color: var(--color-bg-alt);
-  border-color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.node-middle .sub-pills {
+.member-card .member-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.member-card .member-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 1px;
+  width: 100%;
+}
+.member-card .member-role {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background-color: var(--color-bg-alt);
+  padding: 1px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+.member-card .member-name {
+  font-family: var(--font-brand-bold);
+  font-size: 1.05rem;
+  color: var(--color-primary);
+  margin: 1px 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.member-card .member-congregacion {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.member-card .member-email {
+  font-size: 0.7rem;
+  color: var(--color-coral);
+  font-weight: 600;
+  margin-top: 1px;
+  word-break: break-all;
+}
+.member-card .member-email:hover {
+  text-decoration: underline;
+}
+
+/* Ajustes especiales por rol */
+.card-president {
+  max-width: 400px;
+  border-left: 4px solid var(--color-accent-warm);
+}
+.card-president .member-photo-wrapper {
+  width: 72px;
+  height: 72px;
+}
+.card-president .member-role {
+  background-color: rgba(241, 190, 72, 0.15);
+  color: #a47a18;
+}
+
+.card-vocal {
+  max-width: 280px;
+}
+.card-vocal .member-photo-wrapper {
+  width: 56px;
+  height: 56px;
+}
+.card-vocal .member-name {
+  font-size: 0.95rem;
+}
+
+.middle-layout {
+  max-width: 760px;
+}
+
+.sub-pills {
   display: flex;
   justify-content: center;
   gap: var(--space-xs);
   margin-top: var(--space-sm);
 }
-.node-middle .sub-pills .pill {
+.sub-pills .pill {
   font-size: 0.75rem;
   font-weight: 700;
   padding: var(--space-xxs) var(--space-xs);
@@ -2065,6 +2202,7 @@ button, input, select, textarea {
   box-shadow: var(--shadow-subtle);
 }
 
+/* Estilos de Ramificaciones Inferiores */
 .tree-branches {
   display: grid;
   grid-template-columns: 1fr;
@@ -2072,61 +2210,68 @@ button, input, select, textarea {
   width: 100%;
   position: relative;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .tree-branches {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-xl);
   }
-  .tree-branches::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 25%;
-    right: 25%;
-    height: 2px;
-    background-color: var(--color-border);
-    z-index: 1;
-    pointer-events: none;
-    border-style: dashed;
-  }
 }
 .tree-branches .branch-card {
-  background: var(--color-card);
+  background: var(--color-white);
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: var(--space-lg);
+  padding: var(--space-md);
   box-shadow: var(--shadow-subtle);
   transition: var(--transition-smooth);
   z-index: 2;
-}
-.tree-branches .branch-card:hover {
-  box-shadow: var(--shadow-premium);
-  transform: translateY(-2px);
-}
-.tree-branches .branch-card h4 {
-  font-family: var(--font-brand-condensed);
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 1.05rem;
-  margin-bottom: var(--space-sm);
-  color: var(--color-primary);
-  letter-spacing: 0.5px;
-}
-.tree-branches .branch-card .role-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
 }
-.tree-branches .branch-card .role-list li {
+.tree-branches .branch-card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border-color: var(--color-accent-warm);
+}
+.tree-branches .branch-card .branch-title {
+  font-family: var(--font-brand-bold);
+  font-size: 1.3rem;
+  color: var(--color-primary);
+  margin-bottom: var(--space-xxs);
+  text-align: center;
+}
+.tree-branches .branch-card .branch-desc {
   font-size: 0.85rem;
-  color: var(--color-text);
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-bottom: var(--space-sm);
+}
+.tree-branches .branch-card .branch-members {
   display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  line-height: 1.4;
+  flex-direction: column;
+  gap: var(--space-sm);
+  flex-grow: 1;
+  justify-content: flex-start;
+}
+.tree-branches .branch-card .branch-subgrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+}
+@media (min-width: 576px) {
+  .tree-branches .branch-card .branch-subgrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.tree-branches .branch-card .member-card-sm {
+  max-width: 100%;
+  padding: var(--space-xs) var(--space-sm);
+  gap: var(--space-sm);
+}
+.tree-branches .branch-card .member-card-sm .member-photo-wrapper {
+  width: 48px;
+  height: 48px;
+}
+.tree-branches .branch-card .member-card-sm .member-name {
+  font-size: 0.95rem;
 }
 .tree-branches .branch-pastoral {
   border-left: 5px solid var(--color-celeste);
@@ -2134,19 +2279,11 @@ button, input, select, textarea {
 .tree-branches .branch-pastoral:hover {
   border-color: var(--color-celeste);
 }
-.tree-branches .branch-pastoral .role-list li::before {
-  content: "📖";
-  font-size: 0.8rem;
-}
 .tree-branches .branch-financiera {
   border-left: 5px solid var(--color-accent-warm);
 }
 .tree-branches .branch-financiera:hover {
   border-color: var(--color-accent-warm);
-}
-.tree-branches .branch-financiera .role-list li::before {
-  content: "📊";
-  font-size: 0.8rem;
 }
 
 /* 4. Timeline / Cuadrícula de Estrategias Formativas (organizacion.html) */

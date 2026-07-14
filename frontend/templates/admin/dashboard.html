@@ -15,16 +15,12 @@
     </div>
     <div style="background-color: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: var(--space-xs) var(--space-md); font-size: 0.85rem; font-weight: 550; display: flex; align-items: center; gap: var(--space-xs); box-shadow: var(--shadow-subtle);">
         <span style="display: inline-block; width: 8px; height: 8px; background-color: #22c55e; border-radius: 50%;"></span>
-        Sistema Operativo
+        Sistema Activo
     </div>
 </div>
 
-<<<<<<< Updated upstream
 <!-- Grid de tarjetas de métricas MVP (5 KPIs institucionales) -->
-=======
-<!-- Grid de tarjetas de métricas MVP (5 KPIs arancelarios y de gestión) -->
->>>>>>> Stashed changes
-<div class="admin-stats-grid" style="grid-template-cols: repeat(auto-fit, minmax(200px, 1fr));">
+<div class="admin-stats-grid" style="grid-template-cols: repeat(auto-fit, minmax(200px, 1fr)); display: grid; gap: var(--space-md); margin-bottom: var(--space-xl);">
     <div class="stat-card">
         <h3>Colegios Activos</h3>
         <p class="stat-number">{{ colegios_count }}</p>
@@ -32,7 +28,6 @@
     </div>
     
     <div class="stat-card">
-<<<<<<< Updated upstream
         <h3>Novedades de la Red</h3>
         <p class="stat-number" style="color: var(--color-celeste);">{{ novedades_count }}</p>
         <p class="stat-desc">Crónicas y comunicados activos</p>
@@ -48,23 +43,6 @@
         <h3>Materiales de Reflexión</h3>
         <p class="stat-number" style="color: #16a34a;">{{ materiales_count }}</p>
         <p class="stat-desc">Guías y documentos cargados</p>
-=======
-        <h3>Alumnos Registrados</h3>
-        <p class="stat-number">{{ alumnos_count }}</p>
-        <p class="stat-desc">Matrícula escolar activa</p>
-    </div>
-    
-    <div class="stat-card">
-        <h3>Matrículas Pendientes</h3>
-        <p class="stat-number" style="color: var(--color-coral);">{{ matriculas_count }}</p>
-        <p class="stat-desc">Inscripciones por revisar</p>
-    </div>
-
-    <div class="stat-card">
-        <h3>Ingreso Proyectado</h3>
-        <p class="stat-number" style="color: #16a34a;">${{ "{:,.0f}".format(ingresos_estimados) }}</p>
-        <p class="stat-desc">Base mensual estimada</p>
->>>>>>> Stashed changes
     </div>
 
     <div class="stat-card">
@@ -73,46 +51,6 @@
         <p class="stat-desc">Sesiones administrativas concurrentes</p>
     </div>
 </div>
-
-{#
-<!-- Bloque del Agente Asistente de Gestión (Destacado comercial) -->
-<div class="stat-card" style="background: linear-gradient(135deg, var(--color-white) 70%, rgba(241, 180, 52, 0.05) 100%); border: 1px solid var(--color-pantone-yellow-raw); border-left-width: 6px; padding: var(--space-xl); margin-bottom: var(--space-xl); gap: var(--space-md);">
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--space-sm);">
-        <div>
-            <span style="font-family: var(--font-brand-condensed); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--color-pantone-yellow-raw); letter-spacing: 1px;">Asistente Inteligente</span>
-            <h3 style="font-family: var(--font-display); font-size: 1.4rem; color: var(--color-primary); margin: var(--space-xxs) 0; font-weight: 700;">
-                ✨ Agente Asistente FEM
-            </h3>
-            <p style="color: var(--color-text); font-size: 0.95rem; line-height: 1.5; margin: 0; max-width: 800px;">
-                Esta intranet cuenta con un asistente analítico preparado para resolver consultas operativas y estimaciones financieras en tiempo real utilizando la base de datos de la fundación.
-            </p>
-        </div>
-        <a href="/admin/agente/" class="btn-admin btn-admin-primary" style="background-color: var(--color-primary); color: var(--color-white); border: 1px solid var(--color-primary);">
-            Abrir Asistente
-        </a>
-    </div>
-
-    <div style="border-top: 1px solid var(--color-border); padding-top: var(--space-md); margin-top: var(--space-xs);">
-        <p style="font-weight: 600; font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: var(--space-sm); text-transform: uppercase; letter-spacing: 0.5px;">
-            Consultas Rápidas Recomendadas:
-        </p>
-        <div style="display: flex; flex-wrap: wrap; gap: var(--space-xs);">
-            <a href="/admin/agente/?query=Resumime+el+estado+general+de+colegios+y+alumnos" class="btn-admin btn-admin-secondary" style="font-size: 0.82rem; padding: var(--space-xs) var(--space-sm); border-radius: 20px; background-color: var(--color-bg);">
-                📊 Resumen General
-            </a>
-            <a href="/admin/agente/?query=Calcula+ingresos+estimados+para+colegios+y+alumnos" class="btn-admin btn-admin-secondary" style="font-size: 0.82rem; padding: var(--space-xs) var(--space-sm); border-radius: 20px; background-color: var(--color-bg);">
-                💸 Estimar Ingresos Proyectados
-            </a>
-            <a href="/admin/agente/?query=Que+modulo+tiene+mas+carga+pendiente" class="btn-admin btn-admin-secondary" style="font-size: 0.82rem; padding: var(--space-xs) var(--space-sm); border-radius: 20px; background-color: var(--color-bg);">
-                ⚡ Diagnóstico de Pendientes
-            </a>
-            <a href="/admin/agente/?query=Que+informacion+falta+para+cerrar+un+reporte" class="btn-admin btn-admin-secondary" style="font-size: 0.82rem; padding: var(--space-xs) var(--space-sm); border-radius: 20px; background-color: var(--color-bg);">
-                🔍 Faltantes de Información
-            </a>
-        </div>
-    </div>
-</div>
-#}
 
 <!-- Bloque sobre el Estado del Sistema -->
 <div class="stat-card" style="gap: var(--space-sm);">

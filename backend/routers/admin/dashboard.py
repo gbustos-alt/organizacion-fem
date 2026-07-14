@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from backend.core.templates import templates
 from backend.core.database import get_db
 from backend.services.rbac_service import obtener_usuario_actual
-from backend.models import Colegio, Alumno, Matricula, Usuario, SesionActiva
+from backend.models import Colegio, Noticia, Actividad, MaterialReflexion, Usuario, SesionActiva
 
 router = APIRouter(tags=["admin-dashboard"])
 
@@ -15,16 +15,12 @@ async def dashboard_home(
     user: Usuario = Depends(obtener_usuario_actual)
 ):
     """
-    Ruta para la página principal de la intranet. Muestra métricas rápidas reales e ingresos estimados.
+    Ruta para la página principal de la intranet. Muestra métricas institucionales reales.
     """
     colegios_count = db.query(Colegio).count()
-    alumnos_count = db.query(Alumno).count()
-    matriculas_count = db.query(Matricula).filter(Matricula.estado == "PENDIENTE").count()
-    
-    # Calcular ingresos estimados arancelarios basados en cuota promedio de $35,000 ARS
-    ingresos_estimados = alumnos_count * 35000
-    
-    # Cantidad de sesiones activas reales en el sistema
+    novedades_count = db.query(Noticia).count()
+    actividades_count = db.query(Actividad).count()
+    materiales_count = db.query(MaterialReflexion).count()
     usuarios_activos = db.query(SesionActiva).count()
     
     return templates.TemplateResponse(
@@ -34,9 +30,9 @@ async def dashboard_home(
             "user": user,
             "active_page": "dashboard",
             "colegios_count": colegios_count,
-            "alumnos_count": alumnos_count,
-            "matriculas_count": matriculas_count,
-            "ingresos_estimados": ingresos_estimados,
+            "novedades_count": novedades_count,
+            "actividades_count": actividades_count,
+            "materiales_count": materiales_count,
             "usuarios_activos": usuarios_activos
         }
     )

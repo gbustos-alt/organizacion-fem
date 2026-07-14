@@ -1,0 +1,81 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Calendario de Actividades | Intranet Fundación FEM{% endblock %}
+{% block navbar_title %}Gestión de Actividades y Formaciones{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg); flex-wrap: wrap; gap: var(--space-sm);">
+    <div>
+        <p style="color: var(--color-text-muted); margin: 0; font-size: 0.9rem;">
+            Listado del calendario formativo y encuentros de red planificados para el ciclo lectivo.
+        </p>
+    </div>
+    <a href="/admin/actividades/crear" class="btn-admin btn-admin-primary">
+        + Programar Actividad
+    </a>
+</div>
+
+<div class="data-table-wrapper">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th style="width: 80px;">ID</th>
+                <th>Actividad</th>
+                <th>Fecha y Hora</th>
+                <th>Lugar</th>
+                <th>Destinatarios</th>
+                <th>Inscripción</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for act in actividades %}
+            <tr>
+                <td><strong>#{{ act.id }}</strong></td>
+                <td style="font-weight: 550;">{{ act.titulo }}</td>
+                <td>{{ act.fecha.strftime('%d/%m/%Y %H:%M') }}</td>
+                <td>{{ act.lugar }}</td>
+                <td><span style="color: var(--color-text-muted);">{{ act.destinatarios or 'Comunidad general' }}</span></td>
+                <td>
+                    {% if act.link_inscripcion %}
+                    <a href="{{ act.link_inscripcion }}" target="_blank" style="text-decoration: none;">📋 Formulario</a>
+                    {% else %}
+                    <span style="color: var(--color-text-muted);">No requiere</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if act.activa %}
+                    <span style="background-color: #dcfce7; color: #15803d; padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; display: inline-block;">
+                        Activa
+                    </span>
+                    {% else %}
+                    <span style="background-color: #fee2e2; color: var(--color-rojo-ladrillo); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; display: inline-block;">
+                        Cancelada
+                    </span>
+                    {% endif %}
+                </td>
+                <td>
+                    <div class="actions-cell" style="display: flex; gap: var(--space-xs);">
+                        <a href="/admin/actividades/editar/{{ act.id }}" class="btn-action btn-action-edit">
+                            Editar
+                        </a>
+                        <form action="/admin/actividades/eliminar/{{ act.id }}" method="POST" onsubmit="return confirm('¿Está seguro de que desea eliminar esta actividad?');" style="margin: 0;">
+                            <button type="submit" class="btn-action" style="background-color: #fee2e2; color: var(--color-rojo-ladrillo); border: none; cursor: pointer;">
+                                Eliminar
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="8" style="text-align: center; color: var(--color-text-muted); padding: var(--space-xl);">
+                    No hay actividades agendadas en el sistema.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

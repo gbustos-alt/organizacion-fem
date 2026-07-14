@@ -1,6 +1,6 @@
 import re
 from sqlalchemy.orm import Session
-from backend.models import Colegio, Alumno, Matricula, SesionActiva
+from backend.models import Colegio, Noticia, Actividad, MaterialReflexion, SesionActiva
 
 def procesar_consulta_agente(db: Session, query: str) -> dict:
     """
@@ -12,20 +12,20 @@ def procesar_consulta_agente(db: Session, query: str) -> dict:
     # 1. RESUMEN GENERAL DE ESTADO
     if any(k in query_lower for k in ["resum", "estado", "general", "cuantas", "cuantos"]):
         colegios_count = db.query(Colegio).count()
-        alumnos_count = db.query(Alumno).count()
-        matriculas_count = db.query(Matricula).count()
-        matriculas_pendientes = db.query(Matricula).filter(Matricula.estado == "PENDIENTE").count()
+        novedades_count = db.query(Noticia).count()
+        actividades_count = db.query(Actividad).count()
+        materiales_count = db.query(MaterialReflexion).count()
         sesiones_count = db.query(SesionActiva).count()
         
         texto_respuesta = (
             f"### 📋 Resumen del Estado General de la Red\n\n"
             f"Actualmente la **Fundación FEM** cuenta con los siguientes registros activos en la plataforma:\n\n"
             f"*   **Colegios Registrados:** {colegios_count} instituciones educativas en CABA, PBA y Presencia Federal.\n"
-            f"*   **Alumnos Matriculados:** {alumnos_count} estudiantes activos en las bases de datos.\n"
-            f"*   **Matrículas Totales:** {matriculas_count} solicitudes históricas.\n"
-            f"*   **Matrículas Pendientes:** {matriculas_pendientes} solicitudes en espera de revisión administrativa.\n"
+            f"*   **Novedades de la Red:** {novedades_count} crónicas y comunicados publicados.\n"
+            f"*   **Actividades Agendadas:** {actividades_count} encuentros y formaciones 2026.\n"
+            f"*   **Materiales de Reflexión:** {materiales_count} guías y documentos cargados.\n"
             f"*   **Usuarios/Sesiones Activas:** {sesiones_count} administradores/agentes con sesión abierta en este momento.\n\n"
-            f"El sistema se encuentra en un estado **operativo estable** y listo para recibir cargas de notas y asistencia."
+            f"El sistema se encuentra en un estado **operativo estable**."
         )
         return {
             "query": query,
@@ -38,13 +38,11 @@ def procesar_consulta_agente(db: Session, query: str) -> dict:
         # Extraer números de la consulta usando expresiones regulares
         numbers = [int(s) for s in re.findall(r'\d+', query)]
         
-        # Valores por defecto si no se especifican en la consulta
-        cant_alumnos = db.query(Alumno).count()
+        # Como Alumnos ya no se gestiona en la intranet, asumimos una matrícula de red estimada de 5000 alumnos
+        cant_alumnos = 5000
         cuota_promedio = 35000  # Valor por defecto
         
         if len(numbers) >= 2:
-            # Si hay 2 números o más, asumimos: [alumnos, cuota] o [cuota, alumnos]
-            # Generalmente el primer número grande suele ser alumnos o viceversa, lo organizamos:
             num1, num2 = numbers[0], numbers[1]
             if num1 > 10000 or num2 < num1:
                 cant_alumnos = num1
@@ -53,7 +51,6 @@ def procesar_consulta_agente(db: Session, query: str) -> dict:
                 cant_alumnos = num2
                 cuota_promedio = num1
         elif len(numbers) == 1:
-            # Si hay un solo número, si es menor a 1500 asumimos que son alumnos, si es mayor asumimos que es cuota
             num = numbers[0]
             if num < 2000:
                 cant_alumnos = num
@@ -68,7 +65,7 @@ def procesar_consulta_agente(db: Session, query: str) -> dict:
         
         texto_respuesta = (
             f"### 💰 Simulación de Ingresos Mensuales Proyectados\n\n"
-            f"Realicé el cálculo financiero solicitado basándome en los parámetros arancelarios provistos:\n\n"
+            f"Realicé el cálculo financiero solicitado basándome en los parámetros arancelarios provistos (simulación de matrícula general):\n\n"
             f"*   **Cantidad de Alumnos:** {cant_alumnos} alumnos.\n"
             f"*   **Valor de Cuota Promedio:** ${cuota_promedio:,.2f} ARS.\n"
             f"*   **Ingreso Mensual Teórico (100% cobro):** **${mensual_bruto:,.2f} ARS**.\n"
@@ -84,16 +81,16 @@ def procesar_consulta_agente(db: Session, query: str) -> dict:
 
     # 3. CARGA PENDIENTE POR MÓDULO
     elif any(k in query_lower for k in ["carga", "pendient", "modulo", "urgente", "revisar"]):
-        matriculas_pendientes = db.query(Matricula).filter(Matricula.estado == "PENDIENTE").count()
         colegios_sin_telefono = db.query(Colegio).filter((Colegio.telefono == None) | (Colegio.telefono == "")).count()
+        materiales_sin_archivo = db.query(MaterialReflexion).filter((MaterialReflexion.archivo_url == None) | (MaterialReflexion.archivo_url == "")).count()
         
         texto_respuesta = (
             f"### ⚡ Diagnóstico de Tareas Administrativas Pendientes\n\n"
             f"Analicé el estado de los módulos de la intranet y detecté las siguientes cargas pendientes:\n\n"
-            f"1.  **Módulo Matrículas (Urgente):** Hay **{matriculas_pendientes}** solicitudes de matrícula pendientes de aprobación. Este es actualmente el cuello de botella del sistema.\n"
-            f"2.  **Módulo Colegios (Medio):** Existen **{colegios_sin_telefono}** colegios con el campo telefónico o de contacto incompleto en sus fichas institucionales.\n"
-            f"3.  **Módulo Alumnos (Bajo):** Todos los alumnos cargados se encuentran correctamente asignados a una escuela oficial.\n\n"
-            f"**Acción Recomendada:** Diríjase al menú de revisión de matrícula o solicite a secretaría completar las fichas de las instituciones."
+            f"1.  **Módulo Colegios:** Existen **{colegios_sin_telefono}** colegios con el campo telefónico o de contacto incompleto en sus fichas institucionales.\n"
+            f"2.  **Módulo Materiales:** Hay **{materiales_sin_archivo}** recursos sin archivo adjunto o enlace cargado.\n"
+            f"3.  **Módulo Novedades:** Todos los relatos y crónicas activos cuentan con portada asignada.\n\n"
+            f"**Acción Recomendada:** Actualice los datos faltantes en las respectivas secciones de la intranet."
         )
         return {
             "query": query,

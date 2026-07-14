@@ -6,14 +6,19 @@
       "descripcion": "Gestión de Colegios de la Red"
     },
     {
-      "recurso": "alumno",
+      "recurso": "novedad",
       "acciones": ["crear", "leer", "editar", "eliminar"],
-      "descripcion": "Gestión de Alumnos"
+      "descripcion": "Gestión de Novedades de la Red"
     },
     {
-      "recurso": "matricula",
-      "acciones": ["crear", "leer", "editar", "aprobar", "rechazar"],
-      "descripcion": "Gestión de Matrículas e inscripciones"
+      "recurso": "material_reflexion",
+      "acciones": ["crear", "leer", "editar", "eliminar"],
+      "descripcion": "Gestión de Materiales de Reflexión"
+    },
+    {
+      "recurso": "actividad",
+      "acciones": ["crear", "leer", "editar", "eliminar"],
+      "descripcion": "Gestión de Actividades y Formaciones"
     },
     {
       "recurso": "usuario",

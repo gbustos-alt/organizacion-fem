@@ -1,6 +1,7 @@
 import hashlib
+import datetime
 from backend.core.database import SessionLocal, Base, engine
-from backend.models import Colegio, Noticia, Usuario, Rol, UsuarioRol
+from backend.models import Colegio, Noticia, MaterialReflexion, Actividad, Usuario, Rol, UsuarioRol
 from backend.services.import_service import sincronizar_roles_y_permisos
 
 def get_password_hash(password: str) -> str:
@@ -139,17 +140,77 @@ def seed_db():
     # 2. Agregar Noticias
     noticias = [
         Noticia(
-            titulo="Encuentro de Directivos 2026",
-            copete="Se celebró el primer encuentro inter-carismático para coordinar los ejes del nuevo ciclo lectivo.",
-            contenido="Con la presencia de delegaciones de más de veinte colegios, compartimos jornadas de reflexión, oración y planificación de la gestión eclesial y educativa."
+            titulo="Encuentro Federal de Equipos de Conducción",
+            copete="Directivos de los colegios de nuestra red compartieron una jornada de trabajo, capacitación y oración presencial.",
+            contenido="Directivos de los colegios de nuestra red y miembros de la junta directiva de FAERA compartieron una jornada de trabajo, capacitación y oración presencial, consolidando los pilares pedagógicos y administrativos de la gobernanza inter-carismática.",
+            imagen_url="/static/img/fotos prueba/Admissions - St_ John´s International School.jpeg",
+            fecha_publicacion=datetime.datetime(2026, 6, 28)
         ),
         Noticia(
-            titulo="Campaña Solidaria de Invierno",
-            copete="Las comunidades de la red de colegios inician colecta para comedores comunitarios.",
-            contenido="Como parte de nuestra misión de fraternidad y servicio eclesial, invitamos a sumarse a la colecta anual de abrigo y alimentos no perecederos."
+            titulo="Proceso de Transición en el Colegio San José",
+            copete="Sistematizamos la primera etapa del camino de acompañamiento institucional, enfocado en resguardar la identidad de las fundadoras.",
+            contenido="Sistematizamos la primera etapa del camino de acompañamiento institucional, enfocado en resguardar la identidad de las Hermanas Fundadoras y proyectar su sustentabilidad a largo plazo.",
+            imagen_url="/static/img/fotos prueba/library.jpeg",
+            fecha_publicacion=datetime.datetime(2026, 6, 15)
+        ),
+        Noticia(
+            titulo="Taller de Sostenibilidad Administrativa",
+            copete="Presentamos a los administradores de la red las nuevas herramientas de autodiagnóstico financiero.",
+            contenido="Presentamos a los administradores de la red las nuevas herramientas de autodiagnóstico financiero para optimizar la toma de decisiones presupuestarias y de cuota.",
+            imagen_url="/static/img/fotos prueba/manos.jpeg",
+            fecha_publicacion=datetime.datetime(2026, 6, 2)
         )
     ]
     db.add_all(noticias)
+
+    # 3. Agregar Materiales de Reflexión
+    materiales = [
+        MaterialReflexion(
+            titulo="Cita Inspiradora Anual",
+            autor="Fundación Educación y Misión & FAERA",
+            categoria="Cita Inspiradora",
+            contenido="La educación católica es un acto de amor y de esperanza que nos convoca a caminar juntos, resguardando nuestra historia y proyectando el futuro de nuestras comunidades.",
+            activo=True
+        ),
+        MaterialReflexion(
+            titulo="Guía Metodológica de Puntos de Referencia",
+            autor="Junta Directiva FEM",
+            categoria="Pedagógico",
+            archivo_url="/static/docs/Puntos_Referencia_FEM_2026.pdf",
+            activo=True
+        ),
+        MaterialReflexion(
+            titulo="El Carisma Educativo y la Gobernanza Inter-Carismática",
+            autor="Equipo Pastoral FEM",
+            categoria="Pastoral",
+            link_url="https://www.youtube.com/watch?v=ejemplo-pastoral",
+            activo=True
+        )
+    ]
+    db.add_all(materiales)
+
+    # 4. Agregar Actividades
+    actividades = [
+        Actividad(
+            titulo="Encuentro de Representantes Legales y Administradores",
+            descripcion="Revisión de procesos económico-financieros, formación en marcos regulatorios y firma de acuerdos estratégicos.",
+            fecha=datetime.datetime(2026, 8, 15, 9, 0),
+            lugar="Sede Central FAERA (Lavalle 1527, CABA)",
+            destinatarios="Representantes Legales y Administradores",
+            link_inscripcion="https://forms.gle/ejemplo-inscripcion-rl",
+            activa=True
+        ),
+        Actividad(
+            titulo="Jornada Virtual de Pastoral Educativa",
+            descripcion="Itinerarios orientados a retomar el sentido profundamente evangelizador de la tarea escolar escolar.",
+            fecha=datetime.datetime(2026, 9, 10, 18, 0),
+            lugar="Plataforma Virtual Zoom",
+            destinatarios="Coordinadores de Pastoral y Docentes",
+            link_inscripcion="https://zoom.us/j/ejemplo-pastoral-zoom",
+            activa=True
+        )
+    ]
+    db.add_all(actividades)
     
     # 3. Sincronizar Roles y Permisos desde archivo de configuración
     print("🔑 Sincronizando roles y permisos desde semilla...")

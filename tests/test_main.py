@@ -121,10 +121,10 @@ def test_director_scope_restrictions():
     assert crear_col_resp.status_code == 403
     assert "Acceso denegado: carece del permiso" in crear_col_resp.json()["detail"]
 
-    # 3. Listar alumnos (Debe dar 200)
-    alumnos_resp = client.get("/admin/alumnos/", cookies={"session_id": dir_cookie})
-    assert alumnos_resp.status_code == 200
-    assert "Gestión de Alumnos" in alumnos_resp.text
+    # 3. Acceder al dashboard (Debe dar 200)
+    dashboard_resp = client.get("/admin/", cookies={"session_id": dir_cookie})
+    assert dashboard_resp.status_code == 200
+    assert "Dashboard General" in dashboard_resp.text
 
 def test_agent_integration_flow():
     """
@@ -176,6 +176,78 @@ def test_post_contacto():
     response = client.post("/contacto", data=data)
     assert response.status_code == 200
     assert "Hemos recibido tu mensaje" in response.text
+
+def test_admin_novedades_crud():
+    """
+    Verifica el funcionamiento del CRUD de Novedades.
+    """
+    # 1. Login
+    login = client.post("/admin/auth/login", data={"username": "admin", "password": "admin123"}, follow_redirects=False)
+    cookie = login.cookies["session_id"]
+
+    # 2. Listar
+    list_resp = client.get("/admin/novedades/", cookies={"session_id": cookie})
+    assert list_resp.status_code == 200
+    assert "Gestión de Novedades" in list_resp.text
+
+    # 3. Crear
+    create_resp = client.post("/admin/novedades/crear", data={
+        "titulo": "Novedad de Test",
+        "copete": "Copete de test",
+        "contenido": "Cuerpo completo de la novedad de test",
+        "imagen_url": "/static/img/test.jpg",
+        "activa": "true"
+    }, cookies={"session_id": cookie}, follow_redirects=False)
+    assert create_resp.status_code == 303
+
+def test_admin_materiales_crud():
+    """
+    Verifica el funcionamiento del CRUD de Materiales de Reflexión.
+    """
+    # 1. Login
+    login = client.post("/admin/auth/login", data={"username": "admin", "password": "admin123"}, follow_redirects=False)
+    cookie = login.cookies["session_id"]
+
+    # 2. Listar
+    list_resp = client.get("/admin/materiales/", cookies={"session_id": cookie})
+    assert list_resp.status_code == 200
+    assert "Gestión de Materiales" in list_resp.text
+
+    # 3. Crear
+    create_resp = client.post("/admin/materiales/crear", data={
+        "titulo": "Material de Test",
+        "autor": "Autor de Test",
+        "categoria": "Pedagógico",
+        "archivo_url": "/static/docs/test.pdf",
+        "link_url": "",
+        "activo": "true"
+    }, cookies={"session_id": cookie}, follow_redirects=False)
+    assert create_resp.status_code == 303
+
+def test_admin_actividades_crud():
+    """
+    Verifica el funcionamiento del CRUD de Actividades.
+    """
+    # 1. Login
+    login = client.post("/admin/auth/login", data={"username": "admin", "password": "admin123"}, follow_redirects=False)
+    cookie = login.cookies["session_id"]
+
+    # 2. Listar
+    list_resp = client.get("/admin/actividades/", cookies={"session_id": cookie})
+    assert list_resp.status_code == 200
+    assert "Gestión de Actividades" in list_resp.text
+
+    # 3. Crear
+    create_resp = client.post("/admin/actividades/crear", data={
+        "titulo": "Actividad de Test",
+        "descripcion": "Descripción detallada de la actividad de test",
+        "fecha": "2026-10-15T09:30",
+        "lugar": "Virtual",
+        "destinatarios": "Directivos",
+        "link_inscripcion": "",
+        "activa": "true"
+    }, cookies={"session_id": cookie}, follow_redirects=False)
+    assert create_resp.status_code == 303
 
 def test_404_custom_error_page():
     """

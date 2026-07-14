@@ -67,6 +67,8 @@ async def crear_colegio_submit(
     telefono: str = Form(None),
     web_url: str = Form(None),
     descripcion: str = Form(None),
+    provincia: str = Form("Presencia Federal"),
+    activo: bool = Form(True),
     db: Session = Depends(get_db),
     user = Depends(RequerirPermiso("colegio", "crear"))
 ):
@@ -81,7 +83,9 @@ async def crear_colegio_submit(
         diocesis=diocesis,
         telefono=telefono,
         web_url=web_url,
-        descripcion=descripcion
+        descripcion=descripcion,
+        provincia=provincia,
+        activo=activo
     )
     db.add(nuevo_colegio)
     db.commit()
@@ -95,7 +99,7 @@ async def crear_colegio_submit(
         recurso="colegio",
         recurso_id=nuevo_colegio.id,
         colegio_id=nuevo_colegio.id,
-        valores_nuevos={"nombre": nombre, "ubicacion": ubicacion}
+        valores_nuevos={"nombre": nombre, "ubicacion": ubicacion, "provincia": provincia, "activo": activo}
     )
 
     return RedirectResponse(url="/admin/colegios/", status_code=status.HTTP_303_SEE_OTHER)
@@ -129,6 +133,8 @@ async def editar_colegio_submit(
     telefono: str = Form(None),
     web_url: str = Form(None),
     descripcion: str = Form(None),
+    provincia: str = Form("Presencia Federal"),
+    activo: bool = Form(False),
     db: Session = Depends(get_db),
     user = Depends(RequerirPermiso("colegio", "editar"))
 ):
@@ -140,6 +146,8 @@ async def editar_colegio_submit(
     valores_anteriores = {
         "nombre": colegio.nombre,
         "ubicacion": colegio.ubicacion,
+        "provincia": colegio.provincia,
+        "activo": colegio.activo,
     }
 
     colegio.nombre = nombre
@@ -149,6 +157,8 @@ async def editar_colegio_submit(
     colegio.telefono = telefono
     colegio.web_url = web_url
     colegio.descripcion = descripcion
+    colegio.provincia = provincia
+    colegio.activo = activo
     db.commit()
 
     # Registrar en auditoría
@@ -160,7 +170,7 @@ async def editar_colegio_submit(
         recurso_id=colegio.id,
         colegio_id=colegio.id,
         valores_anteriores=valores_anteriores,
-        valores_nuevos={"nombre": nombre, "ubicacion": ubicacion}
+        valores_nuevos={"nombre": nombre, "ubicacion": ubicacion, "provincia": provincia, "activo": activo}
     )
 
     return RedirectResponse(url="/admin/colegios/", status_code=status.HTTP_303_SEE_OTHER)

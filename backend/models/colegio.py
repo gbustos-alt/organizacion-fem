@@ -29,6 +29,7 @@ class Noticia(Base):
     titulo = Column(String(200), nullable=False)
     copete = Column(String(500), nullable=True)
     contenido = Column(Text, nullable=False)
+    imagen_url = Column(String(255), nullable=True)
     fecha_publicacion = Column(DateTime, default=datetime.datetime.utcnow)
     activa = Column(Boolean, default=True)
 
@@ -42,3 +43,30 @@ class MensajeContacto(Base):
     telefono = Column(String(50), nullable=True)
     mensaje = Column(Text, nullable=False)
     fecha_envio = Column(DateTime, default=datetime.datetime.utcnow)
+
+
+class MaterialReflexion(Base):
+    __tablename__ = "materiales_reflexion"
+
+    id = Column(Integer, primary_key=True, index=True)
+    titulo = Column(String(200), nullable=False)
+    autor = Column(String(100), nullable=True, default="Fundación FEM")
+    categoria = Column(String(50), nullable=False)  # "Pedagógico", "Pastoral", "Cita Inspiradora"
+    contenido = Column(Text, nullable=True)          # Usado para frases/citas
+    archivo_url = Column(String(255), nullable=True) # Enlace PDF/archivo
+    link_url = Column(String(255), nullable=True)    # Enlace externo
+    fecha_publicacion = Column(DateTime, default=datetime.datetime.utcnow)
+    activo = Column(Boolean, default=True)
+
+
+class Actividad(Base):
+    __tablename__ = "actividades"
+
+    id = Column(Integer, primary_key=True, index=True)
+    titulo = Column(String(200), nullable=False)
+    descripcion = Column(Text, nullable=False)
+    fecha = Column(DateTime, nullable=False)
+    lugar = Column(String(150), nullable=False, default="Virtual")
+    destinatarios = Column(String(150), nullable=True)
+    link_inscripcion = Column(String(255), nullable=True)
+    activa = Column(Boolean, default=True)

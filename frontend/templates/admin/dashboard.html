@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<!-- Grid de tarjetas de métricas MVP (5 KPIs arancelarios y de gestión) -->
+<!-- Grid de tarjetas de métricas MVP (5 KPIs institucionales) -->
 <div class="admin-stats-grid" style="grid-template-cols: repeat(auto-fit, minmax(200px, 1fr));">
     <div class="stat-card">
         <h3>Colegios Activos</h3>
@@ -28,21 +28,21 @@
     </div>
     
     <div class="stat-card">
-        <h3>Alumnos Registrados</h3>
-        <p class="stat-number">{{ alumnos_count }}</p>
-        <p class="stat-desc">Matrícula escolar activa</p>
+        <h3>Novedades de la Red</h3>
+        <p class="stat-number" style="color: var(--color-celeste);">{{ novedades_count }}</p>
+        <p class="stat-desc">Crónicas y comunicados activos</p>
     </div>
     
     <div class="stat-card">
-        <h3>Matrículas Pendientes</h3>
-        <p class="stat-number" style="color: var(--color-coral);">{{ matriculas_count }}</p>
-        <p class="stat-desc">Inscripciones por revisar</p>
+        <h3>Actividades Agendadas</h3>
+        <p class="stat-number" style="color: var(--color-coral);">{{ actividades_count }}</p>
+        <p class="stat-desc">Encuentros y formaciones 2026</p>
     </div>
 
     <div class="stat-card">
-        <h3>Ingreso Proyectado</h3>
-        <p class="stat-number" style="color: #16a34a;">${{ "{:,.0f}".format(ingresos_estimados) }}</p>
-        <p class="stat-desc">Base mensual estimada</p>
+        <h3>Materiales de Reflexión</h3>
+        <p class="stat-number" style="color: #16a34a;">{{ materiales_count }}</p>
+        <p class="stat-desc">Guías y documentos cargados</p>
     </div>
 
     <div class="stat-card">

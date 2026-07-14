@@ -24,6 +24,22 @@
 
         <div style="display: grid; grid-template-cols: 1fr 1fr; gap: var(--space-md);">
             <div class="form-group">
+                <label for="provincia">Provincia *</label>
+                <select id="provincia" name="provincia" class="form-control" required>
+                    <option value="CABA" {% if colegio and colegio.provincia == 'CABA' %}selected{% endif %}>CABA</option>
+                    <option value="Provincia de Buenos Aires" {% if colegio and colegio.provincia == 'Provincia de Buenos Aires' %}selected{% endif %}>Provincia de Buenos Aires</option>
+                    <option value="Presencia Federal" {% if (colegio and colegio.provincia == 'Presencia Federal') or not colegio %}selected{% endif %}>Presencia Federal</option>
+                </select>
+            </div>
+            
+            <div class="form-group" style="display: flex; flex-direction: row; align-items: center; gap: var(--space-xs); align-self: center; margin-top: 1.2rem;">
+                <input type="checkbox" id="activo" name="activo" value="true" style="width: auto;" {% if not colegio or colegio.activo %}checked{% endif %}>
+                <label for="activo" style="margin: 0; cursor: pointer;">Colegio Activo</label>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-cols: 1fr 1fr; gap: var(--space-md);">
+            <div class="form-group">
                 <label for="congregacion">Congregación</label>
                 <input type="text" id="congregacion" name="congregacion" class="form-control" value="{{ (colegio.congregacion if colegio else '') or '' }}" placeholder="E.g., Congregación Hijas de la Cruz">
             </div>

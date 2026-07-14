@@ -3,19 +3,36 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from sqlalchemy.orm import Session
 from backend.core.templates import templates
 from backend.core.database import get_db
-from backend.models import Colegio, MensajeContacto
+from backend.models import Colegio, MensajeContacto, Noticia, MaterialReflexion
 
 router = APIRouter()
 
 @router.get("/", response_class=HTMLResponse)
-async def home(request: Request):
+async def home(request: Request, db: Session = Depends(get_db)):
     """
     Ruta para la página de inicio institucional.
     """
+    # 1. Obtener las últimas 3 noticias activas
+    novedades = db.query(Noticia).filter(Noticia.activa == True).order_by(Noticia.fecha_publicacion.desc()).limit(3).all()
+
+    # 2. Obtener la última cita de reflexión activa
+    cita = db.query(MaterialReflexion).filter(
+        MaterialReflexion.activo == True,
+        MaterialReflexion.categoria == "Cita Inspiradora"
+    ).order_by(MaterialReflexion.fecha_publicacion.desc()).first()
+
+    # 3. Contar colegios activos reales
+    cant_colegios = db.query(Colegio).filter(Colegio.activo == True).count()
+
     return templates.TemplateResponse(
         request=request,
         name="index.html",
-        context={"active_page": "home"}
+        context={
+            "active_page": "home",
+            "novedades": novedades,
+            "cita": cita,
+            "cant_colegios": cant_colegios
+        }
     )
 
 @router.get("/identidad", response_class=HTMLResponse)

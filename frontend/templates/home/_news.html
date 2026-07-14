@@ -8,44 +8,23 @@
         </div>
         
         <div class="news-cards-grid">
-            <!-- Novedad 1 -->
+            {% for nov in novedades %}
             <article class="news-card">
                 <div class="news-image-wrapper">
-                    <img src="{{ url_for('static', path='img/fotos prueba/Admissions - St_ John´s International School.jpeg') }}" alt="Encuentro de equipos de conducción y directivos" class="news-img">
+                    <img src="{{ nov.imagen_url or url_for('static', path='img/default-news.jpg') }}" alt="{{ nov.titulo }}" class="news-img">
                 </div>
                 <div class="news-body">
-                    <span class="news-date">28 de Junio, 2026</span>
-                    <h3 class="news-title">Encuentro Federal de Equipos de Conducción y Representantes Legales</h3>
-                    <p class="news-excerpt">Directivos de los colegios de nuestra red y miembros de la junta directiva de FAERA compartieron una jornada de trabajo, capacitación y oración presencial, consolidando los pilares pedagógicos y administrativos de la gobernanza inter-carismática.</p>
+                    <span class="news-date">{{ nov.fecha_publicacion.strftime('%d/%m/%Y') if nov.fecha_publicacion else '' }}</span>
+                    <h3 class="news-title">{{ nov.titulo }}</h3>
+                    <p class="news-excerpt">{{ nov.copete or nov.contenido[:150] }}...</p>
                     <a href="/contacto" class="news-link-btn">Leer noticia completa <span class="arrow">&rarr;</span></a>
                 </div>
             </article>
-
-            <!-- Novedad 2 -->
-            <article class="news-card">
-                <div class="news-image-wrapper">
-                    <img src="{{ url_for('static', path='img/fotos prueba/library.jpeg') }}" alt="Alumnos en biblioteca escolar de Organización FEM" class="news-img">
-                </div>
-                <div class="news-body">
-                    <span class="news-date">15 de Junio, 2026</span>
-                    <h3 class="news-title">Proceso de Transición en el Colegio San José</h3>
-                    <p class="news-excerpt">Sistematizamos la primera etapa del camino de acompañamiento institucional, enfocado en resguardar la identidad de las Hermanas Fundadoras.</p>
-                    <a href="/contacto" class="news-link-btn">Leer testimonio <span class="arrow">&rarr;</span></a>
-                </div>
-            </article>
-
-            <!-- Novedad 3 -->
-            <article class="news-card">
-                <div class="news-image-wrapper">
-                    <img src="{{ url_for('static', path='img/fotos prueba/manos.jpeg') }}" alt="Herramientas de gestión y apoyo administrativo" class="news-img">
-                </div>
-                <div class="news-body">
-                    <span class="news-date">2 de Junio, 2026</span>
-                    <h3 class="news-title">Taller de Sostenibilidad Administrativa</h3>
-                    <p class="news-excerpt">Presentamos a los administradores de la red las nuevas herramientas de autodiagnóstico financiero para optimizar la toma de decisiones.</p>
-                    <a href="/contacto" class="news-link-btn">Leer reseña <span class="arrow">&rarr;</span></a>
-                </div>
-            </article>
+            {% else %}
+            <div style="grid-column: 1 / -1; text-align: center; color: var(--color-text-muted); padding: var(--space-xl);">
+                <p>Próximamente compartiremos las novedades y relatos de la red.</p>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </section>

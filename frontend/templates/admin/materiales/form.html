@@ -1,0 +1,99 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}
+  {% if material %}Editar Material | Intranet{% else %}Registrar Material | Intranet{% endif %}
+{% endblock %}
+
+{% block navbar_title %}
+  {% if material %}Editar Material #{{ material.id }}{% else %}Registrar Material{% endif %}
+{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: var(--space-lg);">
+    <a href="/admin/materiales/" style="text-decoration: none; color: var(--color-text-muted); font-size: 0.85rem; display: inline-flex; align-items: center; gap: 4px;">
+        ← Volver al listado
+    </a>
+</div>
+
+{% if error %}
+<div class="alert-admin alert-admin-error">
+    {{ error }}
+</div>
+{% endif %}
+
+<div class="form-card" style="max-width: 700px;">
+    <form action="{% if material %}/admin/materiales/editar/{{ material.id }}{% else %}/admin/materiales/crear{% endif %}" method="POST">
+        <div class="form-group">
+            <label for="titulo">Título del Material / Frase *</label>
+            <input type="text" id="titulo" name="titulo" class="form-control" value="{{ material.titulo if material else '' }}" required placeholder="E.g., Guía de Cuidado de Ambientes Escolares">
+        </div>
+
+        <div style="display: grid; grid-template-cols: 1fr 1fr; gap: var(--space-md);">
+            <div class="form-group">
+                <label for="autor">Autor / Fuente</label>
+                <input type="text" id="autor" name="autor" class="form-control" value="{{ (material.autor if material else '') or 'Fundación FEM' }}" placeholder="E.g., Consejo de Animación FEM">
+            </div>
+
+            <div class="form-group">
+                <label for="categoria">Categoría *</label>
+                <select id="categoria" name="categoria" class="form-control" required onchange="toggleContentArea()">
+                    <option value="Pedagógico" {% if material and material.categoria == 'Pedagógico' %}selected{% endif %}>Pedagógico</option>
+                    <option value="Pastoral" {% if material and material.categoria == 'Pastoral' %}selected{% endif %}>Pastoral</option>
+                    <option value="Cita Inspiradora" {% if material and material.categoria == 'Cita Inspiradora' %}selected{% endif %}>Cita Inspiradora</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group" id="contenido-field" style="display: none;">
+            <label for="contenido">Cita / Frase de Reflexión (Contenido)</label>
+            <textarea id="contenido" name="contenido" class="form-control" rows="3" placeholder="Si es una Cita Inspiradora, escriba aquí la frase completa que se mostrará en el banner institucional..."></textarea>
+        </div>
+
+        <div style="display: grid; grid-template-cols: 1fr 1fr; gap: var(--space-md);">
+            <div class="form-group">
+                <label for="archivo_url">URL de Archivo Adjunto (PDF/Doc)</label>
+                <input type="text" id="archivo_url" name="archivo_url" class="form-control" value="{{ (material.archivo_url if material else '') or '' }}" placeholder="E.g., /static/docs/guia.pdf">
+            </div>
+
+            <div class="form-group">
+                <label for="link_url">Enlace Externo (Web/Video)</label>
+                <input type="text" id="link_url" name="link_url" class="form-control" value="{{ (material.link_url if material else '') or '' }}" placeholder="E.g., https://youtube.com/...">
+            </div>
+        </div>
+
+        <div class="form-group" style="display: flex; flex-direction: row; align-items: center; gap: var(--space-xs); margin-top: var(--space-sm);">
+            <input type="checkbox" id="activo" name="activo" value="true" style="width: auto;" {% if not material or material.activo %}checked{% endif %}>
+            <label for="activo" style="margin: 0; cursor: pointer;">Material Activo / Visible</label>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: var(--space-sm); margin-top: var(--space-lg);">
+            <a href="/admin/materiales/" class="btn-admin btn-admin-secondary">
+                Cancelar
+            </a>
+            <button type="submit" class="btn-admin btn-admin-primary">
+                {% if material %}Guardar Cambios{% else %}Registrar Material{% endif %}
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function toggleContentArea() {
+        const cat = document.getElementById("categoria").value;
+        const field = document.getElementById("contenido-field");
+        if (cat === "Cita Inspiradora") {
+            field.style.display = "flex";
+        } else {
+            field.style.display = "none";
+        }
+    }
+
+    // Inicializar estado del campo de contenido
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("contenido").value = `{{ (material.contenido if material else '')|safe }}`;
+        toggleContentArea();
+    });
+</script>
+{% endblock %}

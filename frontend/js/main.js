@@ -48,4 +48,117 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
+    // --- Slider del Hero ("Estilo Netflix") ---
+    const slider = document.getElementById("hero-slider");
+    if (slider) {
+        const slides = slider.querySelectorAll(".hero-slide");
+        const indicators = slider.querySelectorAll(".indicator");
+        const prevBtn = document.getElementById("slider-prev");
+        const nextBtn = document.getElementById("slider-next");
+        let currentIndex = 0;
+        let timer = null;
+
+        const showSlide = (index) => {
+            slides[currentIndex].classList.remove("active");
+            indicators[currentIndex].classList.remove("active");
+            
+            currentIndex = (index + slides.length) % slides.length;
+            
+            slides[currentIndex].classList.add("active");
+            indicators[currentIndex].classList.add("active");
+        };
+
+        const nextSlide = () => {
+            showSlide(currentIndex + 1);
+        };
+
+        const prevSlide = () => {
+            showSlide(currentIndex - 1);
+        };
+
+        const startTimer = () => {
+            stopTimer();
+            timer = setInterval(nextSlide, 5000);
+        };
+
+        const stopTimer = () => {
+            if (timer) clearInterval(timer);
+        };
+
+        if (nextBtn) {
+            nextBtn.addEventListener("click", () => {
+                nextSlide();
+                startTimer();
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener("click", () => {
+                prevSlide();
+                startTimer();
+            });
+        }
+
+        indicators.forEach((indicator) => {
+            indicator.addEventListener("click", () => {
+                const index = parseInt(indicator.getAttribute("data-index"), 10);
+                showSlide(index);
+                startTimer();
+            });
+        });
+
+        // Pausa al pasar el mouse por encima
+        slider.addEventListener("mouseenter", stopTimer);
+        slider.addEventListener("mouseleave", startTimer);
+
+        // Inicio inicial
+        startTimer();
+    }
+
+    // --- Lógica de Drag & Drop para la Bolsa de Trabajo ---
+    const dropZone = document.getElementById("drop-zone");
+    const fileInput = document.getElementById("cv");
+    const promptEl = document.getElementById("drop-zone-prompt");
+    const filenameEl = document.getElementById("drop-zone-filename");
+    const filenameText = document.getElementById("file-name-text");
+
+    if (dropZone && fileInput) {
+        // Detectar cambios en la selección de archivos
+        fileInput.addEventListener("change", () => {
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                filenameText.textContent = `${file.name} (${(file.size / (1024 * 1024)).toFixed(2)} MB)`;
+                promptEl.style.display = "none";
+                filenameEl.style.display = "block";
+                dropZone.style.borderColor = "var(--color-primary)";
+                dropZone.style.backgroundColor = "rgba(12, 30, 54, 0.02)";
+            } else {
+                promptEl.style.display = "block";
+                filenameEl.style.display = "none";
+                dropZone.style.borderColor = "var(--color-border)";
+                dropZone.style.backgroundColor = "var(--color-bg-alt)";
+            }
+        });
+
+        // Estilos interactivos al arrastrar archivos encima
+        ["dragenter", "dragover"].forEach(eventName => {
+            fileInput.addEventListener(eventName, () => {
+                dropZone.style.borderColor = "var(--color-coral)";
+                dropZone.style.backgroundColor = "rgba(241, 101, 54, 0.05)";
+            });
+        });
+
+        ["dragleave", "drop"].forEach(eventName => {
+            fileInput.addEventListener(eventName, () => {
+                if (fileInput.files.length > 0) {
+                    dropZone.style.borderColor = "var(--color-primary)";
+                    dropZone.style.backgroundColor = "rgba(12, 30, 54, 0.02)";
+                } else {
+                    dropZone.style.borderColor = "var(--color-border)";
+                    dropZone.style.backgroundColor = "var(--color-bg-alt)";
+                }
+            });
+        });
+    }
 });

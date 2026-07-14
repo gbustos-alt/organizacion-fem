@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% import "components/macros.html" as macros %}
+
+{% block title %}Sé Parte de FEM | Organización FEM{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <span class="eyebrow">Sé Parte de la Red</span>
+        <h1 class="page-title">Formá Parte de FEM</h1>
+        <p class="page-subtitle">Suma tu vocación y perfil profesional al servicio de las comunidades educativas
+            católicas.</p>
+    </div>
+</section>
+
+<section class="home-section" style="border-top: none;">
+    <div class="container" style="max-width: 800px;">
+
+        {% if success %}
+        <div
+            style="background-color: rgba(241, 180, 52, 0.1); border: 1px solid var(--color-accent-warm); padding: 2rem; border-radius: var(--radius-md); text-align: center; margin-bottom: 2rem;">
+            <span style="font-size: 3rem;">✉️</span>
+            <h3
+                style="font-family: var(--font-display); color: var(--color-primary); margin-top: 1rem; margin-bottom: 0.5rem;">
+                ¡CV Recibido Exitosamente!</h3>
+            <p style="color: var(--color-text); line-height: 1.6; max-width: 600px; margin: 0 auto;">
+                Agradecemos tu postulación. Tu información profesional ha sido incorporada a nuestra base de datos
+                federal para futuras búsquedas y vacantes en los colegios acompañados.
+            </p>
+            <div style="margin-top: 1.5rem;">
+                <a href="/" class="btn btn-primary">Volver al Inicio</a>
+            </div>
+        </div>
+        {% else %}
+
+        <div class="contact-form">
+            <h2
+                style="font-family: var(--font-display); color: var(--color-primary); font-size: 1.75rem; margin-bottom: 0.5rem; text-align: center;">
+                Formulario de Postulación</h2>
+            <p style="text-align: center; color: var(--color-text-muted); margin-bottom: 2.5rem; font-size: 0.95rem;">
+                Completa tus datos profesionales para postularte a las comunidades de la red FEM.</p>
+
+            <form action="/trabaja-con-nosotros" method="POST" enctype="multipart/form-data">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); margin-bottom: var(--space-md);"
+                    class="d-grid-mobile-1">
+                    <style>
+                        @media (max-width: 576px) {
+                            .d-grid-mobile-1 {
+                                grid-template-columns: 1fr !important;
+                            }
+                        }
+                    </style>
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo *</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Juan Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico *</label>
+                        <input type="email" id="email" name="email" placeholder="juan.perez@ejemplo.com" required>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); margin-bottom: var(--space-md);"
+                    class="d-grid-mobile-1">
+                    <div class="form-group">
+                        <label for="telefono">Teléfono de Contacto</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="+54 9 11 1234-5678">
+                    </div>
+                    <div class="form-group">
+                        <label for="area">Área de Especialidad *</label>
+                        <select id="area" name="area" required
+                            style="width: 100%; padding: var(--space-sm) var(--space-md); border: 1px solid var(--color-border); border-radius: var(--radius-sm); background-color: var(--color-bg-alt); color: var(--color-text); font-size: 0.95rem;">
+                            <option value="" disabled selected>Selecciona tu área principal</option>
+                            <option value="Docencia Inicial / Primaria">Docencia Inicial / Primaria</option>
+                            <option value="Docencia Secundaria">Docencia Secundaria</option>
+                            <option value="Docencia Superior">Docencia Superior</option>
+                            <option value="Equipo Directivo / Conducción">Equipo Directivo / Conducción</option>
+                            <option value="Equipo de Orientación Escolar">Equipo de Orientación Escolar</option>
+                            <option value="Administración / Contable">Administración / Contable</option>
+                            <option value="Pastoral / Catequesis">Pastoral / Catequesis</option>
+                            <option value="Servicios Generales / Mantenimiento">Servicios Generales / Mantenimiento
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: var(--space-md);">
+                    <label for="provincia">Provincia de Residencia *</label>
+                    <input type="text" id="provincia" name="provincia" placeholder="Buenos Aires" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom: var(--space-md);">
+                    <label for="cv">Adjuntar Curriculum Vitae (PDF) *</label>
+                    <div id="drop-zone" style="border: 2px dashed var(--color-border); border-radius: var(--radius-sm); padding: 2.5rem 1.5rem; text-align: center; background-color: var(--color-bg-alt); cursor: pointer; transition: var(--transition-smooth); position: relative;">
+                        <input type="file" id="cv" name="cv" accept=".pdf" required style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 5;">
+                        <div id="drop-zone-prompt">
+                            <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">📄</span>
+                            <p style="margin: 0; font-weight: 600; color: var(--color-primary);">Arrastrá tu CV aquí o <span style="color: var(--color-coral); text-decoration: underline;">hacé clic para buscar</span></p>
+                            <p style="margin: 0.25rem 0 0 0; font-size: 0.8rem; color: var(--color-text-muted);">Solo archivos PDF (Máx. 5 MB)</p>
+                        </div>
+                        <div id="drop-zone-filename" style="display: none;">
+                            <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">✅</span>
+                            <p id="file-name-text" style="margin: 0; font-weight: 600; color: var(--color-primary); word-break: break-all;"></p>
+                            <p style="margin: 0.25rem 0 0 0; font-size: 0.8rem; color: var(--color-text-muted); text-decoration: underline;">Hacé clic o arrastrá para cambiar el archivo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: var(--space-lg);">
+                    <label for="mensaje">Presentación Breve / Comentarios</label>
+                    <textarea id="mensaje" name="mensaje"
+                        placeholder="Cuéntanos brevemente sobre tu trayectoria o vocación educativa..."
+                        style="min-height: 100px;"></textarea>
+                </div>
+
+                <div style="display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: var(--space-lg);">
+                    <input type="checkbox" id="consentimiento" name="consentimiento" required
+                        style="margin-top: 0.25rem; width: auto;">
+                    <label for="consentimiento"
+                        style="font-size: 0.85rem; color: var(--color-text-muted); font-family: var(--font-sans); text-transform: none; font-weight: normal; cursor: pointer;">
+                        Doy mi consentimiento para que la Fundación FEM procese y resguarde mis datos profesionales con
+                        el fin exclusivo de compartirlos con las congregaciones y colegios católicos acompañados en sus
+                        búsquedas laborales.
+                    </label>
+                </div>
+
+                <div style="text-align: center;">
+                    <button type="submit" class="btn btn-primary"
+                        style="padding: 0.75rem 2.5rem; text-transform: uppercase; font-family: var(--font-brand-bold); letter-spacing: 0.5px;">Enviar
+                        Postulación</button>
+                </div>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

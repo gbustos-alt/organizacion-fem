@@ -93,11 +93,11 @@ document.addEventListener("DOMContentLoaded", () => {
     function showFloatingCard(col) {
         if (!floatingCard || !floatingCardBody) return;
 
-        const webButtonHtml = col.web_url ? `
-            <a href="${col.web_url}" target="_blank" rel="noopener" class="btn btn-card-link">
-                ${col.web_url.startsWith('mailto:') ? '✉️ Contactar por Email' : col.web_url.includes('instagram.com') ? '📷 Visitar Instagram' : '🌐 Visitar Sitio Web'}
+        const webButtonHtml = `
+            <a href="/colegios/${col.id}" class="btn btn-card-link">
+                📂 Ver Ficha Institucional
             </a>
-        ` : '';
+        `;
 
         const phoneHtml = col.telefono ? `
             <div class="detail-item">

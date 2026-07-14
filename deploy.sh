@@ -8,67 +8,40 @@
 # dependencias, compila estilos CSS y reinicia el servicio systemd.
 # ==============================================================================
 
-# Configuración de Servidor
-VPS_USER="guillermo25"
+# Configuración de Servidor de Testing
+VPS_USER="gianluca"
 VPS_HOST="149.50.134.206"
 VPS_PORT="5363"
-VPS_PATH="/home/guillermo25/fundacion_fem"
+VPS_PATH="/home/guillermo25/testing_fem"
 
 echo "======================================================================"
-echo "🚀 Iniciando despliegue de Organización FEM en VPS..."
+echo "🚀 Actualizando entorno de TESTING en VPS..."
 echo "🔗 Servidor: $VPS_HOST:$VPS_PORT"
+echo "📂 Directorio: $VPS_PATH"
 echo "======================================================================"
 echo ""
-echo "🔑 Nota: Se solicitará tu contraseña de SSH para la conexión."
-echo "   Sudo en el servidor podría requerir tu contraseña nuevamente."
+echo "🔑 Nota: Se solicitará tu contraseña de SSH (emayonforge2026)."
 echo ""
 
-# Comandos remotos a ejecutar secuencialmente tras la sincronización
+# Comandos remotos a ejecutar secuencialmente
 REMOTE_COMMANDS="
-  echo '📂 [2/4] Navegando a $VPS_PATH...' && \
   cd $VPS_PATH && \
-  \
-  echo '🐍 [3/4] Actualizando dependencias de Python en venv...' && \
-  source venv/bin/activate && \
-  pip install -r requirements.txt && \
-  \
-  echo '🎨 [4/4] Instalando dependencias de Node y compilando CSS (Sass)...' && \
-  rm -rf node_modules package-lock.json && \
-  npm install && \
-  npm run build:css && \
-  \
-  echo '🔄 [5/4] Reiniciando servicio systemd (fundacion_fem)...' && \
-  sudo systemctl restart fundacion_fem && \
-  \
-  echo '✅ ¡Despliegue finalizado con éxito!'
+  echo '⚙️ [1/2] Configurando directorio seguro en Git...' && \
+  git config --global --add safe.directory $VPS_PATH 2>/dev/null || true && \
+  echo '📥 [2/2] Descargando cambios de GitHub (git pull)...' && \
+  git pull origin develop && \
+  echo '✅ ¡Actualización finalizada!'
 "
 
-echo "📤 [1/4] Sincronizando archivos locales con el VPS (rsync)..."
-rsync -avzh --delete \
-  --exclude='venv/' \
-  --exclude='node_modules/' \
-  --exclude='.git/' \
-  --exclude='*.db' \
-  --exclude='.DS_Store' \
-  --exclude='deploy.sh' \
-  -e "ssh -p $VPS_PORT" \
-  ./ "$VPS_USER@$VPS_HOST:$VPS_PATH/"
-
-if [ $? -ne 0 ]; then
-    echo "❌ Error al sincronizar archivos mediante rsync."
-    exit 1
-fi
-
-echo ""
-echo "🔑 Conectando al VPS para compilar y reiniciar la aplicación..."
-# Conexión SSH con asignación de terminal virtual (-t) para permitir ingresar contraseñas interactivamente
+echo "🔑 Conectando al VPS para actualizar el código..."
+# Conexión SSH con asignación de terminal virtual (-t)
 ssh -p "$VPS_PORT" -t "$VPS_USER@$VPS_HOST" "$REMOTE_COMMANDS"
 
 if [ $? -eq 0 ]; then
     echo ""
-    echo "🎉 ¡El despliegue ha terminado correctamente!"
-    echo "🌍 Sitio web actualizado en: https://fem.becubical.com"
+    echo "🎉 ¡El entorno de pruebas ha sido actualizado correctamente!"
+    echo "🌍 Sitio web en vivo en: https://testingfem.emayonforge.com"
 else
     echo ""
-    echo "❌ Ocurrió un error durante el despliegue. Por favor verifica los mensajes anteriores."
+    echo "❌ Ocurrió un error al actualizar. Por favor verifica los mensajes anteriores."
 fi

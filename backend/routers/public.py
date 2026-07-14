@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 from fastapi import APIRouter, Request, Depends, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 from sqlalchemy.orm import Session
@@ -132,3 +133,207 @@ async def submit_contacto(
         }
     )
 
+=======
+from fastapi import APIRouter, Request, Depends, Form, HTTPException, File, UploadFile
+from fastapi.responses import HTMLResponse, RedirectResponse
+from sqlalchemy.orm import Session
+from backend.core.templates import templates
+from backend.core.database import get_db
+from backend.models import Colegio, MensajeContacto
+
+router = APIRouter()
+
+@router.get("/", response_class=HTMLResponse)
+async def home(request: Request):
+    """
+    Ruta para la página de inicio institucional.
+    """
+    return templates.TemplateResponse(
+        request=request,
+        name="index.html",
+        context={"active_page": "home"}
+    )
+
+@router.get("/identidad", response_class=HTMLResponse)
+async def identidad(request: Request):
+    """
+    Ruta para la página de Identidad de la institución.
+    """
+    return templates.TemplateResponse(
+        request=request,
+        name="identidad.html",
+        context={"active_page": "identidad"}
+    )
+
+@router.get("/mision", response_class=HTMLResponse)
+async def mision(request: Request):
+    """
+    Ruta para la página de Misión y Visión de la institución.
+    """
+    return templates.TemplateResponse(
+        request=request,
+        name="mision.html",
+        context={"active_page": "mision"}
+    )
+
+@router.get("/dimensiones", response_class=HTMLResponse)
+async def dimensiones(request: Request):
+    """
+    Ruta para la página de Dimensiones del Acompañamiento.
+    """
+    return templates.TemplateResponse(
+        request=request,
+        name="dimensiones.html",
+        context={"active_page": "dimensiones"}
+    )
+
+@router.get("/organizacion", response_class=HTMLResponse)
+async def organizacion(request: Request):
+    """
+    Ruta para la página de Organización y Estructura.
+    """
+    return templates.TemplateResponse(
+        request=request,
+        name="organizacion.html",
+        context={"active_page": "organizacion"}
+    )
+
+@router.get("/colegios", response_class=HTMLResponse)
+async def colegios(request: Request, db: Session = Depends(get_db)):
+    """
+    Ruta para la página de Colegios Acompañados.
+    """
+    listado_colegios = db.query(Colegio).all()
+    return templates.TemplateResponse(
+        request=request,
+        name="colegios.html",
+        context={"active_page": "colegios", "colegios": listado_colegios}
+    )
+
+@router.get("/colegios/{colegio_id}", response_class=HTMLResponse)
+async def colegio_detalle(colegio_id: int, request: Request, db: Session = Depends(get_db)):
+    """
+    Ruta para la ficha detallada de un colegio.
+    """
+    colegio = db.query(Colegio).filter(Colegio.id == colegio_id, Colegio.activo == True).first()
+    if not colegio:
+        raise HTTPException(status_code=404, detail="Colegio no encontrado")
+    return templates.TemplateResponse(
+        request=request,
+        name="colegio_detalle.html",
+        context={"active_page": "colegios", "colegio": colegio}
+    )
+
+@router.get("/contacto", response_class=HTMLResponse)
+async def contacto(request: Request):
+    """
+    Ruta para la página de Contacto Institucional.
+    """
+    return templates.TemplateResponse(
+        request=request,
+        name="contacto.html",
+        context={"active_page": "contacto"}
+    )
+
+@router.post("/contacto", response_class=HTMLResponse)
+async def submit_contacto(
+    request: Request,
+    nombre: str = Form(...),
+    email: str = Form(...),
+    telefono: str = Form(None),
+    mensaje: str = Form(...),
+    db: Session = Depends(get_db)
+):
+    """
+    Endpoint para procesar el formulario de contacto e insertarlo en la DB.
+    """
+    nuevo_mensaje = MensajeContacto(
+        nombre=nombre,
+        email=email,
+        telefono=telefono,
+        mensaje=mensaje
+    )
+    db.add(nuevo_mensaje)
+    db.commit()
+    return templates.TemplateResponse(
+        request=request,
+        name="contacto.html",
+        context={
+            "active_page": "contacto",
+            "success": True,
+            "mensaje_exito": "¡Gracias por contactarte con nosotros! Hemos recibido tu mensaje."
+        }
+    )
+
+@router.get("/trabaja-con-nosotros", response_class=HTMLResponse)
+async def trabaja_con_nosotros(request: Request):
+    """
+    Ruta para la Bolsa de Trabajo institucional.
+    """
+    return templates.TemplateResponse(
+        request=request,
+        name="trabaja_con_nosotros.html",
+        context={"active_page": "trabaja-con-nosotros"}
+    )
+
+@router.post("/trabaja-con-nosotros", response_class=HTMLResponse)
+async def submit_trabaja_con_nosotros(
+    request: Request,
+    nombre: str = Form(...),
+    email: str = Form(...),
+    telefono: str = Form(None),
+    area: str = Form(...),
+    provincia: str = Form(...),
+    mensaje: str = Form(None),
+    cv: UploadFile = File(...)
+):
+    """
+    Procesamiento del formulario de Bolsa de Trabajo.
+    Simula la recepción del archivo y muestra el estado exitoso.
+    """
+    # En producción guardaríamos el archivo en storage local o S3
+    return templates.TemplateResponse(
+        request=request,
+        name="trabaja_con_nosotros.html",
+        context={
+            "active_page": "trabaja-con-nosotros",
+            "success": True
+        }
+    )
+
+@router.get("/congregaciones", response_class=HTMLResponse)
+async def congregaciones(request: Request):
+    """
+    Ruta para la sección y formulario de Congregaciones.
+    """
+    return templates.TemplateResponse(
+        request=request,
+        name="congregaciones.html",
+        context={"active_page": "congregaciones"}
+    )
+
+@router.post("/congregaciones", response_class=HTMLResponse)
+async def submit_congregaciones(
+    request: Request,
+    congregacion: str = Form(...),
+    representante: str = Form(...),
+    cargo: str = Form(...),
+    email: str = Form(...),
+    telefono: str = Form(...),
+    motivo: str = Form(...),
+    mensaje: str = Form(...)
+):
+    """
+    Procesamiento del formulario de Congregaciones.
+    Muestra la vista con el mensaje de éxito.
+    """
+    return templates.TemplateResponse(
+        request=request,
+        name="congregaciones.html",
+        context={
+            "active_page": "congregaciones",
+            "success": True
+        }
+    )
+
+>>>>>>> Stashed changes

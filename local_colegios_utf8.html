@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colegios Acompañados | Organización FEM</title>
+    
+    <!-- Meta tags SEO basicos -->
+    <meta name="description" content="Organización FEM - Espacio institucional de desarrollo y empoderamiento.">
+    <meta name="color-scheme" content="light">
+
+    <!-- Tipografías: Inter (Cuerpo), Lora (Títulos y Serif), Barlow (Condensed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Estilo principal del sistema de diseno -->
+    <link rel="stylesheet" href="http://127.0.0.1:8000/static/css/main.css?v=1.0.5">
+    
+    
+</head>
+<body>
+    <div class="site-wrapper">
+        <!-- Encabezado de navegacion -->
+        <header class="main-header">
+    <!-- Fila Superior: Logo y Datos de Contacto/Redes (Solo Desktop) -->
+    <div class="header-top-bar d-none-mobile">
+        <div class="container header-top-container">
+            <a href="/" class="brand-logo" aria-label="Inicio - Organización FEM">
+                <img src="http://127.0.0.1:8000/static/img/logo-fem-color.png" alt="Logo Organización FEM" class="header-logo">
+            </a>
+            
+            <div class="header-contact-info">
+                <div class="contact-meta-item">
+                    <span class="meta-icon" style="display: inline-flex; align-items: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: middle;">
+                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47a1 1 0 0 0 .852.542h12.17a1 1 0 0 0 .85-.542M1 11.105l4.708-2.897L1 5.383z"/>
+                        </svg>
+                    </span>
+                    <a href="mailto:fundacionfem@fundacionfem.org">fundacionfem@fundacionfem.org</a>
+                </div>
+                <div class="header-social-links" style="display: flex; align-items: center; gap: 0.75rem;">
+                    <a href="#" aria-label="Facebook" style="display: inline-flex; align-items: center; color: var(--color-text-muted);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Instagram" style="display: inline-flex; align-items: center; color: var(--color-text-muted);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.742.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.742C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.743-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="YouTube" style="display: inline-flex; align-items: center; color: var(--color-text-muted);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.104 1.957-.05 1.343-.178 2.5-.278 2.796a2.01 2.01 0 0 1-1.415 1.42c-1.123.302-5.288.332-6.11.335h-.09c-.823-.003-4.987-.033-6.11-.335a2.01 2.01 0 0 1-1.415-1.42c-.101-.38-.172-.882-.22-1.402l-.01-.104-.022-.261-.009-.104c-.065-.914-.073-1.77-.074-1.957v-.075c.001-.194.01-1.108.104-1.957.05-1.343.178-2.5.278-2.796a2.01 2.01 0 0 1 1.415-1.42c1.123-.302 5.288-.332 6.11-.335zM6.5 5.201v5.596L11 8z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barra de Navegación Principal -->
+    <div class="header-nav-bar">
+        <div class="container nav-bar-container">
+            <!-- Logo para mobile (oculto en desktop) -->
+            <a href="/" class="brand-logo-mobile d-none-desktop" aria-label="Inicio - Organización FEM">
+                <img src="http://127.0.0.1:8000/static/img/logo-fem-color.png" alt="Logo Organización FEM" class="header-logo-mobile">
+            </a>
+
+            <!-- Botón menú mobile -->
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <!-- Menú de navegación (se convierte en Drawer en mobile) -->
+            <nav class="main-nav" id="main-nav">
+                <!-- Capa oscura trasera para cerrar en mobile -->
+                <div class="drawer-overlay d-none-desktop" id="drawer-overlay"></div>
+                
+                <div class="drawer-content">
+                    <div class="drawer-header d-none-desktop">
+                        <img src="http://127.0.0.1:8000/static/img/logo-fem-color.png" alt="Logo Organización FEM" class="drawer-logo">
+                        <button class="drawer-close" id="drawer-close" aria-label="Cerrar menú">×</button>
+                    </div>
+
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link ">Inicio</a>
+                        </li>
+                        
+                        <!-- Item con Mega Menú / Acordeón: Nuestra Fundación -->
+                        <li class="nav-item has-mega-menu">
+                            <a href="#" class="nav-link dropdown-toggle ">
+                                Nuestra Fundación <span class="arrow-down">▼</span>
+                            </a>
+                            <div class="mega-menu-dropdown">
+                                <div class="mega-menu-container">
+                                    <div class="mega-menu-column">
+                                        <h5>Quiénes Somos</h5>
+                                        <ul>
+                                            <li><a href="/identidad">Identidad Institucional</a></li>
+                                            <li><a href="/mision">Misión y Visión</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="mega-menu-column">
+                                        <h5>Estructura</h5>
+                                        <ul>
+                                            <li><a href="/organizacion">Gobierno y Organización</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Item con Mega Menú / Acordeón: Qué Hacemos -->
+                        <li class="nav-item has-mega-menu">
+                            <a href="#" class="nav-link dropdown-toggle ">
+                                Qué Hacemos <span class="arrow-down">▼</span>
+                            </a>
+                            <div class="mega-menu-dropdown">
+                                <div class="mega-menu-container">
+                                    <div class="mega-menu-column">
+                                        <h5>Dimensiones de Acompañamiento</h5>
+                                        <ul>
+                                            <li><a href="/dimensiones">Dimensión Pedagógica</a></li>
+                                            <li><a href="/dimensiones">Dimensión Administrativa</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="mega-menu-column">
+                                        <h5>Gestión Legal & Pastoral</h5>
+                                        <ul>
+                                            <li><a href="/dimensiones">Dimensión Legal</a></li>
+                                            <li><a href="/dimensiones">Dimensión Pastoral</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/colegios" class="nav-link active">Colegios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/contacto" class="nav-link ">Contacto</a>
+                        </li>
+                    </ul>
+
+                    <!-- Redes y contacto al fondo del Drawer en mobile -->
+                    <div class="drawer-footer d-none-desktop">
+                        <div class="drawer-contact-item">
+                            <span>✉️</span> <a href="mailto:fundacionfem@fundacionfem.org">fundacionfem@fundacionfem.org</a>
+                        </div>
+                        <div class="drawer-social-links">
+                            <a href="#" aria-label="Facebook">📘</a>
+                            <a href="#" aria-label="Instagram">📸</a>
+                            <a href="#" aria-label="YouTube">🎥</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+        <!-- Area de contenido principal -->
+        <main class="main-content" id="main-content">
+            
+<section class="page-hero">
+    <div class="container">
+        <span class="eyebrow">Red Federal</span>
+        <h1 class="page-title">Comunidades Educativas</h1>
+        <p class="page-subtitle">Obras escolares y establecimientos bajo la conducción y el acompañamiento de la Fundación.</p>
+    </div>
+</section>
+
+<!-- Sección: Mapa Interactivo de Colegios -->
+<section class="home-section" id="colegios-map-section" style="border-top: none; padding-top: 2rem;">
+    <div class="container">
+        
+        <div class="colegios-layout">
+            <!-- Columna Izquierda: Mapa de Argentina -->
+            <div class="map-container">
+                <h3 class="province-title" style="margin-bottom: var(--space-lg); text-align: center;">Presencia Institucional</h3>
+                
+                <div class="maps-flex-container">
+                    <div class="map-wrapper">
+                        <!-- Mapa SVG de Argentina Estilizado -->
+                        <img src="http://127.0.0.1:8000/static/img/argentina.svg" class="argentina-svg" alt="Mapa de Argentina">
+
+                        <!-- Nodos sobre el mapa nacional -->
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <div class="map-node node-pba"
+                                 data-nombre="Colegio Sagrada Familia (Zárate)"
+                                 data-congregacion="Congregación Hijas de la Cruz"
+                                 data-ubicacion="Félix Pagola 125, Zárate"
+                                 data-telefono="03487 422423"
+                                 data-web="http://www.csfamilia.com.ar"
+                                 data-provincia="Provincia de Buenos Aires"
+                                 title="Colegio Sagrada Familia (Zárate)">
+                            </div>
+                            
+                        
+                            
+                            <div class="map-node node-pba"
+                                 data-nombre="I.S.F.D. Sagrada Familia"
+                                 data-congregacion="Congregación Hijas de la Cruz"
+                                 data-ubicacion="Félix Pagola 125, Zárate"
+                                 data-telefono=""
+                                 data-web="mailto:nivelsuperior@csfamilia.com.ar"
+                                 data-provincia="Provincia de Buenos Aires"
+                                 title="I.S.F.D. Sagrada Familia">
+                            </div>
+                            
+                        
+                            
+                            <div class="map-node node-pba"
+                                 data-nombre="Colegio Sagrada Familia e Inst. Hijas de la Cruz"
+                                 data-congregacion="Congregación Hijas de la Cruz"
+                                 data-ubicacion="Calle 15 (entre 51 y 53) Nº 961, La Plata"
+                                 data-telefono="0221 4212231"
+                                 data-web="http://www.csfamilialp.com.ar"
+                                 data-provincia="Provincia de Buenos Aires"
+                                 title="Colegio Sagrada Familia e Inst. Hijas de la Cruz">
+                            </div>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <div class="map-node "
+                                 data-nombre="Colegio Sagrado Corazón (Jujuy)"
+                                 data-congregacion="Congregación Esclavas del Divino Corazón"
+                                 data-ubicacion="Av. Luciano Catalano 198, Palpalá, Jujuy"
+                                 data-telefono="0388 427 0198"
+                                 data-web=""
+                                 data-provincia="Presencia Federal"
+                                 title="Colegio Sagrado Corazón (Jujuy)">
+                            </div>
+                            
+                        
+                            
+                            <div class="map-node "
+                                 data-nombre="Instituto Corazón de Jesús (Santa Fe)"
+                                 data-congregacion="Congregación Esclavas del Divino Corazón"
+                                 data-ubicacion="Rivadavia 713, San Carlos Centro, Santa Fe"
+                                 data-telefono="03404 42 0055"
+                                 data-web="https://instagram.com/corazondejesus_sc"
+                                 data-provincia="Presencia Federal"
+                                 title="Instituto Corazón de Jesús (Santa Fe)">
+                            </div>
+                            
+                        
+                            
+                            <div class="map-node "
+                                 data-nombre="Colegio e Instituto Montserrat (Tucumán)"
+                                 data-congregacion="Hermandad Sacerdotes Operarios Diocesanos"
+                                 data-ubicacion="Colombia 2937, San Miguel de Tucumán, Tucumán"
+                                 data-telefono="0381 254 7338"
+                                 data-web="http://www.colegio-e-instituto-montserrat.com"
+                                 data-provincia="Presencia Federal"
+                                 title="Colegio e Instituto Montserrat (Tucumán)">
+                            </div>
+                            
+                        
+                            
+                            <div class="map-node "
+                                 data-nombre="Colegio Nuestra Señora de la Compasión (Mendoza)"
+                                 data-congregacion="Compasionistas"
+                                 data-ubicacion="Soberanía Nacional y Congreso de Tucumán, Palmira, Mendoza"
+                                 data-telefono="0263 4461778"
+                                 data-web=""
+                                 data-provincia="Presencia Federal"
+                                 title="Colegio Nuestra Señora de la Compasión (Mendoza)">
+                            </div>
+                            
+                        
+
+                        <!-- Conector Visual AMBA (Línea de Zoom) -->
+                        <div class="amba-connector"></div>
+                    </div>
+
+                    <!-- Recuadro Zoom AMBA (Gran Buenos Aires y CABA) -->
+                    <div class="amba-zoom-box">
+                        <div class="amba-title">Detalle AMBA</div>
+                        <div class="amba-map-area">
+                            <!-- Mapa de AMBA de fondo -->
+                            <img src="http://127.0.0.1:8000/static/img/amba.svg" class="amba-svg" alt="Mapa de AMBA">
+                            
+                            <!-- Nodos específicos dentro del Zoom AMBA -->
+                            
+                                
+                                <div class="map-node node-caba"
+                                     data-nombre="Instituto Santa Ana y San Joaquín"
+                                     data-congregacion="Congregación Hijas de Santa Ana"
+                                     data-ubicacion="Olazábal 1440, Belgrano"
+                                     data-telefono="011 4784 7650"
+                                     data-web="http://www.santaanaysanjoaquin.edu.ar"
+                                     data-provincia="CABA"
+                                     title="Instituto Santa Ana y San Joaquín">
+                                </div>
+                                
+                            
+                                
+                                <div class="map-node node-caba"
+                                     data-nombre="Instituto Superior Santa Ana"
+                                     data-congregacion="Congregación Hijas de Santa Ana"
+                                     data-ubicacion="Av. del Libertador 6155, Belgrano"
+                                     data-telefono="011 4784 6795"
+                                     data-web="http://www.santaanaysanjoaquin.edu.ar"
+                                     data-provincia="CABA"
+                                     title="Instituto Superior Santa Ana">
+                                </div>
+                                
+                            
+                                
+                                <div class="map-node node-caba"
+                                     data-nombre="Instituto Plácido Marín"
+                                     data-congregacion="Congregación Esclavas del Divino Corazón"
+                                     data-ubicacion="Larrazábal 1551, Mataderos"
+                                     data-telefono="011 4635 0115"
+                                     data-web="http://www.placidomarin.edu.ar"
+                                     data-provincia="CABA"
+                                     title="Instituto Plácido Marín">
+                                </div>
+                                
+                            
+                                
+                                <div class="map-node node-caba"
+                                     data-nombre="Instituto San Pío X"
+                                     data-congregacion="Hermandad Sacerdotes Operarios Diocesanos"
+                                     data-ubicacion="Basualdo 780, Mataderos"
+                                     data-telefono="011 4635 1710"
+                                     data-web="http://www.institutosanpiox.edu.ar"
+                                     data-provincia="CABA"
+                                     title="Instituto San Pío X">
+                                </div>
+                                
+                            
+                                
+                                <div class="map-node node-pba"
+                                     data-nombre="Instituto Dolores Rodríguez Sopeña"
+                                     data-congregacion="Congregación Catequistas de Dolores Sopeña"
+                                     data-ubicacion="España 620, Avellaneda"
+                                     data-telefono="011 4222 6814"
+                                     data-web=""
+                                     data-provincia="Provincia de Buenos Aires"
+                                     title="Instituto Dolores Rodríguez Sopeña">
+                                </div>
+                                
+                            
+                                
+                                <div class="map-node node-pba"
+                                     data-nombre="Colegio Cardenal Spínola"
+                                     data-congregacion="Congregación Esclavas del Divino Corazón"
+                                     data-ubicacion="Maestro Santana 349, San Isidro"
+                                     data-telefono="011 4723 4394"
+                                     data-web="http://www.cardenalspinola.com.ar"
+                                     data-provincia="Provincia de Buenos Aires"
+                                     title="Colegio Cardenal Spínola">
+                                </div>
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                                <div class="map-node node-pba"
+                                     data-nombre="Instituto Nuestra Señora del Carmen"
+                                     data-congregacion="Orden Carmelita"
+                                     data-ubicacion="Fonrouge 855, Lomas de Zamora"
+                                     data-telefono="WhatsApp: +54 9 11 4243 9089"
+                                     data-web="http://www.inscarmen.edu.ar"
+                                     data-provincia="Provincia de Buenos Aires"
+                                     title="Instituto Nuestra Señora del Carmen">
+                                </div>
+                                
+                            
+                                
+                                <div class="map-node node-pba"
+                                     data-nombre="Colegio San Juan de la Cruz"
+                                     data-congregacion="Orden Carmelita"
+                                     data-ubicacion="General Pintos 1450, Banfield"
+                                     data-telefono="011 4245 0614"
+                                     data-web="http://www.sanjuandelacruz.edu.ar"
+                                     data-provincia="Provincia de Buenos Aires"
+                                     title="Colegio San Juan de la Cruz">
+                                </div>
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leyenda de colores -->
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: var(--color-celeste);"></span>
+                        <span>CABA</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: var(--color-primary);"></span>
+                        <span>PBA</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: var(--color-coral);"></span>
+                        <span>Presencia Federal</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Panel de Detalles -->
+            <div class="detail-panel">
+                <!-- Estado inicial: Sin selección -->
+                <div class="detail-placeholder" id="detail-placeholder">
+                    <div class="placeholder-icon">📍</div>
+                    <h3 class="province-title" style="margin-bottom: var(--space-xs);">Selecciona un Colegio</h3>
+                    <p>Haz clic en cualquiera de los nodos del mapa de Argentina o el recuadro AMBA para visualizar la información del establecimiento escolar.</p>
+                </div>
+
+                <!-- Estado activo: Datos del colegio seleccionado -->
+                <div class="detail-content" id="detail-content">
+                    <span class="school-detail-carisma" id="det-carisma"></span>
+                    <h2 class="school-detail-name" id="det-nombre"></h2>
+                    <span class="school-detail-provincia" id="det-provincia"></span>
+                    
+                    <div class="school-detail-info-list">
+                        <div class="info-item">
+                            <span class="icon">📍</span>
+                            <span id="det-ubicacion"></span>
+                        </div>
+                        <div class="info-item" id="det-telefono" style="display: none;">
+                            <span class="icon">📞</span>
+                            <span></span>
+                        </div>
+                    </div>
+
+                    <div class="school-detail-actions" id="det-web-container" style="display: none;">
+                        <a href="" target="_blank" rel="noopener" class="btn-school-web" id="det-web"></a>
+                    </div>
+                </div>
+            </div>
+</section>
+
+        </main>
+
+        <!-- Pie de pagina -->
+        <footer class="main-footer">
+    <div class="container footer-container">
+        <div class="footer-brand">
+            <img src="http://127.0.0.1:8000/static/img/logo-fem-blanco.png" alt="Logo Organización FEM" class="footer-logo">
+            <p>Construyendo redes colaborativas y espacios de desarrollo.</p>
+        </div>
+        <div class="footer-links">
+            <h5>Explorar</h5>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/identidad">Identidad</a></li>
+                <li><a href="/mision">Misión y Visión</a></li>
+                <li><a href="/dimensiones">Dimensiones</a></li>
+                <li><a href="/organizacion">Organización</a></li>
+                <li><a href="/colegios">Colegios</a></li>
+                <li><a href="/contacto">Contacto</a></li>
+            </ul>
+        </div>
+        <div class="footer-info">
+            <h5>Contacto</h5>
+            <p>fundacionfem@fundacionfem.org</p>
+            <p style="margin-top: 0.5rem; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                Entidad Madre: <a href="https://www.federacionfaera.org" target="_blank" rel="noopener" style="color: var(--color-accent-warm); text-decoration: underline; font-weight: 600;">FAERA</a>
+            </p>
+            <p>&copy; 2026 Organización FEM. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+    </div>
+
+    <!-- Script de interactividad basica -->
+    <script src="http://127.0.0.1:8000/static/js/main.js?v=1.0.5"></script>
+    
+<script src="http://127.0.0.1:8000/static/js/colegios.js?v=1.0.5"></script>
+
+</body>
+</html>

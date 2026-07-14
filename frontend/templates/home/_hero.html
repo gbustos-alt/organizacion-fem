@@ -11,12 +11,41 @@
             </div>
         </div>
         <div class="hero-media">
-            <div class="hero-image-wrapper">
-                <img class="hero-main-img" src="{{ url_for('static', path='img/fotos prueba/escuela.jpeg') }}" alt="Colegio y comunidad de Organización FEM">
-                
-                <!-- Insignia del Lema Oficial solapada de forma elegante -->
-                <div class="hero-lema-badge">
-                    <img class="lema-badge-img" src="{{ url_for('static', path='img/lema-fem.png') }}" alt="Lema FEM - Educación y Misión">
+            <div class="hero-slider-container" id="hero-slider">
+                <div class="hero-slider-wrapper">
+                    <!-- Slide 1: Actividades -->
+                    <div class="hero-slide active">
+                        <img class="hero-slider-img" src="{{ url_for('static', path='img/fotos prueba/escuela.jpeg') }}" alt="Encuentros y actividades de Organización FEM">
+                        <div class="hero-slide-caption">
+                            <h3>Encuentros y Misión</h3>
+                            <p>Caminamos junto a las comunidades en su labor formativa y pastoral.</p>
+                        </div>
+                    </div>
+                    <!-- Slide 2: Comunicados Destacados -->
+                    <div class="hero-slide">
+                        <img class="hero-slider-img" src="{{ url_for('static', path='img/fotos prueba/ninos.jpeg') }}" alt="Novedades y comunicados de la red">
+                        <div class="hero-slide-caption">
+                            <h3>Comunidad en Red</h3>
+                            <p>Compartimos noticias, recursos y formación para sostener el carisma.</p>
+                        </div>
+                    </div>
+                    <!-- Slide 3: Lema Anual (Con fondo claro y logo/lema) -->
+                    <div class="hero-slide slide-light">
+                        <img class="hero-slider-img" src="{{ url_for('static', path='img/lema-fem.png') }}" alt="Lema FEM - Educación y Misión" style="object-fit: contain; padding: 2rem; background-color: var(--color-white);">
+                        <div class="hero-slide-caption">
+                            <h3>Lema Institucional</h3>
+                            <p>Caminar juntos en fidelidad creadora al legado y carismas fundacionales.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Controles -->
+                <button class="slider-btn prev-btn" id="slider-prev" aria-label="Anterior">⟨</button>
+                <button class="slider-btn next-btn" id="slider-next" aria-label="Siguiente">⟩</button>
+                <!-- Indicadores -->
+                <div class="slider-indicators" id="slider-indicators">
+                    <span class="indicator active" data-index="0"></span>
+                    <span class="indicator" data-index="1"></span>
+                    <span class="indicator" data-index="2"></span>
                 </div>
             </div>
         </div>

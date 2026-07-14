@@ -3,7 +3,8 @@
 {% block title %}Comunidades Educativas | Organización FEM{% endblock %}
 
 {% block styles %}
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
     /* Marcadores CSS Personalizados */
     .custom-marker {
@@ -11,7 +12,7 @@
         align-items: center;
         justify-content: center;
     }
-    
+
     .marker-pin {
         width: 14px;
         height: 14px;
@@ -21,7 +22,7 @@
         box-shadow: 0 0 6px rgba(241, 101, 54, 0.5);
         transition: var(--transition-smooth);
     }
-    
+
     .custom-marker.active .marker-pin {
         background-color: var(--color-accent-warm);
         box-shadow: 0 0 10px rgba(241, 180, 52, 0.8);
@@ -35,19 +36,21 @@
     <div class="container">
         <span class="eyebrow">Red Federal</span>
         <h1 class="page-title">Comunidades Educativas</h1>
-        <p class="page-subtitle">Obras escolares y establecimientos bajo la conducción y el acompañamiento de la Fundación.</p>
+        <p class="page-subtitle">Obras escolares y establecimientos bajo la conducción y el acompañamiento de la
+            Fundación.</p>
     </div>
 </section>
 
 <section class="colegios-dashboard-section">
     <div class="container">
-        
+
         <!-- Controles de búsqueda y filtros fluidos y en ancho completo -->
         <div class="compact-controls">
             <div class="search-input-container">
-                <input type="text" id="school-search" placeholder="🔍 Buscar por nombre, carisma o provincia..." aria-label="Buscar colegios">
+                <input type="text" id="school-search" placeholder="🔍 Buscar por nombre, carisma o provincia..."
+                    aria-label="Buscar colegios">
             </div>
-            
+
             <div class="compact-filters">
                 <div class="filter-row">
                     <span class="row-label">Provincia:</span>
@@ -71,92 +74,90 @@
                         <button class="pill-btn" data-carisma="Sopeña">Sopeña</button>
                     </div>
                 </div>
-        </div>
+            </div>
 
-        <!-- Mapas Interactivos Divididos (Nacional + AMBA) -->
-        <div class="maps-split-container">
-            <div class="map-box">
-                <h4 class="map-box-title">Presencia Nacional</h4>
-                <div id="map-argentina" class="map-instance"></div>
-            </div>
-            <div class="map-box">
-                <h4 class="map-box-title">Detalle AMBA y Buenos Aires</h4>
-                <div id="map-amba" class="map-instance"></div>
-            </div>
-            
-            <!-- Tarjeta Flotante Informativa -->
-            <div id="map-floating-card" class="map-floating-overlay d-none">
-                <button class="close-card-btn" id="close-floating-card" aria-label="Cerrar">&times;</button>
-                <div class="floating-card-body" id="floating-card-body">
-                    <!-- Contenido inyectado por JS -->
+            <!-- Mapas Interactivos Divididos (Nacional + AMBA) -->
+            <div class="maps-split-container">
+                <div class="map-box">
+                    <h4 class="map-box-title">Presencia Nacional</h4>
+                    <div id="map-argentina" class="map-instance"></div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Encabezado de Resultados -->
-        <div class="results-header">
-            <h3 class="results-title">Colegios Acompañados</h3>
-            <span class="count-badge"><span id="results-count">15</span> comunidades</span>
-        </div>
-
-        <!-- Grid de Tarjetas (Folios) de Colegios -->
-        <div class="schools-grid" id="schools-list">
-            {% for col in colegios %}
-            <div class="school-card" 
-                 data-id="{{ col.id }}"
-                 data-nombre="{{ col.nombre|lower }}"
-                 data-congregacion="{{ col.congregacion|lower }}"
-                 data-provincia="{{ col.provincia }}"
-                 data-carisma="{{ col.congregacion }}">
-                <div class="card-header-badge">{{ col.congregacion }}</div>
-                <h4 class="card-title">{{ col.nombre }}</h4>
-                <div class="card-province-label">{{ col.provincia }}</div>
-                
-                <div class="card-details">
-                    <div class="detail-item">
-                        <span class="detail-icon">📍</span>
-                        <span class="detail-text">{{ col.ubicacion }}</span>
-                    </div>
-                    {% if col.telefono %}
-                    <div class="detail-item">
-                        <span class="detail-icon">📞</span>
-                        <span class="detail-text">{{ col.telefono }}</span>
-                    </div>
-                    {% endif %}
-                    {% if col.diocesis %}
-                    <div class="detail-item">
-                        <span class="detail-icon">⛪</span>
-                        <span class="detail-text">{{ col.diocesis }}</span>
-                    </div>
-                    {% endif %}
+                <div class="map-box">
+                    <h4 class="map-box-title">Detalle AMBA y Buenos Aires</h4>
+                    <div id="map-amba" class="map-instance"></div>
                 </div>
 
-                {% if col.web_url %}
-                <div class="card-actions">
-                    <a href="{{ col.web_url }}" target="_blank" rel="noopener" class="btn btn-secondary btn-card-link">
-                        {% if col.web_url.startswith('mailto:') %}
-                            ✉️ Contactar por Email
-                        {% elif 'instagram.com' in col.web_url %}
-                            📷 Visitar Instagram
-                        {% else %}
-                            🌐 Visitar Sitio Web
+                <!-- Tarjeta Flotante Informativa -->
+                <div id="map-floating-card" class="map-floating-overlay d-none">
+                    <button class="close-card-btn" id="close-floating-card" aria-label="Cerrar">&times;</button>
+                    <div class="floating-card-body" id="floating-card-body">
+                        <!-- Contenido inyectado por JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Encabezado de Resultados -->
+            <div class="results-header">
+                <h3 class="results-title">Colegios Acompañados</h3>
+                <span class="count-badge"><span id="results-count">15</span> comunidades</span>
+            </div>
+
+            <!-- Grid de Tarjetas (Folios) de Colegios -->
+            <div class="schools-grid" id="schools-list">
+                {% for col in colegios %}
+                <div class="school-card" data-id="{{ col.id }}" data-nombre="{{ col.nombre|lower }}"
+                    data-congregacion="{{ col.congregacion|lower }}" data-provincia="{{ col.provincia }}"
+                    data-carisma="{{ col.congregacion }}">
+                    <div class="card-header-badge">{{ col.congregacion }}</div>
+                    <h4 class="card-title">{{ col.nombre }}</h4>
+                    <div class="card-province-label">{{ col.provincia }}</div>
+
+                    <div class="card-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <span class="detail-text">{{ col.ubicacion }}</span>
+                        </div>
+                        {% if col.telefono %}
+                        <div class="detail-item">
+                            <span class="detail-icon">📞</span>
+                            <span class="detail-text">{{ col.telefono }}</span>
+                        </div>
                         {% endif %}
-                    </a>
+                        {% if col.diocesis %}
+                        <div class="detail-item">
+                            <span class="detail-icon">⛪</span>
+                            <span class="detail-text">{{ col.diocesis }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    {% if col.web_url %}
+                    <div class="card-actions">
+                        <a href="{{ col.web_url }}" target="_blank" rel="noopener"
+                            class="btn btn-secondary btn-card-link">
+                            {% if col.web_url.startswith('mailto:') %}
+                            ✉️ Contactar por Email
+                            {% elif 'instagram.com' in col.web_url %}
+                            📷 Visitar Instagram
+                            {% else %}
+                            🌐 Visitar Sitio Web
+                            {% endif %}
+                        </a>
+                    </div>
+                    {% endif %}
                 </div>
-                {% endif %}
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
 
-        <!-- Estado Vacío -->
-        <div class="empty-state d-none" id="empty-state">
-            <div class="empty-icon">🔍</div>
-            <h4>Sin resultados</h4>
-            <p>Prueba limpiando los filtros o buscando otra palabra.</p>
-            <button class="btn btn-primary btn-sm" id="btn-reset-filters">Limpiar Filtros</button>
-        </div>
+            <!-- Estado Vacío -->
+            <div class="empty-state d-none" id="empty-state">
+                <div class="empty-icon">🔍</div>
+                <h4>Sin resultados</h4>
+                <p>Prueba limpiando los filtros o buscando otra palabra.</p>
+                <button class="btn btn-primary btn-sm" id="btn-reset-filters">Limpiar Filtros</button>
+            </div>
 
-    </div>
+        </div>
 </section>
 
 <!-- Datos de colegios inyectados en formato JSON -->
@@ -179,6 +180,7 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="{{ url_for('static', path='js/colegios.js') }}?v=2.0.2"></script>
 {% endblock %}

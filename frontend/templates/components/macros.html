@@ -10,7 +10,7 @@
 <div class="card {{ class }}">
     {% if icon_name %}
     <div class="card-icon">
-        <span class="icon-placeholder">{{ icon_name }}</span>
+        <span class="icon-placeholder">{{ icon_name | safe }}</span>
     </div>
     {% endif %}
     <h3 class="card-title">{{ title }}</h3>

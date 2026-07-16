@@ -55,6 +55,7 @@ class MaterialReflexion(Base):
     contenido = Column(Text, nullable=True)          # Usado para frases/citas
     archivo_url = Column(String(255), nullable=True) # Enlace PDF/archivo
     link_url = Column(String(255), nullable=True)    # Enlace externo
+    imagen_url = Column(String(255), nullable=True)  # Imagen para el card
     fecha_publicacion = Column(DateTime, default=datetime.datetime.utcnow)
     activo = Column(Boolean, default=True)
 

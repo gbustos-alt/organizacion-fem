@@ -1,7 +1,7 @@
 import hashlib
 import datetime
 from backend.core.database import SessionLocal, Base, engine
-from backend.models import Colegio, Noticia, MaterialReflexion, Actividad, Usuario, Rol, UsuarioRol
+from backend.models import Colegio, Noticia, MaterialReflexion, Actividad, Usuario, Rol, UsuarioRol, AuditoriaIncorporacion, ConfiguracionLema, MemoriaAnual, MaterialCapacitacion
 from backend.services.import_service import sincronizar_roles_y_permisos
 
 def get_password_hash(password: str) -> str:
@@ -143,21 +143,21 @@ def seed_db():
             titulo="Encuentro Federal de Equipos de Conducción",
             copete="Directivos de los colegios de nuestra red compartieron una jornada de trabajo, capacitación y oración presencial.",
             contenido="Directivos de los colegios de nuestra red y miembros de la junta directiva de FAERA compartieron una jornada de trabajo, capacitación y oración presencial, consolidando los pilares pedagógicos y administrativos de la gobernanza inter-carismática.",
-            imagen_url="/static/img/fotos prueba/Admissions - St_ John´s International School.jpeg",
+            imagen_url="/static/img/fotos prueba/novedad_encuentro.png",
             fecha_publicacion=datetime.datetime(2026, 6, 28)
         ),
         Noticia(
             titulo="Proceso de Transición en el Colegio San José",
             copete="Sistematizamos la primera etapa del camino de acompañamiento institucional, enfocado en resguardar la identidad de las fundadoras.",
             contenido="Sistematizamos la primera etapa del camino de acompañamiento institucional, enfocado en resguardar la identidad de las Hermanas Fundadoras y proyectar su sustentabilidad a largo plazo.",
-            imagen_url="/static/img/fotos prueba/library.jpeg",
+            imagen_url="/static/img/fotos prueba/novedad_transicion.png",
             fecha_publicacion=datetime.datetime(2026, 6, 15)
         ),
         Noticia(
             titulo="Taller de Sostenibilidad Administrativa",
             copete="Presentamos a los administradores de la red las nuevas herramientas de autodiagnóstico financiero.",
             contenido="Presentamos a los administradores de la red las nuevas herramientas de autodiagnóstico financiero para optimizar la toma de decisiones presupuestarias y de cuota.",
-            imagen_url="/static/img/fotos prueba/manos.jpeg",
+            imagen_url="/static/img/fotos prueba/novedad_sostenibilidad.png",
             fecha_publicacion=datetime.datetime(2026, 6, 2)
         )
     ]
@@ -173,17 +173,37 @@ def seed_db():
             activo=True
         ),
         MaterialReflexion(
-            titulo="Guía Metodológica de Puntos de Referencia",
+            titulo="Recursos Pedagógicos Curriculares",
             autor="Junta Directiva FEM",
             categoria="Pedagógico",
+            contenido="Herramientas y marcos curriculares para la planificación pedagógica de los niveles primario y secundario.",
             archivo_url="/static/docs/Puntos_Referencia_FEM_2026.pdf",
+            imagen_url="/static/img/fotos prueba/escuela.jpeg",
             activo=True
         ),
         MaterialReflexion(
-            titulo="El Carisma Educativo y la Gobernanza Inter-Carismática",
+            titulo="Materiales para Catequesis y Pastoral Escolar",
             autor="Equipo Pastoral FEM",
             categoria="Pastoral",
+            contenido="Fichas de trabajo y guías para celebraciones litúrgicas en tiempos de adviento y cuaresma.",
             link_url="https://www.youtube.com/watch?v=ejemplo-pastoral",
+            imagen_url="/static/img/fotos prueba/ninos.jpeg",
+            activo=True
+        ),
+        MaterialReflexion(
+            titulo="Guías Docentes y Proyectos Colaborativos",
+            autor="Asesoría Editorial FEM",
+            categoria="Editorial",
+            contenido="Guías orientativas para docentes sobre la integración de proyectos comunitarios intercolegiales.",
+            imagen_url="/static/img/fotos prueba/library.jpeg",
+            activo=True
+        ),
+        MaterialReflexion(
+            titulo="Formación Continua para Directores",
+            autor="Formadores Asociados FEM",
+            categoria="Pedagógico",
+            contenido="Módulos de capacitación y actualización académica para directores noveles en la red.",
+            imagen_url="/static/img/fotos prueba/2016_10_26_ALTA_RESOLUCION_0163-scaled1.jpg",
             activo=True
         )
     ]
@@ -212,6 +232,107 @@ def seed_db():
     ]
     db.add_all(actividades)
     
+    # 5. Agregar Lema Anual
+    lema = ConfiguracionLema(
+        anio=2026,
+        lema_texto="Caminando juntos en la Educación y la Misión",
+        objetivos="Fortalecer los lazos de fraternidad eclesial en toda la red de colegios.\nConsolidar los equipos de gestión pedagógica pastoral.\nDigitalizar los procesos de auditoría administrativa y contable.",
+        imagen_lema_url="/static/img/lema-fem-2026.png",
+        activo=True
+    )
+    db.add(lema)
+
+    # 6. Agregar Memorias Anuales
+    memorias = [
+        MemoriaAnual(titulo="Memoria Anual y Balance Social 2024", anio=2024, archivo_pdf_path="/static/uploads/memoria_2024.pdf", activo=True),
+        MemoriaAnual(titulo="Memoria Anual e Informe de Gestión 2025", anio=2025, archivo_pdf_path="/static/uploads/memoria_2025.pdf", activo=True)
+    ]
+    db.add_all(memorias)
+
+    # 7. Agregar Materiales de Capacitación
+    capacitaciones = [
+        MaterialCapacitacion(
+            titulo="Inducción al Carisma de la Fundación FEM",
+            descripcion="Curso introductorio sobre la historia, misión y valores de la Fundación FEM para nuevos docentes y directivos.",
+            categoria="Inducción",
+            archivo_url="/static/uploads/material_induccion_carisma.pdf",
+            video_url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        ),
+        MaterialCapacitacion(
+            titulo="Guía de Administración y Rendición Contable Escolar",
+            descripcion="Herramientas y plantillas para la gestión contable interna de los colegios asociados.",
+            categoria="Gestión",
+            archivo_url="/static/uploads/guia_gestion_contable.pdf"
+        ),
+        MaterialCapacitacion(
+            titulo="El Rol del Director en el Acompañamiento Pastoral",
+            descripcion="Estrategias prácticas para directores de colegios sobre cómo liderar la pastoral escolar.",
+            categoria="Pastoral",
+            video_url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        )
+    ]
+    db.add_all(capacitaciones)
+
+    # 8. Agregar Escuelas Candidatas (Auditoría de Incorporación)
+    candidatos = [
+        AuditoriaIncorporacion(
+            nombre="Col. María de Luján Sierra", congregacion="Hijas de la Cruz", localidad="La Plata", provincia="Provincia de Buenos Aires",
+            drive_folder_url="https://drive.google.com/drive/folders/ejemplo1",
+            estado="EN_PROCESO", estado_pedagogica="COMPLETADO", estado_pastoral="EN_PROCESO", estado_economica="PENDIENTE", estado_legal="PENDIENTE",
+            obs_pedagogica="Proyecto curricular presentado y aprobado por el equipo de supervisión pedagógica.",
+            obs_pastoral="Plan pastoral en revisión por la diócesis de La Plata."
+        ),
+        AuditoriaIncorporacion(
+            nombre="Col. Ntra. Sra. de Luján", congregacion="Hijas de la Cruz", localidad="La Plata", provincia="Provincia de Buenos Aires",
+            drive_folder_url="https://drive.google.com/drive/folders/ejemplo2",
+            estado="PENDIENTE", estado_pedagogica="PENDIENTE", estado_pastoral="PENDIENTE", estado_economica="PENDIENTE", estado_legal="PENDIENTE"
+        ),
+        AuditoriaIncorporacion(
+            nombre="Col. María Luján Sierra", congregacion="Hijas de la Cruz", localidad="Moreno", provincia="Provincia de Buenos Aires",
+            drive_folder_url="https://drive.google.com/drive/folders/ejemplo3",
+            estado="EN_PROCESO", estado_pedagogica="COMPLETADO", estado_pastoral="COMPLETADO", estado_economica="OBSERVADO", estado_legal="EN_PROCESO",
+            obs_pedagogica="Buen diseño curricular.",
+            obs_pastoral="Proyecto pastoral integrado.",
+            obs_economica="Se observaron deudas previsionales que deben aclararse antes de continuar.",
+            obs_legal="Estatutos legales en revisión."
+        ),
+        AuditoriaIncorporacion(
+            nombre="Col. Ntra. Sra. de Luján", congregacion="Hijas de la Cruz", localidad="Miramar", provincia="Provincia de Buenos Aires",
+            drive_folder_url="https://drive.google.com/drive/folders/ejemplo4",
+            estado="EN_PROCESO", estado_pedagogica="EN_PROCESO", estado_pastoral="EN_PROCESO", estado_economica="PENDIENTE", estado_legal="PENDIENTE"
+        ),
+        AuditoriaIncorporacion(
+            nombre="Col. Ntra. Sra. de Luján", congregacion="Hijas de la Cruz", localidad="Tres Arroyos", provincia="Provincia de Buenos Aires",
+            drive_folder_url="https://drive.google.com/drive/folders/ejemplo5",
+            estado="PENDIENTE", estado_pedagogica="PENDIENTE", estado_pastoral="PENDIENTE", estado_economica="PENDIENTE", estado_legal="PENDIENTE"
+        ),
+        AuditoriaIncorporacion(
+            nombre="Hogar San José", congregacion="Hijas de la Cruz", localidad="Tres Arroyos", provincia="Provincia de Buenos Aires",
+            drive_folder_url="https://drive.google.com/drive/folders/ejemplo6",
+            estado="EN_PROCESO", estado_pedagogica="COMPLETADO", estado_pastoral="COMPLETADO", estado_economica="COMPLETADO", estado_legal="EN_PROCESO",
+            obs_pedagogica="Proyecto aprobado.",
+            obs_pastoral="Gran arraigo pastoral.",
+            obs_economica="Presupuesto equilibrado y balances contables transparentes.",
+            obs_legal="Falta constancia de personería jurídica actualizada."
+        ),
+        AuditoriaIncorporacion(
+            nombre="Col. Sagrado Corazón", congregacion="Hijas de la Cruz", localidad="Merlo", provincia="Provincia de Buenos Aires",
+            drive_folder_url="https://drive.google.com/drive/folders/ejemplo7",
+            estado="EN_PROCESO", estado_pedagogica="COMPLETADO", estado_pastoral="COMPLETADO", estado_economica="PENDIENTE", estado_legal="COMPLETADO"
+        ),
+        AuditoriaIncorporacion(
+            nombre="Col. San José", congregacion="Hijas de la Cruz", localidad="Marcos Paz", provincia="Provincia de Buenos Aires",
+            drive_folder_url="https://drive.google.com/drive/folders/ejemplo8",
+            estado="PENDIENTE", estado_pedagogica="PENDIENTE", estado_pastoral="PENDIENTE", estado_economica="PENDIENTE", estado_legal="PENDIENTE"
+        ),
+        AuditoriaIncorporacion(
+            nombre="Col. Hnos. Amezola", congregacion="Hijas de la Cruz", localidad="Villa Madero", provincia="Provincia de Buenos Aires",
+            drive_folder_url="https://drive.google.com/drive/folders/ejemplo9",
+            estado="EN_PROCESO", estado_pedagogica="EN_PROCESO", estado_pastoral="EN_PROCESO", estado_economica="EN_PROCESO", estado_legal="EN_PROCESO"
+        )
+    ]
+    db.add_all(candidatos)
+
     # 3. Sincronizar Roles y Permisos desde archivo de configuración
     print("🔑 Sincronizando roles y permisos desde semilla...")
     sincronizar_roles_y_permisos(db)

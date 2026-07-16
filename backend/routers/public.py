@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from sqlalchemy.orm import Session
 from backend.core.templates import templates
 from backend.core.database import get_db
-from backend.models import Colegio, MensajeContacto, Noticia, MaterialReflexion
+from backend.models import Colegio, MensajeContacto, Noticia, MaterialReflexion, ConfiguracionLema, MemoriaAnual, Alumno
 
 router = APIRouter()
 
@@ -21,8 +21,20 @@ async def home(request: Request, db: Session = Depends(get_db)):
         MaterialReflexion.categoria == "Cita Inspiradora"
     ).order_by(MaterialReflexion.fecha_publicacion.desc()).first()
 
-    # 3. Contar colegios activos reales
+    # 3. Contar colegios activos reales y alumnos
     cant_colegios = db.query(Colegio).filter(Colegio.activo == True).count()
+    
+    # 4. Contar alumnos activos reales
+    cant_alumnos = db.query(Alumno).count()
+    if cant_alumnos == 0:
+        cant_alumnos = 10000  # Fallback a la cifra estimada
+
+    # 5. Obtener lema anual y últimas reflexiones para el recursero de la Home
+    lema = db.query(ConfiguracionLema).filter(ConfiguracionLema.activo == True).order_by(ConfiguracionLema.anio.desc()).first()
+    latest_resources = db.query(MaterialReflexion).filter(
+        MaterialReflexion.activo == True,
+        MaterialReflexion.categoria != "Cita Inspiradora"
+    ).order_by(MaterialReflexion.fecha_publicacion.desc()).limit(4).all()
 
     return templates.TemplateResponse(
         request=request,
@@ -31,7 +43,10 @@ async def home(request: Request, db: Session = Depends(get_db)):
             "active_page": "home",
             "novedades": novedades,
             "cita": cita,
-            "cant_colegios": cant_colegios
+            "cant_colegios": cant_colegios,
+            "cant_alumnos": cant_alumnos,
+            "lema": lema,
+            "latest_resources": latest_resources
         }
     )
 
@@ -213,5 +228,55 @@ async def submit_congregaciones(
         context={
             "active_page": "congregaciones",
             "success": True
+        }
+    )
+
+
+@router.get("/materiales", response_class=HTMLResponse)
+async def materiales_publico(
+    request: Request,
+    buscar: str = None,
+    categoria: str = None,
+    db: Session = Depends(get_db)
+):
+    query = db.query(MaterialReflexion).filter(MaterialReflexion.activo == True)
+    
+    if buscar:
+        query = query.filter(
+            (MaterialReflexion.titulo.ilike(f"%{buscar}%")) | 
+            (MaterialReflexion.autor.ilike(f"%{buscar}%")) |
+            (MaterialReflexion.contenido.ilike(f"%{buscar}%"))
+        )
+        
+    if categoria and categoria != "Todos":
+        query = query.filter(MaterialReflexion.categoria == categoria)
+        
+    materiales = query.order_by(MaterialReflexion.fecha_publicacion.desc()).all()
+    
+    # Categorías disponibles para filtros
+    categorias = ["Todos", "Pedagógico", "Pastoral", "Editorial", "Cita Inspiradora"]
+    
+    return templates.TemplateResponse(
+        request=request,
+        name="materiales.html",
+        context={
+            "active_page": "materiales",
+            "materiales": materiales,
+            "buscar": buscar,
+            "categoria": categoria or "Todos",
+            "categorias": categorias
+        }
+    )
+
+
+@router.get("/memorias", response_class=HTMLResponse)
+async def memorias_publicas(request: Request, db: Session = Depends(get_db)):
+    memorias = db.query(MemoriaAnual).filter(MemoriaAnual.activo == True).order_by(MemoriaAnual.anio.desc()).all()
+    return templates.TemplateResponse(
+        request=request,
+        name="memorias.html",
+        context={
+            "active_page": "memorias",
+            "memorias": memorias
         }
     )

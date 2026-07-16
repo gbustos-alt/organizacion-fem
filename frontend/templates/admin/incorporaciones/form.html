@@ -1,0 +1,88 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Registrar Candidato | Intranet Fundación FEM{% endblock %}
+{% block navbar_title %}Nuevo Colegio Candidato{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: var(--space-md);">
+    <a href="/admin/incorporaciones/" style="text-decoration: none; color: var(--color-text-muted); font-size: 0.9rem; font-weight: 550;">
+        ← Volver al listado
+    </a>
+</div>
+
+<div class="form-card">
+    <h2 style="font-family: var(--font-display); font-size: 1.4rem; color: var(--color-primary); margin-top: 0; margin-bottom: var(--space-md); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-xs);">
+        Registrar Escuela para Auditoría
+    </h2>
+
+    <form action="/admin/incorporaciones/crear" method="POST" style="display: flex; flex-direction: column; gap: var(--space-sm);">
+        <div class="form-group">
+            <label for="nombre">Nombre del Colegio *</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ej: Instituto San Miguel" required>
+        </div>
+
+        <div class="form-group">
+            <label for="congregacion">Congregación Religiosa Propietaria</label>
+            <input type="text" id="congregacion" name="congregacion" class="form-control" placeholder="Ej: Hermanas Terciarias Capuchinas">
+        </div>
+
+        <div class="form-group">
+            <label for="diocesis">Diócesis / Jurisdicción Eclesiástica</label>
+            <input type="text" id="diocesis" name="diocesis" class="form-control" placeholder="Ej: Arquidiócesis de Buenos Aires">
+        </div>
+
+        <div class="form-group">
+            <label for="localidad">Localidad</label>
+            <input type="text" id="localidad" name="localidad" class="form-control" placeholder="Ej: La Plata">
+        </div>
+
+        <div class="form-group">
+            <label for="provincia">Provincia</label>
+            <select id="provincia" name="provincia" class="form-control">
+                <option value="Presencia Federal">Presencia Federal</option>
+                <option value="Provincia de Buenos Aires">Provincia de Buenos Aires</option>
+                <option value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
+                <option value="Córdoba">Córdoba</option>
+                <option value="Santa Fe">Santa Fe</option>
+                <option value="Mendoza">Mendoza</option>
+                <option value="Tucumán">Tucumán</option>
+                <option value="Entre Ríos">Entre Ríos</option>
+                <option value="Misiones">Misiones</option>
+                <option value="Salta">Salta</option>
+                <option value="Chaco">Chaco</option>
+                <option value="Corrientes">Corrientes</option>
+                <option value="Santiago del Estero">Santiago del Estero</option>
+                <option value="San Juan">San Juan</option>
+                <option value="Jujuy">Jujuy</option>
+                <option value="Río Negro">Río Negro</option>
+                <option value="Neuquén">Neuquén</option>
+                <option value="Formosa">Formosa</option>
+                <option value="Chubut">Chubut</option>
+                <option value="San Luis">San Luis</option>
+                <option value="Catamarca">Catamarca</option>
+                <option value="La Rioja">La Rioja</option>
+                <option value="La Pampa">La Pampa</option>
+                <option value="Santa Cruz">Santa Cruz</option>
+                <option value="Tierra del Fuego">Tierra del Fuego</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="drive_folder_url">Enlace a Carpeta en Google Drive</label>
+            <input type="url" id="drive_folder_url" name="drive_folder_url" class="form-control" placeholder="https://drive.google.com/drive/folders/...">
+            <span style="font-size: 0.75rem; color: var(--color-text-muted);">
+                Carpeta compartida donde se recopilarán estatutos, balances, planes de estudio, etc.
+            </span>
+        </div>
+
+        <div style="display: flex; gap: var(--space-sm); margin-top: var(--space-md);">
+            <button type="submit" class="btn-admin btn-admin-primary" style="flex-grow: 1;">
+                Registrar Candidato
+            </button>
+            <a href="/admin/incorporaciones/" class="btn-admin btn-admin-secondary">
+                Cancelar
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

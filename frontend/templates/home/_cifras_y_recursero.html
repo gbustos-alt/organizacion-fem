@@ -1,0 +1,72 @@
+<!-- Sección: Recursero (Mockup Categorías Inmersivas Full-Width) -->
+<section class="cifras-recursero-section" style="background-color: var(--color-bg); padding: var(--space-xxl) 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); width: 100%;">
+    <div class="container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md);">
+        
+        <div style="text-align: center; margin-bottom: var(--space-xl);">
+            <span class="eyebrow" style="color: var(--color-coral); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: var(--space-xxs);">Repositorio Curado</span>
+            <h2 style="font-family: var(--font-display); font-size: 2.2rem; color: var(--color-primary); margin: 0; line-height: 1.2; font-weight: 700; text-transform: none; letter-spacing: 0.5px;">
+                Recursero
+            </h2>
+        </div>
+
+        <!-- Grilla de Categorías Inmersivas Full-Width (4 Columnas) -->
+        <div class="recursero-categories-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-md);">
+            
+            <!-- Tarjeta 1: Pedagógico -->
+            <a href="/materiales?categoria=Pedagógico" class="recursero-category-card" style="position: relative; height: 220px; border-radius: var(--radius-md); overflow: hidden; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: var(--shadow-subtle);">
+                <div class="card-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('/static/img/fotos prueba/dimension_pedagogica.png'); background-size: cover; background-position: center; filter: brightness(0.65); transition: var(--transition-smooth); z-index: 1;"></div>
+                <div style="position: relative; z-index: 2; text-align: center; padding: var(--space-sm);">
+                    <h3 style="font-family: var(--font-sans); font-size: 1.35rem; font-weight: 800; color: var(--color-white); margin: 0; text-shadow: 0 2px 6px rgba(0,0,0,0.8); letter-spacing: 0.5px;">
+                        Recursos Pedagógicos
+                    </h3>
+                </div>
+            </a>
+
+            <!-- Tarjeta 2: Pastoral -->
+            <a href="/materiales?categoria=Pastoral" class="recursero-category-card" style="position: relative; height: 220px; border-radius: var(--radius-md); overflow: hidden; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: var(--shadow-subtle);">
+                <div class="card-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('/static/img/fotos prueba/dimension_pastoral.png'); background-size: cover; background-position: center; filter: brightness(0.65); transition: var(--transition-smooth); z-index: 1;"></div>
+                <div style="position: relative; z-index: 2; text-align: center; padding: var(--space-sm);">
+                    <h3 style="font-family: var(--font-sans); font-size: 1.35rem; font-weight: 800; color: var(--color-white); margin: 0; text-shadow: 0 2px 6px rgba(0,0,0,0.8); letter-spacing: 0.5px;">
+                        Materiales Pastorales
+                    </h3>
+                </div>
+            </a>
+
+            <!-- Tarjeta 3: Editorial -->
+            <a href="/materiales?categoria=Editorial" class="recursero-category-card" style="position: relative; height: 220px; border-radius: var(--radius-md); overflow: hidden; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: var(--shadow-subtle);">
+                <div class="card-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('/static/img/fotos prueba/library.jpeg'); background-size: cover; background-position: center; filter: brightness(0.65); transition: var(--transition-smooth); z-index: 1;"></div>
+                <div style="position: relative; z-index: 2; text-align: center; padding: var(--space-sm);">
+                    <h3 style="font-family: var(--font-sans); font-size: 1.35rem; font-weight: 800; color: var(--color-white); margin: 0; text-shadow: 0 2px 6px rgba(0,0,0,0.8); letter-spacing: 0.5px;">
+                        Guías Editoriales
+                    </h3>
+                </div>
+            </a>
+
+            <!-- Tarjeta 4: Formación -->
+            <a href="/materiales?categoria=Pedagógico" class="recursero-category-card" style="position: relative; height: 220px; border-radius: var(--radius-md); overflow: hidden; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: var(--shadow-subtle);">
+                <div class="card-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('/static/img/2016_10_26_ALTA_RESOLUCION_0163-scaled1.jpg'); background-size: cover; background-position: center; filter: brightness(0.65); transition: var(--transition-smooth); z-index: 1;"></div>
+                <div style="position: relative; z-index: 2; text-align: center; padding: var(--space-sm);">
+                    <h3 style="font-family: var(--font-sans); font-size: 1.35rem; font-weight: 800; color: var(--color-white); margin: 0; text-shadow: 0 2px 6px rgba(0,0,0,0.8); letter-spacing: 0.5px;">
+                        Formación Continua
+                    </h3>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- Comportamientos Hover -->
+<style>
+    .recursero-category-card {
+        transition: var(--transition-smooth);
+    }
+    .recursero-category-card:hover .card-bg {
+        transform: scale(1.08);
+        filter: brightness(0.5) !important;
+    }
+    .recursero-category-card:hover h3 {
+        color: var(--color-pantone-yellow-raw) !important;
+    }
+</style>

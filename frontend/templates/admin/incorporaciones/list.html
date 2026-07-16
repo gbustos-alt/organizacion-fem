@@ -1,0 +1,106 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Auditorías de Incorporación | Intranet Fundación FEM{% endblock %}
+{% block navbar_title %}Auditorías de Incorporación{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: var(--space-lg); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-md);">
+    <div>
+        <p style="color: var(--color-text-muted); margin: 0; font-size: 0.95rem;">
+            Acompañamiento técnico y auditorías integrales para la incorporación de nuevos colegios a la red.
+        </p>
+    </div>
+    {% if "Administrador General" in user_roles or "Auditor Pedagógico" in user_roles or "Auditor Pastoral" in user_roles or "Auditor Económico" in user_roles or "Auditor Legal" in user_roles %}
+    <a href="/admin/incorporaciones/crear" class="btn-admin btn-admin-primary">
+        + Registrar Escuela Candidata
+    </a>
+    {% endif %}
+</div>
+
+<!-- Listado de Candidatos -->
+<div class="data-table-wrapper">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Colegio Candidato</th>
+                <th>Congregación</th>
+                <th>Localidad</th>
+                <th>Auditorías por Área</th>
+                <th>Estado Global</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in incorporaciones %}
+            <tr>
+                <td style="font-weight: 600;">
+                    {{ c.nombre }}
+                </td>
+                <td>
+                    {{ c.congregacion or 'No especificada' }}
+                </td>
+                <td>
+                    {{ c.localidad or '' }}{% if c.localidad and c.provincia %}, {% endif %}{{ c.provincia or '' }}
+                </td>
+                <td>
+                    <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; font-size: 0.75rem;">
+                        <span style="padding: 0.2rem 0.4rem; border-radius: 4px; font-weight: 600;
+                                     {% if c.estado_pedagogica == 'COMPLETADO' %}background-color: #dcfce7; color: #15803d;
+                                     {% elif c.estado_pedagogica == 'OBSERVADO' %}background-color: #fee2e2; color: #d24238;
+                                     {% elif c.estado_pedagogica == 'EN_PROCESO' %}background-color: #fef9c3; color: #a16207;
+                                     {% else %}background-color: #f1f5f9; color: #64748b;{% endif %}">
+                            PED: {{ c.estado_pedagogica }}
+                        </span>
+                        
+                        <span style="padding: 0.2rem 0.4rem; border-radius: 4px; font-weight: 600;
+                                     {% if c.estado_pastoral == 'COMPLETADO' %}background-color: #dcfce7; color: #15803d;
+                                     {% elif c.estado_pastoral == 'OBSERVADO' %}background-color: #fee2e2; color: #d24238;
+                                     {% elif c.estado_pastoral == 'EN_PROCESO' %}background-color: #fef9c3; color: #a16207;
+                                     {% else %}background-color: #f1f5f9; color: #64748b;{% endif %}">
+                            PAS: {{ c.estado_pastoral }}
+                        </span>
+
+                        <span style="padding: 0.2rem 0.4rem; border-radius: 4px; font-weight: 600;
+                                     {% if c.estado_economica == 'COMPLETADO' %}background-color: #dcfce7; color: #15803d;
+                                     {% elif c.estado_economica == 'OBSERVADO' %}background-color: #fee2e2; color: #d24238;
+                                     {% elif c.estado_economica == 'EN_PROCESO' %}background-color: #fef9c3; color: #a16207;
+                                     {% else %}background-color: #f1f5f9; color: #64748b;{% endif %}">
+                            ECO: {{ c.estado_economica }}
+                        </span>
+
+                        <span style="padding: 0.2rem 0.4rem; border-radius: 4px; font-weight: 600;
+                                     {% if c.estado_legal == 'COMPLETADO' %}background-color: #dcfce7; color: #15803d;
+                                     {% elif c.estado_legal == 'OBSERVADO' %}background-color: #fee2e2; color: #d24238;
+                                     {% elif c.estado_legal == 'EN_PROCESO' %}background-color: #fef9c3; color: #a16207;
+                                     {% else %}background-color: #f1f5f9; color: #64748b;{% endif %}">
+                            LEG: {{ c.estado_legal }}
+                        </span>
+                    </div>
+                </td>
+                <td>
+                    <span style="padding: 0.25rem 0.6rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; display: inline-block;
+                                 {% if c.estado == 'APROBADA' %}background-color: #dcfce7; color: #15803d;
+                                 {% elif c.estado == 'EN_PROCESO' %}background-color: #ffedd5; color: #c2410c;
+                                 {% else %}background-color: #f1f5f9; color: #64748b;{% endif %}">
+                        {{ c.estado }}
+                    </span>
+                </td>
+                <td>
+                    <div class="actions-cell">
+                        <a href="/admin/incorporaciones/detalle/{{ c.id }}" class="btn-action btn-action-edit">
+                            👁️ Ver Detalle
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" style="text-align: center; color: var(--color-text-muted); padding: var(--space-xl);">
+                    No hay solicitudes de incorporación registradas.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

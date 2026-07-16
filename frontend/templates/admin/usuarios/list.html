@@ -1,0 +1,79 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Usuarios y Roles | Intranet Fundación FEM{% endblock %}
+{% block navbar_title %}Usuarios y Roles de Gestión{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: var(--space-lg);">
+    <p style="color: var(--color-text-muted); margin: 0; font-size: 0.95rem;">
+        Administración centralizada de accesos de personal y roles de gestión con asignación de ámbitos.
+    </p>
+</div>
+
+<div class="data-table-wrapper">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Correo Electrónico</th>
+                <th>Estado</th>
+                <th>Rol Asignado</th>
+                <th>Ámbito Territorial (Scope)</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in usuarios %}
+            <tr>
+                <td style="font-weight: 600;">
+                    {{ u.username }}
+                </td>
+                <td>
+                    {{ u.email }}
+                </td>
+                <td>
+                    <span style="padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600;
+                                 {% if u.activo %}background-color: #dcfce7; color: #15803d;
+                                 {% else %}background-color: #fee2e2; color: #d24238;{% endif %}">
+                        {% if u.activo %}ACTIVO{% else %}INACTIVO / SUSPENDIDO{% endif %}
+                    </span>
+                </td>
+                <td>
+                    {% if u.roles_asignados %}
+                        <span style="font-weight: 550; color: var(--color-primary);">
+                            {{ u.roles_asignados[0].rol.nombre }}
+                        </span>
+                    {% else %}
+                        <span style="color: var(--color-text-muted); font-style: italic;">Sin Rol</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if u.roles_asignados %}
+                        {% if u.roles_asignados[0].colegio %}
+                            🏫 {{ u.roles_asignados[0].colegio.nombre }}
+                        {% else %}
+                            🌐 Global (Toda la Fundación)
+                        {% endif %}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td>
+                    <div class="actions-cell">
+                        <a href="/admin/usuarios/editar/{{ u.id }}" class="btn-action btn-action-edit">
+                            ✏️ Editar Rol / Ámbito
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" style="text-align: center; color: var(--color-text-muted); padding: var(--space-xl);">
+                    No hay usuarios registrados en el sistema.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

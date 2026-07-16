@@ -1,53 +1,31 @@
-<!-- Sección 1: Hero Principal (Narrativa Humana e Institucional) -->
-<section class="home-hero-section">
-    <div class="container hero-container hero-grid">
-        <div class="hero-content">
-            <span class="eyebrow">Acompañamiento Educativo y Pastoral</span>
-            <h1>Preservar el legado, sostener el porvenir de la educación católica.</h1>
-            <p>Caminamos junto a las comunidades escolares y congregaciones religiosas en sus procesos de transición, resguardando la riqueza de su carisma fundacional y promoviendo la viabilidad y el sostenimiento de sus obras en el país.</p>
-            <div class="hero-actions">
-                {{ macros.render_button("Conocer Colegios Acompañados", "/colegios", "primary", "btn-hero-primary") }}
-                {{ macros.render_button("Contacto Institucional", "/contacto", "white-outline", "btn-hero-secondary") }}
-            </div>
-        </div>
-        <div class="hero-media">
-            <div class="hero-slider-container" id="hero-slider">
-                <div class="hero-slider-wrapper">
-                    <!-- Slide 1: Actividades -->
-                    <div class="hero-slide active">
-                        <img class="hero-slider-img" src="{{ url_for('static', path='img/fotos prueba/escuela.jpeg') }}" alt="Encuentros y actividades de Organización FEM">
-                        <div class="hero-slide-caption">
-                            <h3>Encuentros y Misión</h3>
-                            <p>Caminamos junto a las comunidades en su labor formativa y pastoral.</p>
-                        </div>
-                    </div>
-                    <!-- Slide 2: Comunicados Destacados -->
-                    <div class="hero-slide">
-                        <img class="hero-slider-img" src="{{ url_for('static', path='img/fotos prueba/ninos.jpeg') }}" alt="Novedades y comunicados de la red">
-                        <div class="hero-slide-caption">
-                            <h3>Comunidad en Red</h3>
-                            <p>Compartimos noticias, recursos y formación para sostener el carisma.</p>
-                        </div>
-                    </div>
-                    <!-- Slide 3: Lema Anual (Con fondo claro y logo/lema) -->
-                    <div class="hero-slide slide-light">
-                        <img class="hero-slider-img" src="{{ url_for('static', path='img/lema-fem.png') }}" alt="Lema FEM - Educación y Misión" style="object-fit: contain; padding: 2rem; background-color: var(--color-white);">
-                        <div class="hero-slide-caption">
-                            <h3>Lema Institucional</h3>
-                            <p>Caminar juntos en fidelidad creadora al legado y carismas fundacionales.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Controles -->
-                <button class="slider-btn prev-btn" id="slider-prev" aria-label="Anterior">⟨</button>
-                <button class="slider-btn next-btn" id="slider-next" aria-label="Siguiente">⟩</button>
-                <!-- Indicadores -->
-                <div class="slider-indicators" id="slider-indicators">
-                    <span class="indicator active" data-index="0"></span>
-                    <span class="indicator" data-index="1"></span>
-                    <span class="indicator" data-index="2"></span>
-                </div>
-            </div>
+<!-- Sección 1: Hero Principal (Lema 2026 Inmersivo del Mockup) -->
+<section class="home-hero-section-mockup" style="position: relative; height: 75vh; min-height: 500px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: var(--color-primary); width: 100%;">
+    <!-- Imagen de fondo inmersiva -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+        <img src="/static/img/fotos prueba/escuela.jpeg" alt="Educación y Misión" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55);">
+    </div>
+    
+    <!-- Contenido Centrado del Lema Anual -->
+    <div style="position: relative; z-index: 2; text-align: center; color: var(--color-white); max-width: 900px; padding: 0 var(--space-md); margin-top: -2rem;">
+        <span class="eyebrow" style="color: var(--color-pantone-yellow-raw); text-transform: uppercase; letter-spacing: 2.5px; font-weight: 700; font-size: 0.95rem; display: block; margin-bottom: var(--space-sm); text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+            Lema Institucional {{ lema.anio if lema else '2026' }}
+        </span>
+        <h1 style="font-family: var(--font-serif); font-style: italic; font-size: clamp(2.2rem, 5.5vw, 4.2rem); font-weight: 700; margin: 0; color: var(--color-white); text-shadow: 0 4px 20px rgba(0,0,0,0.65); letter-spacing: -0.5px; line-height: 1.2;">
+            &ldquo;{{ lema.lema_texto if lema else 'Caminando juntos en la Educación y la Misión' }}&rdquo;
+        </h1>
+    </div>
+
+    <!-- Indicador de Scroll (Mouse) -->
+    <div style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; opacity: 0.8;">
+        <div style="width: 24px; height: 38px; border: 2px solid var(--color-white); border-radius: 12px; position: relative; display: flex; justify-content: center; padding-top: 6px;">
+            <div style="width: 4px; height: 8px; background-color: var(--color-white); border-radius: 2px; animation: scrollDot 1.5s infinite;"></div>
         </div>
     </div>
 </section>
+
+<style>
+    @keyframes scrollDot {
+        0% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(12px); opacity: 0; }
+    }
+</style>

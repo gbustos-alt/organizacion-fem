@@ -1,0 +1,35 @@
+<!-- Sección: La FEM en Cifras (Estadísticas Reales) -->
+<section class="cifras-section" style="background-color: var(--color-bg); padding: var(--space-xxl) 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+    <div class="container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md);">
+        <div style="text-align: center; margin-bottom: var(--space-xl);">
+            <span class="eyebrow" style="color: var(--color-coral); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; font-size: 0.85rem; display: block;">Nuestra Presencia</span>
+            <h2 style="font-family: var(--font-display); font-size: 2.2rem; color: var(--color-primary); margin-top: var(--space-xxs); margin-bottom: 0;">La FEM en Cifras</h2>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); justify-content: center; max-width: 800px; margin: 0 auto;">
+            <!-- Cifra 1: Colegios -->
+            <div class="cifra-card" style="background-color: var(--color-white); padding: var(--space-xl); border-radius: var(--radius-md); border: 1px solid var(--color-border); box-shadow: var(--shadow-subtle); display: flex; align-items: center; gap: var(--space-md); transition: var(--transition-smooth);">
+                <div style="background-color: rgba(12, 30, 54, 0.05); color: var(--color-primary); width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0;">
+                    🏫
+                </div>
+                <div>
+                    <h3 style="font-family: var(--font-brand-bold); font-size: 2.5rem; margin: 0; color: var(--color-primary); line-height: 1;">{{ cant_colegios or 15 }}</h3>
+                    <p style="font-weight: 600; margin: 0; color: var(--color-text); margin-top: 0.25rem;">Colegios</p>
+                    <p style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0; margin-top: 0.15rem;">Comunidades educativas bajo tutela y acompañamiento activo</p>
+                </div>
+            </div>
+
+            <!-- Cifra 2: Alumnos -->
+            <div class="cifra-card" style="background-color: var(--color-white); padding: var(--space-xl); border-radius: var(--radius-md); border: 1px solid var(--color-border); box-shadow: var(--shadow-subtle); display: flex; align-items: center; gap: var(--space-md); transition: var(--transition-smooth);">
+                <div style="background-color: rgba(241, 101, 54, 0.05); color: var(--color-coral); width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0;">
+                    🧑‍🤝‍🧑
+                </div>
+                <div>
+                    <h3 style="font-family: var(--font-brand-bold); font-size: 2.5rem; margin: 0; color: var(--color-primary); line-height: 1;">{{ "{:,}".format(cant_alumnos or 10000) }}</h3>
+                    <p style="font-weight: 600; margin: 0; color: var(--color-text); margin-top: 0.25rem;">Alumnos</p>
+                    <p style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0; margin-top: 0.15rem;">Educados con calidad, compromiso social y valores cristianos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

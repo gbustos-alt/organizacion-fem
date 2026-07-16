@@ -318,3 +318,88 @@ def test_404_custom_error_page():
     response = client.get("/ruta-inexistente-para-test")
     assert response.status_code == 404
     assert "Página No Encontrada" in response.text
+
+
+def test_public_materiales():
+    response = client.get("/materiales")
+    assert response.status_code == 200
+    assert "Material y Reflexión" in response.text
+
+
+def test_public_memorias():
+    response = client.get("/memorias")
+    assert response.status_code == 200
+    assert "Memorias Anuales" in response.text
+
+
+def test_google_login_simulation():
+    # 1. Solicitar redirección a login de Google (debe caer en mock-login al no haber env vars)
+    login_resp = client.get("/admin/auth/google/login", follow_redirects=False)
+    assert login_resp.status_code in (302, 303, 307)
+    assert "/admin/auth/google/mock-login" in login_resp.headers["location"]
+
+    # 2. Renderizar simulador
+    mock_page = client.get("/admin/auth/google/mock-login")
+    assert mock_page.status_code == 200
+    assert "Google Workspace" in mock_page.text
+
+    # 3. Enviar correo inválido (no fundacionfem.org)
+    bad_submit = client.post("/admin/auth/google/mock-login", data={"email": "usuario@gmail.com"}, follow_redirects=False)
+    assert "La cuenta debe pertenecer estrictamente al dominio @fundacionfem.org" in bad_submit.text
+
+    # 4. Enviar correo válido
+    good_submit = client.post("/admin/auth/google/mock-login", data={"email": "nuevo.auditor@fundacionfem.org", "nombre": "NuevoAuditor"}, follow_redirects=False)
+    assert good_submit.status_code in (302, 303, 307)
+    assert "/admin/auth/google/callback" in good_submit.headers["location"]
+
+    # 5. Seguir callback
+    callback_url = good_submit.headers["location"]
+    callback_resp = client.get(callback_url, follow_redirects=False)
+    assert callback_resp.status_code in (302, 303, 307)
+    assert "/admin/" in callback_resp.headers["location"]
+    assert "session_id" in callback_resp.cookies
+
+
+def test_admin_incorporaciones_flow():
+    # 1. Login Admin
+    login = client.post("/admin/auth/login", data={"username": "admin", "password": "admin123"}, follow_redirects=False)
+    cookie = login.cookies["session_id"]
+
+    # 2. Listar
+    list_resp = client.get("/admin/incorporaciones/", cookies={"session_id": cookie})
+    assert list_resp.status_code == 200
+    assert "Auditorías de Incorporación" in list_resp.text
+
+    # 3. Crear candidato
+    create_resp = client.post("/admin/incorporaciones/crear", data={
+        "nombre": "Colegio San Miguel Test",
+        "congregacion": "Hermanas Franciscanas",
+        "diocesis": "San Miguel",
+        "localidad": "San Miguel",
+        "provincia": "Provincia de Buenos Aires",
+        "drive_folder_url": "https://drive.google.com/drive/folders/test"
+    }, cookies={"session_id": cookie}, follow_redirects=False)
+    assert create_resp.status_code in (302, 303, 307)
+
+    # 4. Detalle
+    detail_resp = client.get("/admin/incorporaciones/detalle/1", cookies={"session_id": cookie})
+    assert detail_resp.status_code == 200
+    assert "Ficha Técnica" in detail_resp.text
+
+
+def test_admin_usuarios_view():
+    login = client.post("/admin/auth/login", data={"username": "admin", "password": "admin123"}, follow_redirects=False)
+    cookie = login.cookies["session_id"]
+
+    list_resp = client.get("/admin/usuarios/", cookies={"session_id": cookie})
+    assert list_resp.status_code == 200
+    assert "Usuarios y Roles de Gestión" in list_resp.text
+
+
+def test_admin_configuraciones_view():
+    login = client.post("/admin/auth/login", data={"username": "admin", "password": "admin123"}, follow_redirects=False)
+    cookie = login.cookies["session_id"]
+
+    list_resp = client.get("/admin/configuraciones/", cookies={"session_id": cookie})
+    assert list_resp.status_code == 200
+    assert "Lema Anual" in list_resp.text

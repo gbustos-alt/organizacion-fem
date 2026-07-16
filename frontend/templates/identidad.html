@@ -1,28 +1,182 @@
 {% extends "base.html" %}
-{% import "components/macros.html" as macros %}
 
-{% block title %}Nuestra Identidad | Organización FEM{% endblock %}
+{% block title %}Nuestra Identidad | Fundación FEM{% endblock %}
 
 {% block content %}
-<section class="page-hero">
-    <div class="container">
-        <span class="eyebrow">La Fundación</span>
-        <h1 class="page-title">Nuestra Identidad</h1>
-        <p class="page-subtitle">Quiénes somos, nuestros orígenes y los fundamentos institucionales de la FEM.</p>
+<!-- Banner de Sección Inmersivo Estilo Cáritas -->
+<section class="page-hero-mockup" style="position: relative; height: 32vh; min-height: 250px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: var(--color-primary); width: 100%;">
+    <!-- Imagen de fondo inmersiva -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+        <img src="/static/img/2015_10_21_ALTA_RESOLUCION_0110-scaled.jpg" alt="Identidad" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55);">
+    </div>
+    
+    <!-- Contenido Centrado -->
+    <div style="position: relative; z-index: 2; text-align: center; color: var(--color-white); max-width: 800px; padding: 0 var(--space-md); margin-top: -1rem;">
+        <span class="eyebrow" style="color: var(--color-pantone-yellow-raw); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: var(--space-xxs);">Quiénes Somos</span>
+        <h1 style="font-family: var(--font-sans); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; margin: 0; color: var(--color-white); text-shadow: 0 2px 10px rgba(0,0,0,0.5); letter-spacing: -0.5px; line-height: 1.1;">
+            Nuestra Identidad
+        </h1>
+    </div>
+
+    <!-- Divisor Ondulado SVG -->
+    <div style="position: absolute; bottom: -2px; left: 0; width: 100%; overflow: hidden; line-height: 0; z-index: 2;">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" style="position: relative; display: block; width: calc(105% + 1.3px); height: 35px; fill: var(--color-primary);">
+            <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86C234.9,67.45,120.5,50.12,0,27.35V120H1200V95.8C1132.19,118.89,1055.71,111.28,985.66,92.83Z"></path>
+        </svg>
     </div>
 </section>
 
-<section class="home-section" id="identidad" style="border-top: none;">
-    <div class="container grid-two-cols">
-        <div class="editorial-block">
-            <h2>Orígenes y Constitución</h2>
-            <p>La <strong>Fundación "Educación y Misión" (FEM)</strong> es una persona jurídica civil de bien público constituida por la <strong>FAERA (Federación de Asociaciones Educativas de la República Argentina)</strong>.</p>
-            <p class="mt-2">Nacemos como una respuesta eclesial y comunitaria para dar soporte organizativo, pastoral y pedagógico a instituciones educativas cuyas congregaciones originarias requieren un acompañamiento fraterno en su conducción, velando por la preservación de su historia y carisma.</p>
+<!-- SECCIÓN 1: Misión y Visión (Bloque Azul Catedral Estilo Cáritas) -->
+<section style="background-color: var(--color-primary); color: var(--color-white); padding: var(--space-xxl) 0 var(--space-3xl) 0; width: 100%;">
+    <div class="container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md); display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-xxl); align-items: center;" class="d-grid-mobile-1">
+        
+        <div>
+            <!-- Misión -->
+            <div style="margin-bottom: var(--space-xl);">
+                <h2 style="font-family: var(--font-sans); font-size: 2.2rem; font-weight: 800; color: var(--color-white); margin-bottom: var(--space-md);">
+                    Nuestra misión
+                </h2>
+                <p style="font-size: 1.1rem; line-height: 1.7; color: rgba(255, 255, 255, 0.9);">
+                    Animar, coordinar y acompañar la labor educativa y pastoral de los colegios católicos, procurando sostener y consolidar los proyectos pedagógicos de la red en fidelidad al legado y carisma de las congregaciones fundadoras.
+                </p>
+            </div>
+
+            <!-- Visión -->
+            <div>
+                <h2 style="font-family: var(--font-sans); font-size: 2.2rem; font-weight: 800; color: var(--color-white); margin-bottom: var(--space-md);">
+                    Nuestra visión
+                </h2>
+                <p style="font-size: 1.1rem; line-height: 1.7; color: rgba(255, 255, 255, 0.9); margin-bottom: var(--space-sm);">
+                    La visión de la Fundación FEM es un ecosistema educativo donde:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-sm); font-size: 1.05rem; color: rgba(255, 255, 255, 0.95);">
+                    <li style="display: flex; gap: var(--space-xs); align-items: start;">
+                        <span style="color: var(--color-pantone-yellow-raw); font-weight: bold;">•</span>
+                        <span>Prevalezca la comunión fraterna y el enriquecimiento en lo inter-carismático.</span>
+                    </li>
+                    <li style="display: flex; gap: var(--space-xs); align-items: start;">
+                        <span style="color: var(--color-pantone-yellow-raw); font-weight: bold;">•</span>
+                        <span>Se proteja y resguarde la identidad singular y el carisma fundacional de cada colegio.</span>
+                    </li>
+                    <li style="display: flex; gap: var(--space-xs); align-items: start;">
+                        <span style="color: var(--color-pantone-yellow-raw); font-weight: bold;">•</span>
+                        <span>Se garantice el sostenimiento integral de las obras escolares y la atención a todos sus educadores.</span>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="editorial-block">
-            <h2>Objetivo Principal</h2>
-            <p>Nuestro objetivo principal es el cuidado, la orientación y el acompañamiento fraterno de las escuelas o establecimientos educativos de todos los niveles, la preservación y sostenimiento de las obras educativas y todas las actividades conexas que sean útiles para garantizar su viabilidad y fines pastorales.</p>
+
+        <!-- Imagen Circular Flotante -->
+        <div style="text-align: center;">
+            <div style="display: inline-block; position: relative;">
+                <!-- Círculo curvo decorativo -->
+                <div style="position: absolute; top: -10px; left: -10px; width: 100%; height: 100%; border: 3px solid var(--color-pantone-yellow-raw); border-radius: 50%; z-index: 1;"></div>
+                <img src="/static/img/fotos prueba/ninos.jpeg" alt="Comunidad FEM" 
+                     style="width: 290px; height: 290px; border-radius: 50%; object-fit: cover; position: relative; z-index: 2; border: 5px solid var(--color-primary);">
+            </div>
         </div>
+
     </div>
 </section>
+
+<!-- Divisor Ondulado Invertido SVG para volver al fondo claro -->
+<div style="overflow: hidden; line-height: 0; width: 100%; background-color: var(--color-primary);">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" style="position: relative; display: block; width: calc(105% + 1.3px); height: 35px; fill: var(--color-bg); transform: rotate(180deg);">
+        <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86C234.9,67.45,120.5,50.12,0,27.35V120H1200V95.8C1132.19,118.89,1055.71,111.28,985.66,92.83Z"></path>
+    </svg>
+</div>
+
+<!-- SECCIÓN 2: Quiénes Somos / Pilares (Estilo Cáritas con círculo e íconos) -->
+<section style="background-color: var(--color-bg); padding: var(--space-xxl) 0; width: 100%;">
+    <div class="container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md); display: grid; grid-template-columns: 0.8fr 1.2fr; gap: var(--space-xxl); align-items: center;" class="d-grid-mobile-1">
+        
+        <!-- Imagen Circular Izquierda -->
+        <div style="text-align: center;">
+            <div style="display: inline-block; position: relative;">
+                <div style="position: absolute; top: 10px; right: -10px; width: 100%; height: 100%; border: 3px solid var(--color-coral); border-radius: 50%; z-index: 1;"></div>
+                <img src="/static/img/fotos prueba/manos.jpeg" alt="Valores de la FEM" 
+                     style="width: 290px; height: 290px; border-radius: 50%; object-fit: cover; position: relative; z-index: 2; border: 5px solid var(--color-bg);">
+            </div>
+        </div>
+
+        <!-- Pilares e Identidad -->
+        <div>
+            <span class="eyebrow" style="color: var(--color-coral); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: var(--space-xxs);">Nuestros Fundamentos</span>
+            <h2 style="font-family: var(--font-sans); font-size: 2.2rem; color: var(--color-primary); margin: 0 0 var(--space-md) 0; font-weight: 800;">
+                Cómo sostenemos la Obra
+            </h2>
+            
+            <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+                <!-- Pilar 1 -->
+                <div style="display: flex; gap: var(--space-md); align-items: start;">
+                    <div style="font-size: 1.5rem; color: var(--color-coral); margin-top: 0.2rem;">✦</div>
+                    <div>
+                        <h4 style="font-size: 1.15rem; color: var(--color-primary); margin: 0 0 0.2rem 0; font-weight: 700;">Constitución eclesial por FAERA</h4>
+                        <p style="font-size: 0.95rem; color: var(--color-text-muted); margin: 0; line-height: 1.5;">Nacemos como una obra de bien público promovida por FAERA para guiar, sostener y administrar de forma ordenada a las comunidades católicas en transición.</p>
+                    </div>
+                </div>
+
+                <!-- Pilar 2 -->
+                <div style="display: flex; gap: var(--space-md); align-items: start;">
+                    <div style="font-size: 1.5rem; color: var(--color-coral); margin-top: 0.2rem;">✦</div>
+                    <div>
+                        <h4 style="font-size: 1.15rem; color: var(--color-primary); margin: 0 0 0.2rem 0; font-weight: 700;">Acompañamiento en 4 Dimensiones</h4>
+                        <p style="font-size: 0.95rem; color: var(--color-text-muted); margin: 0; line-height: 1.5;">Brindamos soporte integral a través de nuestras áreas de auditoría e incorporación: Dimensión Pedagógica, Pastoral, Administrativa y Legal.</p>
+                    </div>
+                </div>
+
+                <!-- Pilar 3 -->
+                <div style="display: flex; gap: var(--space-md); align-items: start;">
+                    <div style="font-size: 1.5rem; color: var(--color-coral); margin-top: 0.2rem;">✦</div>
+                    <div>
+                        <h4 style="font-size: 1.15rem; color: var(--color-primary); margin: 0 0 0.2rem 0; font-weight: 700;">Preservación carismática y del empleo</h4>
+                        <p style="font-size: 0.95rem; color: var(--color-text-muted); margin: 0; line-height: 1.5;">Cuidamos de manera prioritaria la continuidad laboral de los equipos escolares y garantizamos que el carisma fundacional de las congregaciones siga vivo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- SECCIÓN 3: Pastoral Caritativa / Vínculo Congregacional (Estilo Cáritas) -->
+<section style="background-color: var(--color-white); padding: var(--space-xxl) 0 var(--space-3xl) 0; border-top: 1px solid var(--color-border); width: 100%;">
+    <div class="container" style="max-width: 900px; margin: 0 auto; padding: 0 var(--space-md); text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--space-lg);">
+        
+        <div>
+            <h2 style="font-family: var(--font-sans); font-size: 2.2rem; color: var(--color-primary); font-weight: 800; margin-bottom: var(--space-md);">
+                Caminar con las Congregaciones
+            </h2>
+            <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-muted); max-width: 750px; margin: 0 auto;">
+                Establecemos un canal de diálogo y apoyo mutuo con las Congregaciones Religiosas y Diócesis propietarias, brindándoles un proceso de traspaso y acompañamiento fraterno y confidencial para resguardar la riqueza espiritual del colegio.
+            </p>
+        </div>
+
+        <div style="margin-top: var(--space-md);">
+            <div style="display: inline-block; position: relative;">
+                <div style="position: absolute; bottom: -10px; left: -10px; width: 100%; height: 100%; border: 3px solid var(--color-primary); border-radius: 50%; z-index: 1;"></div>
+                <img src="/static/img/fotos prueba/procesion.jpeg" alt="Caminar con Congregaciones" 
+                     style="width: 250px; height: 250px; border-radius: 50%; object-fit: cover; position: relative; z-index: 2; border: 5px solid var(--color-white);">
+            </div>
+        </div>
+
+        <div style="margin-top: var(--space-md);">
+            <a href="/contacto" class="btn btn-primary" style="padding: 0.8rem 2.5rem; text-transform: uppercase; font-family: var(--font-brand-bold); letter-spacing: 0.5px;">
+                Contactar Acompañamiento
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- Estilo responsivo -->
+<style>
+    @media (max-width: 991px) {
+        .d-grid-mobile-1 {
+            grid-template-columns: 1fr !important;
+            gap: var(--space-xl) !important;
+            text-align: center !important;
+        }
+    }
+</style>
 {% endblock %}

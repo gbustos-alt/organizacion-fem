@@ -29,6 +29,21 @@
       "recurso": "auditoria",
       "acciones": ["leer"],
       "descripcion": "Visualización de logs de seguridad"
+    },
+    {
+      "recurso": "auditoria_incorporacion",
+      "acciones": ["crear", "leer", "editar", "eliminar", "aprobar"],
+      "descripcion": "Gestión y Acompañamiento de Auditorías de Incorporación"
+    },
+    {
+      "recurso": "configuracion",
+      "acciones": ["leer", "editar"],
+      "descripcion": "Gestión del Lema Anual y Memorias de la Fundación"
+    },
+    {
+      "recurso": "capacitacion",
+      "acciones": ["leer", "crear", "editar", "eliminar"],
+      "descripcion": "Acceso y gestión de Capacitación MOOC para directivos"
     }
   ],
   "roles": [
@@ -44,6 +59,74 @@
       ]
     },
     {
+      "nombre": "Auditor Pedagógico",
+      "descripcion": "Gestión y auditoría del área pedagógica y curricular de la red",
+      "scope_tipo": "GLOBAL",
+      "permisos": [
+        {
+          "recurso": "colegio",
+          "acciones": ["leer"]
+        },
+        {
+          "recurso": "auditoria_incorporacion",
+          "acciones": ["leer", "editar"]
+        },
+        {
+          "recurso": "material_reflexion",
+          "acciones": ["leer", "crear", "editar"]
+        }
+      ]
+    },
+    {
+      "nombre": "Auditor Pastoral",
+      "descripcion": "Gestión y auditoría del área pastoral y evangelización de la red",
+      "scope_tipo": "GLOBAL",
+      "permisos": [
+        {
+          "recurso": "colegio",
+          "acciones": ["leer"]
+        },
+        {
+          "recurso": "auditoria_incorporacion",
+          "acciones": ["leer", "editar"]
+        },
+        {
+          "recurso": "material_reflexion",
+          "acciones": ["leer", "crear", "editar"]
+        }
+      ]
+    },
+    {
+      "nombre": "Auditor Económico",
+      "descripcion": "Gestión y auditoría económica, contable y administrativa de la red",
+      "scope_tipo": "GLOBAL",
+      "permisos": [
+        {
+          "recurso": "colegio",
+          "acciones": ["leer"]
+        },
+        {
+          "recurso": "auditoria_incorporacion",
+          "acciones": ["leer", "editar"]
+        }
+      ]
+    },
+    {
+      "nombre": "Auditor Legal",
+      "descripcion": "Gestión y auditoría legal, laboral y societaria de la red",
+      "scope_tipo": "GLOBAL",
+      "permisos": [
+        {
+          "recurso": "colegio",
+          "acciones": ["leer"]
+        },
+        {
+          "recurso": "auditoria_incorporacion",
+          "acciones": ["leer", "editar"]
+        }
+      ]
+    },
+    {
       "nombre": "Director de Colegio",
       "descripcion": "Acceso de lectura y escritura limitado a su colegio",
       "scope_tipo": "COLEGIO",
@@ -55,6 +138,10 @@
         {
           "recurso": "matricula",
           "acciones": ["crear", "leer", "editar", "aprobar", "rechazar"]
+        },
+        {
+          "recurso": "capacitacion",
+          "acciones": ["leer"]
         }
       ]
     },
@@ -72,6 +159,12 @@
           "acciones": ["crear", "leer"]
         }
       ]
+    },
+    {
+      "nombre": "Invitado",
+      "descripcion": "Usuario del dominio fundacionfem.org sin roles de gestión asignados",
+      "scope_tipo": "GLOBAL",
+      "permisos": []
     }
   ]
 }

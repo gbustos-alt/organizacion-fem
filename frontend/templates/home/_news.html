@@ -11,7 +11,7 @@
             {% for nov in novedades %}
             <article class="news-card">
                 <div class="news-image-wrapper">
-                    <img src="{{ nov.imagen_url or url_for('static', path='img/default-news.jpg') }}" alt="{{ nov.titulo }}" class="news-img">
+                    <img src="{{ nov.imagen_url if (nov.imagen_url and nov.imagen_url != 'None' and nov.imagen_url != '') else '/static/img/fotos prueba/novedad_encuentro.png' }}" alt="{{ nov.titulo }}" class="news-img" onerror="this.src='/static/img/fotos prueba/novedad_encuentro.png'">
                 </div>
                 <div class="news-body">
                     <span class="news-date">{{ nov.fecha_publicacion.strftime('%d/%m/%Y') if nov.fecha_publicacion else '' }}</span>

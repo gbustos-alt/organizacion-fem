@@ -1,0 +1,230 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Detalle de Auditoría | Intranet Fundación FEM{% endblock %}
+{% block navbar_title %}Detalle de Auditoría: {{ candidato.nombre }}{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: var(--space-md); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm);">
+    <a href="/admin/incorporaciones/" style="text-decoration: none; color: var(--color-text-muted); font-size: 0.9rem; font-weight: 550;">
+        ← Volver al listado
+    </a>
+    
+    <!-- Botón de Aprobación General para Administradores -->
+    {% if can_approve and candidato.estado != 'APROBADA' %}
+    <form action="/admin/incorporaciones/aprobar/{{ candidato.id }}" method="POST" onsubmit="return confirm('¿Está seguro de que desea aprobar e incorporar oficialmente este colegio a la red? Esta acción es irreversible y creará el registro de Colegio activo.');">
+        <button type="submit" class="btn-admin" style="background-color: #16a34a; color: var(--color-white); font-weight: 600;">
+            ✅ Aprobar e Incorporar a la Red Oficial
+        </button>
+    </form>
+    {% endif %}
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 2fr; gap: var(--space-lg); align-items: start; flex-wrap: wrap;">
+    
+    <!-- Ficha Técnica Izquierda -->
+    <div class="stat-card" style="position: sticky; top: 80px;">
+        <h3 style="border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-xs); color: var(--color-primary); font-weight: 700; font-size: 1rem;">
+            Ficha Técnica
+        </h3>
+        
+        <div style="display: flex; flex-direction: column; gap: var(--space-sm); font-size: 0.9rem;">
+            <div>
+                <strong style="display: block; color: var(--color-text-muted); font-size: 0.8rem; text-transform: uppercase;">Estado General</strong>
+                <span style="padding: 0.25rem 0.6rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; display: inline-block; margin-top: 0.15rem;
+                             {% if candidato.estado == 'APROBADA' %}background-color: #dcfce7; color: #15803d;
+                             {% elif candidato.estado == 'EN_PROCESO' %}background-color: #ffedd5; color: #c2410c;
+                             {% else %}background-color: #f1f5f9; color: #64748b;{% endif %}">
+                    {{ candidato.estado }}
+                </span>
+            </div>
+
+            <div>
+                <strong style="display: block; color: var(--color-text-muted); font-size: 0.8rem; text-transform: uppercase;">Congregación</strong>
+                <span>{{ candidato.congregacion or 'No especificada' }}</span>
+            </div>
+
+            <div>
+                <strong style="display: block; color: var(--color-text-muted); font-size: 0.8rem; text-transform: uppercase;">Diócesis</strong>
+                <span>{{ candidato.diocesis or 'No especificada' }}</span>
+            </div>
+
+            <div>
+                <strong style="display: block; color: var(--color-text-muted); font-size: 0.8rem; text-transform: uppercase;">Ubicación</strong>
+                <span>{{ candidato.localidad or '' }}, {{ candidato.provincia or '' }}</span>
+            </div>
+
+            <div>
+                <strong style="display: block; color: var(--color-text-muted); font-size: 0.8rem; text-transform: uppercase;">Carpeta de Google Drive</strong>
+                {% if candidato.drive_folder_url %}
+                <a href="{{ candidato.drive_folder_url }}" target="_blank" rel="noopener" style="color: var(--color-celeste); text-decoration: underline; font-weight: 550; display: block; margin-top: 0.15rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    📂 Abrir Carpeta de Drive
+                </a>
+                {% else %}
+                <span style="color: var(--color-text-muted); font-style: italic;">No vinculada</span>
+                {% endif %}
+            </div>
+            
+            <div style="font-size: 0.8rem; color: var(--color-text-muted); border-top: 1px solid var(--color-border); padding-top: var(--space-xs); margin-top: var(--space-xs);">
+                Registrado: {{ candidato.created_at.strftime('%d/%m/%Y %H:%M') if candidato.created_at else '' }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Panel de Auditoría por Áreas Derecha -->
+    <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+        
+        <div class="stat-card" style="padding: var(--space-xl);">
+            <h2 style="font-family: var(--font-display); font-size: 1.4rem; color: var(--color-primary); margin-top: 0; margin-bottom: var(--space-md); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-xs);">
+                Acompañamiento y Evaluación de Requisitos
+            </h2>
+
+            <form action="/admin/incorporaciones/editar/{{ candidato.id }}" method="POST" style="display: flex; flex-direction: column; gap: var(--space-lg);">
+                
+                <!-- Carpeta de Drive Editable -->
+                <div class="form-group" style="background-color: var(--color-bg-alt); padding: var(--space-md); border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
+                    <label for="drive_folder_url" style="font-weight: 600;">Enlace a Carpeta en Google Drive</label>
+                    <input type="url" id="drive_folder_url" name="drive_folder_url" class="form-control" value="{{ candidato.drive_folder_url or '' }}" placeholder="https://drive.google.com/drive/folders/...">
+                </div>
+
+                <!-- 1. Dimensión Pedagógica -->
+                <div style="border-left: 4px solid #3b82f6; padding-left: var(--space-md);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xs);">
+                        <h4 style="margin: 0; font-size: 1.05rem; color: var(--color-primary); font-weight: 600;">📚 1. Dimensión Pedagógica y Curricular</h4>
+                        {% if not can_edit_pedagogica %}
+                        <span style="font-size: 0.75rem; color: var(--color-text-muted); font-style: italic;">Solo lectura</span>
+                        {% endif %}
+                    </div>
+                    
+                    {% if can_edit_pedagogica and candidato.estado != 'APROBADA' %}
+                    <div class="form-group">
+                        <label for="estado_pedagogica">Estado Pedagógico</label>
+                        <select id="estado_pedagogica" name="estado_pedagogica" class="form-control">
+                            <option value="PENDIENTE" {% if candidato.estado_pedagogica == 'PENDIENTE' %}selected{% endif %}>PENDIENTE</option>
+                            <option value="EN_PROCESO" {% if candidato.estado_pedagogica == 'EN_PROCESO' %}selected{% endif %}>EN PROCESO</option>
+                            <option value="OBSERVADO" {% if candidato.estado_pedagogica == 'OBSERVADO' %}selected{% endif %}>OBSERVADO (Requiere correcciones)</option>
+                            <option value="COMPLETADO" {% if candidato.estado_pedagogica == 'COMPLETADO' %}selected{% endif %}>COMPLETADO / APROBADO</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="obs_pedagogica">Observaciones y Requisitos</label>
+                        <textarea id="obs_pedagogica" name="obs_pedagogica" rows="3" class="form-control" placeholder="Escriba aquí los avances, planos o deudas pedagógicas...">{{ candidato.obs_pedagogica or '' }}</textarea>
+                    </div>
+                    {% else %}
+                    <div style="font-size: 0.9rem; background-color: var(--color-bg); padding: var(--space-sm); border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
+                        <p style="margin: 0 0 0.5rem 0;"><strong>Estado:</strong> {{ candidato.estado_pedagogica }}</p>
+                        <p style="margin: 0; white-space: pre-line;">{{ candidato.obs_pedagogica or 'Sin observaciones registradas.' }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- 2. Dimensión Pastoral -->
+                <div style="border-left: 4px solid #eab308; padding-left: var(--space-md);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xs);">
+                        <h4 style="margin: 0; font-size: 1.05rem; color: var(--color-primary); font-weight: 600;">⛪ 2. Dimensión Pastoral y Carismática</h4>
+                        {% if not can_edit_pastoral %}
+                        <span style="font-size: 0.75rem; color: var(--color-text-muted); font-style: italic;">Solo lectura</span>
+                        {% endif %}
+                    </div>
+                    
+                    {% if can_edit_pastoral and candidato.estado != 'APROBADA' %}
+                    <div class="form-group">
+                        <label for="estado_pastoral">Estado Pastoral</label>
+                        <select id="estado_pastoral" name="estado_pastoral" class="form-control">
+                            <option value="PENDIENTE" {% if candidato.estado_pastoral == 'PENDIENTE' %}selected{% endif %}>PENDIENTE</option>
+                            <option value="EN_PROCESO" {% if candidato.estado_pastoral == 'EN_PROCESO' %}selected{% endif %}>EN PROCESO</option>
+                            <option value="OBSERVADO" {% if candidato.estado_pastoral == 'OBSERVADO' %}selected{% endif %}>OBSERVADO (Requiere correcciones)</option>
+                            <option value="COMPLETADO" {% if candidato.estado_pastoral == 'COMPLETADO' %}selected{% endif %}>COMPLETADO / APROBADO</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="obs_pastoral">Observaciones y Requisitos</label>
+                        <textarea id="obs_pastoral" name="obs_pastoral" rows="3" class="form-control" placeholder="Escriba aquí los avances o deudas de la pastoral escolar...">{{ candidato.obs_pastoral or '' }}</textarea>
+                    </div>
+                    {% else %}
+                    <div style="font-size: 0.9rem; background-color: var(--color-bg); padding: var(--space-sm); border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
+                        <p style="margin: 0 0 0.5rem 0;"><strong>Estado:</strong> {{ candidato.estado_pastoral }}</p>
+                        <p style="margin: 0; white-space: pre-line;">{{ candidato.obs_pastoral or 'Sin observaciones registradas.' }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- 3. Dimensión Económica -->
+                <div style="border-left: 4px solid #22c55e; padding-left: var(--space-md);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xs);">
+                        <h4 style="margin: 0; font-size: 1.05rem; color: var(--color-primary); font-weight: 600;">💵 3. Dimensión Económica y Administrativa</h4>
+                        {% if not can_edit_economica %}
+                        <span style="font-size: 0.75rem; color: var(--color-text-muted); font-style: italic;">Solo lectura</span>
+                        {% endif %}
+                    </div>
+                    
+                    {% if can_edit_economica and candidato.estado != 'APROBADA' %}
+                    <div class="form-group">
+                        <label for="estado_economica">Estado Económico</label>
+                        <select id="estado_economica" name="estado_economica" class="form-control">
+                            <option value="PENDIENTE" {% if candidato.estado_economica == 'PENDIENTE' %}selected{% endif %}>PENDIENTE</option>
+                            <option value="EN_PROCESO" {% if candidato.estado_economica == 'EN_PROCESO' %}selected{% endif %}>EN PROCESO</option>
+                            <option value="OBSERVADO" {% if candidato.estado_economica == 'OBSERVADO' %}selected{% endif %}>OBSERVADO (Requiere correcciones)</option>
+                            <option value="COMPLETADO" {% if candidato.estado_economica == 'COMPLETADO' %}selected{% endif %}>COMPLETADO / APROBADO</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="obs_economica">Observaciones y Requisitos</label>
+                        <textarea id="obs_economica" name="obs_economica" rows="3" class="form-control" placeholder="Escriba aquí el análisis de balances, deudas previsionales o estados de cuenta...">{{ candidato.obs_economica or '' }}</textarea>
+                    </div>
+                    {% else %}
+                    <div style="font-size: 0.9rem; background-color: var(--color-bg); padding: var(--space-sm); border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
+                        <p style="margin: 0 0 0.5rem 0;"><strong>Estado:</strong> {{ candidato.estado_economica }}</p>
+                        <p style="margin: 0; white-space: pre-line;">{{ candidato.obs_economica or 'Sin observaciones registradas.' }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- 4. Dimensión Legal -->
+                <div style="border-left: 4px solid #ef4444; padding-left: var(--space-md);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xs);">
+                        <h4 style="margin: 0; font-size: 1.05rem; color: var(--color-primary); font-weight: 600;">⚖️ 4. Dimensión Legal y Societaria</h4>
+                        {% if not can_edit_legal %}
+                        <span style="font-size: 0.75rem; color: var(--color-text-muted); font-style: italic;">Solo lectura</span>
+                        {% endif %}
+                    </div>
+                    
+                    {% if can_edit_legal and candidato.estado != 'APROBADA' %}
+                    <div class="form-group">
+                        <label for="estado_legal">Estado Legal</label>
+                        <select id="estado_legal" name="estado_legal" class="form-control">
+                            <option value="PENDIENTE" {% if candidato.estado_legal == 'PENDIENTE' %}selected{% endif %}>PENDIENTE</option>
+                            <option value="EN_PROCESO" {% if candidato.estado_legal == 'EN_PROCESO' %}selected{% endif %}>EN PROCESO</option>
+                            <option value="OBSERVADO" {% if candidato.estado_legal == 'OBSERVADO' %}selected{% endif %}>OBSERVADO (Requiere correcciones)</option>
+                            <option value="COMPLETADO" {% if candidato.estado_legal == 'COMPLETADO' %}selected{% endif %}>COMPLETADO / APROBADO</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="obs_legal">Observaciones y Requisitos</label>
+                        <textarea id="obs_legal" name="obs_legal" rows="3" class="form-control" placeholder="Escriba aquí el análisis de personería jurídica, contratos docentes y estatutos...">{{ candidato.obs_legal or '' }}</textarea>
+                    </div>
+                    {% else %}
+                    <div style="font-size: 0.9rem; background-color: var(--color-bg); padding: var(--space-sm); border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
+                        <p style="margin: 0 0 0.5rem 0;"><strong>Estado:</strong> {{ candidato.estado_legal }}</p>
+                        <p style="margin: 0; white-space: pre-line;">{{ candidato.obs_legal or 'Sin observaciones registradas.' }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Acciones de Guardar -->
+                {% if candidato.estado != 'APROBADA' and (can_edit_pedagogica or can_edit_pastoral or can_edit_economica or can_edit_legal) %}
+                <div style="display: flex; gap: var(--space-sm); border-top: 1px solid var(--color-border); padding-top: var(--space-md); margin-top: var(--space-sm);">
+                    <button type="submit" class="btn-admin btn-admin-primary" style="flex-grow: 1;">
+                        Guardar Cambios de Auditoría
+                    </button>
+                    <a href="/admin/incorporaciones/" class="btn-admin btn-admin-secondary">
+                        Cancelar
+                    </a>
+                </div>
+                {% endif %}
+
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

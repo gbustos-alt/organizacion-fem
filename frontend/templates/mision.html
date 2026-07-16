@@ -1,30 +1,137 @@
 {% extends "base.html" %}
-{% import "components/macros.html" as macros %}
 
-{% block title %}Misión y Visión | Organización FEM{% endblock %}
+{% block title %}Misión y Visión | Fundación FEM{% endblock %}
 
 {% block content %}
-<section class="page-hero">
-    <div class="container">
-        <span class="eyebrow">Ejes Rectores</span>
-        <h1 class="page-title">Misión y Visión</h1>
-        <p class="page-subtitle">El propósito carismático y los valores que guían nuestro accionar en las escuelas.</p>
+<!-- Banner de Sección Inmersivo Estilo Cáritas -->
+<section class="page-hero-mockup" style="position: relative; height: 32vh; min-height: 250px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: var(--color-primary); width: 100%;">
+    <!-- Imagen de fondo inmersiva -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+        <img src="/static/img/fotos prueba/ninos.jpeg" alt="Misión y Visión" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55);">
+    </div>
+    
+    <!-- Contenido Centrado -->
+    <div style="position: relative; z-index: 2; text-align: center; color: var(--color-white); max-width: 800px; padding: 0 var(--space-md); margin-top: -1rem;">
+        <span class="eyebrow" style="color: var(--color-pantone-yellow-raw); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: var(--space-xxs);">Ejes Rectores</span>
+        <h1 style="font-family: var(--font-sans); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; margin: 0; color: var(--color-white); text-shadow: 0 2px 10px rgba(0,0,0,0.5); letter-spacing: -0.5px; line-height: 1.1;">
+            Misión y Visión
+        </h1>
+    </div>
+
+    <!-- Divisor Ondulado SVG -->
+    <div style="position: absolute; bottom: -2px; left: 0; width: 100%; overflow: hidden; line-height: 0; z-index: 2;">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" style="position: relative; display: block; width: calc(105% + 1.3px); height: 35px; fill: var(--color-primary);">
+            <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86C234.9,67.45,120.5,50.12,0,27.35V120H1200V95.8C1132.19,118.89,1055.71,111.28,985.66,92.83Z"></path>
+        </svg>
     </div>
 </section>
 
-<section class="home-section" id="mision-vision" style="border-top: none;">
-    <div class="container">
-        <div class="grid-two-cols">
-            <div class="card mission-card">
-                <h3 class="card-title">Misión</h3>
-                <p class="card-text">Se propone un nuevo paradigma para acompañar y sostener los carismas de las congregaciones que por diversos motivos no pueden continuar con su servicio en las escuelas. Es una respuesta a las necesidades reales de las congregaciones, para no perder la riqueza de tantos proyectos educativos evangelizadores.</p>
+<!-- SECCIÓN 1: Misión y Visión (Bloque Azul Catedral) -->
+<section style="background-color: var(--color-primary); color: var(--color-white); padding: var(--space-xxl) 0 var(--space-3xl) 0; width: 100%;">
+    <div class="container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md); display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-xxl); align-items: center;" class="d-grid-mobile-1">
+        
+        <div>
+            <!-- Misión -->
+            <div style="margin-bottom: var(--space-xl);">
+                <h2 style="font-family: var(--font-sans); font-size: 2.2rem; font-weight: 800; color: var(--color-white); margin-bottom: var(--space-md);">
+                    Misión
+                </h2>
+                <p style="font-size: 1.15rem; line-height: 1.7; color: rgba(255, 255, 255, 0.95);">
+                    Nuestra misión es acompañar y sostener la labor educativa y pastoral de los colegios católicos, garantizando la continuidad de sus proyectos educativos e institucionales en total fidelidad al legado y carisma de sus congregaciones originarias.
+                </p>
             </div>
-            <div class="card mission-card vision">
-                <h3 class="card-title">Visión</h3>
-                <p class="card-text">En estos momentos complejos para la sociedad, el Espíritu Santo nos regala un don para poder trabajar eclesialmente y continuar con cada carisma: nos sentimos llamados a trabajar fuertemente con cada congregación, teniendo en cuenta los sentimientos de pertenencia de las comunidades educativas involucradas en el proceso de discernimiento para la entrega de una obra, preparando a la comunidad para el traspaso.</p>
-                <p class="card-text mt-2">En este camino, se procura el compromiso de la congregación para seguir acompañando la obra desde lo carismático. La Fundación también puede ayudar en el análisis y en la reorganización institucional para asistir al asociado frente a problemas que requieran reorientar la gestión.</p>
+
+            <!-- Visión -->
+            <div>
+                <h2 style="font-family: var(--font-sans); font-size: 2.2rem; font-weight: 800; color: var(--color-white); margin-bottom: var(--space-md);">
+                    Visión
+                </h2>
+                <p style="font-size: 1.15rem; line-height: 1.7; color: rgba(255, 255, 255, 0.95);">
+                    Nos proyectamos como un ecosistema eclesial donde las comunidades escolares gocen de sostenimiento organizativo y mística compartida, cuidando prioritariamente las fuentes de trabajo y la singularidad de cada carisma en un marco inter-carismático y fraterno.
+                </p>
             </div>
         </div>
+
+        <!-- Imagen Circular Flotante -->
+        <div style="text-align: center;">
+            <div style="display: inline-block; position: relative;">
+                <div style="position: absolute; top: -10px; left: -10px; width: 100%; height: 100%; border: 3px solid var(--color-pantone-yellow-raw); border-radius: 50%; z-index: 1;"></div>
+                <img src="/static/img/fotos prueba/chicos .jpeg" alt="Misión FEM" 
+                     style="width: 290px; height: 290px; border-radius: 50%; object-fit: cover; position: relative; z-index: 2; border: 5px solid var(--color-primary);">
+            </div>
+        </div>
+
     </div>
 </section>
+
+<!-- Divisor Ondulado Invertido SVG para volver al fondo claro -->
+<div style="overflow: hidden; line-height: 0; width: 100%; background-color: var(--color-primary);">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" style="position: relative; display: block; width: calc(105% + 1.3px); height: 35px; fill: var(--color-bg); transform: rotate(180deg);">
+        <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86C234.9,67.45,120.5,50.12,0,27.35V120H1200V95.8C1132.19,118.89,1055.71,111.28,985.66,92.83Z"></path>
+    </svg>
+</div>
+
+<!-- SECCIÓN 2: Nuestros Valores y Ejes (Estilo Cáritas) -->
+<section style="background-color: var(--color-bg); padding: var(--space-xxl) 0; width: 100%;">
+    <div class="container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md); display: grid; grid-template-columns: 0.8fr 1.2fr; gap: var(--space-xxl); align-items: center;" class="d-grid-mobile-1">
+        
+        <!-- Imagen Circular Izquierda -->
+        <div style="text-align: center;">
+            <div style="display: inline-block; position: relative;">
+                <div style="position: absolute; top: 10px; right: -10px; width: 100%; height: 100%; border: 3px solid var(--color-coral); border-radius: 50%; z-index: 1;"></div>
+                <img src="/static/img/fotos prueba/library.jpeg" alt="Valores FEM" 
+                     style="width: 290px; height: 290px; border-radius: 50%; object-fit: cover; position: relative; z-index: 2; border: 5px solid var(--color-bg);">
+            </div>
+        </div>
+
+        <!-- Ejes Rectores -->
+        <div>
+            <span class="eyebrow" style="color: var(--color-coral); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: var(--space-xxs);">Ejes de Acción</span>
+            <h2 style="font-family: var(--font-sans); font-size: 2.2rem; color: var(--color-primary); margin: 0 0 var(--space-md) 0; font-weight: 800;">
+                Valores que nos Guían
+            </h2>
+            
+            <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+                <!-- Valor 1 -->
+                <div style="display: flex; gap: var(--space-md); align-items: start;">
+                    <div style="font-size: 1.5rem; color: var(--color-coral); margin-top: 0.2rem;">✦</div>
+                    <div>
+                        <h4 style="font-size: 1.15rem; color: var(--color-primary); margin: 0 0 0.2rem 0; font-weight: 700;">Identidad y Comunión Eclesial</h4>
+                        <p style="font-size: 0.95rem; color: var(--color-text-muted); margin: 0; line-height: 1.5;">Vivimos y obramos en comunión con la Iglesia, sosteniendo el sentido evangelizador en todas nuestras prácticas formativas y administrativas.</p>
+                    </div>
+                </div>
+
+                <!-- Valor 2 -->
+                <div style="display: flex; gap: var(--space-md); align-items: start;">
+                    <div style="font-size: 1.5rem; color: var(--color-coral); margin-top: 0.2rem;">✦</div>
+                    <div>
+                        <h4 style="font-size: 1.15rem; color: var(--color-primary); margin: 0 0 0.2rem 0; font-weight: 700;">Resguardo Carismático</h4>
+                        <p style="font-size: 0.95rem; color: var(--color-text-muted); margin: 0; line-height: 1.5;">Protegemos y ponemos en valor la historia espiritual y particular de las congregaciones de origen en cada establecimiento.</p>
+                    </div>
+                </div>
+
+                <!-- Valor 3 -->
+                <div style="display: flex; gap: var(--space-md); align-items: start;">
+                    <div style="font-size: 1.5rem; color: var(--color-coral); margin-top: 0.2rem;">✦</div>
+                    <div>
+                        <h4 style="font-size: 1.15rem; color: var(--color-primary); margin: 0 0 0.2rem 0; font-weight: 700;">Profesionalidad y Transparencia</h4>
+                        <p style="font-size: 0.95rem; color: var(--color-text-muted); margin: 0; line-height: 1.5;">Garantizamos una gestión administrativa de alta calidad, auditorías continuas y herramientas técnicas para el ordenamiento institucional.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Estilo responsivo -->
+<style>
+    @media (max-width: 991px) {
+        .d-grid-mobile-1 {
+            grid-template-columns: 1fr !important;
+            gap: var(--space-xl) !important;
+            text-align: center !important;
+        }
+    }
+</style>
 {% endblock %}

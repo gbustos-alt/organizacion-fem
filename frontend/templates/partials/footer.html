@@ -1,30 +1,73 @@
-<footer class="main-footer">
-    <div class="container footer-container">
-        <div class="footer-brand">
-            <img src="{{ url_for('static', path='img/logo-fem-blanco.png') }}" alt="Logo Organización FEM" class="footer-logo">
-            <p>Construyendo redes colaborativas y espacios de desarrollo.</p>
-        </div>
-        <div class="footer-links">
-            <h5>Explorar</h5>
-            <ul>
-                <li><a href="/">Inicio</a></li>
-                <li><a href="/identidad">Identidad</a></li>
-                <li><a href="/mision">Misión y Visión</a></li>
-                <li><a href="/dimensiones">Dimensiones</a></li>
-                <li><a href="/organizacion">Organización</a></li>
-                <li><a href="/colegios">Colegios</a></li>
-                <li><a href="/congregaciones">Congregaciones</a></li>
-                <li><a href="/trabaja-con-nosotros">Sé parte de FEM</a></li>
-                <li><a href="/contacto">Contacto</a></li>
+<!-- Pie de Página Estilo Fe y Alegría (Claro y Premium) -->
+<footer class="main-footer" style="background-color: #f2f2f2; color: #333333; padding: var(--space-xxl) 0; border-top: 1px solid var(--color-border); font-family: var(--font-sans); width: 100%;">
+    <div class="container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md); display: grid; grid-template-columns: 0.8fr 1.6fr 0.6fr; gap: var(--space-xxl); align-items: start;" class="d-grid-mobile-1">
+        
+        <!-- Columna 1: Conócenos (Enlaces) -->
+        <div style="text-align: left;">
+            <h5 style="color: #A31D1D; font-family: var(--font-brand-bold); font-size: 1.1rem; font-weight: 800; margin: 0 0 1rem 0; text-transform: none; border-bottom: none; padding-bottom: 0;">
+                Conócenos:
+            </h5>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.95rem;">
+                <li><a href="/identidad" style="color: #444444; text-decoration: none; font-weight: 500; transition: var(--transition-smooth);">Misión y visión</a></li>
+                <li><a href="/dimensiones" style="color: #444444; text-decoration: none; font-weight: 500; transition: var(--transition-smooth);">Qué hacemos</a></li>
+                <li><a href="/colegios" style="color: #444444; text-decoration: none; font-weight: 500; transition: var(--transition-smooth);">Dónde estamos</a></li>
+                <li><a href="/organizacion" style="color: #444444; text-decoration: none; font-weight: 500; transition: var(--transition-smooth);">Gobierno y estructura</a></li>
+                <li><a href="/materiales" style="color: #444444; text-decoration: none; font-weight: 500; transition: var(--transition-smooth);">Publicaciones / Recursero</a></li>
+                <li><a href="/memorias" style="color: #444444; text-decoration: none; font-weight: 500; transition: var(--transition-smooth);">Memorias de Gestión</a></li>
+                <li><a href="/contacto" style="color: #444444; text-decoration: none; font-weight: 500; transition: var(--transition-smooth);">Contacto</a></li>
             </ul>
         </div>
-        <div class="footer-info">
-            <h5>Contacto</h5>
-            <p>fundacionfem@fundacionfem.org</p>
-            <p style="margin-top: 0.5rem; margin-bottom: 0.5rem; font-size: 0.9rem;">
-                Entidad Madre: <a href="https://www.federacionfaera.org" target="_blank" rel="noopener" style="color: var(--color-accent-warm); text-decoration: underline; font-weight: 600;">FAERA</a>
+
+        <!-- Columna 2: Descripción y Redes -->
+        <div style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.75rem;">
+            <p style="font-size: 0.92rem; line-height: 1.5; color: #555555; max-width: 600px; margin: 0;">
+                Somos una fundación civil de bien público promovida por FAERA, destinada al acompañamiento, conducción y resguardo carismático de las comunidades educativas católicas de la República Argentina.
             </p>
-            <p>&copy; 2026 Organización FEM. Todos los derechos reservados.</p>
+            <p style="font-size: 0.92rem; font-weight: 700; color: #333333; margin: 0;">
+                #CaminandoJuntos
+            </p>
+            <p style="font-size: 0.95rem; font-weight: 700; color: #A31D1D; margin: 0.5rem 0 0 0; text-transform: uppercase; letter-spacing: 0.5px;">
+                Fundación Educación y Misión
+            </p>
+            <p style="font-size: 0.85rem; color: #666666; margin: 0;">
+                Buenos Aires, Argentina | <a href="mailto:fundacionfem@fundacionfem.org" style="color: #A31D1D; text-decoration: none;">fundacionfem@fundacionfem.org</a>
+            </p>
+            
+            <!-- Iconos de Redes Sociales -->
+            <div style="display: flex; gap: var(--space-md); margin-top: 0.75rem;">
+                <a href="#" aria-label="Facebook" style="color: #444444; transition: var(--transition-smooth);">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/></svg>
+                </a>
+                <a href="#" aria-label="Instagram" style="color: #444444; transition: var(--transition-smooth);">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.742.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.742C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.743-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/></svg>
+                </a>
+                <a href="#" aria-label="YouTube" style="color: #444444; transition: var(--transition-smooth);">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.104 1.957-.05 1.343-.178 2.5-.278 2.796a2.01 2.01 0 0 1-1.415 1.42c-1.123.302-5.288.332-6.11.335h-.09c-.823-.003-4.987-.033-6.11-.335a2.01 2.01 0 0 1-1.415-1.42c-.101-.38-.172-.882-.22-1.402l-.01-.104-.022-.261-.009-.104c-.065-.914-.073-1.77-.074-1.957v-.075c.001-.194.01-1.108.104-1.957.05-1.343.178-2.5.278-2.796a2.01 2.01 0 0 1 1.415-1.42c1.123-.302 5.288-.332 6.11-.335zM6.5 5.201v5.596L11 8z"/></svg>
+                </a>
+            </div>
         </div>
+
+        <!-- Columna 3: Logo en Color -->
+        <div style="text-align: right;">
+            <img src="/static/img/logo-fem-color.png" alt="Logo Fundación FEM" style="max-width: 140px; height: auto;">
+        </div>
+
     </div>
 </footer>
+
+<style>
+    .main-footer a:hover {
+        color: #A31D1D !important;
+        text-decoration: underline !important;
+    }
+    @media (max-width: 991px) {
+        .main-footer .container {
+            grid-template-columns: 1fr !important;
+            gap: var(--space-xl) !important;
+            text-align: center !important;
+        }
+        .main-footer div {
+            text-align: center !important;
+        }
+    }
+</style>

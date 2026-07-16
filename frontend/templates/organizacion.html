@@ -4,12 +4,26 @@
 {% block title %}Gobierno y Organización | Organización FEM{% endblock %}
 
 {% block content %}
-<section class="page-hero">
-    <div class="container">
-        <span class="eyebrow">Gobernanza</span>
-        <h1 class="page-title">Gobierno y Estructura</h1>
-        <p class="page-subtitle">La gobernanza, conducción y equipos de trabajo encargados del desarrollo y
-            administración de la Fundación.</p>
+<!-- Banner de Sección Inmersivo Estilo Cáritas -->
+<section class="page-hero-mockup" style="position: relative; height: 32vh; min-height: 250px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: var(--color-primary); width: 100%;">
+    <!-- Imagen de fondo inmersiva -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+        <img src="/static/img/fotos prueba/escuela.jpeg" alt="Estructura" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55);">
+    </div>
+    
+    <!-- Contenido Centrado -->
+    <div style="position: relative; z-index: 2; text-align: center; color: var(--color-white); max-width: 800px; padding: 0 var(--space-md); margin-top: -1rem;">
+        <span class="eyebrow" style="color: var(--color-pantone-yellow-raw); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: var(--space-xxs);">Gobernanza</span>
+        <h1 style="font-family: var(--font-sans); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; margin: 0; color: var(--color-white); text-shadow: 0 2px 10px rgba(0,0,0,0.5); letter-spacing: -0.5px; line-height: 1.1;">
+            Gobierno y Estructura
+        </h1>
+    </div>
+
+    <!-- Divisor Ondulado SVG -->
+    <div style="position: absolute; bottom: -2px; left: 0; width: 100%; overflow: hidden; line-height: 0; z-index: 2;">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" style="position: relative; display: block; width: calc(105% + 1.3px); height: 35px; fill: var(--color-bg);">
+            <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86C234.9,67.45,120.5,50.12,0,27.35V120H1200V95.8C1132.19,118.89,1055.71,111.28,985.66,92.83Z"></path>
+        </svg>
     </div>
 </section>
 
@@ -208,8 +222,129 @@
     </div>
 </section>
 
+<!-- Sección: Equipo de Auditorías (Pedagógico / Pastoral / Económico / Financiero / Legales) -->
+<section class="home-section" id="equipo-auditorias" style="background-color: var(--color-bg); padding-top: var(--space-xl); border-top: 1px solid var(--color-border); width: 100%;">
+    <div class="container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md);">
+        <span class="eyebrow text-center" style="display: block; color: var(--color-coral); text-align: center;">Acompañamiento y Análisis</span>
+        <h2 class="section-title text-center" style="font-family: var(--font-sans); font-size: 2.2rem; color: var(--color-primary); font-weight: 800; text-align: center; margin-bottom: 0.2rem;">
+            Equipo de Auditorías
+        </h2>
+        <p class="section-subtitle text-center" style="color: var(--color-text-muted); text-align: center; margin-bottom: var(--space-xl); font-size: 1.05rem;">
+            Pedagógico / Pastoral / Económico / Financiero / Legales
+        </p>
+
+        <!-- Subsección 1: Coordinación General -->
+        <div style="margin-bottom: var(--space-xxl); text-align: center;">
+            <h3 style="font-family: var(--font-sans); font-size: 1.3rem; color: var(--color-primary); font-weight: 700; border-bottom: 2px solid var(--color-pantone-yellow-raw); display: inline-block; padding-bottom: 0.3rem; margin-bottom: var(--space-lg); text-transform: uppercase; letter-spacing: 0.5px;">
+                Coordinación General
+            </h3>
+            <div style="display: flex; gap: var(--space-xl); justify-content: center; flex-wrap: wrap; margin: 0 auto; max-width: 800px;">
+                <!-- Juan Pablo Gasme -->
+                <div class="member-card" style="background-color: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); width: 240px; transition: var(--transition-smooth);">
+                    <div class="member-photo-wrapper" style="width: 100px; height: 100px; border-radius: 50%; overflow: hidden; margin: 0 auto var(--space-sm) auto; border: 3px solid var(--color-pantone-yellow-raw);">
+                        <img src="/static/img/organigrama/juan_pablo_gasme.png" alt="Prof. Juan Pablo Gasme" class="member-photo" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' fill=\'%23a0aec0\'><circle cx=\'50\' cy=\'35\' r=\'20\'/><path d=\'M20 80c0-15 15-20 30-20s30 5 30 20z\'/></svg>'">
+                    </div>
+                    <div class="member-info">
+                        <span class="member-role" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--color-coral); display: block; margin-bottom: 0.2rem;">Director Ejecutivo</span>
+                        <h5 class="member-name" style="font-size: 1.05rem; margin: 0; color: var(--color-primary); font-weight: 700;">Prof. Juan Pablo Gasme</h5>
+                        <span class="member-congregacion" style="font-size: 0.85rem; color: var(--color-text-muted); display: block; margin-top: 0.1rem;">Coordinación General</span>
+                    </div>
+                </div>
+                <!-- Karina Luquin -->
+                <div class="member-card" style="background-color: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); width: 240px; transition: var(--transition-smooth);">
+                    <div class="member-photo-wrapper" style="width: 100px; height: 100px; border-radius: 50%; overflow: hidden; margin: 0 auto var(--space-sm) auto; border: 3px solid var(--color-pantone-yellow-raw);">
+                        <img src="/static/img/organigrama/karina_luquin.png" alt="Cra. Karina Luquin" class="member-photo" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' fill=\'%23a0aec0\'><circle cx=\'50\' cy=\'35\' r=\'20\'/><path d=\'M20 80c0-15 15-20 30-20s30 5 30 20z\'/></svg>'">
+                    </div>
+                    <div class="member-info">
+                        <span class="member-role" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--color-coral); display: block; margin-bottom: 0.2rem;">Representante Legal</span>
+                        <h5 class="member-name" style="font-size: 1.05rem; margin: 0; color: var(--color-primary); font-weight: 700;">Cra. Karina Luquin</h5>
+                        <span class="member-congregacion" style="font-size: 0.85rem; color: var(--color-text-muted); display: block; margin-top: 0.1rem;">Coord. Económico Financiera</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subsección 2: Equipo de Acompañamiento y Análisis -->
+        <div style="text-align: center;">
+            <h3 style="font-family: var(--font-sans); font-size: 1.3rem; color: var(--color-primary); font-weight: 700; border-bottom: 2px solid var(--color-coral); display: inline-block; padding-bottom: 0.3rem; margin-bottom: var(--space-lg); text-transform: uppercase; letter-spacing: 0.5px;">
+                Equipo de Acompañamiento y Análisis
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-xl); justify-items: center; max-width: 1100px; margin: 0 auto;">
+                
+                <!-- Joaquín Casaburro -->
+                <div class="member-card" style="background-color: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); width: 100%; max-width: 240px; transition: var(--transition-smooth);">
+                    <div class="member-photo-wrapper" style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden; margin: 0 auto var(--space-sm) auto; border: 3px solid var(--color-coral);">
+                        <img src="/static/img/organigrama/joaquin_casaburro.png" alt="Prof. Joaquín Casaburro" class="member-photo" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' fill=\'%23a0aec0\'><circle cx=\'50\' cy=\'35\' r=\'20\'/><path d=\'M20 80c0-15 15-20 30-20s30 5 30 20z\'/></svg>'">
+                    </div>
+                    <div class="member-info">
+                        <span class="member-role" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--color-primary); display: block; margin-bottom: 0.2rem;">Prof. Joaquín Casaburro</span>
+                        <h5 class="member-name" style="font-size: 0.95rem; margin: 0; color: var(--color-text-muted); font-weight: 600;">Equipo de Auditorías | FEM</h5>
+                    </div>
+                </div>
+
+                <!-- Hugo Tissera -->
+                <div class="member-card" style="background-color: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); width: 100%; max-width: 240px; transition: var(--transition-smooth);">
+                    <div class="member-photo-wrapper" style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden; margin: 0 auto var(--space-sm) auto; border: 3px solid var(--color-coral);">
+                        <img src="/static/img/organigrama/hugo_tissera.png" alt="Prof. Hugo Tissera" class="member-photo" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' fill=\'%23a0aec0\'><circle cx=\'50\' cy=\'35\' r=\'20\'/><path d=\'M20 80c0-15 15-20 30-20s30 5 30 20z\'/></svg>'">
+                    </div>
+                    <div class="member-info">
+                        <span class="member-role" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--color-primary); display: block; margin-bottom: 0.2rem;">Prof. Hugo Tissera</span>
+                        <h5 class="member-name" style="font-size: 0.95rem; margin: 0; color: var(--color-text-muted); font-weight: 600;">Equipo de Auditorías | FEM</h5>
+                    </div>
+                </div>
+
+                <!-- Marcela Gil -->
+                <div class="member-card" style="background-color: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); width: 100%; max-width: 240px; transition: var(--transition-smooth);">
+                    <div class="member-photo-wrapper" style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden; margin: 0 auto var(--space-sm) auto; border: 3px solid var(--color-coral);">
+                        <img src="/static/img/organigrama/marcela_gil.png" alt="Lic. Marcela Gil" class="member-photo" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' fill=\'%23a0aec0\'><circle cx=\'50\' cy=\'35\' r=\'20\'/><path d=\'M20 80c0-15 15-20 30-20s30 5 30 20z\'/></svg>'">
+                    </div>
+                    <div class="member-info">
+                        <span class="member-role" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--color-primary); display: block; margin-bottom: 0.2rem;">Lic. Marcela Gil</span>
+                        <h5 class="member-name" style="font-size: 0.95rem; margin: 0; color: var(--color-text-muted); font-weight: 600;">Equipo de Auditorías | FEM</h5>
+                    </div>
+                </div>
+
+                <!-- Cecilia Cantelmo -->
+                <div class="member-card" style="background-color: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); width: 100%; max-width: 240px; transition: var(--transition-smooth);">
+                    <div class="member-photo-wrapper" style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden; margin: 0 auto var(--space-sm) auto; border: 3px solid var(--color-coral);">
+                        <img src="/static/img/organigrama/cecilia_cantelmo.png" alt="Cra. Cecilia Cantelmo" class="member-photo" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' fill=\'%23a0aec0\'><circle cx=\'50\' cy=\'35\' r=\'20\'/><path d=\'M20 80c0-15 15-20 30-20s30 5 30 20z\'/></svg>'">
+                    </div>
+                    <div class="member-info">
+                        <span class="member-role" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--color-primary); display: block; margin-bottom: 0.2rem;">Cra. Cecilia Cantelmo</span>
+                        <h5 class="member-name" style="font-size: 0.95rem; margin: 0; color: var(--color-text-muted); font-weight: 600;">Equipo de Auditorías | FEM</h5>
+                    </div>
+                </div>
+
+                <!-- Pablo Cifelli -->
+                <div class="member-card" style="background-color: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); width: 100%; max-width: 240px; transition: var(--transition-smooth);">
+                    <div class="member-photo-wrapper" style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden; margin: 0 auto var(--space-sm) auto; border: 3px solid var(--color-coral);">
+                        <img src="/static/img/organigrama/pablo_cifelli.png" alt="Prof. Pablo Cifelli" class="member-photo" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' fill=\'%23a0aec0\'><circle cx=\'50\' cy=\'35\' r=\'20\'/><path d=\'M20 80c0-15 15-20 30-20s30 5 30 20z\'/></svg>'">
+                    </div>
+                    <div class="member-info">
+                        <span class="member-role" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--color-primary); display: block; margin-bottom: 0.2rem;">Prof. Pablo Cifelli</span>
+                        <h5 class="member-name" style="font-size: 0.95rem; margin: 0; color: var(--color-text-muted); font-weight: 600;">Equipo de Auditorías | FEM</h5>
+                    </div>
+                </div>
+
+                <!-- Sandra Ríos -->
+                <div class="member-card" style="background-color: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); width: 100%; max-width: 240px; transition: var(--transition-smooth);">
+                    <div class="member-photo-wrapper" style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden; margin: 0 auto var(--space-sm) auto; border: 3px solid var(--color-coral);">
+                        <img src="/static/img/organigrama/sandra_rios.png" alt="Cra. Sandra Ríos" class="member-photo" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' fill=\'%23a0aec0\'><circle cx=\'50\' cy=\'35\' r=\'20\'/><path d=\'M20 80c0-15 15-20 30-20s30 5 30 20z\'/></svg>'">
+                    </div>
+                    <div class="member-info">
+                        <span class="member-role" style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--color-primary); display: block; margin-bottom: 0.2rem;">Cra. Sandra Ríos</span>
+                        <h5 class="member-name" style="font-size: 0.95rem; margin: 0; color: var(--color-text-muted); font-weight: 600;">Equipo de Auditorías | FEM</h5>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
 <!-- Sección: Estrategias Formativas Dinamizadoras -->
-<section class="home-section" id="estrategias-formativas" style="background-color: var(--color-bg-alt);">
+<section class="home-section" id="estrategias-formativas" style="background-color: var(--color-bg-alt); width: 100%;">
     <div class="container">
         <span class="eyebrow text-center" style="display: block;">Acompañamiento Profesional</span>
         <h2 class="section-title text-center">Estrategias Formativas Dinamizadoras</h2>

@@ -403,3 +403,30 @@ def test_admin_configuraciones_view():
     list_resp = client.get("/admin/configuraciones/", cookies={"session_id": cookie})
     assert list_resp.status_code == 200
     assert "Lema Anual" in list_resp.text
+    assert "Quiénes Somos" in list_resp.text
+
+
+def test_admin_quienes_somos_edit():
+    login = client.post("/admin/auth/login", data={"username": "admin", "password": "admin123"}, follow_redirects=False)
+    cookie = login.cookies["session_id"]
+
+    # 1. Modificar el bloque de Quiénes Somos
+    edit_resp = client.post(
+        "/admin/configuraciones/quienes-somos/editar",
+        data={
+            "titulo": "Quiénes Somos Editado",
+            "descripcion": (
+                "Somos una fundación civil de bien público promovida por FAERA, destinada al acompañamiento, "
+                "conducción y resguardo carismático de las comunidades educativas católicas de la República Argentina."
+            )
+        },
+        cookies={"session_id": cookie},
+        follow_redirects=False
+    )
+    assert edit_resp.status_code == 303  # Redirección
+
+    # 2. Comprobar que en la home pública cambió el valor
+    home_resp = client.get("/")
+    assert home_resp.status_code == 200
+    assert "Quiénes Somos Editado" in home_resp.text
+

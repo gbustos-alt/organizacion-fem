@@ -1,7 +1,7 @@
 import hashlib
 import datetime
 from backend.core.database import SessionLocal, Base, engine
-from backend.models import Colegio, Noticia, MaterialReflexion, Actividad, Usuario, Rol, UsuarioRol, AuditoriaIncorporacion, ConfiguracionLema, MemoriaAnual, MaterialCapacitacion
+from backend.models import Colegio, Noticia, MaterialReflexion, Actividad, Usuario, Rol, UsuarioRol, AuditoriaIncorporacion, ConfiguracionLema, MemoriaAnual, MaterialCapacitacion, QuienesSomos
 from backend.services.import_service import sincronizar_roles_y_permisos
 
 def get_password_hash(password: str) -> str:
@@ -241,6 +241,20 @@ def seed_db():
         activo=True
     )
     db.add(lema)
+
+    # 5.1 Agregar Quiénes Somos
+    quienes = QuienesSomos(
+        titulo="Quiénes Somos",
+        descripcion=(
+            "Somos una fundación civil de bien público promovida por FAERA, destinada al acompañamiento, "
+            "conducción y resguardo carismático de las comunidades educativas católicas de la República Argentina.\n\n"
+            "Nacemos para dar respuesta a un escenario de transformación y resignificación en la educación de orientación católica en Argentina, "
+            "acompañando nuevas eclesialidades impulsando la misión compartida colaborativa entre religiosos y laicos."
+        ),
+        imagen_url="/static/img/fotos prueba/escuela.jpeg",
+        activo=True
+    )
+    db.add(quienes)
 
     # 6. Agregar Memorias Anuales
     memorias = [

@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from backend.core.templates import templates
 from backend.core.database import get_db
 from backend.services.rbac_service import RequerirPermiso
-from backend.models import ConfiguracionLema, MemoriaAnual, MaterialCapacitacion
+from backend.models import ConfiguracionLema, MemoriaAnual, MaterialCapacitacion, QuienesSomos
 from backend.services.audit_service import registrar_accion
 
 router = APIRouter(prefix="/configuraciones", tags=["admin-configuraciones"])
@@ -38,6 +38,24 @@ async def dashboard_configuraciones(
         db.commit()
         db.refresh(lema)
         
+    # Obtener bloque Quiénes Somos or crear por defecto
+    quienes = db.query(QuienesSomos).first()
+    if not quienes:
+        quienes = QuienesSomos(
+            titulo="Quiénes Somos",
+            descripcion=(
+                "Somos una fundación civil de bien público promovida por FAERA, destinada al acompañamiento, "
+                "conducción y resguardo carismático de las comunidades educativas católicas de la República Argentina.\n\n"
+                "Nacemos para dar respuesta a un escenario de transformación y resignificación en la educación de orientación católica en Argentina, "
+                "acompañando nuevas eclesialidades impulsando la misión compartida colaborativa entre religiosos y laicos."
+            ),
+            imagen_url="/static/img/fotos prueba/escuela.jpeg",
+            activo=True
+        )
+        db.add(quienes)
+        db.commit()
+        db.refresh(quienes)
+
     memorias = db.query(MemoriaAnual).order_by(MemoriaAnual.anio.desc()).all()
     materiales_mooc = db.query(MaterialCapacitacion).order_by(MaterialCapacitacion.created_at.desc()).all()
     
@@ -48,6 +66,7 @@ async def dashboard_configuraciones(
             "user": user,
             "active_page": "configuraciones",
             "lema": lema,
+            "quienes": quienes,
             "memorias": memorias,
             "materiales_mooc": materiales_mooc
         }
@@ -244,3 +263,67 @@ async def eliminar_capacitacion(
     db.delete(material)
     db.commit()
     return RedirectResponse(url="/admin/configuraciones/", status_code=status.HTTP_303_SEE_OTHER)
+
+
+@router.post("/quienes-somos/editar", response_class=HTMLResponse)
+async def editar_quienes_somos_submit(
+    request: Request,
+    titulo: str = Form(...),
+    descripcion: str = Form(...),
+    archivo: UploadFile = File(None),
+    db: Session = Depends(get_db),
+    user = Depends(RequerirPermiso("configuracion", "editar"))
+):
+    quienes = db.query(QuienesSomos).first()
+    if not quienes:
+        raise HTTPException(status_code=404, detail="Configuración no encontrada")
+
+    valores_anteriores = {
+        "titulo": quienes.titulo,
+        "descripcion": quienes.descripcion,
+        "imagen_url": quienes.imagen_url
+    }
+
+    try:
+        quienes.titulo = titulo.strip()
+        quienes.descripcion = descripcion.strip()
+
+        if archivo and archivo.filename:
+            # Validar extensión
+            ext = os.path.splitext(archivo.filename)[1].lower()
+            if ext not in ['.jpg', '.jpeg', '.png', '.webp']:
+                raise HTTPException(status_code=400, detail="Formato inválido: Solo se permiten imágenes (jpg, png, webp).")
+            
+            asegurar_directorio_cargas()
+            nombre_archivo = f"quienes_somos_{int(os.urandom(4).hex(), 16)}{ext}"
+            ruta_archivo = os.path.join(UPLOAD_DIR, nombre_archivo)
+            
+            with open(ruta_archivo, "wb") as buffer:
+                shutil.copyfileobj(archivo.file, buffer)
+                
+            quienes.imagen_url = f"/static/uploads/{nombre_archivo}"
+
+        db.flush()
+
+        registrar_accion(
+            db=db,
+            usuario_id=user.id,
+            accion="editar",
+            recurso="quienes_somos",
+            recurso_id=quienes.id,
+            valores_anteriores=valores_anteriores,
+            valores_nuevos={
+                "titulo": quienes.titulo,
+                "descripcion": quienes.descripcion,
+                "imagen_url": quienes.imagen_url
+            }
+        )
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        if isinstance(e, HTTPException):
+            raise e
+        raise HTTPException(status_code=500, detail=f"Error al guardar los datos: {str(e)}")
+
+    return RedirectResponse(url="/admin/configuraciones/", status_code=status.HTTP_303_SEE_OTHER)
+

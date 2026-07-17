@@ -1,0 +1,41 @@
+{% if quienes_somos and quienes_somos.activo %}
+<section class="home-about-section" id="quienes-somos">
+    <div class="container about-wrapper">
+        
+        <!-- Contenedor de Imagen -->
+        <div class="about-image-container">
+            <img src="{{ quienes_somos.imagen_url or url_for('static', path='img/fotos prueba/escuela.jpeg') }}" 
+                 alt="Fundación FEM - Acompañamiento y Misión" 
+                 class="about-featured-img">
+        </div>
+
+        <!-- Tarjeta de Contenido -->
+        <div class="about-content-card">
+            
+            <!-- Cabecera de la Sección -->
+            <div class="about-header-block">
+                <span class="eyebrow">
+                    Nuestra Identidad
+                </span>
+                <h2 class="about-title">
+                    {{ quienes_somos.titulo }}
+                </h2>
+            </div>
+            
+            <!-- Cuerpo y Botón de Acción -->
+            <div class="about-body-block">
+                <p class="about-description">
+                    {{ quienes_somos.descripcion }}
+                </p>
+                <div class="about-actions">
+                    <a href="/identidad" class="btn btn-primary">
+                        Conoce nuestra misión
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+</section>
+{% endif %}

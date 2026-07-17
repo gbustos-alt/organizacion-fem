@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from sqlalchemy.orm import Session
 from backend.core.templates import templates
 from backend.core.database import get_db
-from backend.models import Colegio, MensajeContacto, Noticia, MaterialReflexion, ConfiguracionLema, MemoriaAnual, Alumno
+from backend.models import Colegio, MensajeContacto, Noticia, MaterialReflexion, ConfiguracionLema, MemoriaAnual, Alumno, QuienesSomos
 
 router = APIRouter()
 
@@ -21,15 +21,18 @@ async def home(request: Request, db: Session = Depends(get_db)):
         MaterialReflexion.categoria == "Cita Inspiradora"
     ).order_by(MaterialReflexion.fecha_publicacion.desc()).first()
 
-    # 3. Contar colegios activos reales y alumnos
+    # 3. Contar colegios activos reales
     cant_colegios = db.query(Colegio).filter(Colegio.activo == True).count()
     
-    # 4. Contar alumnos activos reales
+    # 4. Obtener bloque Quiénes Somos
+    quienes_somos = db.query(QuienesSomos).filter(QuienesSomos.activo == True).first()
+    
+    # 5. Contar alumnos activos reales
     cant_alumnos = db.query(Alumno).count()
     if cant_alumnos == 0:
         cant_alumnos = 10000  # Fallback a la cifra estimada
 
-    # 5. Obtener lema anual y últimas reflexiones para el recursero de la Home
+    # 6. Obtener lema anual y últimas reflexiones para el recursero de la Home
     lema = db.query(ConfiguracionLema).filter(ConfiguracionLema.activo == True).order_by(ConfiguracionLema.anio.desc()).first()
     latest_resources = db.query(MaterialReflexion).filter(
         MaterialReflexion.activo == True,
@@ -46,7 +49,8 @@ async def home(request: Request, db: Session = Depends(get_db)):
             "cant_colegios": cant_colegios,
             "cant_alumnos": cant_alumnos,
             "lema": lema,
-            "latest_resources": latest_resources
+            "latest_resources": latest_resources,
+            "quienes_somos": quienes_somos
         }
     )
 

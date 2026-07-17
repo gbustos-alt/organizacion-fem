@@ -46,3 +46,18 @@ class MaterialCapacitacion(Base):
     video_url = Column(String(255), nullable=True)  # Link a video educativo (YouTube/Vimeo)
     activo = Column(Boolean, default=True, nullable=False)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+
+class QuienesSomos(Base):
+    """
+    Define el bloque institucional 'Quiénes Somos' de la página de inicio,
+    permitiendo su edición dinámica desde el panel administrativo.
+    """
+    __tablename__ = "quienes_somos"
+
+    id = Column(Integer, primary_key=True, index=True)
+    titulo = Column(String(200), nullable=False)
+    descripcion = Column(Text, nullable=False)
+    imagen_url = Column(String(255), nullable=True)
+    activo = Column(Boolean, default=True, nullable=False)
+

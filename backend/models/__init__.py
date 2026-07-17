@@ -4,7 +4,7 @@ from backend.models.colegio import Colegio, Noticia, MensajeContacto, MaterialRe
 from backend.models.academico import Alumno, Matricula
 from backend.models.auditoria import RegistroAuditoria
 from backend.models.incorporacion import AuditoriaIncorporacion
-from backend.models.configuracion import ConfiguracionLema, MemoriaAnual, MaterialCapacitacion
+from backend.models.configuracion import ConfiguracionLema, MemoriaAnual, MaterialCapacitacion, QuienesSomos
 
 __all__ = [
     "Base",
@@ -26,4 +26,5 @@ __all__ = [
     "ConfiguracionLema",
     "MemoriaAnual",
     "MaterialCapacitacion",
+    "QuienesSomos",
 ]

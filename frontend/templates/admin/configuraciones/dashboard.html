@@ -30,6 +30,39 @@
             </form>
         </div>
 
+        <!-- QUIÉNES SOMOS (Columna Izquierda Centro) -->
+        <div class="stat-card" style="padding: var(--space-xl);">
+            <h2 style="font-family: var(--font-display); font-size: 1.3rem; color: var(--color-primary); margin-top: 0; margin-bottom: var(--space-md); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-xs);">
+                ℹ️ Quiénes Somos (Home)
+            </h2>
+            
+            <form action="/admin/configuraciones/quienes-somos/editar" method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: var(--space-sm);">
+                <div class="form-group">
+                    <label for="quienes_titulo">Título de la Sección</label>
+                    <input type="text" id="quienes_titulo" name="titulo" class="form-control" value="{{ quienes.titulo }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="quienes_descripcion">Descripción</label>
+                    <textarea id="quienes_descripcion" name="descripcion" rows="6" class="form-control" required>{{ quienes.descripcion }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="quienes_imagen">Imagen de Presentación (Formatos: JPG, PNG, WEBP)</label>
+                    {% if quienes.imagen_url %}
+                    <div style="margin-bottom: var(--space-xs);">
+                        <img src="{{ quienes.imagen_url }}" alt="Imagen actual" style="max-width: 100%; max-height: 150px; border-radius: var(--radius-sm); display: block; border: 1px solid var(--color-border);">
+                    </div>
+                    {% endif %}
+                    <input type="file" id="quienes_imagen" name="archivo" class="form-control" accept="image/*">
+                </div>
+                
+                <button type="submit" class="btn-admin btn-admin-primary">
+                    Actualizar Quiénes Somos
+                </button>
+            </form>
+        </div>
+
         <!-- MEMORIAS ANUALES (Columna Izquierda Inferior) -->
         <div class="stat-card" style="padding: var(--space-xl);">
             <h2 style="font-family: var(--font-display); font-size: 1.3rem; color: var(--color-primary); margin-top: 0; margin-bottom: var(--space-md); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-xs);">

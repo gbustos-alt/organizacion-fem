@@ -38,16 +38,16 @@ async def dashboard_configuraciones(
         db.commit()
         db.refresh(lema)
         
-    # Obtener bloque Quiénes Somos or crear por defecto
+    # Obtener bloque Qué Hacemos or crear por defecto
     quienes = db.query(QuienesSomos).first()
     if not quienes:
         quienes = QuienesSomos(
-            titulo="Quiénes Somos",
+            titulo="Qué Hacemos",
             descripcion=(
-                "Somos una fundación civil de bien público promovida por FAERA, destinada al acompañamiento, "
-                "conducción y resguardo carismático de las comunidades educativas católicas de la República Argentina.\n\n"
-                "Nacemos para dar respuesta a un escenario de transformación y resignificación en la educación de orientación católica en Argentina, "
-                "acompañando nuevas eclesialidades impulsando la misión compartida colaborativa entre religiosos y laicos."
+                "Nuestra misión es realizar la promoción de la educación con orientación católica en todas sus formas, "
+                "mediante el acompañamiento y gestión de establecimientos de todos los niveles.\n\n"
+                "Buscamos sostener y consolidar los proyectos pedagógico-pastorales de las escuelas asociadas en total "
+                "fidelidad al legado y carisma de las congregaciones originarias."
             ),
             imagen_url="/static/img/fotos prueba/escuela.jpeg",
             activo=True

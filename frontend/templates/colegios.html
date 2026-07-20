@@ -28,16 +28,32 @@
         box-shadow: 0 0 10px rgba(241, 180, 52, 0.8);
         transform: scale(1.3);
     }
+
+    /* Animaciones y calidez para enlaces de tarjetas */
+    .school-card {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+    .school-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(12, 30, 54, 0.08) !important;
+        border-color: var(--color-coral) !important;
+    }
+    .school-card:hover .btn-card-link {
+        color: var(--color-primary) !important;
+    }
+    .school-card:hover .arrow-indicator {
+        transform: translateX(4px);
+    }
 </style>
 {% endblock %}
 
 {% block content %}
 <!-- Cabecera de Página Inmersiva con Onda -->
-<section class="page-hero-banner" style="background-image: linear-gradient(to bottom, rgba(16, 28, 48, 0.75), rgba(16, 28, 48, 0.95)), url('/static/img/fotos prueba/novedad_transicion.png'); background-size: cover; background-position: center; padding: 6.5rem 0 5rem 0; text-align: center; color: var(--color-white); position: relative; width: 100%;">
+<section class="page-hero-banner" style="background-image: linear-gradient(to bottom, rgba(16, 28, 48, 0.75), rgba(16, 28, 48, 0.95)), url('/static/img/fotos prueba/novedad_transicion.png'); background-size: cover; background-position: center; padding: 6.5rem 0 4rem 0; text-align: center; color: var(--color-white); position: relative; width: 100%;">
     <div class="container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md); position: relative; z-index: 2;">
-        <span class="eyebrow" style="color: var(--color-pantone-yellow); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem; display: block;">Red Federal</span>
-        <h1 class="page-title" style="font-family: var(--font-sans); font-size: 3rem; font-weight: 800; margin-bottom: 1rem; color: var(--color-white); letter-spacing: -0.5px;">Comunidades Educativas</h1>
-        <p class="page-subtitle" style="font-size: 1.15rem; color: rgba(255, 255, 255, 0.85); max-width: 700px; margin: 0 auto;">Obras escolares y establecimientos bajo la conducción y el acompañamiento de la Fundación.</p>
+        <span class="eyebrow" style="color: var(--color-pantone-yellow-raw); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.5rem; display: block; font-family: var(--font-sans);">Red Federal</span>
+        <h1 class="page-title" style="font-family: var(--font-sans); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 1rem; color: var(--color-white); letter-spacing: -0.5px; line-height: 1.1; text-shadow: 0 2px 10px rgba(0,0,0,0.4);">Comunidades Educativas</h1>
+        <p class="page-subtitle" style="font-size: 1.15rem; color: rgba(255, 255, 255, 0.85); max-width: 700px; margin: 0 auto; font-family: var(--font-serif); font-style: italic;">Obras escolares y establecimientos bajo la conducción y el acompañamiento de la Fundación.</p>
     </div>
     
     <!-- Onda SVG Bottom -->
@@ -48,17 +64,18 @@
     </div>
 </section>
 
-<section class="colegios-dashboard-section">
+<section class="colegios-dashboard-section" style="padding: 1rem 0 3rem 0;">
     <div class="container">
 
         <!-- Controles de búsqueda y filtros fluidos y en ancho completo -->
-        <div class="compact-controls">
-            <div class="search-input-container">
-                <input type="text" id="school-search" placeholder="🔍 Buscar por nombre, carisma o provincia..."
-                    aria-label="Buscar colegios">
+        <div class="compact-controls" style="margin-bottom: 1.5rem; padding: 1.5rem 1.5rem 1rem 1rem;">
+            <!-- Encabezado de Resultados -->
+            <div class="results-header" style="margin-top: 0; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--color-border); display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                <h3 class="results-title" style="font-family: var(--font-brand-black), 'Montserrat', sans-serif; font-weight: 900; margin: 0; font-size: 1.6rem; color: var(--color-primary);">Colegios Acompañados</h3>
+                <span class="count-badge" style="font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 15px; background-color: var(--color-bg-alt); border: 1px solid var(--color-border); color: var(--color-text-muted);"><span id="results-count">15</span> comunidades</span>
             </div>
 
-            <div class="compact-filters">
+            <div class="compact-filters" style="margin-bottom: 0;">
                 <div class="filter-row">
                     <span class="row-label">Provincia:</span>
                     <div class="pills-group" id="filter-provincia">
@@ -68,45 +85,6 @@
                         <button class="pill-btn" data-provincia="Presencia Federal">Federal</button>
                     </div>
                 </div>
-                <div class="filter-row">
-                    <span class="row-label">Carisma:</span>
-                    <div class="pills-group scrollable-pills" id="filter-carisma">
-                        <button class="pill-btn active" data-carisma="all">Todos</button>
-                        <button class="pill-btn" data-carisma="Santa Ana">Santa Ana</button>
-                        <button class="pill-btn" data-carisma="Divino Corazón">Esclavas</button>
-                        <button class="pill-btn" data-carisma="Hijas de la Cruz">Hijas de la Cruz</button>
-                        <button class="pill-btn" data-carisma="Operarios Diocesanos">Operarios</button>
-                        <button class="pill-btn" data-carisma="Carmelita">Carmelitas</button>
-                        <button class="pill-btn" data-carisma="Compasionistas">Compasionistas</button>
-                        <button class="pill-btn" data-carisma="Sopeña">Sopeña</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mapas Interactivos Divididos (Nacional + AMBA) -->
-            <div class="maps-split-container">
-                <div class="map-box">
-                    <h4 class="map-box-title">Presencia Nacional</h4>
-                    <div id="map-argentina" class="map-instance"></div>
-                </div>
-                <div class="map-box">
-                    <h4 class="map-box-title">Detalle AMBA y Buenos Aires</h4>
-                    <div id="map-amba" class="map-instance"></div>
-                </div>
-
-                <!-- Tarjeta Flotante Informativa -->
-                <div id="map-floating-card" class="map-floating-overlay d-none">
-                    <button class="close-card-btn" id="close-floating-card" aria-label="Cerrar">&times;</button>
-                    <div class="floating-card-body" id="floating-card-body">
-                        <!-- Contenido inyectado por JS -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Encabezado de Resultados -->
-            <div class="results-header">
-                <h3 class="results-title">Colegios Acompañados</h3>
-                <span class="count-badge"><span id="results-count">15</span> comunidades</span>
             </div>
 
             <!-- Grid de Tarjetas (Folios) de Colegios -->
@@ -117,48 +95,56 @@
                      data-nombre="{{ col.nombre|lower }}"
                      data-congregacion="{{ col.congregacion|lower }}"
                      data-provincia="{{ col.provincia }}"
-                     data-carisma="{{ col.congregacion }}">
-                    <h4 class="card-title">{{ col.nombre }}</h4>
-                    <div class="card-province-label">{{ col.provincia }}</div>
+                     data-carisma="{{ col.congregacion }}"
+                     style="padding: 0; display: flex; flex-direction: column; border-radius: 12px; overflow: hidden; border: 1.5px solid var(--color-border); background-color: var(--color-white); transition: var(--transition-smooth); height: 100%;">
                     
-                    <div class="card-details">
-                        <div class="detail-item" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                            <span class="detail-icon" style="color: var(--color-coral); display: inline-flex; align-items: center;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-                                  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
-                                </svg>
-                            </span>
-                            <span class="detail-text" style="font-size: 0.9rem;">{{ col.ubicacion }}</span>
-                        </div>
-                        {% if col.telefono %}
-                        <div class="detail-item" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                            <span class="detail-icon" style="color: var(--color-primary); display: inline-flex; align-items: center;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-                                  <path d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
-                                </svg>
-                            </span>
-                            <span class="detail-text" style="font-size: 0.9rem;">{{ col.telefono }}</span>
-                        </div>
+                    <!-- Contenedor de Imagen de Portada con Título Superpuesto (TextBox Premium) -->
+                    <div class="card-cover-container" style="height: 180px; position: relative; width: 100%; overflow: hidden; background-color: var(--color-primary);">
+                        {% if col.imagen_url %}
+                            <img src="{{ col.imagen_url }}" alt="{{ col.nombre }}" style="width: 100%; height: 100%; object-fit: cover; transition: var(--transition-smooth);" class="card-cover-img">
+                        {% else %}
+                            <img src="{{ url_for('static', path='img/placeholder-hero.svg') }}" alt="Placeholder" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.35;">
                         {% endif %}
-                        {% if col.diocesis %}
-                        <div class="detail-item" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                            <span class="detail-icon" style="color: var(--color-primary); display: inline-flex; align-items: center;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-                                  <path d="M13.25 15a.25.25 0 0 1-.25-.25V10.5a.5.5 0 0 0-.5-.5H11v-1.5a.5.5 0 0 0-.5-.5h-1v-2a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v2h-1a.5.5 0 0 0-.5.5v1.5H5.25a.5.5 0 0 0-.5.5v4.25a.25.25 0 0 1-.25.25H2.5a.25.25 0 0 1-.25-.25V8.67l5.247-4.197a.75.75 0 0 1 .91 0L13.75 8.67v6.08a.25.25 0 0 1-.25.25zM15 8.766l-6.495-5.196a1.75 1.75 0 0 0-2.122 0L0 8.766V10a.5.5 0 0 0 .8.4l6.2-4.96a.75.75 0 0 1 .91 0l6.2 4.96a.5.5 0 0 0 .8-.4zM8 0a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 8 0"/>
-                                </svg>
-                            </span>
-                            <span class="detail-text" style="font-size: 0.9rem;">{{ col.diocesis }}</span>
+                        
+                        <!-- TextBox Premium Superpuesto -->
+                        <div class="premium-title-box" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(12, 30, 54, 0.95) 0%, rgba(12, 30, 54, 0.65) 60%, transparent 100%); padding: 1.5rem 1rem 0.75rem 1rem; color: var(--color-white); z-index: 3;">
+                            <h4 class="card-title" style="margin: 0; font-size: 1.15rem; font-family: var(--font-sans); font-weight: 800; line-height: 1.3; color: var(--color-white); text-shadow: 0 1px 4px rgba(0,0,0,0.5); letter-spacing: -0.3px;">{{ col.nombre }}</h4>
                         </div>
-                        {% endif %}
                     </div>
 
-                    <div class="card-actions">
-                        <a href="/colegios/{{ col.id }}" class="btn btn-secondary btn-card-link" style="display: inline-flex; align-items: center; gap: 0.4rem; justify-content: center; width: 100%;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-                              <path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 5a2 2 0 0 1 2-2h3.672a2 2 0 0 0 1.414-.586l.828-.828A2 2 0 0 1 9.828 1m-6 5a.5.5 0 0 0-.5.5v5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-5a.5.5 0 0 0-.5-.5z"/>
-                            </svg>
-                            Ver Ficha Institucional
-                        </a>
+                    <!-- Cuerpo de la Tarjeta Compacta -->
+                    <div class="card-body-content" style="padding: 1rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 0.75rem;">
+                        <div>
+                            <div class="card-province-label" style="font-family: var(--font-sans); font-size: 0.75rem; font-weight: 700; color: var(--color-pantone-yellow-raw); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">{{ col.provincia }}</div>
+                            
+                            <div class="card-details" style="display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.25rem;">
+                                <div class="detail-item" style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <span class="detail-icon" style="color: var(--color-coral); display: inline-flex; align-items: center;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
+                                          <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+                                        </svg>
+                                    </span>
+                                    <span class="detail-text" style="font-size: 0.85rem; font-family: var(--font-sans); color: var(--color-text-muted);">{{ col.ubicacion }}</span>
+                                </div>
+                                {% if col.telefono %}
+                                <div class="detail-item" style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <span class="detail-icon" style="color: var(--color-primary); display: inline-flex; align-items: center;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
+                                          <path d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+                                        </svg>
+                                    </span>
+                                    <span class="detail-text" style="font-size: 0.85rem; font-family: var(--font-sans); color: var(--color-text-muted);">{{ col.telefono }}</span>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="card-actions" style="margin-top: auto; padding-top: 0.5rem; border-top: 1px solid rgba(0,0,0,0.04);">
+                            <a href="/colegios/{{ col.id }}" class="btn-card-link" style="display: inline-flex; align-items: center; gap: 0.35rem; justify-content: center; width: 100%; border: none; background: transparent; color: var(--color-coral); font-family: var(--font-sans); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; transition: var(--transition-smooth); text-decoration: none; padding: 0.25rem 0;">
+                                Conocer Comunidad 
+                                <span class="arrow-indicator" style="transition: var(--transition-smooth); display: inline-block;">→</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}
@@ -176,6 +162,33 @@
                 <button class="btn btn-primary btn-sm" id="btn-reset-filters">Limpiar Filtros</button>
             </div>
 
+<!-- Mapa Interactivo de Presencia Geográfica (Relegado abajo en fondo azul premium con bordes redondeados) -->
+<section class="mapa-geografico-section" style="background-color: var(--color-primary); padding: 2.5rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.15); border-radius: 12px; margin-top: 2rem;">
+    <div class="container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0;">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+            <span class="eyebrow" style="color: var(--color-coral); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; font-size: 0.85rem; display: block; margin-bottom: 0.25rem; font-family: var(--font-sans);">Ubicación de Comunidades</span>
+            <h3 style="font-family: var(--font-sans); font-weight: 800; font-size: 2rem; color: var(--color-white); margin: 0; letter-spacing: -0.5px;">Presencia Territorial</h3>
+            <p style="font-size: 0.95rem; color: rgba(255, 255, 255, 0.85); max-width: 600px; margin: 0.25rem auto 0 auto; font-family: var(--font-serif); font-style: italic; line-height: 1.4;">Explora geográficamente la ubicación de cada una de nuestras obras y establecimientos educativos.</p>
+        </div>
+
+        <!-- Mapas Interactivos Divididos -->
+        <div class="maps-split-container" style="position: relative;">
+            <div class="map-box" style="border-radius: 12px; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.15); background-color: var(--color-white); padding: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                <h4 class="map-box-title" style="font-family: var(--font-sans); font-weight: 700; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; font-size: 1.15rem; border-bottom: 1px dashed var(--color-border); padding-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Presencia Nacional</h4>
+                <div id="map-argentina" class="map-instance" style="height: 380px; border-radius: 8px;"></div>
+            </div>
+            <div class="map-box" style="border-radius: 12px; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.15); background-color: var(--color-white); padding: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                <h4 class="map-box-title" style="font-family: var(--font-sans); font-weight: 700; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; font-size: 1.15rem; border-bottom: 1px dashed var(--color-border); padding-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Detalle AMBA y Buenos Aires</h4>
+                <div id="map-amba" class="map-instance" style="height: 380px; border-radius: 8px;"></div>
+            </div>
+
+            <!-- Tarjeta Flotante Informativa -->
+            <div id="map-floating-card" class="map-floating-overlay d-none">
+                <button class="close-card-btn" id="close-floating-card" aria-label="Cerrar">&times;</button>
+                <div class="floating-card-body" id="floating-card-body">
+                    <!-- Contenido inyectado por JS -->
+                </div>
+            </div>
         </div>
     </div>
 </section>

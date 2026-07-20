@@ -23,7 +23,7 @@
 
 <!-- SECCIÓN PRINCIPAL: Imagen limpia (izq) | Texto editorial + Ficha integrada (der) -->
 <section style="background-color: var(--color-bg); padding: var(--space-xxl) 0; width: 100%;">
-    <div class="container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md); display: grid; grid-template-columns: 0.8fr 1.2fr; gap: var(--space-xxl); align-items: start;" class="d-grid-mobile-1">
+    <div class="container d-grid-mobile-1" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md); display: grid; grid-template-columns: 0.8fr 1.2fr; gap: var(--space-xxl); align-items: start;">
         
         <!-- Columna izquierda: Solo la imagen circular limpia y destacada -->
         <div style="display: flex; justify-content: center; align-items: center; padding-top: var(--space-sm);">
@@ -156,10 +156,11 @@
         .d-grid-mobile-1 {
             grid-template-columns: 1fr !important;
             gap: var(--space-xl) !important;
-            text-align: center !important;
         }
-        .d-grid-mobile-1 > div {
-            text-align: center !important;
+        /* Ajustar el tamaño de la imagen circular para que no desborde en pantallas chicas */
+        .d-grid-mobile-1 img {
+            width: 220px !important;
+            height: 220px !important;
         }
     }
 </style>

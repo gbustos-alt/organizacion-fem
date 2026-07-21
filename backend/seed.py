@@ -22,7 +22,8 @@ def seed_db():
             ubicacion="Olazábal 1440, Belgrano",
             provincia="CABA",
             telefono="011 4784 7650",
-            web_url="http://www.santaanaysanjoaquin.edu.ar"
+            web_url="http://www.santaanaysanjoaquin.edu.ar",
+            imagen_url="/static/img/colegios/instituto santa ana y san joaquin.png"
         ),
         Colegio(
             nombre="Instituto Superior Santa Ana",
@@ -30,7 +31,8 @@ def seed_db():
             ubicacion="Av. del Libertador 6155, Belgrano",
             provincia="CABA",
             telefono="011 4784 6795",
-            web_url="http://www.santaanaysanjoaquin.edu.ar"
+            web_url="http://www.santaanaysanjoaquin.edu.ar",
+            imagen_url="/static/img/colegios/instituto santa ana y san joaquin.png"
         ),
         Colegio(
             nombre="Instituto Plácido Marín",
@@ -38,7 +40,8 @@ def seed_db():
             ubicacion="Larrazábal 1551, Mataderos",
             provincia="CABA",
             telefono="011 4635 0115",
-            web_url="http://www.placidomarin.edu.ar"
+            web_url="http://www.placidomarin.edu.ar",
+            imagen_url="/static/img/colegios/instituto placido marin.png"
         ),
         Colegio(
             nombre="Instituto San Pío X",
@@ -46,7 +49,8 @@ def seed_db():
             ubicacion="Basualdo 780, Mataderos",
             provincia="CABA",
             telefono="011 4635 1710",
-            web_url="http://www.institutosanpiox.edu.ar"
+            web_url="http://www.institutosanpiox.edu.ar",
+            imagen_url="/static/img/colegios/instituto san pio x.png"
         ),
         # PBA
         Colegio(
@@ -54,7 +58,8 @@ def seed_db():
             congregacion="Congregación Catequistas de Dolores Sopeña",
             ubicacion="España 620, Avellaneda",
             provincia="Provincia de Buenos Aires",
-            telefono="011 4222 6814"
+            telefono="011 4222 6814",
+            imagen_url="/static/img/colegios/instituto dolores rodriguez sopeña.png"
         ),
         Colegio(
             nombre="Colegio Cardenal Spínola",
@@ -62,7 +67,8 @@ def seed_db():
             ubicacion="Maestro Santana 349, San Isidro",
             provincia="Provincia de Buenos Aires",
             telefono="011 4723 4394",
-            web_url="http://www.cardenalspinola.com.ar"
+            web_url="http://www.cardenalspinola.com.ar",
+            imagen_url="/static/img/colegios/colegio cardenal spinola.png"
         ),
         Colegio(
             nombre="Colegio Sagrada Familia (Zárate)",
@@ -70,14 +76,16 @@ def seed_db():
             ubicacion="Félix Pagola 125, Zárate",
             provincia="Provincia de Buenos Aires",
             telefono="03487 422423",
-            web_url="http://www.csfamilia.com.ar"
+            web_url="http://www.csfamilia.com.ar",
+            imagen_url="/static/img/colegios/colegio sagrada familia.png"
         ),
         Colegio(
             nombre="I.S.F.D. Sagrada Familia",
             congregacion="Congregación Hijas de la Cruz",
             ubicacion="Félix Pagola 125, Zárate",
             provincia="Provincia de Buenos Aires",
-            web_url="mailto:nivelsuperior@csfamilia.com.ar"
+            web_url="mailto:nivelsuperior@csfamilia.com.ar",
+            imagen_url="/static/img/colegios/colegio sagrada familia.png"
         ),
         Colegio(
             nombre="Colegio Sagrada Familia e Inst. Hijas de la Cruz",
@@ -85,7 +93,8 @@ def seed_db():
             ubicacion="Calle 15 (entre 51 y 53) Nº 961, La Plata",
             provincia="Provincia de Buenos Aires",
             telefono="0221 4212231",
-            web_url="http://www.csfamilialp.com.ar"
+            web_url="http://www.csfamilialp.com.ar",
+            imagen_url="/static/img/colegios/colegio sagrada familia e hijas de la cruz.png"
         ),
         Colegio(
             nombre="Instituto Nuestra Señora del Carmen",
@@ -93,7 +102,8 @@ def seed_db():
             ubicacion="Fonrouge 855, Lomas de Zamora",
             provincia="Provincia de Buenos Aires",
             telefono="WhatsApp: +54 9 11 4243 9089",
-            web_url="http://www.inscarmen.edu.ar"
+            web_url="http://www.inscarmen.edu.ar",
+            imagen_url="/static/img/colegios/instituto nuestra señora del carmen.png"
         ),
         Colegio(
             nombre="Colegio San Juan de la Cruz",
@@ -101,7 +111,8 @@ def seed_db():
             ubicacion="General Pintos 1450, Banfield",
             provincia="Provincia de Buenos Aires",
             telefono="011 4245 0614",
-            web_url="http://www.sanjuandelacruz.edu.ar"
+            web_url="http://www.sanjuandelacruz.edu.ar",
+            imagen_url="/static/img/colegios/colegio san juan de la cruz.png"
         ),
         # Presencia Federal
         Colegio(
@@ -109,7 +120,8 @@ def seed_db():
             congregacion="Congregación Esclavas del Divino Corazón",
             ubicacion="Av. Luciano Catalano 198, Palpalá, Jujuy",
             provincia="Presencia Federal",
-            telefono="0388 427 0198"
+            telefono="0388 427 0198",
+            imagen_url="/static/img/colegios/colegio sagrado corazon.png"
         ),
         Colegio(
             nombre="Instituto Corazón de Jesús (Santa Fe)",
@@ -117,7 +129,8 @@ def seed_db():
             ubicacion="Rivadavia 713, San Carlos Centro, Santa Fe",
             provincia="Presencia Federal",
             telefono="03404 42 0055",
-            web_url="https://instagram.com/corazondejesus_sc"
+            web_url="https://instagram.com/corazondejesus_sc",
+            imagen_url="/static/img/colegios/instituto corazon de jesus.png"
         ),
         Colegio(
             nombre="Colegio e Instituto Montserrat (Tucumán)",
@@ -125,16 +138,19 @@ def seed_db():
             ubicacion="Colombia 2937, San Miguel de Tucumán, Tucumán",
             provincia="Presencia Federal",
             telefono="0381 254 7338",
-            web_url="http://www.colegio-e-instituto-montserrat.com"
+            web_url="http://www.colegio-e-instituto-montserrat.com",
+            imagen_url="/static/img/colegios/colegio e instituto montserrat.png"
         ),
         Colegio(
             nombre="Colegio Nuestra Señora de la Compasión (Mendoza)",
             congregacion="Compasionistas",
             ubicacion="Soberanía Nacional y Congreso de Tucumán, Palmira, Mendoza",
             provincia="Presencia Federal",
-            telefono="0263 4461778"
+            telefono="0263 4461778",
+            imagen_url="/static/img/colegios/colegio nuestra señora de la compasion.png"
         )
     ]
+
     db.add_all(colegios)
     
     # 2. Agregar Noticias

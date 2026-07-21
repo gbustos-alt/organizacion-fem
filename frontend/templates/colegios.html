@@ -38,7 +38,8 @@
         will-change: opacity, transform;
     }
 
-    .school-card.reveal-visible {
+    .school-card.reveal-visible,
+    .school-card.is-visible {
         opacity: 1 !important;
         transform: translateY(0) scale(1) !important;
     }
@@ -51,10 +52,12 @@
         will-change: opacity, transform;
     }
 
-    .mapa-geografico-section.reveal-visible {
+    .mapa-geografico-section.reveal-visible,
+    .mapa-geografico-section.is-visible {
         opacity: 1 !important;
         transform: translateY(0) scale(1) !important;
     }
+
 
     .school-card:hover {
         transform: translateY(-4px) scale(1.01) !important;
@@ -126,8 +129,9 @@
                         {% if col.imagen_url %}
                             <img src="{{ col.imagen_url }}" alt="{{ col.nombre }}" style="width: 100%; height: 100%; object-fit: cover; transition: var(--transition-smooth);" class="card-cover-img">
                         {% else %}
-                            <img src="{{ url_for('static', path='img/placeholder-hero.svg') }}" alt="Placeholder" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.35;">
+                            <img src="{{ url_for('static', path='img/galeria_aula_comunidad.png') }}" alt="{{ col.nombre }}" style="width: 100%; height: 100%; object-fit: cover; transition: var(--transition-smooth);" class="card-cover-img">
                         {% endif %}
+
                         
                         <!-- TextBox Premium Superpuesto -->
                         <div class="premium-title-box" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(12, 30, 54, 0.95) 0%, rgba(12, 30, 54, 0.65) 60%, transparent 100%); padding: 1.5rem 1rem 0.75rem 1rem; color: var(--color-white); z-index: 3;">

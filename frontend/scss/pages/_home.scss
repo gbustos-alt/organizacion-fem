@@ -644,13 +644,84 @@
   }
 }
 
-// 2. Sección Quiénes Somos (Identidad)
+// 2. Sección Quiénes Somos (Identidad / Misión)
 .home-identity-section {
-  padding: 7.5rem 0;
+  padding: 2.5rem 0;
   background-color: var(--color-bg-alt);
   border-bottom: 1px solid var(--color-border);
+  overflow: hidden;
+
+  .identity-visual-block,
+  .identity-text-block {
+    transition: opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1), transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .identity-img {
+    transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: center center;
+  }
+
+  // Cuando JS habilita el dinamismo en la sección
+  &.js-motion-ready {
+    .identity-visual-block {
+      opacity: 0;
+      transform: translateX(-60px);
+    }
+
+    .identity-img {
+      transform: scale(0.86); // Efecto Grow inicial
+    }
+
+    .identity-text-block {
+      opacity: 0;
+      transform: translateX(60px);
+    }
+
+    // Al entrar al viewport se revela suavemente con animación Grow de la imagen
+    &.is-visible {
+      .identity-visual-block {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .identity-img {
+        transform: scale(1); // Crece a su tamaño completo
+      }
+
+      .identity-text-block {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  }
+
+  // Micro-interacciones Hover (Vida & Dinamismo)
+  .identity-image-wrapper {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 25px 35px -5px rgba(12, 30, 54, 0.16);
+
+      .identity-img {
+        transform: scale(1.08) !important; // Agrandamiento de imagen en hover
+      }
+    }
+  }
+
+  .identity-img {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 
   .identity-text-block {
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+
+    &:hover {
+      transform: translateY(-8px) !important; // Movimiento dinámico hacia arriba al interactuar
+      box-shadow: 0 25px 35px -5px rgba(12, 30, 54, 0.14);
+      border-left-color: var(--color-coral); // Acento dinámico
+    }
+
     .lead-text {
       font-size: 1.25rem;
       line-height: 1.6;

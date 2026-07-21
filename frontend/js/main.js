@@ -161,4 +161,27 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+
+    // --- Animación Smooth por Scroll para la Sección Misión / Identidad ---
+    const identitySection = document.querySelector(".home-identity-section");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (identitySection && !prefersReducedMotion && "IntersectionObserver" in window) {
+        // Habilita el estado preparado para la animación inicial
+        identitySection.classList.add("js-motion-ready");
+
+        const identityObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    identitySection.classList.add("is-visible");
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        identityObserver.observe(identitySection);
+    }
 });
+

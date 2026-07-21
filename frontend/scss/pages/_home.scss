@@ -661,39 +661,13 @@
     transform-origin: center center;
   }
 
-  // Cuando JS habilita el dinamismo en la sección
-  &.js-motion-ready {
-    .identity-visual-block {
-      opacity: 0;
-      transform: translateX(-60px);
-    }
-
+  // Integración fluida con el motor de revelado global
+  &.is-visible {
     .identity-img {
-      transform: scale(0.86); // Efecto Grow inicial
-    }
-
-    .identity-text-block {
-      opacity: 0;
-      transform: translateX(60px);
-    }
-
-    // Al entrar al viewport se revela suavemente con animación Grow de la imagen
-    &.is-visible {
-      .identity-visual-block {
-        opacity: 1;
-        transform: translateX(0);
-      }
-
-      .identity-img {
-        transform: scale(1); // Crece a su tamaño completo
-      }
-
-      .identity-text-block {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      transform: scale(1);
     }
   }
+
 
   // Micro-interacciones Hover (Vida & Dinamismo)
   .identity-image-wrapper {

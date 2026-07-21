@@ -1,4 +1,4 @@
-// Interactividad y Animaciones de Vanguardia - Fundación FEM (Motor de web_ejemplo.html)
+// Motor de Animación e Interactividad Global - Fundación FEM (Todas las Páginas)
 document.addEventListener("DOMContentLoaded", () => {
     const navToggle = document.getElementById("nav-toggle");
     const mainNav = document.getElementById("main-nav");
@@ -193,33 +193,35 @@ document.addEventListener("DOMContentLoaded", () => {
         onHeaderScroll();
     }
 
-
     // ==========================================================================
-    // MOTOR DE REVELADO AL SCROLL (Exacto de web_ejemplo.html)
+    // MOTOR DE REVELADO EN SCROLL UNIVERSAL PARA TODAS LAS PÁGINAS DEL SITIO
     // ==========================================================================
 
     (() => {
         if (prefersReducedMotion) return;
 
-        // 1. Asignación de clases de revelado direccional
+        // 1. Asignar entradas direccionales alternadas
         const leftGroups = document.querySelectorAll(
             '.identity-visual-block, .colegio-detail-left, ' +
-            '.dimension-card:nth-child(odd), .mision-card:nth-child(odd)'
+            '.dimension-card:nth-child(odd), .mision-card:nth-child(odd), ' +
+            '.editorial-block, .grid-split-2 > div:first-child'
         );
         const rightGroups = document.querySelectorAll(
             '.identity-text-block, .colegio-detail-right, ' +
-            '.dimension-card:nth-child(even), .mision-card:nth-child(even)'
+            '.dimension-card:nth-child(even), .mision-card:nth-child(even), ' +
+            '.text-block-accent, .grid-split-2 > div:last-child'
         );
 
         leftGroups.forEach(el => el.classList.add('reveal-left'));
         rightGroups.forEach(el => el.classList.add('reveal-right'));
 
-        // 2. Selección de todas las tarjetas, títulos, listas y módulos
+        // 2. Cobertura exhaustiva de elementos para todas las páginas
         const targets = document.querySelectorAll(
             '.sec-head, .cifras-header, .card, .dimension-card, .news-card, .recursero-card, ' +
-            '.quick-access-card, .team-member-card, .colegio-card-item, .num-counter-box, ' +
-            '.quienes-somos-card, .contact-info-card, .contact-form-card, .memory-card, ' +
-            '.material-card, .hito-item, blockquote, .reveal-left, .reveal-right, .reveal-scale'
+            '.quick-access-card, .team-member-card, .colegio-card-item, .school-card, .num-counter-box, ' +
+            '.quienes-somos-card, .contact-info-card, .contact-form-card, .contact-form, .memory-card, ' +
+            '.material-card, .hito-item, .member-card, .org-section, .editorial-block, .text-block-accent, ' +
+            '.mission-card, .province-title, blockquote, .reveal-left, .reveal-right, .reveal-scale'
         );
 
         if (!('IntersectionObserver' in window)) {
@@ -234,11 +236,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 !t.classList.contains('reveal-scale')) {
                 t.classList.add('reveal');
             }
-            // Retardo en cascada de 80ms por elemento
             t.style.transitionDelay = `${(i % 4) * 80}ms`;
         });
 
-        // 4. Observador con IntersectionObserver (exacto de web_ejemplo.html)
+        // 4. Observador de Intersección de Alto Rendimiento
         const io = new IntersectionObserver((entries) => {
             entries.forEach(e => {
                 if (e.isIntersecting) {
@@ -247,8 +248,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }, {
-            threshold: 0.10,
-            rootMargin: '0px 0px -5% 0px'
+            threshold: 0.08,
+            rootMargin: '0px 0px -4% 0px'
         });
 
         targets.forEach(t => io.observe(t));
@@ -258,8 +259,8 @@ document.addEventListener("DOMContentLoaded", () => {
     (() => {
         const spotlightCards = document.querySelectorAll(
             ".card, .dimension-card, .news-card, .recursero-card, .quick-access-card, " +
-            ".colegio-card-item, .team-member-card, .num-counter-box, " +
-            ".contact-info-card, .memory-card, .material-card"
+            ".colegio-card-item, .school-card, .team-member-card, .member-card, .num-counter-box, " +
+            ".contact-info-card, .contact-form, .memory-card, .material-card, .mission-card"
         );
         spotlightCards.forEach(card => {
             card.classList.add("card-spotlight");

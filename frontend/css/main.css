@@ -1863,27 +1863,8 @@ html, body {
   transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
   transform-origin: center center;
 }
-.home-identity-section.js-motion-ready .identity-visual-block {
-  opacity: 0;
-  transform: translateX(-60px);
-}
-.home-identity-section.js-motion-ready .identity-img {
-  transform: scale(0.86);
-}
-.home-identity-section.js-motion-ready .identity-text-block {
-  opacity: 0;
-  transform: translateX(60px);
-}
-.home-identity-section.js-motion-ready.is-visible .identity-visual-block {
-  opacity: 1;
-  transform: translateX(0);
-}
-.home-identity-section.js-motion-ready.is-visible .identity-img {
+.home-identity-section.is-visible .identity-img {
   transform: scale(1);
-}
-.home-identity-section.js-motion-ready.is-visible .identity-text-block {
-  opacity: 1;
-  transform: translateX(0);
 }
 .home-identity-section .identity-image-wrapper {
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);

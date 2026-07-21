@@ -32,9 +32,32 @@
     /* Animaciones y calidez para enlaces de tarjetas */
     .school-card {
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        opacity: 0;
+        transform: translateY(50px) scale(0.96);
+        transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease !important;
+        will-change: opacity, transform;
     }
+
+    .school-card.reveal-visible {
+        opacity: 1 !important;
+        transform: translateY(0) scale(1) !important;
+    }
+
+    /* Animación de entrada al scroll para Presencia Territorial */
+    .mapa-geografico-section {
+        opacity: 0;
+        transform: translateY(60px) scale(0.97);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        will-change: opacity, transform;
+    }
+
+    .mapa-geografico-section.reveal-visible {
+        opacity: 1 !important;
+        transform: translateY(0) scale(1) !important;
+    }
+
     .school-card:hover {
-        transform: translateY(-4px);
+        transform: translateY(-4px) scale(1.01) !important;
         box-shadow: 0 12px 24px rgba(12, 30, 54, 0.08) !important;
         border-color: var(--color-coral) !important;
     }
@@ -96,7 +119,7 @@
                      data-congregacion="{{ col.congregacion|lower }}"
                      data-provincia="{{ col.provincia }}"
                      data-carisma="{{ col.congregacion }}"
-                     style="padding: 0; display: flex; flex-direction: column; border-radius: 12px; overflow: hidden; border: 1.5px solid var(--color-border); background-color: var(--color-white); transition: var(--transition-smooth); height: 100%;">
+                     style="padding: 0; display: flex; flex-direction: column; border-radius: 12px; overflow: hidden; border: 1.5px solid var(--color-border); background-color: var(--color-white); height: 100%;">
                     
                     <!-- Contenedor de Imagen de Portada con Título Superpuesto (TextBox Premium) -->
                     <div class="card-cover-container" style="height: 180px; position: relative; width: 100%; overflow: hidden; background-color: var(--color-primary);">
@@ -215,5 +238,5 @@
 {% block scripts %}
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="{{ url_for('static', path='js/colegios.js') }}?v=2.0.2"></script>
+<script src="{{ url_for('static', path='js/colegios.js') }}?v=2.5.0"></script>
 {% endblock %}

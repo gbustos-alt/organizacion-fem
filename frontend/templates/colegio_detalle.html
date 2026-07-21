@@ -39,9 +39,10 @@
         <div style="display: flex; flex-direction: column; gap: 1.5rem;">
             <div>
                 <span class="eyebrow" style="color: var(--color-coral); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; font-size: 0.85rem; display: block; margin-bottom: var(--space-xxs);">Comunidad Educativa</span>
-                <h2 style="font-family: var(--font-sans); font-size: 2.3rem; color: var(--color-primary); font-weight: 800; margin: 0 0 0.75rem 0; line-height: 1.15; letter-spacing: -0.5px;">
+                <h2 style="font-family: var(--font-sans); font-size: 2.3rem; color: var(--color-primary); font-weight: 800; margin: 0 0 0.5rem 0; line-height: 1.15; letter-spacing: -0.5px;">
                     {{ colegio.nombre }}
                 </h2>
+                <h5 style="font-family: var(--font-sans); font-size: 0.85rem; text-transform: uppercase; color: var(--color-text-muted); font-weight: 700; letter-spacing: 1px; margin: 0 0 0.5rem 0;">Reseña Histórica</h5>
                 {% if colegio.descripcion %}
                     <p style="font-size: 1.05rem; line-height: 1.65; color: var(--color-text-muted); margin: 0; font-family: var(--font-serif); font-style: italic;">
                         {{ colegio.descripcion }}
@@ -55,6 +56,7 @@
 
             <!-- Ficha del Colegio integrada de forma limpia y moderna -->
             <div style="background-color: var(--color-white); padding: 1.25rem 1.5rem; border-radius: var(--radius-md); border-left: 4px solid var(--color-pantone-yellow-raw); display: flex; flex-direction: column; gap: 0.75rem; box-shadow: 0 2px 8px rgba(0,0,0,0.02); border-top: 1px solid var(--color-border); border-right: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+                <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-coral); font-weight: 700; letter-spacing: 1px; margin-bottom: 0.25rem;">Ficha Institucional</span>
                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;" class="d-grid-mobile-1">
                     <!-- Diócesis -->
                     <div style="display: flex; align-items: flex-start; gap: 0.6rem;">

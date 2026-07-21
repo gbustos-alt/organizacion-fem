@@ -22,7 +22,36 @@ document.addEventListener("DOMContentLoaded", () => {
     let activeCarisma = "all";
     let activeSearch = "";
 
-    // 2. Coordenadas Geográficas de los 15 Colegios
+    // 2. Animation Observer para efecto de entrada paralaje / fade-in progresivo al scrollear
+    const cardObserverOptions = {
+        root: null,
+        rootMargin: "0px 0px -20px 0px",
+        threshold: 0.05
+    };
+
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const card = entry.target;
+                const visibleCards = Array.from(document.querySelectorAll(".school-card:not(.d-none)"));
+                const index = visibleCards.indexOf(card);
+                const delay = (index >= 0 ? index % 3 : 0) * 100;
+
+                setTimeout(() => {
+                    card.classList.add("reveal-visible");
+                }, delay);
+
+                cardObserver.unobserve(card);
+            }
+        });
+    }, cardObserverOptions);
+
+    const mapaGeograficoSection = document.querySelector(".mapa-geografico-section");
+
+    schoolCards.forEach(card => cardObserver.observe(card));
+    if (mapaGeograficoSection) cardObserver.observe(mapaGeograficoSection);
+
+    // 3. Coordenadas Geográficas de los 15 Colegios
     const coordsMap = {
         1: { lat: -34.557457, lng: -58.450162 }, // Santa Ana y San Joaquín
         2: { lat: -34.553974, lng: -58.448554 }, // Superior Santa Ana
@@ -95,30 +124,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const webButtonHtml = `
             <a href="/colegios/${col.id}" class="btn btn-card-link">
-                📂 Ver Ficha Institucional
+                Conocer Comunidad →
             </a>
         `;
 
+        const phoneSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/></svg>`;
+        const locationSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg>`;
+        const diocesisSvg = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V10l8-6 8 6v12M2 22h20M12 2v4M12 17v-3M9 17v-2M15 17v-2"></path></svg>`;
+
         const phoneHtml = col.telefono ? `
             <div class="detail-item">
-                <span class="detail-icon">📞</span>
+                <span class="detail-icon" style="color: var(--color-primary); display: inline-flex; align-items: center;">${phoneSvg}</span>
                 <span class="detail-text">${col.telefono}</span>
             </div>
         ` : '';
 
         const diocesisHtml = col.diocesis ? `
             <div class="detail-item">
-                <span class="detail-icon">⛪</span>
+                <span class="detail-icon" style="color: var(--color-primary); display: inline-flex; align-items: center;">${diocesisSvg}</span>
                 <span class="detail-text">${col.diocesis}</span>
             </div>
         ` : '';
 
         floatingCardBody.innerHTML = `
-            <div class="popup-carisma">${col.congregacion}</div>
             <h5>${col.nombre}</h5>
             <span class="province-badge">${col.provincia}</span>
             <div class="detail-item">
-                <span class="detail-icon">📍</span>
+                <span class="detail-icon" style="color: var(--color-coral); display: inline-flex; align-items: center;">${locationSvg}</span>
                 <span class="detail-text">${col.ubicacion}</span>
             </div>
             ${phoneHtml}
@@ -238,10 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Mostrar/Ocultar tarjeta y pines correspondientes
             if (isVisible) {
                 card.classList.remove("d-none");
-                // Forzar re-trigger de animación fade-in
-                card.style.animation = 'none';
-                card.offsetHeight; /* trigger reflow */
-                card.style.animation = null; 
+                card.classList.add("reveal-visible");
                 visibleCount++;
 
                 // Sincronizar Mapa Nacional
@@ -388,10 +417,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 10. Cerrar la tarjeta flotante al hacer scroll para evitar superposición con el header
+    // 11. Cerrar la tarjeta flotante al hacer scroll para evitar superposición con el header
     window.addEventListener("scroll", () => {
         if (floatingCard && !floatingCard.classList.contains("d-none")) {
             closeFloatingCard();
         }
     });
 });
+

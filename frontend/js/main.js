@@ -183,5 +183,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
         identityObserver.observe(identitySection);
     }
+
+    // --- Header Inteligente: Ocultar al hacer scroll hacia abajo, mostrar al subir ---
+    const mainHeader = document.querySelector(".main-header");
+    if (mainHeader) {
+        let lastScrollY = window.scrollY;
+        const scrollThreshold = 10; // Evitar pequeños rebotes
+        const topBoundary = 80;     // No ocultar si está en los primeros 80px superiores
+
+        window.addEventListener("scroll", () => {
+            // Si el menú hamburguesa móvil está desplegado, no ocultar el header
+            if (mainNav && mainNav.classList.contains("open")) return;
+
+            const currentScrollY = window.scrollY;
+            const scrollDelta = currentScrollY - lastScrollY;
+
+            if (currentScrollY <= topBoundary) {
+                // Siempre visible cerca de la cima
+                mainHeader.classList.remove("header-hidden");
+            } else if (scrollDelta > scrollThreshold) {
+                // Scroll hacia abajo -> Ocultar header
+                mainHeader.classList.add("header-hidden");
+            } else if (scrollDelta < -scrollThreshold) {
+                // Scroll hacia arriba -> Mostrar header
+                mainHeader.classList.remove("header-hidden");
+            }
+
+            lastScrollY = Math.max(0, currentScrollY);
+        }, { passive: true });
+    }
 });
 

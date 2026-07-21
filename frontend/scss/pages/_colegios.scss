@@ -158,15 +158,28 @@
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
   position: relative;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+  
+  /* Estado inicial para animación al scroll (Fade-in + Slide-up Paralaje) */
+  opacity: 0;
+  transform: translateY(60px) scale(0.95);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.3s ease, 
+              box-shadow 0.3s ease !important;
+  will-change: opacity, transform;
+
+  &.reveal-visible {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+  }
 
   &:hover {
     border-color: var(--color-accent);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    transform: translateY(-5px) scale(1.01) !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
   }
 
   .card-header-badge {
@@ -283,15 +296,14 @@
   display: none !important;
 }
 
-// Transición suave de fade al filtrar
+// Estado de tarjeta activa seleccionada
 .school-card {
-  animation: cardFadeIn 0.3s ease forwards;
   cursor: pointer; // Indica que la tarjeta es interactiva para vincularse al mapa
   
   &.active-card {
     border-color: var(--color-accent-warm) !important;
     box-shadow: var(--shadow-glow) !important;
-    transform: translateY(-4px);
+    transform: translateY(-4px) !important;
     background-color: #FFFDF8; /* Fondo crema muy suave de selección premium */
   }
 }

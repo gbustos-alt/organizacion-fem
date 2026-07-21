@@ -2,142 +2,166 @@
 {% import "components/macros.html" as macros %}
 
 {% block title %}{{ colegio.nombre }} | Organización FEM{% endblock %}
-
 {% block content %}
-<section class="page-hero" style="background: linear-gradient(135deg, var(--color-primary) 0%, #1a365d 100%); padding-top: 3rem; padding-bottom: 3rem;">
-    <div class="container">
-        <span class="eyebrow" style="color: var(--color-accent-warm);">{{ colegio.congregacion or 'Comunidad Educativa' }}</span>
-        <h1 class="page-title" style="color: var(--color-white); margin-top: 0.5rem; margin-bottom: 0.5rem;">{{ colegio.nombre }}</h1>
-        <p class="page-subtitle" style="color: rgba(255, 255, 255, 0.85);">📍 {{ colegio.ubicacion }} ({{ colegio.provincia }})</p>
+<!-- Cabecera de Ficha Inmersiva con Foto Real y Onda SVG -->
+<section class="page-hero-banner" style="background-image: linear-gradient(to bottom, rgba(12, 30, 54, 0.7) 0%, rgba(12, 30, 54, 0.95) 100%), url('{{ colegio.imagen_url or "/static/img/placeholder-hero.svg" }}'); background-size: cover; background-position: center; padding: 7.5rem 0 5.5rem 0; text-align: center; color: var(--color-white); position: relative; width: 100%;">
+    <div class="container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md); position: relative; z-index: 2;">
+        <span class="eyebrow" style="color: var(--color-pantone-yellow-raw); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.5rem; display: block; font-family: var(--font-sans);">Comunidad Educativa</span>
+        <h1 class="page-title" style="font-family: var(--font-sans); font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; margin: 0.5rem 0; color: var(--color-white); letter-spacing: -0.5px; line-height: 1.1; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">{{ colegio.nombre }}</h1>
+        <p class="page-subtitle" style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.9); font-family: var(--font-serif); font-style: italic; display: inline-flex; align-items: center; gap: 0.4rem;">
+            <span>📍</span> {{ colegio.ubicacion }} ({{ colegio.provincia }})
+        </p>
+    </div>
+    
+    <!-- Onda SVG Bottom (Misma curva de diseño del dashboard general) -->
+    <div style="position: absolute; bottom: 0; left: 0; width: 100%; overflow: hidden; line-height: 0; z-index: 1;">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" style="position: relative; display: block; width: calc(100% + 1.3px); height: 40px; transform: rotateY(180deg);">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C26.9,8.75,57.05,18.3,90.35,27.18,172.56,49,243.39,64.74,321.39,56.44Z" style="fill: var(--color-bg);"></path>
+        </svg>
     </div>
 </section>
 
-<section class="home-section" style="border-top: none; padding-top: 4rem;">
-    <div class="container">
-        <div style="display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: start;" class="d-grid-desktop">
-            <!-- Estilo desktop grid de dos columnas: 1.2fr 0.8fr -->
-            <style>
-                @media (min-width: 992px) {
-                    .detail-layout {
-                        display: grid;
-                        grid-template-columns: 1.3fr 0.7fr;
-                        gap: 4rem;
-                    }
-                }
-            </style>
-            
-            <div class="detail-layout">
-                <!-- Columna Principal: Reseña, Fundadores y Fotos -->
-                <div class="main-details">
-                    <!-- Reseña Histórica -->
-                    <div class="editorial-block" style="border-left: 4px solid var(--color-accent-warm); padding-left: 1.5rem; margin-bottom: 3rem;">
-                        <h2 style="font-family: var(--font-display); color: var(--color-primary); margin-bottom: 1rem; font-size: 2rem;">Reseña Histórica</h2>
-                        {% if colegio.descripcion %}
-                            <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text);">{{ colegio.descripcion }}</p>
-                        {% else %}
-                            <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text);">Esta comunidad educativa posee una rica trayectoria en la formación integral de niños y jóvenes. Nace de la misión compartida y el compromiso de sostener los valores del Evangelio en su región, consolidando a lo largo de las décadas un espacio educativo y pastoral de referencia familiar y comunitaria.</p>
-                        {% endif %}
-                    </div>
+<!-- SECCIÓN PRINCIPAL: Imagen limpia (izq) | Texto editorial + Ficha integrada (der) -->
+<section style="background-color: var(--color-bg); padding: var(--space-xxl) 0; width: 100%;">
+    <div class="container d-grid-mobile-1" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md); display: grid; grid-template-columns: 0.8fr 1.2fr; gap: var(--space-xxl); align-items: start;">
+        
+        <!-- Columna izquierda: Solo la imagen circular limpia y destacada -->
+        <div style="display: flex; justify-content: center; align-items: center; padding-top: var(--space-sm);">
+            <div style="display: inline-block; position: relative;">
+                <!-- Anillo con bordes suaves que combina con la paleta cálida -->
+                <div style="position: absolute; top: 8px; right: -8px; width: 100%; height: 100%; border: 3px solid var(--color-pantone-yellow-raw); border-radius: 50%; z-index: 1;"></div>
+                <img src="{{ url_for('static', path='img/galeria_aula_comunidad.png') }}" alt="Vida educativa" 
+                     style="width: 290px; height: 290px; border-radius: 50%; object-fit: cover; position: relative; z-index: 2; border: 5px solid var(--color-white); box-shadow: var(--shadow-subtle);">
+            </div>
+        </div>
 
-                    <!-- Fundadores y Carisma -->
-                    <div style="background-color: var(--color-bg-alt); padding: 2rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); margin-bottom: 3rem;">
-                        <h3 style="font-family: var(--font-display); color: var(--color-primary); margin-bottom: 0.75rem; font-size: 1.5rem;">Carisma y Fundadores</h3>
-                        <p style="font-size: 1rem; line-height: 1.6; color: var(--color-text-muted);">
-                            Inspirado en el carisma de la congregación <strong>{{ colegio.congregacion or 'asociada' }}</strong>, este colegio promueve una educación centrada en la persona, el cuidado fraterno y el compromiso social. Su misión continúa viva a través del acompañamiento cotidiano de los equipos docentes y directivos, preservando el carisma original y adaptándolo a los nuevos desafíos del porvenir educativo.
-                        </p>
-                    </div>
+        <!-- Columna derecha: Título, reseña y ficha integrada de forma fluida -->
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <div>
+                <span class="eyebrow" style="color: var(--color-coral); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; font-size: 0.85rem; display: block; margin-bottom: var(--space-xxs);">Comunidad Educativa</span>
+                <h2 style="font-family: var(--font-sans); font-size: 2.3rem; color: var(--color-primary); font-weight: 800; margin: 0 0 0.75rem 0; line-height: 1.15; letter-spacing: -0.5px;">
+                    {{ colegio.nombre }}
+                </h2>
+                {% if colegio.descripcion %}
+                    <p style="font-size: 1.05rem; line-height: 1.65; color: var(--color-text-muted); margin: 0; font-family: var(--font-serif); font-style: italic;">
+                        {{ colegio.descripcion }}
+                    </p>
+                {% else %}
+                    <p style="font-size: 1.05rem; line-height: 1.65; color: var(--color-text-muted); margin: 0; font-family: var(--font-serif); font-style: italic;">
+                        Esta comunidad educativa posee una rica trayectoria en la formación integral de niños y jóvenes. Nace de la misión compartida y el compromiso de sostener los valores del Evangelio en su region, consolidando a lo largo de las décadas un espacio educativo y pastoral de referencia familiar y comunitaria.
+                    </p>
+                {% endif %}
+            </div>
 
-                    <!-- Galería de Fotos -->
-                    <div>
-                        <h3 style="font-family: var(--font-display); color: var(--color-primary); margin-bottom: 1.25rem; font-size: 1.5rem;">Galería de la Comunidad</h3>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                            {% if colegio.imagen_url %}
-                                <img src="{{ colegio.imagen_url }}" alt="Imagen de {{ colegio.nombre }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
-                            {% else %}
-                                <img src="{{ url_for('static', path='img/fotos prueba/escuela.jpeg') }}" alt="Imagen de {{ colegio.nombre }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
-                            {% endif %}
-                            <img src="{{ url_for('static', path='img/fotos prueba/ninos.jpeg') }}" alt="Comunidad en clase" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
+            <!-- Ficha del Colegio integrada de forma limpia y moderna -->
+            <div style="background-color: var(--color-white); padding: 1.25rem 1.5rem; border-radius: var(--radius-md); border-left: 4px solid var(--color-pantone-yellow-raw); display: flex; flex-direction: column; gap: 0.75rem; box-shadow: 0 2px 8px rgba(0,0,0,0.02); border-top: 1px solid var(--color-border); border-right: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;" class="d-grid-mobile-1">
+                    <!-- Diócesis -->
+                    <div style="display: flex; align-items: flex-start; gap: 0.6rem;">
+                        <span style="color: var(--color-primary); padding-top: 0.15rem; display: inline-flex;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 22V10l8-6 8 6v12M2 22h20M12 2v4M12 17v-3M9 17v-2M15 17v-2"></path>
+                            </svg>
+                        </span>
+                        <div>
+                            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--color-text-muted); font-weight: 700; display: block; letter-spacing: 0.5px;">Diócesis</span>
+                            <span style="font-size: 0.9rem; color: var(--color-primary); font-weight: 600; line-height: 1.2; display: block;">{{ colegio.diocesis or 'Diócesis Local' }}</span>
+                        </div>
+                    </div>
+                    <!-- Ubicación -->
+                    <div style="display: flex; align-items: flex-start; gap: 0.6rem;">
+                        <span style="color: var(--color-coral); padding-top: 0.15rem; display: inline-flex;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </span>
+                        <div>
+                            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--color-text-muted); font-weight: 700; display: block; letter-spacing: 0.5px;">Ubicación</span>
+                            <span style="font-size: 0.9rem; color: var(--color-primary); font-weight: 600; line-height: 1.2; display: block;">{{ colegio.ubicacion }}, {{ colegio.provincia }}</span>
+                        </div>
+                    </div>
+                    <!-- Teléfono -->
+                    <div style="display: flex; align-items: flex-start; gap: 0.6rem;">
+                        <span style="color: var(--color-primary); padding-top: 0.15rem; display: inline-flex;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                        </span>
+                        <div>
+                            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--color-text-muted); font-weight: 700; display: block; letter-spacing: 0.5px;">Teléfono</span>
+                            <span style="font-size: 0.9rem; color: var(--color-primary); font-weight: 600; line-height: 1.2; display: block;">{{ colegio.telefono or 'No disponible' }}</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Columna Lateral: Ficha Técnica y Salida -->
-                <div class="sidebar-details" style="background-color: var(--color-white); border: 1px solid var(--color-border); padding: 2.5rem 2rem; border-radius: var(--radius-md); box-shadow: var(--shadow-premium); position: sticky; top: 2rem;">
-                    <h3 style="font-family: var(--font-brand-bold); font-size: 1.25rem; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--color-border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;">
-                        Ficha Institucional
-                    </h3>
-                    
-                    <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem;">
-                        <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                            <span style="color: var(--color-primary); display: inline-flex; align-items: center; padding-top: 0.2rem;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                  <path d="M13.25 15a.25.25 0 0 1-.25-.25V10.5a.5.5 0 0 0-.5-.5H11v-1.5a.5.5 0 0 0-.5-.5h-1v-2a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v2h-1a.5.5 0 0 0-.5.5v1.5H5.25a.5.5 0 0 0-.5.5v4.25a.25.25 0 0 1-.25.25H2.5a.25.25 0 0 1-.25-.25V8.67l5.247-4.197a.75.75 0 0 1 .91 0L13.75 8.67v6.08a.25.25 0 0 1-.25.25zM15 8.766l-6.495-5.196a1.75 1.75 0 0 0-2.122 0L0 8.766V10a.5.5 0 0 0 .8.4l6.2-4.96a.75.75 0 0 1 .91 0l6.2 4.96a.5.5 0 0 0 .8-.4zM8 0a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 8 0"/>
-                                </svg>
-                            </span>
-                            <div>
-                                <h4 style="font-size: 0.85rem; text-transform: uppercase; color: var(--color-text-muted); margin: 0;">Diócesis</h4>
-                                <p style="font-size: 1rem; color: var(--color-primary); font-weight: 500; margin: 0;">{{ colegio.diocesis or 'Diócesis Local' }}</p>
-                            </div>
-                        </div>
-                        
-                        <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                            <span style="color: var(--color-coral); display: inline-flex; align-items: center; padding-top: 0.2rem;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
-                                </svg>
-                            </span>
-                            <div>
-                                <h4 style="font-size: 0.85rem; text-transform: uppercase; color: var(--color-text-muted); margin: 0;">Ubicación</h4>
-                                <p style="font-size: 1rem; color: var(--color-primary); font-weight: 500; margin: 0;">{{ colegio.ubicacion }}</p>
-                            </div>
-                        </div>
-
-                        {% if colegio.telefono %}
-                        <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                            <span style="color: var(--color-primary); display: inline-flex; align-items: center; padding-top: 0.2rem;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                  <path d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
-                                </svg>
-                            </span>
-                            <div>
-                                <h4 style="font-size: 0.85rem; text-transform: uppercase; color: var(--color-text-muted); margin: 0;">Teléfono</h4>
-                                <p style="font-size: 1rem; color: var(--color-primary); font-weight: 500; margin: 0;">{{ colegio.telefono }}</p>
-                            </div>
-                        </div>
+                {% if colegio.web_url %}
+                <div style="border-top: 1px solid rgba(0,0,0,0.06); padding-top: 0.8rem; margin-top: 0.2rem; display: flex; justify-content: flex-end;">
+                    <a href="{{ colegio.web_url }}" target="_blank" rel="noopener" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.25rem; font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border-radius: 6px;">
+                        {% if colegio.web_url.startswith('mailto:') %}
+                            ✉ Contactar por Mail
+                        {% elif 'instagram.com' in colegio.web_url %}
+                            📷 Instagram Oficial
+                        {% else %}
+                            🌐 Sitio Web Oficial
                         {% endif %}
-                    </div>
-
-                    {% if colegio.web_url %}
-                    <div style="border-top: 1px dashed var(--color-border); padding-top: 1.5rem; text-align: center;">
-                        <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 1rem;">Puedes visitar el sitio oficial externo o canal de contacto directo de esta institución:</p>
-                        <a href="{{ colegio.web_url }}" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1rem; text-align: center; text-transform: uppercase; font-family: var(--font-brand-bold); font-size: 0.9rem; letter-spacing: 0.5px;">
-                            {% if colegio.web_url.startswith('mailto:') %}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-                                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47a1 1 0 0 0 .852.542h12.17a1 1 0 0 0 .85-.542M1 11.105l4.708-2.897L1 5.383z"/>
-                                </svg>
-                                Contactar vía Mail
-                            {% elif 'instagram.com' in colegio.web_url %}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-                                  <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.742.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.742C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.743-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
-                                </svg>
-                                Visitar Instagram
-                            {% else %}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: middle;">
-                                  <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.224 2.5zM2.255 12h3.082a9 9 0 0 0 .224-2.5H1.674a7 7 0 0 0-.224 2.5m1.566 2.54A7.03 7.03 0 0 0 5.145 12H7.5v2.923c-.67-.204-1.335-.82-1.887-1.855M8.5 14.923V12h2.355c-.552 1.035-1.217 1.65-1.887 1.855M9.36 12a9 9 0 0 0-.224-2.5h3.082c.1.782.164 1.623.224 2.5zm3.082-3.5h-3.082a9 9 0 0 0-.224-2.5h3.082c-.06.878-.124 1.719-.224 2.5m1.304-2.5H11.85a8 8 0 0 0-.462-1.855 9.3 9.3 0 0 1 1.887 1.855M9.82 2.54c.552-1.035 1.217-1.65 1.887-1.855A7.03 7.03 0 0 0 13.745 4H10.66a8 8 0 0 1-.462-1.855M8.5 1.077V4h2.155c-.07-.378-.172-.73-.3-1.054-.127-.323-.275-.6-.44-.823c-.165-.224-.34-.403-.52-.527a2 2 0 0 0-.895-.02zM7.5 1.077a2 2 0 0 0-.895.02c-.18.124-.355.303-.52.527-.165.224-.313.5-.44.823-.128.324-.23.676-.3 1.054H7.5zM6.28 9.5a8 8 0 0 0 .3 1.054c.127.323.275.6.44.823c.165.224.34.403.52.527a2 2 0 0 0 .895.02c.18-.124.355-.303.52-.527.165-.224.313-.5.44-.823c.128-.324.23-.676.3-1.054H6.28zM8.5 9.5H10.66a8 8 0 0 0-.3-1.054A9 9 0 0 0 8.5 8zM7.5 9.5H5.34a8 8 0 0 0 .3 1.054c.127-.323.275-.6.44-.823c.165-.224.34-.403.52-.527H7.5zM8.5 8v1.5h2.155A9 9 0 0 0 11 8zm-3.5 0c-.06.505-.1 1.012-.124 1.5H7.5V8z"/>
-                                </svg>
-                                Ir al Sitio Oficial
-                            {% endif %}
-                        </a>
-                    </div>
-                    {% endif %}
+                    </a>
+                </div>
+                {% endif %}
             </div>
 
-            <div style="margin-top: 4rem; text-align: center; border-top: 1px dashed var(--color-border); padding-top: 2rem; grid-column: 1 / -1; width: 100%;">
-                <a href="/colegios" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--color-accent-warm); text-decoration: none; font-family: var(--font-brand-bold); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;">
-                    ← Volver al Listado de Colegios
-                </a>
+            <!-- Acompañamiento y Misión (Párrafo explicativo final de calidez) -->
+            <div style="border-top: 1px solid var(--color-border); padding-top: 1.25rem; display: flex; gap: var(--space-md); align-items: start;">
+                <div style="font-size: 1.3rem; color: var(--color-pantone-yellow-raw); line-height: 1.2;">✓</div>
+                <div>
+                    <h5 style="color: var(--color-primary); margin: 0 0 0.25rem 0; font-weight: 700; font-size: 0.95rem;">Acompañamiento y Misión Compartida</h5>
+                    <p style="font-size: 0.9rem; color: var(--color-text-muted); margin: 0; line-height: 1.5;">
+                        Acompañamos a este colegio para potenciar una educación centrada en la persona, el cuidado fraterno y el compromiso social. Nuestra tarea es animar, monitorear y sembrar valores pastorales en el quehacer diario de sus equipos directivos y docentes.
+                    </p>
+                </div>
             </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- GALERÍA Y NAVEGACIÓN -->
+<section style="background-color: var(--color-bg); padding: var(--space-xl) 0 var(--space-xxl) 0; width: 100%;">
+    <div class="container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md);">
+        <div style="text-align: center; margin-bottom: var(--space-lg);">
+            <span class="eyebrow" style="color: var(--color-coral); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; font-size: 0.85rem;">Vida Escolar</span>
+            <h3 style="font-family: var(--font-sans); font-size: 1.6rem; color: var(--color-primary); font-weight: 800; margin-top: var(--space-xxs);">Galería de la Comunidad</h3>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg);" class="d-grid-mobile-1">
+            <div style="border-radius: var(--radius-md); overflow: hidden; height: 220px; box-shadow: var(--shadow-subtle);">
+                <img src="{{ url_for('static', path='img/galeria_aula_comunidad.png') }}" alt="Vida en el aula" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="border-radius: var(--radius-md); overflow: hidden; height: 220px; box-shadow: var(--shadow-subtle);">
+                <img src="{{ url_for('static', path='img/galeria_patio_pastoral.png') }}" alt="Comunidad y encuentro" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </div>
+
+        <!-- Volver al listado -->
+        <div style="margin-top: var(--space-xl); text-align: center;">
+            <a href="/colegios" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--color-coral); text-decoration: none; font-family: var(--font-sans); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;">
+                ← Volver al Listado de Colegios
+            </a>
         </div>
     </div>
 </section>
+
+<!-- Estilo responsivo -->
+<style>
+    @media (max-width: 991px) {
+        .d-grid-mobile-1 {
+            grid-template-columns: 1fr !important;
+            gap: var(--space-xl) !important;
+        }
+        /* Ajustar el tamaño de la imagen circular para que no desborde en pantallas chicas */
+        .d-grid-mobile-1 img {
+            width: 220px !important;
+            height: 220px !important;
+        }
+    }
+</style>
 {% endblock %}

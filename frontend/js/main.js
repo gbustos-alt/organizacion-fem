@@ -128,9 +128,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- Animación Sección Números FEM: Conteo Regresivo ---
     const numerosSection = document.querySelector(".numeros-fem-section");
     const numCounters = document.querySelectorAll(".num-counter");
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (numerosSection && !prefersReducedMotion && "IntersectionObserver" in window) {
+    if (numerosSection && "IntersectionObserver" in window) {
         numerosSection.classList.add("js-motion-ready");
 
         const runCountdown = (el, staggerDelay) => {
@@ -198,8 +197,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================================================
 
     (() => {
-        if (prefersReducedMotion) return;
-
         // 1. Asignar entradas direccionales alternadas
         const leftGroups = document.querySelectorAll(
             '.identity-visual-block, .colegio-detail-left, ' +
@@ -248,8 +245,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }, {
-            threshold: 0.08,
-            rootMargin: '0px 0px -4% 0px'
+            threshold: 0.05,
+            rootMargin: '0px 0px -2% 0px'
         });
 
         targets.forEach(t => io.observe(t));
@@ -274,7 +271,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- BOTONES MAGNÉTICOS ---
     (() => {
-        if (prefersReducedMotion) return;
         const magneticBtns = document.querySelectorAll(
             ".btn-magnetic, .btn-primary, .btn-accent, .btn-coral, .btn-hero, .btn"
         );

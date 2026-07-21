@@ -28,7 +28,7 @@
 
 <!-- SECCIÓN 1: Misión y Visión (Bloque Azul Catedral) -->
 <section style="background-color: var(--color-primary); color: var(--color-white); padding: var(--space-xxl) 0 var(--space-3xl) 0; width: 100%;">
-    <div class="container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md); display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-xxl); align-items: center;" class="d-grid-mobile-1">
+    <div class="container grid-split-2">
         
         <div>
             <!-- Misión -->
@@ -54,10 +54,9 @@
 
         <!-- Imagen Circular Flotante -->
         <div style="text-align: center;">
-            <div style="display: inline-block; position: relative;">
-                <div style="position: absolute; top: -10px; left: -10px; width: 100%; height: 100%; border: 3px solid var(--color-pantone-yellow-raw); border-radius: 50%; z-index: 1;"></div>
-                <img src="/static/img/fotos prueba/chicos .jpeg" alt="Misión FEM" 
-                     style="width: 290px; height: 290px; border-radius: 50%; object-fit: cover; position: relative; z-index: 2; border: 5px solid var(--color-primary);">
+            <div class="circle-image-wrapper">
+                <div class="decorative-ring"></div>
+                <img src="/static/img/fotos prueba/chicos .jpeg" alt="Misión FEM" class="circle-img border-primary">
             </div>
         </div>
 
@@ -195,15 +194,5 @@
         </div>
     </div>
 </section>
-
-<!-- Estilo responsivo -->
-<style>
-    @media (max-width: 991px) {
-        .d-grid-mobile-1 {
-            grid-template-columns: 1fr !important;
-            gap: var(--space-xl) !important;
-            text-align: center !important;
-        }
-    }
-</style>
 {% endblock %}
+

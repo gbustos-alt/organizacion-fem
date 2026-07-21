@@ -45,7 +45,7 @@
 
 <!-- SECCIÓN 2: Origen e Historia (Nacimiento de FAERA) -->
 <section style="background-color: var(--color-white); padding: var(--space-xxl) 0; width: 100%; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
-    <div class="container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md); display: grid; grid-template-columns: 1.1fr 0.9fr; gap: var(--space-xxl); align-items: center;" class="d-grid-mobile-1">
+    <div class="container grid-split-2">
         <div>
             <span class="eyebrow" style="color: var(--color-coral); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; font-size: 0.85rem; display: block; margin-bottom: var(--space-xxs);">Nuestras Raíces</span>
             <h2 style="font-family: var(--font-sans); font-size: 2.2rem; color: var(--color-primary); font-weight: 800; margin-bottom: var(--space-md); line-height: 1.2;">
@@ -111,9 +111,9 @@
             </p>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg);" class="d-grid-mobile-1">
+        <div class="grid-split-2 split-equal">
             <!-- Bloque 1 -->
-            <div style="background-color: var(--color-white); padding: var(--space-lg); border-radius: var(--radius-md); box-shadow: var(--shadow-subtle); border-top: 3px solid var(--color-coral);">
+            <div style="background-color: var(--color-white); padding: var(--space-lg); border-radius: var(--radius-md); box-shadow: var(--shadow-subtle); border-top: 3px solid var(--color-coral); text-align: left;">
                 <h4 style="color: var(--color-primary); font-size: 1.2rem; margin: 0 0 var(--space-xs) 0; font-weight: 700;">
                     Transición Vocacional y Gestión
                 </h4>
@@ -123,7 +123,7 @@
             </div>
 
             <!-- Bloque 2 -->
-            <div style="background-color: var(--color-white); padding: var(--space-lg); border-radius: var(--radius-md); box-shadow: var(--shadow-subtle); border-top: 3px solid var(--color-primary);">
+            <div style="background-color: var(--color-white); padding: var(--space-lg); border-radius: var(--radius-md); box-shadow: var(--shadow-subtle); border-top: 3px solid var(--color-primary); text-align: left;">
                 <h4 style="color: var(--color-primary); font-size: 1.2rem; margin: 0 0 var(--space-xs) 0; font-weight: 700;">
                     Espacio Intercongregacional y Laicado
                 </h4>
@@ -137,17 +137,16 @@
 
 <!-- SECCIÓN 4: Gobierno y Consejo de Administración -->
 <section style="background-color: var(--color-white); padding: var(--space-xxl) 0 var(--space-3xl) 0; width: 100%; border-top: 1px solid var(--color-border);">
-    <div class="container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md); display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--space-xxl); align-items: center;" class="d-grid-mobile-1">
+    <div class="container grid-split-2 split-reverse-desktop">
         
         <div style="text-align: center;">
-            <div style="display: inline-block; position: relative;">
-                <div style="position: absolute; top: 10px; right: -10px; width: 100%; height: 100%; border: 3px solid var(--color-pantone-yellow-raw); border-radius: 50%; z-index: 1;"></div>
-                <img src="/static/img/fotos prueba/manos.jpeg" alt="Gobierno FEM" 
-                     style="width: 280px; height: 280px; border-radius: 50%; object-fit: cover; position: relative; z-index: 2; border: 5px solid var(--color-white);">
+            <div class="circle-image-wrapper">
+                <div class="decorative-ring ring-bottom-right"></div>
+                <img src="/static/img/fotos prueba/manos.jpeg" alt="Gobierno FEM" class="circle-img">
             </div>
         </div>
 
-        <div>
+        <div style="text-align: left;">
             <span class="eyebrow" style="color: var(--color-primary); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; font-size: 0.85rem; display: block; margin-bottom: var(--space-xxs);">Estructura y Conducción</span>
             <h2 style="font-family: var(--font-sans); font-size: 2.2rem; color: var(--color-primary); font-weight: 800; margin: 0 0 var(--space-md) 0; line-height: 1.2;">
                 Consejo de Administración
@@ -170,17 +169,4 @@
     </div>
 </section>
 
-<!-- Estilo responsivo -->
-<style>
-    @media (max-width: 991px) {
-        .d-grid-mobile-1 {
-            grid-template-columns: 1fr !important;
-            gap: var(--space-xl) !important;
-            text-align: center !important;
-        }
-        .d-grid-mobile-1 > div {
-            text-align: center !important;
-        }
-    }
-</style>
 {% endblock %}

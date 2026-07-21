@@ -347,3 +347,67 @@
   margin-bottom: 8px;
   display: block;
 }
+
+// Componente de Imagen Circular Responsiva con Anillo Decorativo
+.circle-image-wrapper {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+
+  .decorative-ring {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: calc(100% + 16px);
+    height: calc(100% + 16px);
+    border: 3px solid var(--color-pantone-yellow-raw);
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+
+    &.ring-coral {
+      border-color: var(--color-coral);
+    }
+    &.ring-bottom-right {
+      top: 8px;
+      left: auto;
+      right: -8px;
+    }
+    &.ring-bottom-left {
+      top: 8px;
+      left: -8px;
+    }
+    &.ring-top-right {
+      top: -8px;
+      left: auto;
+      right: -8px;
+    }
+  }
+
+  .circle-img {
+    width: clamp(180px, 55vw, 280px);
+    height: clamp(180px, 55vw, 280px);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+    border: 5px solid var(--color-white);
+    box-shadow: var(--shadow-subtle);
+    display: block;
+    margin: 0 auto;
+    transition: var(--transition-smooth);
+
+    &.border-bg {
+      border-color: var(--color-bg);
+    }
+    &.border-primary {
+      border-color: var(--color-primary);
+    }
+  }
+}
+
+

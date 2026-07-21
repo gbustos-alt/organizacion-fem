@@ -240,6 +240,80 @@
   }
 }
 
+// Grillas Responsivas Fuerza 1 Columna en Mobile
+.d-grid-mobile-1 {
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-xl) !important;
+    text-align: center !important;
+
+    > div {
+      text-align: center !important;
+    }
+  }
+}
+
+.d-grid-mobile-reverse {
+  @media (max-width: 991px) {
+    display: flex !important;
+    flex-direction: column-reverse !important;
+  }
+}
+
+.grid-split-2 {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-xxl);
+  align-items: center;
+
+  &.split-reverse-desktop {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+
+  &.split-equal {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-xl) !important;
+    text-align: center !important;
+
+    > div {
+      text-align: center !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+    }
+  }
+}
+
+.grid-split-3 {
+  display: grid;
+  grid-template-columns: 0.8fr 1.6fr 0.6fr;
+  gap: var(--space-xxl);
+  align-items: start;
+
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-xl) !important;
+    text-align: center !important;
+
+    > div {
+      text-align: center !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+    }
+  }
+}
+
+
+
 // Menu Hamburguesa (Mobile)
 .nav-toggle {
   display: none;

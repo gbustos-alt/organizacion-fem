@@ -2841,15 +2841,16 @@ button, input, select, textarea {
 
 .numeros-fem-section {
   overflow: hidden;
+  padding: 2.75rem 0;
 }
-.numeros-fem-section .cifras-titulo-col {
+.numeros-fem-section .cifras-header {
   transition: opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1), transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.numeros-fem-section.js-motion-ready .cifras-titulo-col {
+.numeros-fem-section.js-motion-ready .cifras-header {
   opacity: 0;
-  transform: translateX(-60px);
+  transform: translateX(-50px);
 }
-.numeros-fem-section.js-motion-ready.is-visible .cifras-titulo-col {
+.numeros-fem-section.js-motion-ready.is-visible .cifras-header {
   opacity: 1;
   transform: translateX(0);
 }

@@ -1,100 +1,95 @@
-<!-- Sección: Los Números de la FEM (Estilo Chalkboard / Algunas Cifras del Hoy) -->
-<section class="numeros-fem-section" style="background-color: #1a2536; color: var(--color-white); padding: var(--space-xxl) 0; border-bottom: 1px solid var(--color-border); width: 100%;">
+<!-- Sección: Los Números de la FEM (Estilo Cifras de la Red) -->
+<section class="numeros-fem-section" style="background-color: #1a2536; color: var(--color-white); padding: 2.75rem 0; border-bottom: 1px solid var(--color-border); width: 100%;">
     <div class="container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md);">
         
-        <div class="cifras-hoy-grid" style="display: grid; grid-template-columns: 1fr 2.5fr; gap: var(--space-xxl); align-items: center;">
+        <!-- Título por encima de la grilla -->
+        <div class="cifras-header" style="margin-bottom: 2rem; text-align: center;">
+            <h2 class="cifras-titulo" style="font-family: var(--font-serif); font-style: italic; font-size: 2.1rem; font-weight: 700; color: var(--color-white); line-height: 1.25; margin: 0;">
+                La FEM hoy: continuamos acompañando
+            </h2>
+        </div>
+        
+        <!-- Grilla de Cifras a todo el ancho (4 Columnas en Desktop) -->
+        <div class="cifras-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.75rem 1.5rem;">
             
-            <!-- Columna Izquierda: Título Principal -->
-            <div style="border-right: 2px solid rgba(255, 255, 255, 0.1); padding-right: var(--space-xl);" class="cifras-titulo-col">
-                <h2 style="font-family: var(--font-serif); font-style: italic; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; color: var(--color-white); line-height: 1.2; margin: 0;">
-                    La FEM hoy: continuamos acompañando
-                </h2>
+            <!-- Cifra 1: Colegios incorporados -->
+            <div class="cifra-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.2rem;">
+                <span class="num-counter" data-count-to="13" style="font-family: var(--font-brand-black); font-size: 3rem; font-weight: 900; color: #F4A261; line-height: 1;">
+                    13
+                </span>
+                <span style="font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); font-weight: 600; line-height: 1.35;">
+                    Colegios incorporados
+                </span>
             </div>
-            
-            <!-- Columna Derecha: Grilla de Cifras -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-xl);">
-                
-                <!-- Cifra 1: Colegios incorporados -->
-                <div style="display: flex; flex-direction: column; gap: 0.2rem;">
-                    <span class="num-counter" data-count-to="13" style="font-family: var(--font-brand-black); font-size: 3.5rem; font-weight: 900; color: #F4A261; line-height: 1;">
-                        13
-                    </span>
-                    <span style="font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); font-weight: 600; line-height: 1.4;">
-                        Colegios incorporados
-                    </span>
-                </div>
 
-                <!-- Cifra 2: Terciarios -->
-                <div style="display: flex; flex-direction: column; gap: 0.2rem;">
-                    <span class="num-counter" data-count-to="2" style="font-family: var(--font-brand-black); font-size: 3.5rem; font-weight: 900; color: #2ECC71; line-height: 1;">
-                        2
-                    </span>
-                    <span style="font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); font-weight: 600; line-height: 1.4;">
-                        Terciarios incorporados
-                    </span>
-                </div>
+            <!-- Cifra 2: Terciarios -->
+            <div class="cifra-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.2rem;">
+                <span class="num-counter" data-count-to="2" style="font-family: var(--font-brand-black); font-size: 3rem; font-weight: 900; color: #2ECC71; line-height: 1;">
+                    2
+                </span>
+                <span style="font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); font-weight: 600; line-height: 1.35;">
+                    Terciarios incorporados
+                </span>
+            </div>
 
-                <!-- Cifra 3: Colegios en proceso -->
-                <div style="display: flex; flex-direction: column; gap: 0.2rem;">
-                    <span class="num-counter" data-count-to="13" style="font-family: var(--font-brand-black); font-size: 3.5rem; font-weight: 900; color: #F1C40F; line-height: 1;">
-                        13
-                    </span>
-                    <span style="font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); font-weight: 600; line-height: 1.4;">
-                        Colegios en proceso
-                    </span>
-                </div>
+            <!-- Cifra 3: Colegios en proceso -->
+            <div class="cifra-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.2rem;">
+                <span class="num-counter" data-count-to="13" style="font-family: var(--font-brand-black); font-size: 3rem; font-weight: 900; color: #F1C40F; line-height: 1;">
+                    13
+                </span>
+                <span style="font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); font-weight: 600; line-height: 1.35;">
+                    Colegios en proceso
+                </span>
+            </div>
 
-                <!-- Cifra 4: Alumnos -->
-                <div style="display: flex; flex-direction: column; gap: 0.2rem;">
-                    <span class="num-counter" data-count-to="9.802" style="font-family: var(--font-brand-black); font-size: 3.5rem; font-weight: 900; color: #F1C40F; line-height: 1;">
-                        9.802
-                    </span>
-                    <span style="font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); font-weight: 600; line-height: 1.4;">
-                        Alumnos de los niveles
-                    </span>
-                </div>
+            <!-- Cifra 4: Alumnos -->
+            <div class="cifra-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.2rem;">
+                <span class="num-counter" data-count-to="9.802" style="font-family: var(--font-brand-black); font-size: 3rem; font-weight: 900; color: #F1C40F; line-height: 1;">
+                    9.802
+                </span>
+                <span style="font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); font-weight: 600; line-height: 1.35;">
+                    Alumnos de los niveles
+                </span>
+            </div>
 
-                <!-- Cifra 5: Educadores -->
-                <div style="display: flex; flex-direction: column; gap: 0.2rem;">
-                    <span class="num-counter" data-count-to="1.282" style="font-family: var(--font-brand-black); font-size: 3.5rem; font-weight: 900; color: #2ECC71; line-height: 1;">
-                        1.282
-                    </span>
-                    <span style="font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); font-weight: 600; line-height: 1.4;">
-                        Educadores y personal
-                    </span>
-                </div>
+            <!-- Cifra 5: Educadores -->
+            <div class="cifra-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.2rem;">
+                <span class="num-counter" data-count-to="1.282" style="font-family: var(--font-brand-black); font-size: 3rem; font-weight: 900; color: #2ECC71; line-height: 1;">
+                    1.282
+                </span>
+                <span style="font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); font-weight: 600; line-height: 1.35;">
+                    Educadores y personal
+                </span>
+            </div>
 
-                <!-- Cifra 6: Encuentros -->
-                <div style="display: flex; flex-direction: column; gap: 0.2rem;">
-                    <span class="num-counter" data-count-to="21" style="font-family: var(--font-brand-black); font-size: 3.5rem; font-weight: 900; color: #F4A261; line-height: 1;">
-                        21
-                    </span>
-                    <span style="font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); font-weight: 600; line-height: 1.4;">
-                        Encuentros presenciales de capacitación (trienio)
-                    </span>
-                </div>
+            <!-- Cifra 6: Encuentros -->
+            <div class="cifra-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.2rem;">
+                <span class="num-counter" data-count-to="21" style="font-family: var(--font-brand-black); font-size: 3rem; font-weight: 900; color: #F4A261; line-height: 1;">
+                    21
+                </span>
+                <span style="font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); font-weight: 600; line-height: 1.35;">
+                    Encuentros presenciales de capacitación (trienio)
+                </span>
+            </div>
 
-                <!-- Cifra 7: Capacitados -->
-                <div style="display: flex; flex-direction: column; gap: 0.2rem;">
-                    <span class="num-counter" data-count-to="624" style="font-family: var(--font-brand-black); font-size: 3.5rem; font-weight: 900; color: #3498DB; line-height: 1;">
-                        624
-                    </span>
-                    <span style="font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); font-weight: 600; line-height: 1.4;">
-                        Adultos y jóvenes capacitados
-                    </span>
-                </div>
+            <!-- Cifra 7: Capacitados -->
+            <div class="cifra-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.2rem;">
+                <span class="num-counter" data-count-to="624" style="font-family: var(--font-brand-black); font-size: 3rem; font-weight: 900; color: #3498DB; line-height: 1;">
+                    624
+                </span>
+                <span style="font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); font-weight: 600; line-height: 1.35;">
+                    Adultos y jóvenes capacitados
+                </span>
+            </div>
 
-                <!-- Cifra 8: Acompañamientos -->
-                <div style="display: flex; flex-direction: column; gap: 0.2rem;">
-                    <span class="num-counter" data-count-to="62" style="font-family: var(--font-brand-black); font-size: 3.5rem; font-weight: 900; color: #F4A261; line-height: 1;">
-                        62
-                    </span>
-                    <span style="font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); font-weight: 600; line-height: 1.4;">
-                        Acompañamientos presenciales en el trienio
-                    </span>
-                </div>
-
-
+            <!-- Cifra 8: Acompañamientos -->
+            <div class="cifra-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.2rem;">
+                <span class="num-counter" data-count-to="62" style="font-family: var(--font-brand-black); font-size: 3rem; font-weight: 900; color: #F4A261; line-height: 1;">
+                    62
+                </span>
+                <span style="font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); font-weight: 600; line-height: 1.35;">
+                    Acompañamientos presenciales en el trienio
+                </span>
             </div>
 
         </div>
@@ -104,16 +99,13 @@
 
 <style>
     @media (max-width: 991px) {
-        .cifras-hoy-grid {
-            grid-template-columns: 1fr !important;
-            gap: var(--space-xl) !important;
+        .cifras-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 1.5rem 1rem !important;
         }
-        .cifras-titulo-col {
-            border-right: none !important;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1) !important;
-            padding-right: 0 !important;
-            padding-bottom: var(--space-md) !important;
-            text-align: center !important;
+        .cifras-titulo {
+            font-size: 1.75rem !important;
         }
     }
 </style>
+

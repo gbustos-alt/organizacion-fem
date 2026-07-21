@@ -1,0 +1,174 @@
+// Keyframe Animations & Micro-interactions - Organización FEM (Inspirado en web_ejemplo.html)
+
+/* ==========================================================================
+   1. KEYFRAMES DE ENTRADA HERO
+   ========================================================================== */
+
+@keyframes hero-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes brand-in {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+@keyframes aurora-glow {
+  0% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.65;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   2. SISTEMA DE REVELADO EN SCROLL (Scroll-Reveal de web_ejemplo.html)
+   ========================================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(42px) scale(0.97);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease !important;
+  will-change: opacity, transform;
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-48px) scale(0.97);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease !important;
+  will-change: opacity, transform;
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(48px) scale(0.97);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease !important;
+  will-change: opacity, transform;
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.88);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: opacity, transform;
+}
+
+/* Estado Visible Activo cuando entra en el Viewport */
+.reveal.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible,
+.reveal-scale.is-visible {
+  opacity: 1 !important;
+  transform: translate(0, 0) scale(1) !important;
+  filter: blur(0) !important;
+}
+
+/* Adaptación Responsiva para Celulares */
+@media (max-width: 768px) {
+  .reveal-left {
+    transform: translateX(-24px) scale(0.98);
+  }
+  .reveal-right {
+    transform: translateX(24px) scale(0.98);
+  }
+  .reveal {
+    transform: translateY(28px) scale(0.98);
+  }
+}
+
+/* ==========================================================================
+   3. SPOTLIGHT CURSOR GLOW (Luz de Cursor en Tarjetas)
+   ========================================================================== */
+.card-spotlight {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      420px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(241, 180, 52, 0.15),
+      transparent 80%
+    );
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   4. BOTONES MAGNÉTICOS & MICRO-INTERACCIONES
+   ========================================================================== */
+.btn-magnetic,
+.btn-primary,
+.btn-accent,
+.btn-coral,
+.btn-hero {
+  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.3s ease,
+              background-color 0.3s ease,
+              border-color 0.3s ease;
+  will-change: transform;
+
+  &:hover {
+    box-shadow: 0 8px 20px rgba(12, 30, 54, 0.14);
+  }
+}
+
+/* ==========================================================================
+   5. HERO INTRO
+   ========================================================================== */
+.js-hero-intro .hero-content-animate {
+  animation: hero-in 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.js-hero-intro .hero-brand-animate {
+  animation: brand-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Prevenir barras de scroll horizontal en móviles */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}

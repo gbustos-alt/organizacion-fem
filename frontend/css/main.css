@@ -184,21 +184,49 @@ button, input, select, textarea {
 .main-header {
   background-color: var(--color-white);
   border-bottom: 1px solid var(--color-border);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1100;
   box-shadow: var(--shadow-subtle);
-  transition: transform 0.35s ease-in-out, background-color 0.3s ease, border-bottom 0.3s ease;
-  will-change: transform;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Estado Contraído al hacer Scroll */
 }
-.main-header.header-hidden {
-  transform: translateY(-100%);
+.main-header.scrolled {
+  box-shadow: 0 8px 24px rgba(12, 30, 54, 0.18);
+}
+.main-header.scrolled .header-top-bar {
+  max-height: 0 !important;
+  padding: 0 !important;
+  opacity: 0 !important;
+  overflow: hidden !important;
+  border-bottom: none !important;
+}
+.main-header.scrolled .header-nav-bar {
+  padding: 0.35rem 0;
+}
+.main-header.scrolled .brand-logo-mobile .header-logo-mobile {
+  height: 1.8rem;
+}
+
+body {
+  padding-top: 112px;
+}
+@media (max-width: 767px) {
+  body {
+    padding-top: 58px;
+  }
 }
 
 .header-top-bar {
   background-color: var(--color-white);
   border-bottom: 1px solid var(--color-bg-alt);
   padding: 0.5rem 0;
+  max-height: 90px;
+  opacity: 1;
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  overflow: hidden;
 }
 
 .header-top-container {
@@ -1104,6 +1132,157 @@ button, input, select, textarea {
 }
 .circle-image-wrapper .circle-img.border-primary {
   border-color: var(--color-primary);
+}
+
+/* ==========================================================================
+   1. KEYFRAMES DE ENTRADA HERO
+   ========================================================================== */
+@keyframes hero-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+@keyframes brand-in {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+@keyframes aurora-glow {
+  0% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.65;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+}
+/* ==========================================================================
+   2. SISTEMA DE REVELADO EN SCROLL (Scroll-Reveal de web_ejemplo.html)
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(42px) scale(0.97);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease !important;
+  will-change: opacity, transform;
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-48px) scale(0.97);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease !important;
+  will-change: opacity, transform;
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(48px) scale(0.97);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease !important;
+  will-change: opacity, transform;
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.88);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: opacity, transform;
+}
+
+/* Estado Visible Activo cuando entra en el Viewport */
+.reveal.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible,
+.reveal-scale.is-visible {
+  opacity: 1 !important;
+  transform: translate(0, 0) scale(1) !important;
+  filter: blur(0) !important;
+}
+
+/* Adaptación Responsiva para Celulares */
+@media (max-width: 768px) {
+  .reveal-left {
+    transform: translateX(-24px) scale(0.98);
+  }
+  .reveal-right {
+    transform: translateX(24px) scale(0.98);
+  }
+  .reveal {
+    transform: translateY(28px) scale(0.98);
+  }
+}
+/* ==========================================================================
+   3. SPOTLIGHT CURSOR GLOW (Luz de Cursor en Tarjetas)
+   ========================================================================== */
+.card-spotlight {
+  position: relative;
+  overflow: hidden;
+}
+.card-spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(241, 180, 52, 0.15), transparent 80%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 5;
+}
+.card-spotlight:hover::before {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   4. BOTONES MAGNÉTICOS & MICRO-INTERACCIONES
+   ========================================================================== */
+.btn-magnetic,
+.btn-primary,
+.btn-accent,
+.btn-coral,
+.btn-hero {
+  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  will-change: transform;
+}
+.btn-magnetic:hover,
+.btn-primary:hover,
+.btn-accent:hover,
+.btn-coral:hover,
+.btn-hero:hover {
+  box-shadow: 0 8px 20px rgba(12, 30, 54, 0.14);
+}
+
+/* ==========================================================================
+   5. HERO INTRO
+   ========================================================================== */
+.js-hero-intro .hero-content-animate {
+  animation: hero-in 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.js-hero-intro .hero-brand-animate {
+  animation: brand-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Prevenir barras de scroll horizontal en móviles */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 .home-section {

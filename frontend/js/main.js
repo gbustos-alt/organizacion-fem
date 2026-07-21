@@ -1,46 +1,32 @@
-// Interactividad para Navegación Móvil (Drawer & Acordeones)
+// Interactividad y Animaciones de Vanguardia - Fundación FEM (Motor de web_ejemplo.html)
 document.addEventListener("DOMContentLoaded", () => {
     const navToggle = document.getElementById("nav-toggle");
     const mainNav = document.getElementById("main-nav");
     const drawerClose = document.getElementById("drawer-close");
     const drawerOverlay = document.getElementById("drawer-overlay");
 
-    // Función para abrir/cerrar el Drawer
+    // Función para abrir/cerrar el Drawer en Mobile
     const toggleMenu = () => {
         const isOpen = mainNav.classList.toggle("open");
         navToggle.classList.toggle("active");
         navToggle.setAttribute("aria-expanded", isOpen);
-        document.body.style.overflow = isOpen ? "hidden" : ""; // Evita scroll de fondo
+        document.body.style.overflow = isOpen ? "hidden" : "";
     };
 
-    if (navToggle && mainNav) {
-        navToggle.addEventListener("click", toggleMenu);
-    }
+    if (navToggle && mainNav) navToggle.addEventListener("click", toggleMenu);
+    if (drawerClose) drawerClose.addEventListener("click", toggleMenu);
+    if (drawerOverlay) drawerOverlay.addEventListener("click", toggleMenu);
 
-    if (drawerClose) {
-        drawerClose.addEventListener("click", toggleMenu);
-    }
-
-    if (drawerOverlay) {
-        drawerOverlay.addEventListener("click", toggleMenu);
-    }
-
-    // Manejo de Submenús en Acordeón para versión Mobile (Táctil)
+    // Manejo de Submenús en Acordeón para versión Mobile
     const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
-    
     dropdownToggles.forEach(toggle => {
         toggle.addEventListener("click", (e) => {
-            // Solo actuar en pantallas móviles
             if (window.innerWidth <= 767) {
-                e.preventDefault(); // Evitar navegación si es un link dummy
-                
+                e.preventDefault();
                 const dropdownMenu = toggle.nextElementSibling;
                 const arrow = toggle.querySelector(".arrow-down");
-                
                 if (dropdownMenu) {
                     const isOpen = dropdownMenu.classList.toggle("open");
-                    
-                    // Rotar flechita suavemente
                     if (arrow) {
                         arrow.style.transform = isOpen ? "rotate(180deg)" : "";
                     }
@@ -62,20 +48,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const showSlide = (index) => {
             slides[currentIndex].classList.remove("active");
             indicators[currentIndex].classList.remove("active");
-            
             currentIndex = (index + slides.length) % slides.length;
-            
             slides[currentIndex].classList.add("active");
             indicators[currentIndex].classList.add("active");
         };
 
-        const nextSlide = () => {
-            showSlide(currentIndex + 1);
-        };
-
-        const prevSlide = () => {
-            showSlide(currentIndex - 1);
-        };
+        const nextSlide = () => showSlide(currentIndex + 1);
+        const prevSlide = () => showSlide(currentIndex - 1);
 
         const startTimer = () => {
             stopTimer();
@@ -86,19 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (timer) clearInterval(timer);
         };
 
-        if (nextBtn) {
-            nextBtn.addEventListener("click", () => {
-                nextSlide();
-                startTimer();
-            });
-        }
-
-        if (prevBtn) {
-            prevBtn.addEventListener("click", () => {
-                prevSlide();
-                startTimer();
-            });
-        }
+        if (nextBtn) nextBtn.addEventListener("click", () => { nextSlide(); startTimer(); });
+        if (prevBtn) prevBtn.addEventListener("click", () => { prevSlide(); startTimer(); });
 
         indicators.forEach((indicator) => {
             indicator.addEventListener("click", () => {
@@ -108,11 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // Pausa al pasar el mouse por encima
         slider.addEventListener("mouseenter", stopTimer);
         slider.addEventListener("mouseleave", startTimer);
-
-        // Inicio inicial
         startTimer();
     }
 
@@ -124,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const filenameText = document.getElementById("file-name-text");
 
     if (dropZone && fileInput) {
-        // Detectar cambios en la selección de archivos
         fileInput.addEventListener("change", () => {
             if (fileInput.files.length > 0) {
                 const file = fileInput.files[0];
@@ -141,7 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Estilos interactivos al arrastrar archivos encima
         ["dragenter", "dragover"].forEach(eventName => {
             fileInput.addEventListener(eventName, () => {
                 dropZone.style.borderColor = "var(--color-coral)";
@@ -162,31 +125,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- Animación Smooth por Scroll para la Sección Misión / Identidad ---
-    const identitySection = document.querySelector(".home-identity-section");
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (identitySection && !prefersReducedMotion && "IntersectionObserver" in window) {
-        // Habilita el estado preparado para la animación inicial
-        identitySection.classList.add("js-motion-ready");
-
-        const identityObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    identitySection.classList.add("is-visible");
-                }
-            });
-        }, {
-            threshold: 0.15,
-            rootMargin: "0px 0px -50px 0px"
-        });
-
-        identityObserver.observe(identitySection);
-    }
-
-    // --- Animación Sección Números FEM: Entrada H2 desde la izquierda + Conteo Regresivo Lento (de mayor a menor) ---
+    // --- Animación Sección Números FEM: Conteo Regresivo ---
     const numerosSection = document.querySelector(".numeros-fem-section");
     const numCounters = document.querySelectorAll(".num-counter");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (numerosSection && !prefersReducedMotion && "IntersectionObserver" in window) {
         numerosSection.classList.add("js-motion-ready");
@@ -197,19 +139,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const cleanTarget = parseInt(targetStr.replace(/\./g, ""), 10);
             const hasDots = targetStr.includes(".");
-            
-            // Valor inicial de partida mayor (de mayor a menor)
             const startVal = Math.round(cleanTarget * 2.5);
-            const duration = 2400; // 2.4s de movimiento lento y pausado
+            const duration = 2400;
             
             setTimeout(() => {
                 const startTime = performance.now();
-
                 const tick = (currentTime) => {
                     const elapsed = currentTime - startTime;
                     const progress = Math.min(elapsed / duration, 1);
-                    
-                    // Curva desacelerada easeOutCubic para bajar progresivamente
                     const easeOutProgress = 1 - Math.pow(1 - progress, 3);
                     const currentVal = Math.round(startVal - (startVal - cleanTarget) * easeOutProgress);
 
@@ -234,48 +171,122 @@ document.addEventListener("DOMContentLoaded", () => {
         const numerosObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    numerosSection.classList.add("is-visible"); // Revela el H2 desde la izquierda
+                    numerosSection.classList.add("is-visible");
                     numCounters.forEach((el, index) => {
                         runCountdown(el, index * 100);
                     });
                     observer.unobserve(entry.target);
                 }
             });
-        }, {
-            threshold: 0.2
-        });
+        }, { threshold: 0.1 });
 
         numerosObserver.observe(numerosSection);
     }
 
-
-    // --- Header Inteligente: Ocultar al hacer scroll hacia abajo, mostrar al subir ---
+    // --- Header Fijo y Contráctil al hacer Scroll ---
     const mainHeader = document.querySelector(".main-header");
     if (mainHeader) {
-        let lastScrollY = window.scrollY;
-        const scrollThreshold = 10; // Evitar pequeños rebotes
-        const topBoundary = 80;     // No ocultar si está en los primeros 80px superiores
-
-        window.addEventListener("scroll", () => {
-            // Si el menú hamburguesa móvil está desplegado, no ocultar el header
-            if (mainNav && mainNav.classList.contains("open")) return;
-
-            const currentScrollY = window.scrollY;
-            const scrollDelta = currentScrollY - lastScrollY;
-
-            if (currentScrollY <= topBoundary) {
-                // Siempre visible cerca de la cima
-                mainHeader.classList.remove("header-hidden");
-            } else if (scrollDelta > scrollThreshold) {
-                // Scroll hacia abajo -> Ocultar header
-                mainHeader.classList.add("header-hidden");
-            } else if (scrollDelta < -scrollThreshold) {
-                // Scroll hacia arriba -> Mostrar header
-                mainHeader.classList.remove("header-hidden");
-            }
-
-            lastScrollY = Math.max(0, currentScrollY);
-        }, { passive: true });
+        const onHeaderScroll = () => {
+            mainHeader.classList.toggle("scrolled", window.scrollY > 40);
+        };
+        window.addEventListener("scroll", onHeaderScroll, { passive: true });
+        onHeaderScroll();
     }
-});
 
+
+    // ==========================================================================
+    // MOTOR DE REVELADO AL SCROLL (Exacto de web_ejemplo.html)
+    // ==========================================================================
+
+    (() => {
+        if (prefersReducedMotion) return;
+
+        // 1. Asignación de clases de revelado direccional
+        const leftGroups = document.querySelectorAll(
+            '.identity-visual-block, .colegio-detail-left, ' +
+            '.dimension-card:nth-child(odd), .mision-card:nth-child(odd)'
+        );
+        const rightGroups = document.querySelectorAll(
+            '.identity-text-block, .colegio-detail-right, ' +
+            '.dimension-card:nth-child(even), .mision-card:nth-child(even)'
+        );
+
+        leftGroups.forEach(el => el.classList.add('reveal-left'));
+        rightGroups.forEach(el => el.classList.add('reveal-right'));
+
+        // 2. Selección de todas las tarjetas, títulos, listas y módulos
+        const targets = document.querySelectorAll(
+            '.sec-head, .cifras-header, .card, .dimension-card, .news-card, .recursero-card, ' +
+            '.quick-access-card, .team-member-card, .colegio-card-item, .num-counter-box, ' +
+            '.quienes-somos-card, .contact-info-card, .contact-form-card, .memory-card, ' +
+            '.material-card, .hito-item, blockquote, .reveal-left, .reveal-right, .reveal-scale'
+        );
+
+        if (!('IntersectionObserver' in window)) {
+            targets.forEach(t => t.classList.add('is-visible'));
+            return;
+        }
+
+        // 3. Aplicar clase base .reveal y retardo en cascada alternado
+        targets.forEach((t, i) => {
+            if (!t.classList.contains('reveal-left') &&
+                !t.classList.contains('reveal-right') &&
+                !t.classList.contains('reveal-scale')) {
+                t.classList.add('reveal');
+            }
+            // Retardo en cascada de 80ms por elemento
+            t.style.transitionDelay = `${(i % 4) * 80}ms`;
+        });
+
+        // 4. Observador con IntersectionObserver (exacto de web_ejemplo.html)
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('is-visible');
+                    io.unobserve(e.target);
+                }
+            });
+        }, {
+            threshold: 0.10,
+            rootMargin: '0px 0px -5% 0px'
+        });
+
+        targets.forEach(t => io.observe(t));
+    })();
+
+    // --- SPOTLIGHT CURSOR GLOW EN TARJETAS ---
+    (() => {
+        const spotlightCards = document.querySelectorAll(
+            ".card, .dimension-card, .news-card, .recursero-card, .quick-access-card, " +
+            ".colegio-card-item, .team-member-card, .num-counter-box, " +
+            ".contact-info-card, .memory-card, .material-card"
+        );
+        spotlightCards.forEach(card => {
+            card.classList.add("card-spotlight");
+            card.addEventListener("pointermove", (e) => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+                card.style.setProperty("--my", `${e.clientY - rect.top}px`);
+            });
+        });
+    })();
+
+    // --- BOTONES MAGNÉTICOS ---
+    (() => {
+        if (prefersReducedMotion) return;
+        const magneticBtns = document.querySelectorAll(
+            ".btn-magnetic, .btn-primary, .btn-accent, .btn-coral, .btn-hero, .btn"
+        );
+        magneticBtns.forEach(btn => {
+            btn.addEventListener("pointermove", (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = (e.clientX - rect.left - rect.width / 2) * 0.20;
+                const y = (e.clientY - rect.top - rect.height / 2) * 0.28;
+                btn.style.transform = `translate(${x}px, ${y - 2}px)`;
+            });
+            btn.addEventListener("pointerleave", () => {
+                btn.style.transform = "";
+            });
+        });
+    })();
+});

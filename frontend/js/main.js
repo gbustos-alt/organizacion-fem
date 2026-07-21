@@ -184,6 +184,71 @@ document.addEventListener("DOMContentLoaded", () => {
         identityObserver.observe(identitySection);
     }
 
+    // --- Animación Sección Números FEM: Entrada H2 desde la izquierda + Conteo Regresivo Lento (de mayor a menor) ---
+    const numerosSection = document.querySelector(".numeros-fem-section");
+    const numCounters = document.querySelectorAll(".num-counter");
+
+    if (numerosSection && !prefersReducedMotion && "IntersectionObserver" in window) {
+        numerosSection.classList.add("js-motion-ready");
+
+        const runCountdown = (el, staggerDelay) => {
+            const targetStr = el.getAttribute("data-count-to");
+            if (!targetStr) return;
+
+            const cleanTarget = parseInt(targetStr.replace(/\./g, ""), 10);
+            const hasDots = targetStr.includes(".");
+            
+            // Valor inicial de partida mayor (de mayor a menor)
+            const startVal = Math.round(cleanTarget * 2.5);
+            const duration = 2400; // 2.4s de movimiento lento y pausado
+            
+            setTimeout(() => {
+                const startTime = performance.now();
+
+                const tick = (currentTime) => {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    // Curva desacelerada easeOutCubic para bajar progresivamente
+                    const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+                    const currentVal = Math.round(startVal - (startVal - cleanTarget) * easeOutProgress);
+
+                    if (hasDots) {
+                        el.textContent = currentVal.toLocaleString("es-AR");
+                    } else {
+                        el.textContent = currentVal;
+                    }
+
+                    if (progress < 1) {
+                        requestAnimationFrame(tick);
+                    } else {
+                        el.textContent = targetStr;
+                        el.classList.add("is-settled");
+                    }
+                };
+
+                requestAnimationFrame(tick);
+            }, staggerDelay);
+        };
+
+        const numerosObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    numerosSection.classList.add("is-visible"); // Revela el H2 desde la izquierda
+                    numCounters.forEach((el, index) => {
+                        runCountdown(el, index * 100);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+
+        numerosObserver.observe(numerosSection);
+    }
+
+
     // --- Header Inteligente: Ocultar al hacer scroll hacia abajo, mostrar al subir ---
     const mainHeader = document.querySelector(".main-header");
     if (mainHeader) {

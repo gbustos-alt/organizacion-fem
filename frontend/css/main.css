@@ -2839,6 +2839,41 @@ button, input, select, textarea {
   }
 }
 
+.numeros-fem-section {
+  overflow: hidden;
+}
+.numeros-fem-section .cifras-titulo-col {
+  transition: opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1), transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.numeros-fem-section.js-motion-ready .cifras-titulo-col {
+  opacity: 0;
+  transform: translateX(-60px);
+}
+.numeros-fem-section.js-motion-ready.is-visible .cifras-titulo-col {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.num-counter {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  transition: transform 0.3s var(--ease-organic), color 0.3s ease;
+}
+.num-counter.is-settled {
+  animation: counter-pop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes counter-pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .colegios-dashboard-section {
   padding: 3rem 0;
   background-color: var(--color-bg);

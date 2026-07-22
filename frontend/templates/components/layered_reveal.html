@@ -1,0 +1,295 @@
+<!-- Componente Wrapper Layered Reveal: Núcleo Narrativo Escénico de Fundación FEM (5 Escenas + 100svh Mobile Scenic Carousel) -->
+<div class="lr-container" id="layered-reveal-container">
+    
+    <!-- Escena 1: Hero Principal y Lema Institucional (Alineación Izquierda) -->
+    <section class="lr-section lr-section-align-left is-active" data-layer-item data-layer-id="hero" data-layer-order="1" id="hero">
+        <div class="lr-media">
+            <img src="{{ url_for('static', path='img/header_foundation-2048x1152.jpg') }}" 
+                 alt="Comunidad Educativa Fundación FEM" 
+                 loading="eager" 
+                 decoding="async" 
+                 onerror="this.src='/static/img/fotos prueba/2015_10_21_ALTA_RESOLUCION_0110-scaled.jpg'">
+        </div>
+        <div class="lr-overlay"></div>
+        <div class="lr-content">
+            <span class="lr-kicker">Lema Institucional {{ lema.anio if lema else '2026' }}</span>
+            <h2>&ldquo;{{ lema.lema_texto if lema else 'Caminando juntos en la Educación y la Misión' }}&rdquo;</h2>
+            <p>Acompañamos a las comunidades educativas en su caminar pastoral, pedagógico, administrativo y legal, promoviendo el encuentro y la sostenibilidad.</p>
+            <div class="lr-cta-actions">
+                <a href="/identidad" class="lr-cta">
+                    <span>Quiénes Somos</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+                <a href="/dimensiones" class="lr-cta-secondary">Ejes de Acompañamiento</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Escena 2: Nuestra Identidad y Misión con Marco Orgánico Curvo (Alineación Derecha) -->
+    <section class="lr-section lr-section-align-right" data-layer-item data-layer-id="identity" data-layer-order="2" id="identity">
+        <div class="lr-media">
+            <img src="{{ url_for('static', path='img/galeria_aula_comunidad.png') }}" 
+                 alt="Identidad y Misión Fundación FEM" 
+                 loading="lazy" 
+                 decoding="async" 
+                 onerror="this.src='/static/img/fotos prueba/escuela.jpeg'">
+        </div>
+        <div class="lr-overlay"></div>
+        <div class="lr-content" style="max-width: 860px;">
+            <div class="lr-identity-box">
+                <div class="lr-identity-frame">
+                    <img src="{{ (quienes_somos.imagen_url if (quienes_somos and quienes_somos.imagen_url and quienes_somos.imagen_url != 'None' and quienes_somos.imagen_url != '') else url_for('static', path='img/fotos prueba/escuela.jpeg')) }}" 
+                         alt="Fundación FEM - Acompañamiento Escolar" 
+                         loading="lazy">
+                </div>
+                <div>
+                    <span class="lr-kicker">Nuestra Identidad</span>
+                    <h2>{{ quienes_somos.titulo if quienes_somos else 'Una red educativa impulsada por la misión' }}</h2>
+                    <p>{{ quienes_somos.descripcion[:200] if quienes_somos else 'Acompañamos a las comunidades escolares a través de áreas de soporte especializadas para sostener la obra educativa y el carisma institucionales.' }}...</p>
+                    <div class="lr-cta-actions">
+                        <a href="/mision" class="lr-cta">
+                            <span>Conoce nuestra misión</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Escena 3: Dimensiones de Acompañamiento con Carro Escénico en Mobile (Alineación Izquierda) -->
+    <section class="lr-section lr-section-align-left" data-layer-item data-layer-id="dimensions" data-layer-order="3" id="dimensions">
+        <div class="lr-media">
+            <img src="{{ url_for('static', path='img/galeria_patio_pastoral.png') }}" 
+                 alt="Dimensiones de Acompañamiento FEM" 
+                 loading="lazy" 
+                 id="bg-dimensions"
+                 decoding="async">
+        </div>
+        <div class="lr-overlay"></div>
+        <div class="lr-content" style="max-width: 900px;">
+            <span class="lr-kicker">Misión y Soporte</span>
+            <h2>Dimensiones de Acompañamiento</h2>
+            <p>Caminamos junto a las comunidades escolares a través de áreas de soporte especializadas.</p>
+            
+            <div class="lr-dimensions-photo-grid" data-scenic-carousel="dimensions">
+                <a href="/dimensiones" class="lr-dim-photo-card" data-bg-mobile="/static/img/fotos prueba/dimension_pedagogica.png">
+                    <div class="lr-dim-bg" style="background-image: url('/static/img/fotos prueba/dimension_pedagogica.png');"></div>
+                    <div class="lr-dim-content">
+                        <h3>Educación / Pedagogía</h3>
+                    </div>
+                </a>
+
+                <a href="/dimensiones" class="lr-dim-photo-card" data-bg-mobile="/static/img/fotos prueba/dimension_pastoral.png">
+                    <div class="lr-dim-bg" style="background-image: url('/static/img/fotos prueba/dimension_pastoral.png');"></div>
+                    <div class="lr-dim-content">
+                        <h3>Identidad / Pastoral</h3>
+                    </div>
+                </a>
+
+                <a href="/dimensiones" class="lr-dim-photo-card" data-bg-mobile="/static/img/fotos prueba/dimension_economica.png">
+                    <div class="lr-dim-bg" style="background-image: url('/static/img/fotos prueba/dimension_economica.png');"></div>
+                    <div class="lr-dim-content">
+                        <h3>Administración / Sostenibilidad</h3>
+                    </div>
+                </a>
+
+                <a href="/dimensiones" class="lr-dim-photo-card" data-bg-mobile="/static/img/fotos prueba/dimension_legal.png">
+                    <div class="lr-dim-bg" style="background-image: url('/static/img/fotos prueba/dimension_legal.png');"></div>
+                    <div class="lr-dim-content">
+                        <h3>Gobernanza / Legal</h3>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Indicadores de tarjeta para móviles -->
+            <div class="lr-card-indicators" data-carousel-indicators="dimensions">
+                <span class="lr-card-dot is-active"></span>
+                <span class="lr-card-dot"></span>
+                <span class="lr-card-dot"></span>
+                <span class="lr-card-dot"></span>
+            </div>
+
+            <div class="lr-cta-actions" style="margin-top: var(--space-xs);">
+                <a href="/dimensiones" class="lr-cta">
+                    <span>Explorar todas las dimensiones</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Escena 4: Actualidad y Novedades con Carro Escénico en Mobile (Alineación Derecha) -->
+    <section class="lr-section lr-section-align-right" data-layer-item data-layer-id="stories" data-layer-order="4" id="stories">
+        <div class="lr-media">
+            <img src="{{ url_for('static', path='img/fotos prueba/novedad_encuentro.png') }}" 
+                 alt="Novedades de la Red FEM" 
+                 loading="lazy" 
+                 id="bg-stories"
+                 decoding="async">
+        </div>
+        <div class="lr-overlay"></div>
+        <div class="lr-content" style="max-width: 880px;">
+            <span class="lr-kicker">Actualidad y Diálogo</span>
+            <h2>Novedades de la Red</h2>
+            <p>Crónicas, comunicados y el caminar cotidiano de nuestras comunidades.</p>
+
+            <div class="lr-stories-photo-grid" data-scenic-carousel="stories">
+                {% if novedades %}
+                    {% for nov in novedades[:3] %}
+                    <article class="lr-story-photo-card" data-bg-mobile="{{ nov.imagen_url if (nov.imagen_url and nov.imagen_url != 'None' and nov.imagen_url != '') else url_for('static', path='img/fotos prueba/novedad_encuentro.png') }}">
+                        <div class="lr-story-img-wrapper">
+                            <img src="{{ nov.imagen_url if (nov.imagen_url and nov.imagen_url != 'None' and nov.imagen_url != '') else url_for('static', path='img/fotos prueba/novedad_encuentro.png') }}" 
+                                 alt="{{ nov.titulo }}" 
+                                 loading="lazy" 
+                                 onerror="this.src='/static/img/fotos prueba/novedad_encuentro.png'">
+                        </div>
+                        <div class="lr-story-body">
+                            <span class="lr-story-date">{{ nov.fecha_publicacion.strftime('%d/%m/%Y') if nov.fecha_publicacion else 'Actualidad' }}</span>
+                            <h3>{{ nov.titulo }}</h3>
+                            <p>{{ nov.copete or nov.contenido[:75] }}...</p>
+                            <a href="/contacto" class="lr-story-link">
+                                <span>Leer más</span> &rarr;
+                            </a>
+                        </div>
+                    </article>
+                    {% endfor %}
+                {% else %}
+                    <article class="lr-story-photo-card" data-bg-mobile="/static/img/fotos prueba/novedad_encuentro.png">
+                        <div class="lr-story-img-wrapper">
+                            <img src="{{ url_for('static', path='img/fotos prueba/novedad_encuentro.png') }}" alt="Encuentro de Equipos de Conducción">
+                        </div>
+                        <div class="lr-story-body">
+                            <span class="lr-story-date">Comunidad</span>
+                            <h3>Encuentro Federal de Conducción</h3>
+                            <p>Directivos de nuestra red compartieron una jornada presencial.</p>
+                            <a href="/contacto" class="lr-story-link"><span>Leer más</span> &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="lr-story-photo-card" data-bg-mobile="/static/img/fotos prueba/novedad_sostenibilidad.png">
+                        <div class="lr-story-img-wrapper">
+                            <img src="{{ url_for('static', path='img/fotos prueba/novedad_sostenibilidad.png') }}" alt="Taller de Sostenibilidad">
+                        </div>
+                        <div class="lr-story-body">
+                            <span class="lr-story-date">Gestión</span>
+                            <h3>Sostenibilidad Administrativa</h3>
+                            <p>Autodiagnóstico financiero para administradores de la red.</p>
+                            <a href="/contacto" class="lr-story-link"><span>Leer más</span> &rarr;</a>
+                        </div>
+                    </article>
+                {% endif %}
+            </div>
+
+            <!-- Indicadores de tarjeta para móviles -->
+            <div class="lr-card-indicators" data-carousel-indicators="stories">
+                <span class="lr-card-dot is-active"></span>
+                <span class="lr-card-dot"></span>
+                <span class="lr-card-dot"></span>
+            </div>
+
+            <div class="lr-cta-actions" style="margin-top: var(--space-xs);">
+                <a href="/contacto" class="lr-cta">
+                    <span>Contacto e Institución</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Escena 5: Recursero & Repositorio Curado (Absorbido como Cierre Inmersivo) -->
+    <section class="lr-section lr-section-align-left" data-layer-item data-layer-id="recursero" data-layer-order="5" id="recursero">
+        <div class="lr-media">
+            <img src="{{ url_for('static', path='img/fotos prueba/library.jpeg') }}" 
+                 alt="Repositorio Curado Fundación FEM" 
+                 loading="lazy" 
+                 id="bg-recursero"
+                 decoding="async">
+        </div>
+        <div class="lr-overlay"></div>
+        <div class="lr-content" style="max-width: 900px;">
+            <span class="lr-kicker">Repositorio Curado</span>
+            <h2>Recursero Institucional</h2>
+            <p>Accede a guías pedagógicas, orientaciones pastorales y materiales de formación.</p>
+
+            <div class="lr-dimensions-photo-grid" data-scenic-carousel="recursero">
+                <a href="/materiales?categoria=Pedagógico" class="lr-dim-photo-card" data-bg-mobile="/static/img/fotos prueba/dimension_pedagogica.png">
+                    <div class="lr-dim-bg" style="background-image: url('/static/img/fotos prueba/dimension_pedagogica.png');"></div>
+                    <div class="lr-dim-content">
+                        <h3>Recursos Pedagógicos</h3>
+                    </div>
+                </a>
+
+                <a href="/materiales?categoria=Pastoral" class="lr-dim-photo-card" data-bg-mobile="/static/img/fotos prueba/dimension_pastoral.png">
+                    <div class="lr-dim-bg" style="background-image: url('/static/img/fotos prueba/dimension_pastoral.png');"></div>
+                    <div class="lr-dim-content">
+                        <h3>Materiales Pastorales</h3>
+                    </div>
+                </a>
+
+                <a href="/materiales?categoria=Editorial" class="lr-dim-photo-card" data-bg-mobile="/static/img/fotos prueba/library.jpeg">
+                    <div class="lr-dim-bg" style="background-image: url('/static/img/fotos prueba/library.jpeg');"></div>
+                    <div class="lr-dim-content">
+                        <h3>Guías Editoriales</h3>
+                    </div>
+                </a>
+
+                <a href="/materiales?categoria=Pedagógico" class="lr-dim-photo-card" data-bg-mobile="/static/img/2016_10_26_ALTA_RESOLUCION_0163-scaled1.jpg">
+                    <div class="lr-dim-bg" style="background-image: url('/static/img/2016_10_26_ALTA_RESOLUCION_0163-scaled1.jpg');"></div>
+                    <div class="lr-dim-content">
+                        <h3>Formación Continua</h3>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Indicadores de tarjeta para móviles -->
+            <div class="lr-card-indicators" data-carousel-indicators="recursero">
+                <span class="lr-card-dot is-active"></span>
+                <span class="lr-card-dot"></span>
+                <span class="lr-card-dot"></span>
+                <span class="lr-card-dot"></span>
+            </div>
+
+            <div class="lr-cta-actions" style="margin-top: var(--space-xs);">
+                <a href="/materiales" class="lr-cta">
+                    <span>Ver Repositorio Completo</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Indicador de Progreso Lateral Flotante (Progress Indicator con Tooltips) -->
+    <nav class="lr-nav-progress" id="lr-nav-progress" aria-label="Navegación de capas narrativas">
+        <div class="lr-progress-bar">
+            <div class="lr-progress-fill" id="lr-progress-fill"></div>
+        </div>
+
+        <button class="lr-nav-dot is-active" data-nav-dot data-target-id="hero" aria-label="Ir a sección Lema Institucional">
+            <span class="lr-nav-dot-tooltip">Lema 2026</span>
+        </button>
+        <button class="lr-nav-dot" data-nav-dot data-target-id="identity" aria-label="Ir a sección Nuestra Identidad">
+            <span class="lr-nav-dot-tooltip">Identidad</span>
+        </button>
+        <button class="lr-nav-dot" data-nav-dot data-target-id="dimensions" aria-label="Ir a sección Dimensiones">
+            <span class="lr-nav-dot-tooltip">Dimensiones</span>
+        </button>
+        <button class="lr-nav-dot" data-nav-dot data-target-id="stories" aria-label="Ir a sección Novedades">
+            <span class="lr-nav-dot-tooltip">Novedades</span>
+        </button>
+        <button class="lr-nav-dot" data-nav-dot data-target-id="recursero" aria-label="Ir a sección Recursero">
+            <span class="lr-nav-dot-tooltip">Recursero</span>
+        </button>
+    </nav>
+
+</div>

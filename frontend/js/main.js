@@ -182,11 +182,18 @@ document.addEventListener("DOMContentLoaded", () => {
         numerosObserver.observe(numerosSection);
     }
 
-    // --- Header Fijo y Contráctil al hacer Scroll ---
+    // --- Header Fijo e Inteligente (Auto-Hide al Scroll Down, Show al Scroll Up) ---
     const mainHeader = document.querySelector(".main-header");
     if (mainHeader) {
+        let lastScrollY = window.scrollY;
         const onHeaderScroll = () => {
-            mainHeader.classList.toggle("scrolled", window.scrollY > 40);
+            const currentScrollY = window.scrollY;
+            const isScrollingDown = currentScrollY > lastScrollY && currentScrollY > 90;
+            
+            mainHeader.classList.toggle("scrolled", currentScrollY > 40);
+            mainHeader.classList.toggle("header-hidden", isScrollingDown);
+            
+            lastScrollY = currentScrollY;
         };
         window.addEventListener("scroll", onHeaderScroll, { passive: true });
         onHeaderScroll();

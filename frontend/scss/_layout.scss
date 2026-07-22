@@ -10,7 +10,11 @@
   width: 100%;
   z-index: 1100;
   box-shadow: var(--shadow-subtle);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.35s ease, box-shadow 0.35s ease;
+
+  &.header-hidden {
+    transform: translateY(-100%);
+  }
 
   /* Estado Contraído al hacer Scroll */
   &.scrolled {

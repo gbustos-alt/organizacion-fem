@@ -1,0 +1,772 @@
+// Componente Layered Reveal v8 - Fundación FEM
+// Solución Mobile Definitiva: "100svh por Escena + Carro Escénico de 1 Card por Vista"
+@use "../tokens" as *;
+
+.lr-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-primary);
+  overflow: hidden;
+}
+
+/* Sección-Escena Base */
+.lr-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: var(--color-primary);
+
+  /* Aceleración por hardware GPU */
+  will-change: opacity, filter;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.55;
+  filter: brightness(0.5);
+  z-index: 1;
+
+  /* Imagen Inmersiva de Fondo con Cálida Tonalidad Natural */
+  .lr-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1);
+      filter: brightness(0.68) contrast(1.02) sepia(0.04);
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+      will-change: transform, filter, opacity;
+    }
+  }
+
+  /* Overlay Gradiente Escénico de Luz Serena */
+  .lr-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(
+      135deg,
+      rgba(12, 30, 54, 0.90) 0%,
+      rgba(12, 30, 54, 0.68) 50%,
+      rgba(241, 180, 52, 0.16) 85%,
+      rgba(251, 251, 249, 0.04) 100%
+    );
+    opacity: 0.95;
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Halo de Luz Difuso Serena en la Capa Activa */
+  &::before {
+    content: '';
+    position: absolute;
+    top: -15%;
+    left: -10%;
+    width: 75%;
+    height: 75%;
+    z-index: 2;
+    background: radial-gradient(
+      circle at 30% 30%,
+      rgba(241, 180, 52, 0.16) 0%,
+      rgba(241, 101, 54, 0.06) 45%,
+      transparent 70%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Bloque Editorial Choreographed sobre la Escena */
+  .lr-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 630px;
+    padding: var(--space-xl) var(--space-xxl);
+    color: var(--color-white);
+    opacity: 0.25;
+    transform: translateY(30px);
+    pointer-events: none;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+
+    .lr-kicker {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--color-accent-warm);
+      margin-bottom: var(--space-xs);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: var(--color-accent-warm);
+        box-shadow: 0 0 8px var(--color-accent-warm);
+      }
+    }
+
+    h2 {
+      font-family: var(--font-serif);
+      font-size: 2.75rem;
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--color-white);
+      margin-top: 0;
+      margin-bottom: var(--space-md);
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    p {
+      font-family: var(--font-sans);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.92);
+      margin-top: 0;
+      margin-bottom: var(--space-lg);
+    }
+
+    .lr-cta-actions {
+      display: flex;
+      gap: var(--space-md);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .lr-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background-color: var(--color-accent-warm);
+      color: var(--color-primary);
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(241, 180, 52, 0.25);
+      transition: var(--transition-smooth);
+
+      svg {
+        width: 18px;
+        height: 18px;
+        transition: transform 0.2s ease;
+      }
+
+      &:hover {
+        background-color: var(--color-white);
+        color: var(--color-primary);
+        transform: translateY(-2px);
+        box-shadow: 0 0 20px rgba(241, 180, 52, 0.45);
+
+        svg {
+          transform: translateX(4px);
+        }
+      }
+    }
+
+    .lr-cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: rgba(255, 255, 255, 0.15);
+      color: var(--color-white);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.5rem;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      backdrop-filter: blur(4px);
+      transition: var(--transition-smooth);
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-color: var(--color-white);
+        color: var(--color-white);
+      }
+    }
+  }
+
+  /* Alineación Escénica */
+  &.lr-section-align-left {
+    justify-content: flex-start;
+
+    .lr-content {
+      margin-left: max(2rem, calc((100vw - var(--container-max-width)) / 2));
+      margin-right: auto;
+    }
+  }
+
+  &.lr-section-align-right {
+    justify-content: flex-end;
+
+    &::before {
+      top: -15%;
+      right: -10%;
+      left: auto;
+      background: radial-gradient(
+        circle at 70% 30%,
+        rgba(241, 180, 52, 0.16) 0%,
+        rgba(241, 101, 54, 0.06) 45%,
+        transparent 70%
+      );
+    }
+
+    .lr-content {
+      margin-right: max(2rem, calc((100vw - var(--container-max-width)) / 2));
+      margin-left: auto;
+    }
+
+    .lr-overlay {
+      background: linear-gradient(
+        225deg,
+        rgba(12, 30, 54, 0.90) 0%,
+        rgba(12, 30, 54, 0.68) 50%,
+        rgba(241, 101, 54, 0.16) 85%,
+        rgba(251, 251, 249, 0.04) 100%
+      );
+    }
+  }
+
+  /* ==========================================
+     ESTADOS DE LA CAPA INTERACTIVA
+     ========================================== */
+
+  /* Estado IS-ACTIVE: Foco Dominante */
+  &.is-active {
+    opacity: 1;
+    filter: brightness(1);
+    z-index: 10;
+
+    &::before {
+      opacity: 1;
+    }
+
+    .lr-media img {
+      transform: scale(1.04);
+      filter: brightness(0.76) contrast(1.04) sepia(0.06);
+    }
+
+    .lr-overlay {
+      opacity: 0.82;
+    }
+
+    .lr-content {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+  }
+
+  /* Estado IS-NEAR: Capas Adyacentes */
+  &.is-near {
+    opacity: 0.75;
+    filter: brightness(0.6);
+    z-index: 5;
+
+    .lr-content {
+      opacity: 0.3;
+      transform: translateY(20px);
+      pointer-events: none;
+    }
+  }
+
+  /* Estado IS-BEFORE: Viniendo desde abajo */
+  &.is-before {
+    opacity: 0.5;
+    filter: brightness(0.45);
+    z-index: 2;
+
+    .lr-content {
+      opacity: 0.15;
+      transform: translateY(-25px);
+      pointer-events: none;
+    }
+  }
+
+  /* Estado IS-AFTER: Pasando hacia abajo */
+  &.is-after {
+    opacity: 0.5;
+    filter: brightness(0.45);
+    z-index: 2;
+
+    .lr-content {
+      opacity: 0.15;
+      transform: translateY(25px);
+      pointer-events: none;
+    }
+  }
+}
+
+/* ==========================================
+   SUB-COMPONENTES FOTOGRÁFICOS INTERIORES
+   ========================================== */
+
+/* Tarjeta Institucional de Identidad (Escena 2) */
+.lr-identity-box {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  width: 100%;
+
+  .lr-identity-frame {
+    border: 6px solid var(--color-white);
+    border-radius: 120px 30px 120px 30px;
+    box-shadow: 0 20px 35px rgba(12, 30, 54, 0.3), 0 0 20px rgba(241, 180, 52, 0.2);
+    overflow: hidden;
+    background-color: var(--color-white);
+    height: 320px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+/* Grilla de Tarjetas Fotográficas Inmersivas para Dimensiones (Escena 3) */
+.lr-dimensions-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  width: 100%;
+
+  .lr-dim-photo-card {
+    position: relative;
+    height: 200px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    text-decoration: none;
+    box-shadow: var(--shadow-subtle);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    .lr-dim-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.68) contrast(1.1);
+      transition: var(--transition-smooth);
+      z-index: 1;
+    }
+
+    .lr-dim-content {
+      position: relative;
+      z-index: 2;
+      padding: var(--space-md);
+      width: 100%;
+      background: linear-gradient(to top, rgba(12, 30, 54, 0.92) 0%, rgba(12, 30, 54, 0) 100%);
+
+      h3 {
+        font-family: var(--font-sans);
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: var(--color-white);
+        margin: 0;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+        transition: color 0.3s ease;
+      }
+    }
+
+    &:hover {
+      border-color: var(--color-accent-warm);
+
+      .lr-dim-bg {
+        transform: scale(1.08);
+        filter: brightness(0.55) contrast(1.15);
+      }
+
+      .lr-dim-content h3 {
+        color: var(--color-accent-warm);
+      }
+    }
+  }
+}
+
+/* Grilla de Noticias Fotográficas Inmersivas (Escena 4) */
+.lr-stories-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  width: 100%;
+
+  .lr-story-photo-card {
+    background: rgba(12, 30, 54, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    color: var(--color-white);
+    box-shadow: var(--shadow-subtle);
+    transition: var(--transition-smooth);
+
+    .lr-story-img-wrapper {
+      position: relative;
+      height: 140px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+    }
+
+    .lr-story-body {
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+
+      .lr-story-date {
+        font-size: 0.75rem;
+        color: var(--color-accent-warm);
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-bottom: var(--space-xxs);
+      }
+
+      h3 {
+        font-family: var(--font-sans);
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--color-white);
+        margin: 0 0 var(--space-xs) 0;
+        line-height: 1.3;
+      }
+
+      p {
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.85);
+        margin-bottom: var(--space-md);
+        line-height: 1.45;
+        flex-grow: 1;
+      }
+
+      .lr-story-link {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--color-accent-warm);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+
+        &:hover {
+          color: var(--color-white);
+        }
+      }
+    }
+
+    &:hover {
+      border-color: var(--color-accent-warm);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(12, 30, 54, 0.4), 0 0 15px rgba(241, 180, 52, 0.2);
+
+      .lr-story-img-wrapper img {
+        transform: scale(1.08);
+      }
+    }
+  }
+}
+
+/* Indicador de Tarjeta Activa en Carro Móvil */
+.lr-card-indicators {
+  display: none;
+}
+
+/* ==========================================
+   WIDGET DE INDICADOR DE PROGRESO LATERAL (LR-NAV-PROGRESS)
+   ========================================== */
+.lr-nav-progress {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2.5rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.1rem 0.75rem;
+  background: rgba(12, 30, 54, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  box-shadow: var(--shadow-premium);
+
+  .lr-progress-bar {
+    position: absolute;
+    left: 50%;
+    top: 1.5rem;
+    bottom: 1.5rem;
+    width: 2px;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    z-index: -1;
+  }
+
+  .lr-progress-fill {
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(180deg, var(--color-accent-warm), var(--color-coral));
+    transition: height 0.3s ease-out;
+  }
+
+  .lr-nav-dot {
+    position: relative;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      background: var(--color-white);
+      transform: scale(1.3);
+    }
+
+    &.is-active {
+      background: var(--color-accent-warm);
+      transform: scale(1.5);
+      box-shadow: 0 0 12px var(--color-accent-warm);
+    }
+
+    .lr-nav-dot-tooltip {
+      position: absolute;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%) translateX(10px);
+      opacity: 0;
+      pointer-events: none;
+      font-size: 0.75rem;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      white-space: nowrap;
+      color: var(--color-white);
+      background: var(--color-primary);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-subtle);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    &:hover .lr-nav-dot-tooltip {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+  }
+}
+
+/* ==========================================
+   ADAPTACIÓN RESPONSIVA DEFINITIVA EN MÓVILES (< 768px)
+   "100svh por Escena + Carro Escénico Inmersivo"
+   ========================================== */
+@media (max-width: 767px) {
+  .lr-section {
+    height: 100vh;
+    height: 100svh; // Small Viewport Height exacto en navegadores móviles
+    min-height: 560px;
+    overflow: hidden;
+    padding: max(1.25rem, env(safe-area-inset-top)) 1rem max(1.5rem, env(safe-area-inset-bottom)) 1rem;
+    opacity: 0.55;
+
+    &.is-active {
+      opacity: 1;
+
+      &::before {
+        opacity: 0.6;
+      }
+
+      .lr-content {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .lr-content {
+      max-width: 100%;
+      padding: 0;
+      opacity: 0.4;
+      transform: translateY(15px);
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h2 {
+        font-size: 1.85rem;
+        margin-bottom: var(--space-xs);
+      }
+
+      p {
+        font-size: 0.95rem;
+        line-height: 1.45;
+        margin-bottom: var(--space-md);
+      }
+
+      .lr-cta-actions {
+        gap: var(--space-xs);
+
+        .lr-cta, .lr-cta-secondary {
+          padding: 0.65rem 1.1rem;
+          font-size: 0.88rem;
+        }
+      }
+    }
+  }
+
+  .lr-identity-box {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+
+    .lr-identity-frame {
+      height: 160px;
+      border-radius: 50%;
+      width: 160px;
+      margin: 0 auto;
+      border-width: 4px;
+    }
+  }
+
+  /* Carro Escénico de 1 Card por vista con Scroll-Snap Nátivo */
+  .lr-dimensions-photo-grid,
+  .lr-stories-photo-grid {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch;
+    gap: 0.85rem !important;
+    padding: 0.25rem 0.1rem 0.75rem 0.1rem !important;
+    width: 100% !important;
+
+    /* Ocultar barra de scroll nativa */
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .lr-dim-photo-card,
+    .lr-story-photo-card {
+      flex: 0 0 88% !important;
+      max-width: 88% !important;
+      scroll-snap-align: center !important;
+      height: 185px !important;
+    }
+
+    .lr-story-photo-card {
+      height: 220px !important;
+
+      .lr-story-img-wrapper {
+        height: 95px !important;
+      }
+
+      .lr-story-body {
+        padding: var(--space-xs) var(--space-sm) !important;
+
+        p {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          margin-bottom: var(--space-xs) !important;
+        }
+      }
+    }
+  }
+
+  /* Indicadores de Tarjetas Interiores Móviles */
+  .lr-card-indicators {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+
+    .lr-card-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transition: transform 0.3s ease, background 0.3s ease;
+
+      &.is-active {
+        background: var(--color-accent-warm);
+        transform: scale(1.4);
+      }
+    }
+  }
+
+  .lr-nav-progress {
+    right: 0.35rem;
+    padding: 0.6rem 0.35rem;
+    gap: 0.7rem;
+
+    .lr-nav-dot-tooltip {
+      display: none;
+    }
+  }
+}
+
+/* Respeto por reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .lr-section {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    transition: none !important;
+
+    &::before {
+      display: none !important;
+    }
+  }
+
+  .lr-content {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

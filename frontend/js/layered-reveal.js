@@ -1,0 +1,158 @@
+/**
+ * Motor Layered Reveal v8 - Fundación FEM
+ * Manejo de escenas full-height en Desktop y Mobile (100svh), progreso lateral y Carro Escénico Inmersivo Móvil
+ */
+document.addEventListener("DOMContentLoaded", () => {
+    const layerItems = Array.from(document.querySelectorAll("[data-layer-item]"));
+    const navDots = Array.from(document.querySelectorAll("[data-nav-dot]"));
+    const progressFill = document.getElementById("lr-progress-fill");
+
+    if (!layerItems.length) return;
+
+    // Comprobación de preferencia de reducción de movimiento únicamente
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+        layerItems.forEach(item => {
+            item.classList.add("is-active");
+            item.classList.remove("is-before", "is-after", "is-near");
+        });
+        return;
+    }
+
+    // Actualizador de estados visuales de las capas y del widget de progreso
+    const updateActiveLayer = (activeIndex) => {
+        layerItems.forEach((item, index) => {
+            item.classList.remove("is-active", "is-near", "is-before", "is-after");
+
+            if (index === activeIndex) {
+                item.classList.add("is-active");
+            } else if (Math.abs(index - activeIndex) === 1) {
+                item.classList.add("is-near");
+                if (index < activeIndex) {
+                    item.classList.add("is-before");
+                } else {
+                    item.classList.add("is-after");
+                }
+            } else if (index < activeIndex) {
+                item.classList.add("is-before");
+            } else {
+                item.classList.add("is-after");
+            }
+        });
+
+        // Actualizar puntos de navegación de progreso
+        navDots.forEach((dot, index) => {
+            if (index === activeIndex) {
+                dot.classList.add("is-active");
+                dot.setAttribute("aria-selected", "true");
+            } else {
+                dot.classList.remove("is-active");
+                dot.setAttribute("aria-selected", "false");
+            }
+        });
+
+        // Actualizar la línea vertical de progreso de scroll
+        if (progressFill && layerItems.length > 1) {
+            const fillPercentage = (activeIndex / (layerItems.length - 1)) * 100;
+            progressFill.style.height = `${fillPercentage}%`;
+        }
+    };
+
+    // Observador de Intersección adaptado para Desktop y Mobile (100svh)
+    const isMobileScreen = window.innerWidth < 767;
+    const observerOptions = {
+        root: null,
+        rootMargin: isMobileScreen ? "-2% 0px -2% 0px" : "-10% 0px -10% 0px",
+        threshold: isMobileScreen ? [0.2, 0.4, 0.6] : [0.2, 0.4, 0.6, 0.8]
+    };
+
+    let visibleRatios = new Map();
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                visibleRatios.set(entry.target, entry.intersectionRatio);
+            } else {
+                visibleRatios.delete(entry.target);
+            }
+        });
+
+        let maxRatio = 0;
+        let activeElement = null;
+
+        visibleRatios.forEach((ratio, target) => {
+            if (ratio > maxRatio) {
+                maxRatio = ratio;
+                activeElement = target;
+            }
+        });
+
+        if (activeElement) {
+            const activeIndex = layerItems.indexOf(activeElement);
+            if (activeIndex !== -1) {
+                updateActiveLayer(activeIndex);
+            }
+        }
+    }, observerOptions);
+
+    layerItems.forEach(item => observer.observe(item));
+
+    // Navegación interactiva por click en los puntos de progreso lateral
+    navDots.forEach(dot => {
+        dot.addEventListener("click", () => {
+            const targetId = dot.getAttribute("data-target-id");
+            if (!targetId) return;
+
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: "smooth" });
+            }
+        });
+    });
+
+    // ==========================================================================
+    // CARRO ESCÉNICO INMERSIVO MÓVIL (Scroll-Snap + Cambios Dinámicos de Fondo)
+    // ==========================================================================
+    if (isMobileScreen) {
+        const carousels = document.querySelectorAll("[data-scenic-carousel]");
+
+        carousels.forEach(carousel => {
+            const carouselId = carousel.getAttribute("data-scenic-carousel");
+            const cards = Array.from(carousel.children);
+            const indicatorContainer = document.querySelector(`[data-carousel-indicators="${carouselId}"]`);
+            const dots = indicatorContainer ? Array.from(indicatorContainer.children) : [];
+            const bgImg = document.getElementById(`bg-${carouselId}`);
+
+            if (!cards.length) return;
+
+            // Escuchar el scroll horizontal en el riel de tarjetas de la escena
+            carousel.addEventListener("scroll", () => {
+                const scrollLeft = carousel.scrollLeft;
+                const cardWidth = cards[0].offsetWidth;
+                const activeCardIndex = Math.round(scrollLeft / (cardWidth + 12));
+
+                // Actualizar indicadores de tarjetas
+                dots.forEach((dot, i) => {
+                    if (i === activeCardIndex) {
+                        dot.classList.add("is-active");
+                    } else {
+                        dot.classList.remove("is-active");
+                    }
+                });
+
+                // Actualizar imagen de fondo dinámica si la tarjeta especifica una imagen móvil
+                if (bgImg && cards[activeCardIndex]) {
+                    const newBg = cards[activeCardIndex].getAttribute("data-bg-mobile");
+                    if (newBg && bgImg.getAttribute("src") !== newBg) {
+                        bgImg.style.opacity = "0.3";
+                        setTimeout(() => {
+                            bgImg.setAttribute("src", newBg);
+                            bgImg.style.opacity = "1";
+                        }, 200);
+                    }
+                }
+            }, { passive: true });
+        });
+    }
+});

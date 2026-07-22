@@ -583,13 +583,13 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(12, 30, 54, 0.5);
+      background: rgba(12, 30, 54, 0.65);
       color: var(--color-white);
-      border: none;
-      width: 44px;
-      height: 44px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -597,19 +597,25 @@
       transition: var(--transition-smooth);
       z-index: 10;
       opacity: 0;
+      touch-action: manipulation;
+
+      @media (max-width: 768px) {
+        opacity: 0.9 !important;
+        background: rgba(12, 30, 54, 0.75);
+      }
 
       &:hover {
         background: var(--color-accent-warm);
         color: var(--color-primary);
-        transform: translateY(-50%) scale(1.1);
+        transform: translateY(-50%) scale(1.08);
       }
 
       &.prev-btn {
-        left: var(--space-sm);
+        left: var(--space-xs);
       }
 
       &.next-btn {
-        right: var(--space-sm);
+        right: var(--space-xs);
       }
     }
 
@@ -618,24 +624,31 @@
       bottom: var(--space-sm);
       right: var(--space-md);
       display: flex;
+      align-items: center;
       gap: 6px;
       z-index: 10;
 
       .indicator {
         width: 24px;
-        height: 4px;
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 2px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 3px;
         cursor: pointer;
         transition: var(--transition-smooth);
+        padding: 10px 0; /* Ampliación de área táctil vertical */
+        background-clip: content-box;
+        box-sizing: content-box;
+        touch-action: manipulation;
 
         &.active {
           background: var(--color-accent-warm);
           width: 36px;
+          background-clip: content-box;
         }
       }
     }
   }
+
 
   // Contenedor de la Ola SVG
   .hero-wave-divider {

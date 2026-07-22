@@ -76,10 +76,33 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
+        // Soporte de Gestos Táctiles (Swipe Left / Swipe Right)
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slider.addEventListener("touchstart", (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            stopTimer();
+        }, { passive: true });
+
+        slider.addEventListener("touchend", (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diffX = touchStartX - touchEndX;
+            if (Math.abs(diffX) > 40) {
+                if (diffX > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+            startTimer();
+        }, { passive: true });
+
         slider.addEventListener("mouseenter", stopTimer);
         slider.addEventListener("mouseleave", startTimer);
         startTimer();
     }
+
 
     // --- Lógica de Drag & Drop para la Bolsa de Trabajo ---
     const dropZone = document.getElementById("drop-zone");

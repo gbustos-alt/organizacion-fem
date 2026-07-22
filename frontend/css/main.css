@@ -614,7 +614,13 @@ body {
     color: var(--color-text-muted);
     cursor: pointer;
     line-height: 1;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 0;
+    touch-action: manipulation;
   }
   .nav-list {
     flex-direction: column;
@@ -625,11 +631,15 @@ body {
   }
   .nav-link {
     color: var(--color-text);
-    padding: 0.8rem 0;
+    padding: 0.75rem 0.5rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
     font-size: 1rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.03);
     width: 100%;
     justify-content: space-between;
+    touch-action: manipulation;
   }
   .nav-link::after {
     display: none;
@@ -1797,13 +1807,13 @@ html, body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(12, 30, 54, 0.5);
+  background: rgba(12, 30, 54, 0.65);
   color: var(--color-white);
-  border: none;
-  width: 44px;
-  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1811,37 +1821,50 @@ html, body {
   transition: var(--transition-smooth);
   z-index: 10;
   opacity: 0;
+  touch-action: manipulation;
+}
+@media (max-width: 768px) {
+  .home-hero-section .hero-slider-container .slider-btn {
+    opacity: 0.9 !important;
+    background: rgba(12, 30, 54, 0.75);
+  }
 }
 .home-hero-section .hero-slider-container .slider-btn:hover {
   background: var(--color-accent-warm);
   color: var(--color-primary);
-  transform: translateY(-50%) scale(1.1);
+  transform: translateY(-50%) scale(1.08);
 }
 .home-hero-section .hero-slider-container .slider-btn.prev-btn {
-  left: var(--space-sm);
+  left: var(--space-xs);
 }
 .home-hero-section .hero-slider-container .slider-btn.next-btn {
-  right: var(--space-sm);
+  right: var(--space-xs);
 }
 .home-hero-section .hero-slider-container .slider-indicators {
   position: absolute;
   bottom: var(--space-sm);
   right: var(--space-md);
   display: flex;
+  align-items: center;
   gap: 6px;
   z-index: 10;
 }
 .home-hero-section .hero-slider-container .slider-indicators .indicator {
   width: 24px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 2px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 3px;
   cursor: pointer;
   transition: var(--transition-smooth);
+  padding: 10px 0; /* Ampliación de área táctil vertical */
+  background-clip: content-box;
+  box-sizing: content-box;
+  touch-action: manipulation;
 }
 .home-hero-section .hero-slider-container .slider-indicators .indicator.active {
   background: var(--color-accent-warm);
   width: 36px;
+  background-clip: content-box;
 }
 .home-hero-section .hero-wave-divider {
   position: absolute;

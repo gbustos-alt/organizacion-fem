@@ -153,7 +153,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-
+      justify-content: center;
       &::before {
         content: '';
         display: inline-block;
@@ -261,6 +261,12 @@
       margin-left: max(2rem, calc((100vw - var(--container-max-width)) / 2));
       margin-right: auto;
     }
+    @media (max-width: 768px) {
+      .lr-content {
+        margin-left: 0;
+        margin-right: auto;
+      }
+    }
   }
 
   &.lr-section-align-right {
@@ -281,6 +287,11 @@
     .lr-content {
       margin-right: max(2rem, calc((100vw - var(--container-max-width)) / 2));
       margin-left: auto;
+    }
+    @media (max-width: 768px) {
+      .lr-content-quienes-somos {
+        justify-content: center;
+      }
     }
 
     .lr-overlay {

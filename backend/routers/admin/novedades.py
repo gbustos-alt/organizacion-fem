@@ -67,7 +67,8 @@ async def crear_novedad_submit(
         valores_nuevos={"titulo": titulo, "activa": activa}
     )
 
-    return RedirectResponse(url="/admin/novedades/", status_code=status.HTTP_303_SEE_OTHER)
+    return RedirectResponse(url="/admin/novedades/?msg=guardado_exito", status_code=status.HTTP_303_SEE_OTHER)
+
 
 @router.get("/editar/{novedad_id}", response_class=HTMLResponse)
 async def editar_novedad_form(
@@ -125,7 +126,7 @@ async def editar_novedad_submit(
         valores_nuevos={"titulo": titulo, "activa": activa}
     )
 
-    return RedirectResponse(url="/admin/novedades/", status_code=status.HTTP_303_SEE_OTHER)
+    return RedirectResponse(url="/admin/novedades/?msg=guardado_exito", status_code=status.HTTP_303_SEE_OTHER)
 
 @router.post("/eliminar/{novedad_id}")
 async def eliminar_novedad(
@@ -150,4 +151,5 @@ async def eliminar_novedad(
         valores_anteriores={"titulo": novedad.titulo}
     )
 
-    return RedirectResponse(url="/admin/novedades/", status_code=status.HTTP_303_SEE_OTHER)
+    return RedirectResponse(url="/admin/novedades/?msg=eliminado_exito", status_code=status.HTTP_303_SEE_OTHER)
+

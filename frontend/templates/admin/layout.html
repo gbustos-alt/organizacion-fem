@@ -563,6 +563,9 @@
         </div>
     </div>
 
+    <!-- Toast Container para Notificaciones de Feedback Visual -->
+    <div id="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999; display: flex; flex-direction: column; gap: 0.5rem; pointer-events: none;"></div>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const toggleBtn = document.getElementById("admin-sidebar-toggle");
@@ -578,8 +581,57 @@
                 toggleBtn.addEventListener("click", toggleSidebar);
                 overlay.addEventListener("click", toggleSidebar);
             }
+
+            // Función de Notificación Toast Universal
+            window.showToast = (message, type = "success") => {
+                const container = document.getElementById("toast-container");
+                if (!container) return;
+
+                const toast = document.createElement("div");
+                toast.style.cssText = `
+                    background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+                    color: #ffffff;
+                    padding: 0.85rem 1.4rem;
+                    border-radius: 8px;
+                    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    pointer-events: auto;
+                    opacity: 0;
+                    transform: translateY(20px);
+                    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+                `;
+                toast.innerHTML = `<span>${type === 'success' ? '✓' : 'ℹ'}</span> ${message}`;
+                container.appendChild(toast);
+
+                requestAnimationFrame(() => {
+                    toast.style.opacity = "1";
+                    toast.style.transform = "translateY(0)";
+                });
+
+                setTimeout(() => {
+                    toast.style.opacity = "0";
+                    toast.style.transform = "translateY(20px)";
+                    setTimeout(() => toast.remove(), 400);
+                }, 3500);
+            };
+
+            // Detectar parámetro de éxito en la URL (?msg=...)
+            const urlParams = new URLSearchParams(window.location.search);
+            const msg = urlParams.get("msg");
+            if (msg === "guardado_exito") {
+                showToast("Cambios guardados con éxito en el sistema");
+            } else if (msg === "eliminado_exito") {
+                showToast("Registro eliminado correctamente", "info");
+            } else if (msg) {
+                showToast(decodeURIComponent(msg));
+            }
         });
     </script>
+
 
     {% block scripts %}{% endblock %}
 </body>

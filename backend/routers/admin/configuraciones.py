@@ -104,7 +104,8 @@ async def editar_lema_submit(
     )
     
     db.commit()
-    return RedirectResponse(url="/admin/configuraciones/", status_code=status.HTTP_303_SEE_OTHER)
+    return RedirectResponse(url="/admin/configuraciones/?msg=guardado_exito", status_code=status.HTTP_303_SEE_OTHER)
+
 
 @router.post("/memorias/crear", response_class=HTMLResponse)
 async def crear_memoria_submit(
@@ -149,7 +150,7 @@ async def crear_memoria_submit(
     )
     
     db.commit()
-    return RedirectResponse(url="/admin/configuraciones/", status_code=status.HTTP_303_SEE_OTHER)
+    return RedirectResponse(url="/admin/configuraciones/?msg=guardado_exito", status_code=status.HTTP_303_SEE_OTHER)
 
 @router.post("/memorias/eliminar/{memoria_id}", response_class=HTMLResponse)
 async def eliminar_memoria(
@@ -181,7 +182,7 @@ async def eliminar_memoria(
     
     db.delete(memoria)
     db.commit()
-    return RedirectResponse(url="/admin/configuraciones/", status_code=status.HTTP_303_SEE_OTHER)
+    return RedirectResponse(url="/admin/configuraciones/?msg=eliminado_exito", status_code=status.HTTP_303_SEE_OTHER)
 
 @router.post("/capacitacion/crear", response_class=HTMLResponse)
 async def crear_capacitacion_submit(
@@ -229,7 +230,7 @@ async def crear_capacitacion_submit(
     )
     
     db.commit()
-    return RedirectResponse(url="/admin/configuraciones/", status_code=status.HTTP_303_SEE_OTHER)
+    return RedirectResponse(url="/admin/configuraciones/?msg=guardado_exito", status_code=status.HTTP_303_SEE_OTHER)
 
 @router.post("/capacitacion/eliminar/{material_id}", response_class=HTMLResponse)
 async def eliminar_capacitacion(
@@ -262,7 +263,7 @@ async def eliminar_capacitacion(
     
     db.delete(material)
     db.commit()
-    return RedirectResponse(url="/admin/configuraciones/", status_code=status.HTTP_303_SEE_OTHER)
+    return RedirectResponse(url="/admin/configuraciones/?msg=eliminado_exito", status_code=status.HTTP_303_SEE_OTHER)
 
 
 @router.post("/quienes-somos/editar", response_class=HTMLResponse)
@@ -325,5 +326,6 @@ async def editar_quienes_somos_submit(
             raise e
         raise HTTPException(status_code=500, detail=f"Error al guardar los datos: {str(e)}")
 
-    return RedirectResponse(url="/admin/configuraciones/", status_code=status.HTTP_303_SEE_OTHER)
+    return RedirectResponse(url="/admin/configuraciones/?msg=guardado_exito", status_code=status.HTTP_303_SEE_OTHER)
+
 

@@ -7,24 +7,64 @@
             <p class="section-subtitle">Crónicas, comunicados y el caminar cotidiano de nuestras comunidades educativas acompañadas.</p>
         </div>
         
-        <div class="news-cards-grid">
-            {% for nov in novedades %}
-            <article class="news-card">
-                <div class="news-image-wrapper">
-                    <img src="{{ nov.imagen_url if (nov.imagen_url and nov.imagen_url != 'None' and nov.imagen_url != '') else '/static/img/fotos prueba/novedad_encuentro.png' }}" alt="{{ nov.titulo }}" class="news-img" onerror="this.src='/static/img/fotos prueba/novedad_encuentro.png'">
+        <div class="lr-stories-asymmetric-wrapper">
+            {% if novedades %}
+                {% set main_nov = novedades[0] %}
+                {% set sec_novs = novedades[1:3] %}
+
+                <!-- Novedad Principal Destacada (60% Ancho) -->
+                <a href="/contacto" class="lr-story-main-card">
+                    <div class="lr-story-img-wrapper">
+                        <img src="{{ main_nov.imagen_url if (main_nov.imagen_url and main_nov.imagen_url != 'None' and main_nov.imagen_url != '') else '/static/img/fotos prueba/novedad_encuentro.png' }}" 
+                             alt="{{ main_nov.titulo }}" 
+                             class="news-img" 
+                             onerror="this.src='/static/img/fotos prueba/novedad_encuentro.png'">
+                    </div>
+                    <div class="lr-story-body">
+                        <div class="lr-story-meta">
+                            <span class="lr-story-badge badge-institucional">Institucional</span>
+                            <span class="lr-story-date">{{ main_nov.fecha_publicacion.strftime('%d/%m/%Y') if main_nov.fecha_publicacion else 'Red' }}</span>
+                        </div>
+                        <h3>{{ main_nov.titulo }}</h3>
+                        <p>{{ main_nov.copete or main_nov.contenido[:140] }}...</p>
+                        <div class="lr-story-link">
+                            <span>Leer noticia completa</span>
+                            <span class="lr-story-link-arrow">&rarr;</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Novedades Secundarias Apiladas (40% Ancho) -->
+                <div class="lr-story-secondary-stack">
+                    {% for nov in sec_novs %}
+                    <a href="/contacto" class="lr-story-secondary-card">
+                        <div class="lr-story-img-wrapper-thumb">
+                            <img src="{{ nov.imagen_url if (nov.imagen_url and nov.imagen_url != 'None' and nov.imagen_url != '') else '/static/img/fotos prueba/novedad_sostenibilidad.png' }}" 
+                                 alt="{{ nov.titulo }}" 
+                                 onerror="this.src='/static/img/fotos prueba/novedad_sostenibilidad.png'">
+                        </div>
+                        <div class="lr-story-body">
+                            <div class="lr-story-meta">
+                                <span class="lr-story-badge {% if loop.index == 1 %}badge-gestion{% else %}badge-formacion{% endif %}">
+                                    {% if loop.index == 1 %}Gestión{% else %}Formación{% endif %}
+                                </span>
+                                <span class="lr-story-date">{{ nov.fecha_publicacion.strftime('%d/%m/%Y') if nov.fecha_publicacion else 'Red' }}</span>
+                            </div>
+                            <h4>{{ nov.titulo }}</h4>
+                            <p>{{ nov.copete or nov.contenido[:65] }}...</p>
+                            <div class="lr-story-link">
+                                <span>Leer más</span>
+                                <span class="lr-story-link-arrow">&rarr;</span>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
                 </div>
-                <div class="news-body">
-                    <span class="news-date">{{ nov.fecha_publicacion.strftime('%d/%m/%Y') if nov.fecha_publicacion else '' }}</span>
-                    <h3 class="news-title">{{ nov.titulo }}</h3>
-                    <p class="news-excerpt">{{ nov.copete or nov.contenido[:150] }}...</p>
-                    <a href="/contacto" class="news-link-btn">Leer noticia completa <span class="arrow">&rarr;</span></a>
-                </div>
-            </article>
             {% else %}
-            <div style="grid-column: 1 / -1; text-align: center; color: var(--color-text-muted); padding: var(--space-xl);">
-                <p>Próximamente compartiremos las novedades y relatos de la red.</p>
-            </div>
-            {% endfor %}
+                <div style="grid-column: 1 / -1; text-align: center; color: var(--color-text-muted); padding: var(--space-xl);">
+                    <p>Próximamente compartiremos las novedades y relatos de la red.</p>
+                </div>
+            {% endif %}
         </div>
     </div>
 </section>

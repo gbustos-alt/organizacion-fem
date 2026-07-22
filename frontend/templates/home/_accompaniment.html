@@ -12,64 +12,215 @@
             </p>
         </div>
         
-        <!-- Grilla de Tarjetas de Imagen Inmersiva -->
-        <div class="dimensions-grid-mockup" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-md); margin-top: var(--space-lg);">
-            
-            <!-- Dimensión 1: Pedagogía -->
-            <a href="/dimensiones" class="dimension-card-mockup" style="position: relative; height: 320px; border-radius: var(--radius-md); overflow: hidden; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: var(--shadow-subtle);">
-                <div class="dim-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('/static/img/fotos prueba/dimension_pedagogica.png'); background-size: cover; background-position: center; filter: brightness(0.65) contrast(1.1); transition: var(--transition-smooth); z-index: 1;"></div>
-                <div style="position: relative; z-index: 2; text-align: center; padding: var(--space-md);">
-                    <h3 style="font-family: var(--font-sans); font-size: 1.5rem; font-weight: 800; color: var(--color-white); margin: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.8); letter-spacing: 0.5px;">
-                        Educación / Pedagogía
-                    </h3>
-                </div>
-            </a>
+<!-- Sección 3: Cómo Acompañamos (Carrusel Panorámico Dinámico) -->
+<section class="home-accompaniment-section" id="como-acompanamos" style="background-color: var(--color-white); padding: var(--space-xxl) 0; border-bottom: 1px solid var(--color-border); width: 100%; overflow: hidden;">
+    <div class="container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--space-md);">
+        
+        <div class="section-header text-center" style="text-align: center; margin-bottom: var(--space-lg);">
+            <span class="eyebrow" style="color: var(--color-coral); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; font-size: 0.85rem; display: block;">Misión y Soporte</span>
+            <h2 style="font-family: var(--font-display); font-size: 2.2rem; color: var(--color-primary); margin-top: var(--space-xxs); margin-bottom: var(--space-xs); font-weight: 700;">
+                Dimensiones de Acompañamiento
+            </h2>
+            <p class="section-subtitle" style="color: var(--color-text-muted); max-width: 600px; margin: 0 auto; font-size: 0.95rem; line-height: 1.5;">
+                Caminamos junto a las comunidades escolares a través de áreas de soporte especializadas para sostener la obra educativa y el carisma.
+            </p>
+        </div>
+        
+        <!-- Carrusel / Tira Expandible de Tarjetas Panorámicas -->
+        <div class="dim-carousel-wrapper" id="dim-carousel-wrapper">
+            <div class="dim-carousel-strip">
+                <!-- Dimensión 1: Pedagogía -->
+                <a href="/dimensiones" class="dim-carousel-card card-spotlight active" data-index="0">
+                    <div class="dim-bg" style="background-image: url('/static/img/fotos prueba/dimension_pedagogica.png');"></div>
+                    <div class="dim-card-overlay"></div>
+                    <div class="dim-card-content">
+                        <h3>Educación / Pedagogía</h3>
+                        <p class="dim-card-desc">Supervisión de planes educativos, capacitación docente y diseño curricular singular.</p>
+                    </div>
+                </a>
 
-            <!-- Dimensión 2: Pastoral -->
-            <a href="/dimensiones" class="dimension-card-mockup" style="position: relative; height: 320px; border-radius: var(--radius-md); overflow: hidden; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: var(--shadow-subtle);">
-                <div class="dim-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('/static/img/fotos prueba/dimension_pastoral.png'); background-size: cover; background-position: center; filter: brightness(0.65) contrast(1.1); transition: var(--transition-smooth); z-index: 1;"></div>
-                <div style="position: relative; z-index: 2; text-align: center; padding: var(--space-md);">
-                    <h3 style="font-family: var(--font-sans); font-size: 1.5rem; font-weight: 800; color: var(--color-white); margin: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.8); letter-spacing: 0.5px;">
-                        Identidad / Pastoral
-                    </h3>
-                </div>
-            </a>
+                <!-- Dimensión 2: Pastoral -->
+                <a href="/dimensiones" class="dim-carousel-card card-spotlight" data-index="1">
+                    <div class="dim-bg" style="background-image: url('/static/img/fotos prueba/dimension_pastoral.png');"></div>
+                    <div class="dim-card-overlay"></div>
+                    <div class="dim-card-content">
+                        <h3>Identidad / Pastoral</h3>
+                        <p class="dim-card-desc">Evangelización, animación pastoral, encuentros de discernimiento y carisma fundacional.</p>
+                    </div>
+                </a>
 
-            <!-- Dimensión 3: Económica -->
-            <a href="/dimensiones" class="dimension-card-mockup" style="position: relative; height: 320px; border-radius: var(--radius-md); overflow: hidden; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: var(--shadow-subtle);">
-                <div class="dim-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('/static/img/fotos prueba/dimension_economica.png'); background-size: cover; background-position: center; filter: brightness(0.65) contrast(1.1); transition: var(--transition-smooth); z-index: 1;"></div>
-                <div style="position: relative; z-index: 2; text-align: center; padding: var(--space-md);">
-                    <h3 style="font-family: var(--font-sans); font-size: 1.5rem; font-weight: 800; color: var(--color-white); margin: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.8); letter-spacing: 0.5px;">
-                        Administración / Sostenibilidad
-                    </h3>
-                </div>
-            </a>
+                <!-- Dimensión 3: Económica -->
+                <a href="/dimensiones" class="dim-carousel-card card-spotlight" data-index="2">
+                    <div class="dim-bg" style="background-image: url('/static/img/fotos prueba/dimension_economica.png');"></div>
+                    <div class="dim-card-overlay"></div>
+                    <div class="dim-card-content">
+                        <h3>Administración / Sostenibilidad</h3>
+                        <p class="dim-card-desc">Auditoría presupuestaria, saneamiento financiero y resguardo de puestos de trabajo.</p>
+                    </div>
+                </a>
 
-            <!-- Dimensión 4: Legal -->
-            <a href="/dimensiones" class="dimension-card-mockup" style="position: relative; height: 320px; border-radius: var(--radius-md); overflow: hidden; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: var(--shadow-subtle);">
-                <div class="dim-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('/static/img/fotos prueba/dimension_legal.png'); background-size: cover; background-position: center; filter: brightness(0.65) contrast(1.1); transition: var(--transition-smooth); z-index: 1;"></div>
-                <div style="position: relative; z-index: 2; text-align: center; padding: var(--space-md);">
-                    <h3 style="font-family: var(--font-sans); font-size: 1.5rem; font-weight: 800; color: var(--color-white); margin: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.8); letter-spacing: 0.5px;">
-                        Gobernanza / Legal
-                    </h3>
-                </div>
-            </a>
+                <!-- Dimensión 4: Legal -->
+                <a href="/dimensiones" class="dim-carousel-card card-spotlight" data-index="3">
+                    <div class="dim-bg" style="background-image: url('/static/img/fotos prueba/dimension_legal.png');"></div>
+                    <div class="dim-card-overlay"></div>
+                    <div class="dim-card-content">
+                        <h3>Gobernanza / Legal</h3>
+                        <p class="dim-card-desc">Cumplimiento normativo, estatutos civiles y acompañamiento jurídico institucional.</p>
+                    </div>
+                </a>
+            </div>
 
+            <!-- Indicadores de Navegación del Carrusel -->
+            <div class="dim-carousel-dots">
+                <span class="dim-dot active" data-target="0"></span>
+                <span class="dim-dot" data-target="1"></span>
+                <span class="dim-dot" data-target="2"></span>
+                <span class="dim-dot" data-target="3"></span>
+            </div>
         </div>
 
     </div>
 </section>
 
-<!-- Efectos Hover de Ampliación de Imagen -->
+<!-- Estilos Dinámicos del Carrusel -->
 <style>
-    .dimension-card-mockup {
-        transition: var(--transition-smooth);
+    .dim-carousel-wrapper {
+        width: 100%;
+        margin-top: var(--space-md);
     }
-    .dimension-card-mockup:hover .dim-bg {
+    .dim-carousel-strip {
+        display: flex;
+        gap: var(--space-md);
+        min-height: 290px;
+        width: 100%;
+    }
+    .dim-carousel-card {
+        position: relative;
+        flex: 1;
+        min-height: 290px;
+        max-height: 310px;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        box-shadow: 0 10px 25px rgba(12, 30, 54, 0.25);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.35s ease, background-color 0.35s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 1.35rem 1.15rem;
+    }
+    .dim-carousel-card .dim-bg {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        filter: brightness(0.72) contrast(1.1);
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+        z-index: 1;
+    }
+    .dim-carousel-card .dim-card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(12, 30, 54, 0.35) 0%, rgba(12, 30, 54, 0.85) 100%);
+        z-index: 2;
+    }
+    .dim-carousel-card .dim-card-content {
+        position: relative;
+        z-index: 3;
+        color: var(--color-white);
+    }
+
+    .dim-carousel-card h3 {
+        font-family: var(--font-sans);
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--color-white);
+        margin: 0 0 0.35rem 0;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+        line-height: 1.25;
+        transition: color 0.3s ease;
+    }
+    .dim-carousel-card .dim-card-desc {
+        font-size: 0.84rem;
+        line-height: 1.4;
+        color: #e2e8f0;
+        font-weight: 400;
+        margin: 0;
+        opacity: 1;
+        max-height: none;
+        text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+    }
+
+    .dim-carousel-card:hover {
+        flex: 1;
+        transform: translateY(-6px) scale(1.02);
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(241, 180, 52, 0.8);
+        box-shadow: 0 16px 36px rgba(12, 30, 54, 0.4), 0 0 20px rgba(241, 180, 52, 0.25);
+    }
+    .dim-carousel-card:hover .dim-bg {
         transform: scale(1.08);
-        filter: brightness(0.5) contrast(1.15) !important;
+        filter: brightness(0.8) contrast(1.15);
     }
-    .dimension-card-mockup:hover h3 {
-        color: var(--color-pantone-yellow-raw) !important;
+    .dim-carousel-card:hover h3 {
+        color: var(--color-pantone-yellow-raw);
+    }
+
+    .dim-carousel-dots {
+        background-color: var(--color-border);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .dim-dot.active {
+        background-color: var(--color-pantone-yellow-raw);
+        width: 28px;
+        border-radius: 5px;
+    }
+
+    @media (max-width: 991px) {
+        .dim-carousel-strip {
+            flex-direction: column;
+            min-height: auto;
+        }
+        .dim-carousel-card {
+            min-height: 180px;
+        }
+        .dim-carousel-card:hover,
+        .dim-carousel-card.active {
+            flex: 1;
+        }
+        .dim-carousel-card .dim-card-desc {
+            opacity: 1;
+            max-height: none;
+        }
     }
 </style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const cards = document.querySelectorAll(".dim-carousel-card");
+        const dots = document.querySelectorAll(".dim-dot");
+
+        cards.forEach((card, idx) => {
+            card.addEventListener("mouseenter", () => {
+                cards.forEach(c => c.classList.remove("active"));
+                dots.forEach(d => d.classList.remove("active"));
+                card.classList.add("active");
+                if (dots[idx]) dots[idx].classList.add("active");
+            });
+        });
+
+        dots.forEach((dot, idx) => {
+            dot.addEventListener("click", () => {
+                cards.forEach(c => c.classList.remove("active"));
+                dots.forEach(d => d.classList.remove("active"));
+                if (cards[idx]) cards[idx].classList.add("active");
+                dot.classList.add("active");
+            });
+        });
+    });
+</script>

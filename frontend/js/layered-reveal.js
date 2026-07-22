@@ -1,15 +1,29 @@
 /**
- * Motor Layered Reveal v8 - Fundación FEM
- * Manejo de escenas full-height en Desktop y Mobile (100svh), progreso lateral y Carro Escénico Inmersivo Móvil
+ * Motor Layered Reveal v10 - Fundación FEM
+ * Manejo de escenas full-height con transiciones de contenido serenas, desvanecidos suaves (fade in/out) y soporte prefers-reduced-motion
  */
 document.addEventListener("DOMContentLoaded", () => {
+    const container = document.querySelector(".lr-container") || document.body;
     const layerItems = Array.from(document.querySelectorAll("[data-layer-item]"));
     const navDots = Array.from(document.querySelectorAll("[data-nav-dot]"));
     const progressFill = document.getElementById("lr-progress-fill");
 
     if (!layerItems.length) return;
 
-    // Comprobación de preferencia de reducción de movimiento únicamente
+    // Detección de dirección de Scroll para animaciones contextuales
+    let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    window.addEventListener("scroll", () => {
+        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (currentScrollTop > lastScrollTop + 4) {
+            container.setAttribute("data-scroll-dir", "down");
+        } else if (currentScrollTop < lastScrollTop - 4) {
+            container.setAttribute("data-scroll-dir", "up");
+        }
+        lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+    }, { passive: true });
+
+    // Respeto estricto a las preferencias de reducción de movimiento
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (prefersReducedMotion || !("IntersectionObserver" in window)) {
@@ -20,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Actualizador de estados visuales de las capas y del widget de progreso
+    // Actualización serena de estados de sección y widget de navegación
     const updateActiveLayer = (activeIndex) => {
         layerItems.forEach((item, index) => {
             item.classList.remove("is-active", "is-near", "is-before", "is-after");
@@ -41,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Actualizar puntos de navegación de progreso
+        // Actualizar puntos de navegación de progreso lateral
         navDots.forEach((dot, index) => {
             if (index === activeIndex) {
                 dot.classList.add("is-active");
@@ -52,19 +66,19 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Actualizar la línea vertical de progreso de scroll
+        // Actualizar línea de progreso de scroll
         if (progressFill && layerItems.length > 1) {
             const fillPercentage = (activeIndex / (layerItems.length - 1)) * 100;
             progressFill.style.height = `${fillPercentage}%`;
         }
     };
 
-    // Observador de Intersección adaptado para Desktop y Mobile (100svh)
+    // Observador de Intersección de alta precisión
     const isMobileScreen = window.innerWidth < 767;
     const observerOptions = {
         root: null,
-        rootMargin: isMobileScreen ? "-2% 0px -2% 0px" : "-10% 0px -10% 0px",
-        threshold: isMobileScreen ? [0.2, 0.4, 0.6] : [0.2, 0.4, 0.6, 0.8]
+        rootMargin: isMobileScreen ? "-5% 0px -5% 0px" : "-10% 0px -10% 0px",
+        threshold: isMobileScreen ? [0.15, 0.3, 0.5, 0.7] : [0.2, 0.4, 0.6, 0.8]
     };
 
     let visibleRatios = new Map();
@@ -112,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ==========================================================================
-    // CARRO ESCÉNICO INMERSIVO MÓVIL (Scroll-Snap + Cambios Dinámicos de Fondo)
+    // CARRO ESCÉNICO INMERSIVO MÓVIL
     // ==========================================================================
     if (isMobileScreen) {
         const carousels = document.querySelectorAll("[data-scenic-carousel]");
@@ -126,13 +140,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!cards.length) return;
 
-            // Escuchar el scroll horizontal en el riel de tarjetas de la escena
             carousel.addEventListener("scroll", () => {
                 const scrollLeft = carousel.scrollLeft;
                 const cardWidth = cards[0].offsetWidth;
                 const activeCardIndex = Math.round(scrollLeft / (cardWidth + 12));
 
-                // Actualizar indicadores de tarjetas
                 dots.forEach((dot, i) => {
                     if (i === activeCardIndex) {
                         dot.classList.add("is-active");
@@ -141,7 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 });
 
-                // Actualizar imagen de fondo dinámica si la tarjeta especifica una imagen móvil
                 if (bgImg && cards[activeCardIndex]) {
                     const newBg = cards[activeCardIndex].getAttribute("data-bg-mobile");
                     if (newBg && bgImg.getAttribute("src") !== newBg) {

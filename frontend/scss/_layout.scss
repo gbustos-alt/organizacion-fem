@@ -2,6 +2,46 @@
 // Header Adaptativo de Alta Legibilidad (Transparente en Hero + Azul Catedral Glass Blur al Scroll)
 @use "tokens" as *;
 
+/* ==========================================
+   RESETEO GLOBAL Y PREVENCIÓN DE OVERFLOW
+   ========================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* ==========================================
+   CONTENEDOR GLOBAL SEGURO (Encuadre Mobile)
+   ========================================== */
+.container-safe {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  /* Padding asimétrico en móvil para esquivar los puntitos de navegación derechos */
+  padding-left: 1.5rem;
+  padding-right: 3.5rem; 
+  
+  @media (min-width: 768px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
 // Header Principal Fijo e Inteligente
 .main-header {
   position: fixed;

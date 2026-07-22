@@ -13,8 +13,10 @@
         <div class="lr-overlay"></div>
         <div class="lr-content">
             <span class="lr-kicker">Lema Institucional {{ lema.anio if lema else '2026' }}</span>
-            <h2>&ldquo;{{ lema.lema_texto if lema else 'Caminando juntos en la Educación y la Misión' }}&rdquo;</h2>
-            <p>Acompañamos a las comunidades educativas en su caminar pastoral, pedagógico, administrativo y legal, promoviendo el encuentro y la sostenibilidad.</p>
+            <div class="hero-text-group">
+                <h2>&ldquo;{{ lema.lema_texto if lema else 'Caminando juntos en la Educación y la Misión' }}&rdquo;</h2>
+                <p>Acompañamos a las comunidades educativas en su caminar pastoral, pedagógico, administrativo y legal, promoviendo el encuentro y la sostenibilidad.</p>
+            </div>
             <div class="lr-cta-actions">
                 <a href="/identidad" class="lr-cta">
                     <span>Quiénes Somos</span>

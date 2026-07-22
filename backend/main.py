@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
-from backend.routers import public, admin
+from backend.routers import public, admin, api_v1
 from backend.core.templates import templates
 from backend.core.database import Base, engine
 from backend import models  # Asegura el registro de todos los modelos en Metadata
@@ -21,6 +21,8 @@ app.mount("/static", StaticFiles(directory="frontend"), name="static")
 # Registrar routers
 app.include_router(public.router)
 app.include_router(admin.router)
+app.include_router(api_v1.router)
+
 
 @app.exception_handler(401)
 async def unauthorized_exception_handler(request: Request, exc: Exception):

@@ -76,10 +76,33 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
+        // Soporte de Gestos Táctiles (Swipe Left / Swipe Right)
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slider.addEventListener("touchstart", (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            stopTimer();
+        }, { passive: true });
+
+        slider.addEventListener("touchend", (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diffX = touchStartX - touchEndX;
+            if (Math.abs(diffX) > 40) {
+                if (diffX > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+            startTimer();
+        }, { passive: true });
+
         slider.addEventListener("mouseenter", stopTimer);
         slider.addEventListener("mouseleave", startTimer);
         startTimer();
     }
+
 
     // --- Lógica de Drag & Drop para la Bolsa de Trabajo ---
     const dropZone = document.getElementById("drop-zone");
@@ -225,8 +248,11 @@ document.addEventListener("DOMContentLoaded", () => {
             '.quick-access-card, .team-member-card, .colegio-card-item, .school-card, .num-counter-box, ' +
             '.quienes-somos-card, .contact-info-card, .contact-form-card, .contact-form, .memory-card, ' +
             '.material-card, .hito-item, .member-card, .org-section, .editorial-block, .text-block-accent, ' +
-            '.mission-card, .province-title, blockquote, .reveal-left, .reveal-right, .reveal-scale'
+            '.mission-card, .province-title, blockquote, .reveal-left, .reveal-right, .reveal-scale, ' +
+            '.rasgo-card, .strategy-card, .branch-card, .memoria-row, .recursero-card-mockup, ' +
+            '.contact-item, .contact-info-list, .cifra-card, .section-header'
         );
+
 
         if (!('IntersectionObserver' in window)) {
             targets.forEach(t => t.classList.add('is-visible'));

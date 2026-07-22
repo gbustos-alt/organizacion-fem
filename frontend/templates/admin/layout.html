@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Estilo principal del sistema de diseno -->
-    <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}?v=1.0.5">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}?v=1.0.6">
     
     <!-- Estilos específicos de admin -->
     <style>
@@ -443,32 +443,49 @@
             }
 
             .admin-navbar {
-                padding: 0 var(--space-md) !important;
+                padding: 0 0.85rem !important;
+                height: 54px !important;
+            }
+
+            .navbar-title {
+                font-size: 1.05rem !important;
+            }
+
+            .navbar-actions {
+                display: none !important;
             }
 
             .admin-content-area {
-                padding: var(--space-md) !important;
+                padding: 0.85rem !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+
+            .admin-stats-grid {
+                grid-template-columns: 1fr !important;
+                gap: 0.85rem !important;
+            }
+
+            .stat-card {
+                padding: 1.15rem 1rem !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
             }
 
             /* Evitar desborde lateral de tablas */
             .data-table-wrapper {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
+                width: 100% !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
             }
             
             /* Evitar desborde en formularios */
             .form-card {
-                padding: var(--space-md) !important;
-            }
-            
-            /* Ajustes menores en headers y botones */
-            .navbar-actions {
-                gap: var(--space-xs);
-            }
-            
-            .btn-admin, .btn-logout {
-                padding: var(--space-xs) var(--space-sm);
-                font-size: 0.8rem;
+                padding: 1.15rem 1rem !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
             }
         }
     </style>
@@ -530,8 +547,18 @@
             </ul>
             
             <div class="sidebar-footer">
-                Conectado como:<br>
-                <span class="user-info">@{{ user.username }}</span>
+                <div style="margin-bottom: 0.5rem;">
+                    Conectado como:<br>
+                    <span class="user-info">@{{ user.username }}</span>
+                </div>
+                <div class="sidebar-quick-actions d-none-desktop" style="display: flex; flex-direction: column; gap: 0.5rem; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 0.75rem; margin-top: 0.5rem;">
+                    <a href="/" target="_blank" style="color: var(--color-pantone-yellow-raw); text-decoration: none; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 0.4rem;">
+                        🌐 Ver Sitio Público
+                    </a>
+                    <a href="/admin/auth/logout" style="color: #fca5a5; text-decoration: none; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 0.4rem;">
+                        🚪 Cerrar Sesión
+                    </a>
+                </div>
             </div>
         </aside>
 
@@ -547,7 +574,7 @@
                     {% block navbar_title %}Panel Administrativo{% endblock %}
                 </h1>
                 
-                <div class="navbar-actions">
+                <div class="navbar-actions d-none-mobile">
                     <a href="/" target="_blank" class="btn-admin btn-admin-secondary" style="padding: var(--space-xs) var(--space-sm); font-size: 0.85rem;">
                         Ver Sitio Público
                     </a>
@@ -562,6 +589,9 @@
             </main>
         </div>
     </div>
+
+    <!-- Toast Container para Notificaciones de Feedback Visual -->
+    <div id="toast-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999; display: flex; flex-direction: column; gap: 0.5rem; pointer-events: none;"></div>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -578,8 +608,57 @@
                 toggleBtn.addEventListener("click", toggleSidebar);
                 overlay.addEventListener("click", toggleSidebar);
             }
+
+            // Función de Notificación Toast Universal
+            window.showToast = (message, type = "success") => {
+                const container = document.getElementById("toast-container");
+                if (!container) return;
+
+                const toast = document.createElement("div");
+                toast.style.cssText = `
+                    background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+                    color: #ffffff;
+                    padding: 0.85rem 1.4rem;
+                    border-radius: 8px;
+                    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    pointer-events: auto;
+                    opacity: 0;
+                    transform: translateY(20px);
+                    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+                `;
+                toast.innerHTML = `<span>${type === 'success' ? '✓' : 'ℹ'}</span> ${message}`;
+                container.appendChild(toast);
+
+                requestAnimationFrame(() => {
+                    toast.style.opacity = "1";
+                    toast.style.transform = "translateY(0)";
+                });
+
+                setTimeout(() => {
+                    toast.style.opacity = "0";
+                    toast.style.transform = "translateY(20px)";
+                    setTimeout(() => toast.remove(), 400);
+                }, 3500);
+            };
+
+            // Detectar parámetro de éxito en la URL (?msg=...)
+            const urlParams = new URLSearchParams(window.location.search);
+            const msg = urlParams.get("msg");
+            if (msg === "guardado_exito") {
+                showToast("Cambios guardados con éxito en el sistema");
+            } else if (msg === "eliminado_exito") {
+                showToast("Registro eliminado correctamente", "info");
+            } else if (msg) {
+                showToast(decodeURIComponent(msg));
+            }
         });
     </script>
+
 
     {% block scripts %}{% endblock %}
 </body>

@@ -19,46 +19,48 @@
     </div>
 </div>
 
-<!-- Grid de tarjetas de métricas MVP (5 KPIs institucionales) -->
-<div class="admin-stats-grid" style="grid-template-cols: repeat(auto-fit, minmax(200px, 1fr)); display: grid; gap: var(--space-md); margin-bottom: var(--space-xl);">
-    <div class="stat-card">
+<!-- Grid de tarjetas de métricas MVP (4 Columnas en Desktop, 1 Columna en Mobile) -->
+<div class="admin-stats-grid">
+    <div class="stat-card" style="border-left: 4px solid var(--color-primary);">
         <h3>Colegios Activos</h3>
         <p class="stat-number">{{ colegios_count }}</p>
         <p class="stat-desc">Instituciones bajo la fundación</p>
     </div>
     
-    <div class="stat-card">
+    <div class="stat-card" style="border-left: 4px solid var(--color-celeste, #0284c7);">
         <h3>Novedades de la Red</h3>
-        <p class="stat-number" style="color: var(--color-celeste);">{{ novedades_count }}</p>
+        <p class="stat-number" style="color: var(--color-celeste, #0284c7);">{{ novedades_count }}</p>
         <p class="stat-desc">Crónicas y comunicados activos</p>
     </div>
     
-    <div class="stat-card">
+    <div class="stat-card" style="border-left: 4px solid var(--color-coral);">
         <h3>Actividades Agendadas</h3>
         <p class="stat-number" style="color: var(--color-coral);">{{ actividades_count }}</p>
         <p class="stat-desc">Encuentros y formaciones 2026</p>
     </div>
 
-    <div class="stat-card">
+    <div class="stat-card" style="border-left: 4px solid #16a34a;">
         <h3>Materiales de Reflexión</h3>
         <p class="stat-number" style="color: #16a34a;">{{ materiales_count }}</p>
         <p class="stat-desc">Guías y documentos cargados</p>
     </div>
-
-    <div class="stat-card">
-        <h3>Usuarios Activos</h3>
-        <p class="stat-number">{{ usuarios_activos }}</p>
-        <p class="stat-desc">Sesiones administrativas concurrentes</p>
-    </div>
 </div>
 
-<!-- Bloque sobre el Estado del Sistema -->
-<div class="stat-card" style="gap: var(--space-sm);">
-    <h3 style="border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-xs); color: var(--color-primary); font-weight: 700; font-size: 1rem;">
-        Sobre la Red Fundación FEM
-    </h3>
-    <p style="font-size: 0.9rem; line-height: 1.5; color: var(--color-text); margin: 0;">
-        La base de datos dinámica contiene el registro consolidado de aranceles, colegios y alumnos. Los accesos están segmentados mediante el protocolo RBAC dinámico con scopes territoriales y roles editables directamente desde la base de datos (sembrados inicialmente vía <code>role_seed.json</code>).
-    </p>
+<!-- Bloque sobre el Estado del Sistema y Usuarios Concurrentes -->
+<div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.25rem; margin-bottom: var(--space-xl);" class="d-grid-mobile-1">
+    <div class="stat-card" style="gap: var(--space-sm);">
+        <h3 style="border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-xs); color: var(--color-primary); font-weight: 700; font-size: 1rem;">
+            Sobre la Red Fundación FEM
+        </h3>
+        <p style="font-size: 0.9rem; line-height: 1.5; color: var(--color-text); margin: 0;">
+            La base de datos dinámica contiene el registro consolidado de aranceles, colegios y alumnos. Los accesos están segmentados mediante el protocolo RBAC dinámico con scopes territoriales y roles editables directamente desde la base de datos (sembrados inicialmente vía <code>role_seed.json</code>).
+        </p>
+    </div>
+
+    <div class="stat-card" style="border-left: 4px solid var(--color-pantone-yellow-raw, #F1B434);">
+        <h3>Usuarios Activos</h3>
+        <p class="stat-number" style="color: var(--color-primary);">{{ usuarios_activos }}</p>
+        <p class="stat-desc">Sesiones administrativas concurrentes</p>
+    </div>
 </div>
 {% endblock %}

@@ -432,6 +432,20 @@
   }
 
   .hero-content {
+    .hero-text-card {
+      background: rgba(12, 30, 54, 0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 2.5rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+
+      @media (max-width: 768px) {
+        padding: 1.5rem;
+      }
+    }
+
     h1 {
       font-family: var(--font-brand-bold);
       font-size: 2.5rem;
@@ -453,6 +467,7 @@
       font-family: var(--font-sans);
     }
   }
+
 
   .hero-actions {
     display: flex;
@@ -568,13 +583,13 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(12, 30, 54, 0.5);
+      background: rgba(12, 30, 54, 0.65);
       color: var(--color-white);
-      border: none;
-      width: 44px;
-      height: 44px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -582,19 +597,25 @@
       transition: var(--transition-smooth);
       z-index: 10;
       opacity: 0;
+      touch-action: manipulation;
+
+      @media (max-width: 768px) {
+        opacity: 0.9 !important;
+        background: rgba(12, 30, 54, 0.75);
+      }
 
       &:hover {
         background: var(--color-accent-warm);
         color: var(--color-primary);
-        transform: translateY(-50%) scale(1.1);
+        transform: translateY(-50%) scale(1.08);
       }
 
       &.prev-btn {
-        left: var(--space-sm);
+        left: var(--space-xs);
       }
 
       &.next-btn {
-        right: var(--space-sm);
+        right: var(--space-xs);
       }
     }
 
@@ -603,24 +624,31 @@
       bottom: var(--space-sm);
       right: var(--space-md);
       display: flex;
+      align-items: center;
       gap: 6px;
       z-index: 10;
 
       .indicator {
         width: 24px;
-        height: 4px;
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 2px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 3px;
         cursor: pointer;
         transition: var(--transition-smooth);
+        padding: 10px 0; /* Ampliación de área táctil vertical */
+        background-clip: content-box;
+        box-sizing: content-box;
+        touch-action: manipulation;
 
         &.active {
           background: var(--color-accent-warm);
           width: 36px;
+          background-clip: content-box;
         }
       }
     }
   }
+
 
   // Contenedor de la Ola SVG
   .hero-wave-divider {
@@ -993,9 +1021,12 @@
 
 // 6. Novedades y Noticias (Cards Grid Estable)
 .home-news-section {
-  padding: 7.5rem 0;
+  padding: 5rem 0;
   background-color: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 
   .section-header {
     h2 {
@@ -1015,34 +1046,18 @@
   }
 
   .news-cards-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: var(--space-lg);
-    
-    // Sangrado de pantalla para que el carrusel sangre a los bordes en mobile
-    padding: var(--space-sm) var(--space-md) var(--space-xl) var(--space-md);
-    margin-left: calc(-1 * var(--space-md));
-    margin-right: calc(-1 * var(--space-md));
-    
-    // Ocultar barra de scroll en navegadores comunes para un look más limpio
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    -ms-overflow-style: none;  /* IE y Edge */
-    scrollbar-width: none;  /* Firefox */
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
 
     @media (min-width: 768px) {
-      display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: var(--space-xl);
-      overflow-x: visible;
-      scroll-snap-type: none;
-      padding: 0;
-      margin-left: 0;
-      margin-right: 0;
     }
 
     @media (min-width: 992px) {
@@ -1060,17 +1075,15 @@
     box-shadow: var(--shadow-subtle);
     transition: var(--transition-smooth);
     height: 100%;
-    
-    // Ajustes para scroll snap en mobile
-    flex: 0 0 82%;
-    max-width: 320px;
-    scroll-snap-align: center;
+    width: 100%;
+    max-width: 100%;
+    flex: none;
 
     @media (min-width: 768px) {
       flex: none;
       max-width: none;
-      scroll-snap-align: none;
     }
+
 
     &:hover {
       transform: translateY(-4px);

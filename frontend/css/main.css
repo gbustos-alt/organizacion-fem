@@ -1664,6 +1664,20 @@ html, body {
     grid-template-columns: 1.25fr 0.75fr;
   }
 }
+.home-hero-section .hero-content .hero-text-card {
+  background: rgba(12, 30, 54, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 2.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+@media (max-width: 768px) {
+  .home-hero-section .hero-content .hero-text-card {
+    padding: 1.5rem;
+  }
+}
 .home-hero-section .hero-content h1 {
   font-family: var(--font-brand-bold);
   font-size: 2.5rem;

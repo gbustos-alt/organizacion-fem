@@ -4,20 +4,23 @@
         <div class="hero-grid">
             <!-- Columna Izquierda: Identidad y Lema Institucional -->
             <div class="hero-content">
-                <span class="eyebrow" style="color: var(--color-pantone-yellow-raw, #F1B434); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; font-size: 0.9rem; display: block; margin-bottom: var(--space-xs, 0.5rem);">
-                    Lema Institucional {{ lema.anio if lema else '2026' }}
-                </span>
-                <h1 style="font-family: var(--font-serif); font-style: italic; color: var(--color-white); text-shadow: 0 2px 10px rgba(0,0,0,0.3); margin-bottom: var(--space-md, 1rem);">
-                    &ldquo;{{ lema.lema_texto if lema else 'Caminando juntos en la Educación y la Misión' }}&rdquo;
-                </h1>
-                <p style="margin-bottom: var(--space-xl, 2rem);">
-                    Acompañamos a las comunidades educativas en su caminar pastoral, pedagógico, administrativo y legal, promoviendo el encuentro y la sostenibilidad.
-                </p>
-                <div class="hero-actions">
-                    <a href="/identidad" class="btn btn-primary">Quiénes Somos</a>
-                    <a href="/dimensiones" class="btn btn-white-outline">Ejes de Acompañamiento</a>
+                <div class="hero-text-card">
+                    <span class="eyebrow" style="color: var(--color-pantone-yellow-raw, #F1B434); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; font-size: 0.9rem; display: block; margin-bottom: var(--space-xs, 0.5rem);">
+                        Lema Institucional {{ lema.anio if lema else '2026' }}
+                    </span>
+                    <h1 style="font-family: var(--font-serif); font-style: italic; color: var(--color-white); text-shadow: 0 2px 12px rgba(0,0,0,0.5); margin-bottom: var(--space-md, 1rem); line-height: 1.25;">
+                        &ldquo;{{ lema.lema_texto if lema else 'Caminando juntos en la Educación y la Misión' }}&rdquo;
+                    </h1>
+                    <p style="margin-bottom: var(--space-xl, 2rem); color: rgba(255, 255, 255, 0.92); font-size: 1.1rem; line-height: 1.65;">
+                        Acompañamos a las comunidades educativas en su caminar pastoral, pedagógico, administrativo y legal, promoviendo el encuentro y la sostenibilidad.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="/identidad" class="btn btn-primary">Quiénes Somos</a>
+                        <a href="/dimensiones" class="btn btn-white-outline">Ejes de Acompañamiento</a>
+                    </div>
                 </div>
             </div>
+
 
             <!-- Columna Derecha: Slider de Fotos Dinámico / Novedades -->
             <div class="hero-media">

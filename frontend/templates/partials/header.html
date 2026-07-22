@@ -90,15 +90,10 @@
                             <div class="mega-menu-dropdown">
                                 <div class="mega-menu-container">
                                     <div class="mega-menu-column">
-                                        <h5>Quiénes Somos</h5>
+                                        <h5>Institucional</h5>
                                         <ul>
                                             <li><a href="/identidad">Identidad Institucional</a></li>
                                             <li><a href="/mision">Misión y Visión</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="mega-menu-column">
-                                        <h5>Estructura</h5>
-                                        <ul>
                                             <li><a href="/organizacion">Gobierno y Organización</a></li>
                                         </ul>
                                     </div>
@@ -108,28 +103,23 @@
 
                         <!-- Item con Mega Menú / Acordeón: Qué Hacemos -->
                         <li class="nav-item has-mega-menu">
-                            <a href="#" class="nav-link dropdown-toggle {% if active_page == 'dimensiones' %}active{% endif %}">
+                            <a href="#" class="nav-link dropdown-toggle {% if active_page in ['dimensiones', 'colegios', 'materiales'] %}active{% endif %}">
                                 Qué Hacemos <span class="arrow-down">▼</span>
                             </a>
                             <div class="mega-menu-dropdown">
                                 <div class="mega-menu-container">
                                     <div class="mega-menu-column">
-                                        <h5>Dimensiones de Acompañamiento</h5>
+                                        <h5>Líneas de Acción</h5>
                                         <ul>
-                                            <li><a href="/dimensiones">Dimensión Pedagógica</a></li>
-                                            <li><a href="/dimensiones">Dimensión Administrativa</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="mega-menu-column">
-                                        <h5>Gestión Legal & Pastoral</h5>
-                                        <ul>
-                                            <li><a href="/dimensiones">Dimensión Legal</a></li>
-                                            <li><a href="/dimensiones">Dimensión Pastoral</a></li>
+                                            <li><a href="/dimensiones">Ejes de Acompañamiento</a></li>
+                                            <li><a href="/colegios">Comunidades Educativas</a></li>
+                                            <li><a href="/materiales">Recursero y Materiales</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </li>
+
 
                         <li class="nav-item">
                             <a href="/colegios" class="nav-link {% if active_page == 'colegios' %}active{% endif %}">Colegios</a>

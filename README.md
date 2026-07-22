@@ -154,17 +154,17 @@ Accede al panel de administración en: **`http://127.0.0.1:8000/admin/`**
 
 ## 🧪 Ejecución de Pruebas Unitarias
 
-El proyecto incluye 28 pruebas automatizadas con Pytest que garantizan la integridad de todas las rutas públicas y del panel administrativo:
+El proyecto incluye 33 pruebas automatizadas con Pytest que garantizan la integridad de las rutas públicas, del panel administrativo y de la API REST v1:
 
 ```bash
 PYTHONPATH=. ./venv/bin/pytest
 ```
 
-**Resultado:** `28 passed in 0.65s (100% OK)`
+**Resultado:** `33 passed in 0.64s (100% OK)`
 
 ---
 
-## 🗺️ Mapa de Rutas Principales
+## 🗺️ Mapa de Rutas y API REST v1
 
 | Categoría | Método | Ruta | Descripción |
 | :--- | :--- | :--- | :--- |
@@ -178,9 +178,13 @@ PYTHONPATH=. ./venv/bin/pytest
 | **Público** | GET | `/materiales` | Repositorio de Material y Reflexión |
 | **Público** | GET | `/memorias` | Memorias de Gestión y Balances |
 | **Público** | GET | `/contacto` | Contacto Institucional |
-| **Público** | POST| `/trabaja-con-nosotros` | Carga de CV para Educadores |
-| **Público** | POST| `/congregaciones` | Solicitud de Acompañamiento Congregacional |
-| **Admin** | GET | `/admin/` | Dashboard Administrativo |
+| **API REST v1** | GET / PUT | `/api/v1/config/home` | Obtener / Actualizar Lema y Quiénes Somos |
+| **API REST v1** | GET / POST | `/api/v1/novedades` | Gestión JSON de Novedades |
+| **API REST v1** | GET / POST | `/api/v1/actividades` | Gestión JSON de Calendario de Actividades |
+| **API REST v1** | GET / POST | `/api/v1/reflexiones` | Gestión JSON de Materiales de Reflexión |
+| **Admin** | GET | `/admin/` | Panel Dashboard con estadísticas RBAC |
+| **Admin** | GET / POST | `/admin/configuraciones` | Gestión de Lema y Quiénes Somos |
+| **Admin** | GET / POST | `/admin/novedades` | Publicación de Novedades |Administrativo |
 | **Admin** | GET/POST| `/admin/auth/login` | Login y Autenticación de Usuarios |
 | **Admin** | GET/POST| `/admin/colegios/` | ABM de Colegios de la Red |
 | **Admin** | GET/POST| `/admin/alumnos/` | Gestión de Alumnos y Matrícula |

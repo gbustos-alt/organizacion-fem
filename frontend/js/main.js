@@ -218,8 +218,11 @@ document.addEventListener("DOMContentLoaded", () => {
             '.quick-access-card, .team-member-card, .colegio-card-item, .school-card, .num-counter-box, ' +
             '.quienes-somos-card, .contact-info-card, .contact-form-card, .contact-form, .memory-card, ' +
             '.material-card, .hito-item, .member-card, .org-section, .editorial-block, .text-block-accent, ' +
-            '.mission-card, .province-title, blockquote, .reveal-left, .reveal-right, .reveal-scale'
+            '.mission-card, .province-title, blockquote, .reveal-left, .reveal-right, .reveal-scale, ' +
+            '.rasgo-card, .strategy-card, .branch-card, .memoria-row, .recursero-card-mockup, ' +
+            '.contact-item, .contact-info-list, .cifra-card, .section-header'
         );
+
 
         if (!('IntersectionObserver' in window)) {
             targets.forEach(t => t.classList.add('is-visible'));

@@ -1,190 +1,117 @@
-<header class="main-header">
-    <!-- Fila Superior: Logo y Datos de Contacto/Redes (Solo Desktop) -->
-    <div class="header-top-bar d-none-mobile">
-        <div class="container header-top-container">
-            <a href="/" class="brand-logo" aria-label="Inicio - Organización FEM">
-                <img src="{{ url_for('static', path='img/logo-fem-color.png') }}" alt="Logo Organización FEM" class="header-logo">
-            </a>
+<!-- Header Principal Lineal y Transparente (Sin Background, Logo a la Izquierda, Menú al Centro, Gestión a la Derecha) -->
+<header class="main-header" id="main-header">
+    <div class="container header-linear-container">
+        
+        <!-- Logo FEM a la izquierda -->
+        <a href="/" class="brand-logo" aria-label="Inicio - Fundación FEM">
+            <img src="{{ url_for('static', path='img/logo-fem-color.png') }}" alt="Logo Organización FEM" class="header-logo">
+        </a>
+
+        <!-- Botón menú hamburguesa mobile -->
+        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="main-nav">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <!-- Menú de navegación principal al Centro -->
+        <nav class="main-nav" id="main-nav">
+            <!-- Overlay para cerrar en mobile -->
+            <div class="drawer-overlay d-none-desktop" id="drawer-overlay"></div>
             
-            <div class="header-contact-info">
-                <div class="contact-meta-item">
-                    <span class="meta-icon" style="display: inline-flex; align-items: center;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: middle;">
-                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47a1 1 0 0 0 .852.542h12.17a1 1 0 0 0 .85-.542M1 11.105l4.708-2.897L1 5.383z"/>
-                        </svg>
-                    </span>
-                    <a href="mailto:fundacionfem@fundacionfem.org">fundacionfem@fundacionfem.org</a>
+            <div class="drawer-content">
+                <div class="drawer-header d-none-desktop">
+                    <img src="{{ url_for('static', path='img/logo-fem-color.png') }}" alt="Logo Organización FEM" class="drawer-logo">
+                    <button class="drawer-close" id="drawer-close" aria-label="Cerrar menú">×</button>
                 </div>
-                <div class="contact-meta-item" style="border-left: 1px solid var(--color-border); padding-left: 0.75rem; margin-left: 0.75rem; display: inline-flex; align-items: center;">
-                    <span class="meta-icon" style="display: inline-flex; align-items: center; margin-right: 0.25rem;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: middle;">
-                            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
-                            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
-                        </svg>
-                    </span>
-                    <a href="/admin/" style="font-weight: 600; color: var(--color-white); background-color: var(--color-coral); padding: 0.4rem 0.8rem; border-radius: var(--radius-sm); transition: var(--transition-smooth); text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.25rem; font-size: 0.85rem;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: middle;">
-                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-6 0a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"/>
-                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                        </svg>
-                        Acceso de Gestión
-                    </a>
-                </div>
-                <div class="header-social-links" style="display: flex; align-items: center; gap: 0.75rem;">
-                    <a href="#" aria-label="Facebook" style="display: inline-flex; align-items: center; color: var(--color-text-muted);">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
-                        </svg>
-                    </a>
-                    <a href="#" aria-label="Instagram" style="display: inline-flex; align-items: center; color: var(--color-text-muted);">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.742.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.742C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.743-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
-                        </svg>
-                    </a>
-                    <a href="#" aria-label="YouTube" style="display: inline-flex; align-items: center; color: var(--color-text-muted);">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.104 1.957-.05 1.343-.178 2.5-.278 2.796a2.01 2.01 0 0 1-1.415 1.42c-1.123.302-5.288.332-6.11.335h-.09c-.823-.003-4.987-.033-6.11-.335a2.01 2.01 0 0 1-1.415-1.42c-.101-.38-.172-.882-.22-1.402l-.01-.104-.022-.261-.009-.104c-.065-.914-.073-1.77-.074-1.957v-.075c.001-.194.01-1.108.104-1.957.05-1.343.178-2.5.278-2.796a2.01 2.01 0 0 1 1.415-1.42c1.123-.302 5.288-.332 6.11-.335zM6.5 5.201v5.596L11 8z"/>
-                        </svg>
-                    </a>
+
+                <ul class="nav-list nav-center">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link {% if active_page == 'home' %}active{% endif %}">Inicio</a>
+                    </li>
+                    
+                    <!-- Item con Dropdown: Nuestra Fundación -->
+                    <li class="nav-item has-mega-menu">
+                        <a href="#" class="nav-link dropdown-toggle {% if active_page in ['identidad', 'mision', 'organizacion'] %}active{% endif %}">
+                            Nuestra Fundación <span class="arrow-down">▼</span>
+                        </a>
+                        <div class="mega-menu-dropdown">
+                            <div class="mega-menu-container">
+                                <div class="mega-menu-column">
+                                    <h5>Quiénes Somos</h5>
+                                    <ul>
+                                        <li><a href="/identidad">Identidad Institucional</a></li>
+                                        <li><a href="/mision">Misión y Visión</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu-column">
+                                    <h5>Estructura</h5>
+                                    <ul>
+                                        <li><a href="/organizacion">Gobierno y Organización</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Item con Dropdown: Qué Hacemos -->
+                    <li class="nav-item has-mega-menu">
+                        <a href="#" class="nav-link dropdown-toggle {% if active_page == 'dimensiones' %}active{% endif %}">
+                            Qué Hacemos <span class="arrow-down">▼</span>
+                        </a>
+                        <div class="mega-menu-dropdown">
+                            <div class="mega-menu-container">
+                                <div class="mega-menu-column">
+                                    <h5>Dimensiones de Acompañamiento</h5>
+                                    <ul>
+                                        <li><a href="/dimensiones">Dimensión Pedagógica</a></li>
+                                        <li><a href="/dimensiones">Dimensión Administrativa</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu-column">
+                                    <h5>Gestión Legal & Pastoral</h5>
+                                    <ul>
+                                        <li><a href="/dimensiones">Dimensión Legal</a></li>
+                                        <li><a href="/dimensiones">Dimensión Pastoral</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="/colegios" class="nav-link {% if active_page == 'colegios' %}active{% endif %}">Colegios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/materiales" class="nav-link {% if active_page == 'materiales' %}active{% endif %}">Recursero</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/memorias" class="nav-link {% if active_page == 'memorias' %}active{% endif %}">Memorias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/contacto" class="nav-link {% if active_page == 'contacto' %}active{% endif %}">Contacto</a>
+                    </li>
+                </ul>
+
+                <!-- Redes y contacto en Drawer mobile -->
+                <div class="drawer-footer d-none-desktop">
+                    <div class="drawer-contact-item">
+                        <span>✉️</span> <a href="mailto:fundacionfem@fundacionfem.org">fundacionfem@fundacionfem.org</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </nav>
 
-    <!-- Barra de Navegación Principal -->
-    <div class="header-nav-bar">
-        <div class="container nav-bar-container">
-            <!-- Logo para mobile (oculto en desktop) -->
-            <a href="/" class="brand-logo-mobile d-none-desktop" aria-label="Inicio - Organización FEM">
-                <img src="{{ url_for('static', path='img/logo-fem-color.png') }}" alt="Logo Organización FEM" class="header-logo-mobile">
+        <!-- Botón Ingreso Gestión a la Derecha -->
+        <div class="header-right-action d-none-mobile">
+            <a href="/admin/" class="btn-gestion-outline" aria-label="Acceso al Panel de Gestión">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-6 0a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+                <span>Ingreso Gestión</span>
             </a>
-
-            <!-- Botón menú mobile -->
-            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-
-            <!-- Menú de navegación (se convierte en Drawer en mobile) -->
-            <nav class="main-nav" id="main-nav">
-                <!-- Capa oscura trasera para cerrar en mobile -->
-                <div class="drawer-overlay d-none-desktop" id="drawer-overlay"></div>
-                
-                <div class="drawer-content">
-                    <div class="drawer-header d-none-desktop">
-                        <img src="{{ url_for('static', path='img/logo-fem-color.png') }}" alt="Logo Organización FEM" class="drawer-logo">
-                        <button class="drawer-close" id="drawer-close" aria-label="Cerrar menú">×</button>
-                    </div>
-
-                    <ul class="nav-list">
-                        <li class="nav-item">
-                            <a href="/" class="nav-link {% if active_page == 'home' %}active{% endif %}">Inicio</a>
-                        </li>
-                        
-                        <!-- Item con Mega Menú / Acordeón: Nuestra Fundación -->
-                        <li class="nav-item has-mega-menu">
-                            <a href="#" class="nav-link dropdown-toggle {% if active_page in ['identidad', 'mision', 'organizacion'] %}active{% endif %}">
-                                Nuestra Fundación <span class="arrow-down">▼</span>
-                            </a>
-                            <div class="mega-menu-dropdown">
-                                <div class="mega-menu-container">
-                                    <div class="mega-menu-column">
-                                        <h5>Quiénes Somos</h5>
-                                        <ul>
-                                            <li><a href="/identidad">Identidad Institucional</a></li>
-                                            <li><a href="/mision">Misión y Visión</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="mega-menu-column">
-                                        <h5>Estructura</h5>
-                                        <ul>
-                                            <li><a href="/organizacion">Gobierno y Organización</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <!-- Item con Mega Menú / Acordeón: Qué Hacemos -->
-                        <li class="nav-item has-mega-menu">
-                            <a href="#" class="nav-link dropdown-toggle {% if active_page == 'dimensiones' %}active{% endif %}">
-                                Qué Hacemos <span class="arrow-down">▼</span>
-                            </a>
-                            <div class="mega-menu-dropdown">
-                                <div class="mega-menu-container">
-                                    <div class="mega-menu-column">
-                                        <h5>Dimensiones de Acompañamiento</h5>
-                                        <ul>
-                                            <li><a href="/dimensiones">Dimensión Pedagógica</a></li>
-                                            <li><a href="/dimensiones">Dimensión Administrativa</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="mega-menu-column">
-                                        <h5>Gestión Legal & Pastoral</h5>
-                                        <ul>
-                                            <li><a href="/dimensiones">Dimensión Legal</a></li>
-                                            <li><a href="/dimensiones">Dimensión Pastoral</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="/colegios" class="nav-link {% if active_page == 'colegios' %}active{% endif %}">Colegios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/materiales" class="nav-link {% if active_page == 'materiales' %}active{% endif %}">Recursero</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/memorias" class="nav-link {% if active_page == 'memorias' %}active{% endif %}">Memorias</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/contacto" class="nav-link {% if active_page == 'contacto' %}active{% endif %}">Contacto</a>
-                        </li>
-                    </ul>
-
-                    <!-- Redes y contacto al fondo del Drawer en mobile -->
-                    <div class="drawer-footer d-none-desktop">
-                        <div class="drawer-contact-item">
-                            <span>✉️</span> <a href="mailto:fundacionfem@fundacionfem.org">fundacionfem@fundacionfem.org</a>
-                        </div>
-                        <div class="drawer-contact-item" style="margin-top: 0.5rem; border-top: 1px dashed rgba(12, 30, 54, 0.15); padding-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                            <span style="display: inline-flex; align-items: center;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: middle;">
-                                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
-                                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
-                                </svg>
-                            </span>
-                            <a href="/admin/" style="font-weight: 600; color: var(--color-coral); display: inline-flex; align-items: center; gap: 0.25rem;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: middle;">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-6 0a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"/>
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                                </svg>
-                                Acceso de Gestión
-                            </a>
-                        </div>
-                        <div class="drawer-social-links" style="display: flex; align-items: center; gap: 1rem; margin-top: 1rem;">
-                            <a href="#" aria-label="Facebook" style="color: var(--color-text-muted); display: inline-flex; align-items: center;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
-                                </svg>
-                            </a>
-                            <a href="#" aria-label="Instagram" style="color: var(--color-text-muted); display: inline-flex; align-items: center;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.742.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.742C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.743-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
-                                </svg>
-                            </a>
-                            <a href="#" aria-label="YouTube" style="color: var(--color-text-muted); display: inline-flex; align-items: center;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.104 1.957-.05 1.343-.178 2.5-.278 2.796a2.01 2.01 0 0 1-1.415 1.42c-1.123.302-5.288.332-6.11.335h-.09c-.823-.003-4.987-.033-6.11-.335a2.01 2.01 0 0 1-1.415-1.42c-.101-.38-.172-.882-.22-1.402l-.01-.104-.022-.261-.009-.104c-.065-.914-.073-1.77-.074-1.957v-.075c.001-.194.01-1.108.104-1.957.05-1.343.178-2.5.278-2.796a2.01 2.01 0 0 1 1.415-1.42c1.123-.302 5.288-.332 6.11-.335zM6.5 5.201v5.596L11 8z"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
         </div>
+
     </div>
 </header>

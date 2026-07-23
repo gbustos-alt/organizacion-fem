@@ -1,6 +1,7 @@
 /**
- * Motor Layered Reveal v10 - Fundación FEM
- * Manejo de escenas full-height con transiciones de contenido serenas, desvanecidos suaves (fade in/out) y soporte prefers-reduced-motion
+ * Motor Layered Reveal v12 - Fundación FEM
+ * Manejo de escenas full-height con transiciones de contenido serenas, desvanecidos suaves (fade in/out),
+ * puntero lateral sutil con línea y puntos amarillos, y scroll nativo fluido de alta respuesta.
  */
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.querySelector(".lr-container") || document.body;
@@ -9,6 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const progressFill = document.getElementById("lr-progress-fill");
 
     if (!layerItems.length) return;
+
+    let currentActiveIndex = 0;
 
     // Detección de dirección de Scroll para animaciones contextuales
     let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -36,6 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Actualización serena de estados de sección y widget de navegación
     const updateActiveLayer = (activeIndex) => {
+        currentActiveIndex = activeIndex;
+
         layerItems.forEach((item, index) => {
             item.classList.remove("is-active", "is-near", "is-before", "is-after");
 
@@ -77,8 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const isMobileScreen = window.innerWidth < 767;
     const observerOptions = {
         root: null,
-        rootMargin: isMobileScreen ? "-5% 0px -5% 0px" : "-10% 0px -10% 0px",
-        threshold: isMobileScreen ? [0.15, 0.3, 0.5, 0.7] : [0.2, 0.4, 0.6, 0.8]
+        rootMargin: isMobileScreen ? "-10% 0px -10% 0px" : "-10% 0px -10% 0px",
+        threshold: isMobileScreen ? [0.2, 0.4, 0.6] : [0.2, 0.4, 0.6, 0.8]
     };
 
     let visibleRatios = new Map();
@@ -123,6 +128,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 targetSection.scrollIntoView({ behavior: "smooth" });
             }
         });
+    });
+
+    // Navegación accesible por teclado (Flechas Arriba / Abajo)
+    window.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowDown" || e.key === "PageDown") {
+            if (currentActiveIndex < layerItems.length - 1) {
+                e.preventDefault();
+                layerItems[currentActiveIndex + 1].scrollIntoView({ behavior: "smooth" });
+            }
+        } else if (e.key === "ArrowUp" || e.key === "PageUp") {
+            if (currentActiveIndex > 0) {
+                e.preventDefault();
+                layerItems[currentActiveIndex - 1].scrollIntoView({ behavior: "smooth" });
+            }
+        }
     });
 
     // ==========================================================================

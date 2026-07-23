@@ -2,7 +2,7 @@
 <div class="lr-container" id="layered-reveal-container">
     
     <!-- Escena 1: Hero Principal y Lema Institucional (Alineación Izquierda) -->
-    <section class="lr-section lr-section-align-left is-active" data-layer-item data-layer-id="hero" data-layer-order="1" id="hero">
+    <section class="lr-section lr-section-hero lr-section-align-left is-active" data-layer-item data-layer-id="hero" data-layer-order="1" id="hero">
         <div class="lr-media">
             <img src="{{ url_for('static', path='img/header_foundation-2048x1152.jpg') }}" 
                  alt="Comunidad Educativa Fundación FEM" 
@@ -30,7 +30,7 @@
     </section>
 
     <!-- Escena 2: Nuestra Identidad y Misión (Alineación Derecha sin foto central) -->
-    <section class="lr-section lr-section-align-right" data-layer-item data-layer-id="identity" data-layer-order="2" id="identity">
+    <section class="lr-section lr-section-align-right lr-content-quienes-somos" data-layer-item data-layer-id="identity" data-layer-order="2" id="identity">
         <div class="lr-media">
             <img src="{{ url_for('static', path='img/galeria_aula_comunidad.png') }}" 
                  alt="Identidad y Misión Fundación FEM" 
@@ -39,7 +39,7 @@
                  onerror="this.src='/static/img/fotos prueba/escuela.jpeg'">
         </div>
         <div class="lr-overlay"></div>
-        <div class="lr-content lr-content-quienes-somos" style="max-width: 680px;">
+        <div class="lr-content " style="max-width: 680px;">
             <span class="lr-kicker">Nuestra Identidad</span>
             <h2>{{ quienes_somos.titulo if (quienes_somos and quienes_somos.titulo) else 'Una red educativa impulsada por la misión' }}</h2>
             <p>{{ quienes_somos.descripcion if quienes_somos else 'Acompañamos a las comunidades escolares a través de áreas de soporte especializadas para sostener la obra educativa y el carisma institucionales.' }}</p>
@@ -355,7 +355,7 @@
         </div>
     </section>
 
-    <!-- Indicador de Progreso Lateral Flotante (Progress Indicator con Tooltips) -->
+    <!-- Indicador de Progreso Lateral y Móvil (Línea sutil con puntos amarillos) -->
     <nav class="lr-nav-progress" id="lr-nav-progress" aria-label="Navegación de capas narrativas">
         <div class="lr-progress-bar">
             <div class="lr-progress-fill" id="lr-progress-fill"></div>

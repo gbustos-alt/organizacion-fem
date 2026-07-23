@@ -31,7 +31,7 @@ REMOTE_COMMANDS="
   echo '📥 [2/3] Descargando cambios de GitHub (git pull)...' && \
   git pull origin develop && \
   echo '🔄 [3/3] Reiniciando servicio de aplicación...' && \
-  (sudo systemctl restart testing_fem 2>/dev/null || pkill -f uvicorn 2>/dev/null || true) && \
+  (sudo systemctl restart testing_fem 2>/dev/null || systemctl restart testing_fem 2>/dev/null || true) && \
   echo '✅ ¡Actualización finalizada!'
 "
 

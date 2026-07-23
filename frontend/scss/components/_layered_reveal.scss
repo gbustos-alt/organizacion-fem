@@ -617,37 +617,6 @@
     font-weight: 600;
   }
 
-  .lr-story-badge {
-    display: inline-block;
-    padding: 2px 7px;
-    border-radius: 4px;
-    font-size: 0.68rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-
-    &.badge-institucional {
-      background: rgba(241, 180, 52, 0.2);
-      color: var(--color-pantone-yellow-raw);
-      border: 1px solid rgba(241, 180, 52, 0.4);
-    }
-    &.badge-gestion {
-      background: rgba(52, 152, 219, 0.2);
-      color: #5DADE2;
-      border: 1px solid rgba(52, 152, 219, 0.4);
-    }
-    &.badge-formacion {
-      background: rgba(46, 204, 113, 0.2);
-      color: #58D68D;
-      border: 1px solid rgba(46, 204, 113, 0.4);
-    }
-    &.badge-pastoral {
-      background: rgba(210, 66, 56, 0.2);
-      color: #FF6B6B;
-      border: 1px solid rgba(210, 66, 56, 0.4);
-    }
-  }
-
   .lr-story-link {
     font-size: 0.81rem;
     font-weight: 700;
@@ -661,6 +630,55 @@
       display: inline-block;
     }
   }
+}
+
+.lr-desc-desktop { display: block; }
+.lr-desc-mobile  { display: none; }
+
+/* Badges Institucionales Minimalistas (Glassmorphism Pill + Category Glow Dot) */
+.lr-story-badge,
+.lr-recursero-badge,
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  font-family: var(--font-sans);
+  font-size: 0.70rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #F8FAFC !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+  align-self: flex-start;
+
+  // Cristalismo etéreo institucional
+  background: rgba(12, 30, 54, 0.50) !important;
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+  // Ergonomía informativa (Evita apariencia de botón interactivo)
+  pointer-events: none;
+  user-select: none;
+
+  // Micro-punto indicador cromático por categoría
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+    background: #F1B434;
+  }
+
+  &.badge-institucional::before { background: #F1B434; box-shadow: 0 0 6px rgba(241, 180, 52, 0.8); }
+  &.badge-gestion::before       { background: #3498DB; box-shadow: 0 0 6px rgba(52, 152, 219, 0.8); }
+  &.badge-formacion::before     { background: #2ECC71; box-shadow: 0 0 6px rgba(46, 204, 113, 0.8); }
+  &.badge-pastoral::before      { background: #E74C3C; box-shadow: 0 0 6px rgba(231, 76, 60, 0.8); }
 }
 
 /* Grilla Simétrica de Recursero Institucional (Escena 5) */
@@ -739,36 +757,6 @@
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
-    }
-  }
-
-  .lr-recursero-badge {
-    display: inline-block;
-    padding: 2px 7px;
-    border-radius: 4px;
-    font-size: 0.68rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    align-self: flex-start;
-    background: rgba(241, 180, 52, 0.2);
-    color: var(--color-pantone-yellow-raw);
-    border: 1px solid rgba(241, 180, 52, 0.4);
-
-    &.badge-pastoral {
-      background: rgba(210, 66, 56, 0.2);
-      color: #FF6B6B;
-      border: 1px solid rgba(210, 66, 56, 0.4);
-    }
-    &.badge-gestion {
-      background: rgba(52, 152, 219, 0.2);
-      color: #5DADE2;
-      border: 1px solid rgba(52, 152, 219, 0.4);
-    }
-    &.badge-formacion {
-      background: rgba(46, 204, 113, 0.2);
-      color: #58D68D;
-      border: 1px solid rgba(46, 204, 113, 0.4);
     }
   }
 
@@ -992,11 +980,13 @@
     position: relative;
     width: 12px;
     height: 12px;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.3);
     border: none;
     cursor: pointer;
-    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, box-shadow 0.3s ease;
 
     /* Área Táctil Invisible de 44px x 44px para Accesibilidad Móvil (WCAG AAA) */
     &::after {
@@ -1006,6 +996,8 @@
       left: 50%;
       width: 44px;
       height: 44px;
+      min-width: 44px;
+      min-height: 44px;
       transform: translate(-50%, -50%);
       background: transparent;
       border-radius: 50%;
@@ -1051,7 +1043,7 @@
 
 /* ==========================================
    ADAPTACIÓN RESPONSIVA DEFINITIVA EN MÓVILES (< 768px)
-   Puntero Ultra Sutil (Sin background, sin números, solo línea + puntos amarillos)
+   Puntero Ultra Sutil (Esferas Perfectas 1:1, Flex-Shrink 0)
    ========================================== */
 @media (max-width: 767px) {
   /* Puntero sutil en mobile: sin fondo, sin bordes, sin números. Solo línea vertical con puntos amarillos */
@@ -1096,15 +1088,17 @@
     }
 
     .lr-nav-dot {
-      width: 8px !important;
-      height: 8px !important;
+      width: 10px !important;
+      height: 10px !important;
+      aspect-ratio: 1 / 1 !important;
+      flex-shrink: 0 !important;
       background: rgba(255, 255, 255, 0.4) !important;
       border-radius: 50% !important;
       border: none !important;
-      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease !important;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, box-shadow 0.3s ease !important;
 
       &.is-active {
-        transform: scale(1.6) !important;
+        transform: scale(1.4) !important;
         background: var(--color-pantone-yellow-raw) !important;
         box-shadow: 0 0 10px rgba(241, 180, 52, 0.9) !important;
       }
@@ -1178,7 +1172,8 @@
       width: 100%;
       max-width: 100%;
       box-sizing: border-box;
-      padding-inline: 12px !important;
+      padding-left: 12px !important;
+      padding-right: 28px !important;
       opacity: 0;
       transform: translateY(12px);
       transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.65s ease;
@@ -1295,6 +1290,36 @@
         box-sizing: border-box !important;
         padding-top: 0.35rem;
       }
+    }
+  }
+
+  /* ESCENA 2: Nuestra Identidad en Mobile - Encuadre Fotográfico + Anclaje Inferior */
+  .lr-desc-desktop { display: none !important; }
+  .lr-desc-mobile  { display: block !important; margin-bottom: 0.8rem !important; }
+
+  #identity {
+    justify-content: flex-end !important;
+    padding-bottom: max(2.5rem, env(safe-area-inset-bottom)) !important;
+
+    .lr-media img {
+      object-position: center 15% !important;
+    }
+
+    .lr-overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(12, 30, 54, 0.05) 0%,
+        rgba(12, 30, 54, 0.35) 42%,
+        rgba(12, 30, 54, 0.92) 80%,
+        rgba(12, 30, 54, 0.98) 100%
+      ) !important;
+      opacity: 1 !important;
+    }
+
+    .lr-content {
+      margin-top: auto !important;
+      justify-content: flex-end !important;
+      text-align: center !important;
     }
   }
 

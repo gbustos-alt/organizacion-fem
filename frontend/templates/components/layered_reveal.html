@@ -12,7 +12,7 @@
         </div>
         <div class="lr-overlay"></div>
         <div class="lr-content">
-            <span class="lr-kicker"><span class="lr-scene-tag">001</span> Lema Institucional {{ lema.anio if lema else '2026' }}</span>
+            <span class="lr-kicker">Lema Institucional {{ lema.anio if lema else '2026' }}</span>
             <div class="hero-text-group">
                 <h2>&ldquo;{{ lema.lema_texto if lema else 'Caminando juntos en la Educación y la Misión' }}&rdquo;</h2>
                 <p>Acompañamos a las comunidades educativas en su caminar pastoral, pedagógico, administrativo y legal, promoviendo el encuentro y la sostenibilidad.</p>
@@ -40,9 +40,10 @@
         </div>
         <div class="lr-overlay"></div>
         <div class="lr-content" style="max-width: 680px;">
-            <span class="lr-kicker"><span class="lr-scene-tag">002</span> Nuestra Identidad</span>
+            <span class="lr-kicker">Nuestra Identidad</span>
             <h2>{{ quienes_somos.titulo if (quienes_somos and quienes_somos.titulo) else 'Una red educativa impulsada por la misión' }}</h2>
-            <p>{{ quienes_somos.descripcion if quienes_somos else 'Acompañamos a las comunidades escolares a través de áreas de soporte especializadas para sostener la obra educativa y el carisma institucionales.' }}</p>
+            <p class="lr-desc-desktop">{{ quienes_somos.descripcion if quienes_somos else 'Acompañamos a las comunidades escolares a través de áreas de soporte especializadas para sostener la obra educativa y el carisma institucionales.' }}</p>
+            <p class="lr-desc-mobile">Fundación civil promovida por FAERA para el acompañamiento y resguardo carismático de comunidades educativas católicas.</p>
             <div class="lr-cta-actions">
                 <a href="/mision" class="lr-cta">
                     <span>Conoce nuestra misión</span>
@@ -65,7 +66,7 @@
         </div>
         <div class="lr-overlay" style="background: linear-gradient(135deg, rgba(12, 30, 54, 0.82) 0%, rgba(12, 30, 54, 0.6) 60%, rgba(241, 180, 52, 0.1) 100%);"></div>
         <div class="lr-content" style="max-width: 1120px;">
-            <span class="lr-kicker"><span class="lr-scene-tag">003</span> Misión y Soporte</span>
+            <span class="lr-kicker">Misión y Soporte</span>
             <h2>Dimensiones de Acompañamiento</h2>
             <p>Caminamos junto a las comunidades escolares a través de áreas de soporte especializadas.</p>
             
@@ -152,7 +153,7 @@
         </div>
         <div class="lr-overlay" style="background: linear-gradient(135deg, rgba(12, 30, 54, 0.85) 0%, rgba(12, 30, 54, 0.6) 60%, rgba(241, 180, 52, 0.1) 100%);"></div>
         <div class="lr-content" style="max-width: 1120px;">
-            <span class="lr-kicker"><span class="lr-scene-tag">004</span> Actualidad y Diálogo</span>
+            <span class="lr-kicker">Actualidad y Diálogo</span>
             <h2>Novedades de la Red</h2>
             <p>Crónicas, comunicados y el caminar cotidiano de nuestras comunidades.</p>
 
@@ -261,7 +262,7 @@
         </div>
         <div class="lr-overlay"></div>
         <div class="lr-content" style="max-width: 1120px;">
-            <span class="lr-kicker"><span class="lr-scene-tag">005</span> Repositorio Curado</span>
+            <span class="lr-kicker">Repositorio Curado</span>
             <h2>Recursero Institucional</h2>
             <p>Accede a guías pedagógicas, orientaciones pastorales y materiales de formación.</p>
 
@@ -273,13 +274,9 @@
                     </div>
                     <div class="lr-recursero-overlay"></div>
                     <div class="lr-recursero-body">
-                        <span class="lr-recursero-badge">Pedagogía</span>
+                        <span class="lr-recursero-badge badge-institucional">Pedagogía</span>
                         <h3>Recursos Pedagógicos</h3>
                         <p>Planes curriculares, secuencias didácticas e instrumentos de evaluación singular.</p>
-                        <div class="lr-recursero-link">
-                            <span>Explorar recursos</span>
-                            <span class="lr-story-link-arrow">&rarr;</span>
-                        </div>
                     </div>
                 </a>
 
@@ -293,10 +290,6 @@
                         <span class="lr-recursero-badge badge-pastoral">Pastoral</span>
                         <h3>Materiales Pastorales</h3>
                         <p>Guías de discernimiento, itinerarios espirituales y encuentros comunitarios.</p>
-                        <div class="lr-recursero-link">
-                            <span>Explorar recursos</span>
-                            <span class="lr-story-link-arrow">&rarr;</span>
-                        </div>
                     </div>
                 </a>
 
@@ -309,11 +302,7 @@
                     <div class="lr-recursero-body">
                         <span class="lr-recursero-badge badge-gestion">Gestión</span>
                         <h3>Guías Editoriales</h3>
-                        <p>Documentos normativos, manualación institucional y publicaciones oficial de la red.</p>
-                        <div class="lr-recursero-link">
-                            <span>Explorar recursos</span>
-                            <span class="lr-story-link-arrow">&rarr;</span>
-                        </div>
+                        <p>Documentos normativos, manuales e instructivos institucionales y publicaciones de la red.</p>
                     </div>
                 </a>
 
@@ -327,10 +316,6 @@
                         <span class="lr-recursero-badge badge-formacion">Formación</span>
                         <h3>Formación Continua</h3>
                         <p>Talleres, seminarios y programas de acompañamiento docente y directivo.</p>
-                        <div class="lr-recursero-link">
-                            <span>Explorar recursos</span>
-                            <span class="lr-story-link-arrow">&rarr;</span>
-                        </div>
                     </div>
                 </a>
             </div>

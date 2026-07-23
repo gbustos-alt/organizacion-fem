@@ -17,7 +17,7 @@
             {% for r in latest_resources %}
             <article class="resource-card" style="background-color: var(--color-bg); border-radius: var(--radius-md); border: 1px solid var(--color-border); padding: var(--space-lg); display: flex; flex-direction: column; justify-content: space-between; height: 100%; box-shadow: var(--shadow-subtle); transition: var(--transition-smooth);">
                 <div>
-                    <span class="category-badge" style="background-color: var(--color-white); color: var(--color-primary); border: 1px solid var(--color-border); font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 20px; display: inline-block; margin-bottom: var(--space-sm); text-transform: uppercase; letter-spacing: 0.5px;">
+                    <span class="category-badge lr-recursero-badge {% if r.categoria == 'Pedagógico' or r.categoria == 'Pedagogía' %}badge-institucional{% elif r.categoria == 'Gestión' or r.categoria == 'Editorial' %}badge-gestion{% elif r.categoria == 'Formación' %}badge-formacion{% elif r.categoria == 'Pastoral' %}badge-pastoral{% else %}badge-institucional{% endif %}" style="display: inline-block; margin-bottom: var(--space-sm);">
                         {{ r.categoria }}
                     </span>
                     <h3 style="font-family: var(--font-sans); font-size: 1.15rem; color: var(--color-primary); margin-top: 0; margin-bottom: var(--space-xs); font-weight: 600; line-height: 1.3;">

@@ -808,25 +808,30 @@ body {
   }
 }
 .main-footer {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  border-top: 3px solid var(--color-accent-warm);
+  background-color: var(--color-bg-alt, #F8FAFC);
+  color: var(--color-text-main, #334155);
+  border-top: 1px solid var(--color-border, #E2E8F0);
   position: relative;
   overflow: hidden;
   width: 100%;
-  /* Overlay sutil de ambiente */
+  /* Radiante decorativo ultra suave en Dorado Sacro */
 }
 .main-footer::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(241, 180, 52, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
   pointer-events: none;
 }
 .main-footer .footer-main-content {
   position: relative;
   z-index: 2;
-  padding: 4rem 0 3rem 0;
+  padding: 3.5rem 0 2.5rem 0;
+}
+@media (max-width: 767px) {
+  .main-footer .footer-main-content {
+    padding: 3rem 1.25rem 2rem 1.25rem;
+  }
 }
 .main-footer .footer-grid {
   display: grid;
@@ -837,7 +842,15 @@ body {
 @media (max-width: 991px) {
   .main-footer .footer-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-xl);
+    gap: 2rem;
+    text-align: center;
+  }
+}
+@media (max-width: 991px) {
+  .main-footer .footer-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
   }
 }
@@ -850,30 +863,37 @@ body {
   font-family: var(--font-sans);
   font-size: 0.95rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.85);
+  color: #475569;
   margin-bottom: var(--space-md);
   max-width: 380px;
 }
 @media (max-width: 991px) {
   .main-footer .footer-bio {
     margin: 0 auto var(--space-md) auto;
+    text-align: center;
   }
 }
 .main-footer .footer-motto {
   font-family: var(--font-sans);
-  font-size: 0.9rem;
-  font-weight: 800;
-  color: var(--color-accent-warm);
-  letter-spacing: 1px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-accent-warm, #D4AF37);
+  background: rgba(212, 175, 55, 0.12);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm, 4px);
+  letter-spacing: 0.8px;
   display: inline-block;
+  pointer-events: none;
+  user-select: none;
+  margin-bottom: var(--space-md);
 }
 .main-footer .footer-title {
   font-family: var(--font-sans);
   font-size: 0.95rem;
-  font-weight: 800;
-  color: var(--color-accent-warm);
+  font-weight: 700;
+  color: var(--color-primary, #0C1E36);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   margin-top: 0;
   margin-bottom: var(--space-md);
 }
@@ -883,41 +903,69 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
+  gap: 0.65rem;
+}
+@media (max-width: 991px) {
+  .main-footer .footer-nav-list {
+    align-items: center;
+    text-align: center;
+  }
 }
 .main-footer .footer-nav-list a {
   font-family: var(--font-sans);
   font-size: 0.92rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: #334155;
   text-decoration: none;
-  transition: var(--transition-smooth);
+  display: inline-block;
+  min-height: 28px;
+  line-height: 1.4;
+  transition: color 0.25s ease, transform 0.25s ease;
 }
 .main-footer .footer-nav-list a:hover {
-  color: var(--color-accent-warm);
-  padding-left: 4px;
+  color: var(--color-accent-warm, #D4AF37);
+  transform: translateY(-1px);
 }
 .main-footer .footer-location {
   font-size: 0.92rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: #64748B;
   margin-bottom: var(--space-xs);
+  text-align: center;
 }
 .main-footer .footer-email-link {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  color: var(--color-white);
+  color: var(--color-primary, #0C1E36);
   font-weight: 600;
   font-size: 0.92rem;
   text-decoration: none;
-  transition: var(--transition-smooth);
+  transition: color 0.25s ease;
   margin-bottom: var(--space-md);
 }
 .main-footer .footer-email-link:hover {
-  color: var(--color-accent-warm);
+  color: var(--color-accent-warm, #D4AF37);
+}
+.main-footer .footer-social-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+@media (max-width: 991px) {
+  .main-footer .footer-social-wrapper {
+    align-items: center;
+  }
+}
+.main-footer .footer-social-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
 }
 .main-footer .footer-social-icons {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 @media (max-width: 991px) {
   .main-footer .footer-social-icons {
@@ -928,18 +976,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--color-white);
+  background: rgba(12, 30, 54, 0.05);
+  border: 1px solid rgba(12, 30, 54, 0.1);
+  color: var(--color-primary, #0C1E36);
   text-decoration: none;
-  transition: var(--transition-smooth);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .main-footer .footer-social-icons a:hover {
-  background: var(--color-accent-warm);
-  color: var(--color-primary);
-  transform: translateY(-3px);
+  background: var(--color-primary, #0C1E36);
+  color: var(--color-accent-warm, #D4AF37);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(12, 30, 54, 0.15);
 }
 .main-footer {
   /* Banda de Legales */
@@ -947,9 +997,14 @@ body {
 .main-footer .footer-bottom-bar {
   position: relative;
   z-index: 2;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
   padding: 1.25rem 0;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.02);
+}
+@media (max-width: 767px) {
+  .main-footer .footer-bottom-bar {
+    padding: 0.75rem 0;
+  }
 }
 .main-footer .footer-bottom-container {
   display: flex;
@@ -963,14 +1018,16 @@ body {
     text-align: center;
   }
 }
-.main-footer .footer-bottom-container p {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.65);
+.main-footer .footer-bottom-container p, .main-footer .footer-bottom-container .footer-legal-plain {
+  font-size: 0.82rem;
+  color: #64748B;
   margin: 0;
+  line-height: 1.4;
 }
-.main-footer .footer-bottom-container .footer-subtext {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.45);
+@media (max-width: 767px) {
+  .main-footer .footer-bottom-container p, .main-footer .footer-bottom-container .footer-legal-plain {
+    text-align: center;
+  }
 }
 
 .btn {
@@ -1900,35 +1957,6 @@ body {
   color: rgba(255, 255, 255, 0.7);
   font-weight: 600;
 }
-.lr-stories-symmetrical-grid .lr-story-badge {
-  display: inline-block;
-  padding: 2px 7px;
-  border-radius: 4px;
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-.lr-stories-symmetrical-grid .lr-story-badge.badge-institucional {
-  background: rgba(241, 180, 52, 0.2);
-  color: var(--color-pantone-yellow-raw);
-  border: 1px solid rgba(241, 180, 52, 0.4);
-}
-.lr-stories-symmetrical-grid .lr-story-badge.badge-gestion {
-  background: rgba(52, 152, 219, 0.2);
-  color: #5DADE2;
-  border: 1px solid rgba(52, 152, 219, 0.4);
-}
-.lr-stories-symmetrical-grid .lr-story-badge.badge-formacion {
-  background: rgba(46, 204, 113, 0.2);
-  color: #58D68D;
-  border: 1px solid rgba(46, 204, 113, 0.4);
-}
-.lr-stories-symmetrical-grid .lr-story-badge.badge-pastoral {
-  background: rgba(210, 66, 56, 0.2);
-  color: #FF6B6B;
-  border: 1px solid rgba(210, 66, 56, 0.4);
-}
 .lr-stories-symmetrical-grid .lr-story-link {
   font-size: 0.81rem;
   font-weight: 700;
@@ -1940,6 +1968,75 @@ body {
 .lr-stories-symmetrical-grid .lr-story-link .lr-story-link-arrow {
   transition: transform 0.3s ease;
   display: inline-block;
+}
+
+.lr-desc-desktop {
+  display: block;
+}
+
+.lr-desc-mobile {
+  display: none;
+}
+
+/* Badges Institucionales Minimalistas (Glassmorphism Pill + Category Glow Dot) */
+.lr-story-badge,
+.lr-recursero-badge,
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #F8FAFC !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+  align-self: flex-start;
+  background: rgba(12, 30, 54, 0.5) !important;
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  user-select: none;
+}
+.lr-story-badge::before,
+.lr-recursero-badge::before,
+.category-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  background: #F1B434;
+}
+.lr-story-badge.badge-institucional::before,
+.lr-recursero-badge.badge-institucional::before,
+.category-badge.badge-institucional::before {
+  background: #F1B434;
+  box-shadow: 0 0 6px rgba(241, 180, 52, 0.8);
+}
+.lr-story-badge.badge-gestion::before,
+.lr-recursero-badge.badge-gestion::before,
+.category-badge.badge-gestion::before {
+  background: #3498DB;
+  box-shadow: 0 0 6px rgba(52, 152, 219, 0.8);
+}
+.lr-story-badge.badge-formacion::before,
+.lr-recursero-badge.badge-formacion::before,
+.category-badge.badge-formacion::before {
+  background: #2ECC71;
+  box-shadow: 0 0 6px rgba(46, 204, 113, 0.8);
+}
+.lr-story-badge.badge-pastoral::before,
+.lr-recursero-badge.badge-pastoral::before,
+.category-badge.badge-pastoral::before {
+  background: #E74C3C;
+  box-shadow: 0 0 6px rgba(231, 76, 60, 0.8);
 }
 
 /* Grilla Simétrica de Recursero Institucional (Escena 5) */
@@ -2012,34 +2109,6 @@ body {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-.lr-recursero-card .lr-recursero-badge {
-  display: inline-block;
-  padding: 2px 7px;
-  border-radius: 4px;
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  align-self: flex-start;
-  background: rgba(241, 180, 52, 0.2);
-  color: var(--color-pantone-yellow-raw);
-  border: 1px solid rgba(241, 180, 52, 0.4);
-}
-.lr-recursero-card .lr-recursero-badge.badge-pastoral {
-  background: rgba(210, 66, 56, 0.2);
-  color: #FF6B6B;
-  border: 1px solid rgba(210, 66, 56, 0.4);
-}
-.lr-recursero-card .lr-recursero-badge.badge-gestion {
-  background: rgba(52, 152, 219, 0.2);
-  color: #5DADE2;
-  border: 1px solid rgba(52, 152, 219, 0.4);
-}
-.lr-recursero-card .lr-recursero-badge.badge-formacion {
-  background: rgba(46, 204, 113, 0.2);
-  color: #58D68D;
-  border: 1px solid rgba(46, 204, 113, 0.4);
 }
 .lr-recursero-card .lr-recursero-link {
   font-size: 0.82rem;
@@ -2256,11 +2325,13 @@ body {
   position: relative;
   width: 12px;
   height: 12px;
+  aspect-ratio: 1/1;
+  flex-shrink: 0;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.3);
   border: none;
   cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, box-shadow 0.3s ease;
   /* Área Táctil Invisible de 44px x 44px para Accesibilidad Móvil (WCAG AAA) */
 }
 .lr-nav-progress .lr-nav-dot::after {
@@ -2270,6 +2341,8 @@ body {
   left: 50%;
   width: 44px;
   height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   transform: translate(-50%, -50%);
   background: transparent;
   border-radius: 50%;
@@ -2309,7 +2382,7 @@ body {
 
 /* ==========================================
    ADAPTACIÓN RESPONSIVA DEFINITIVA EN MÓVILES (< 768px)
-   Puntero Ultra Sutil (Sin background, sin números, solo línea + puntos amarillos)
+   Puntero Ultra Sutil (Esferas Perfectas 1:1, Flex-Shrink 0)
    ========================================== */
 @media (max-width: 767px) {
   /* Puntero sutil en mobile: sin fondo, sin bordes, sin números. Solo línea vertical con puntos amarillos */
@@ -2351,15 +2424,17 @@ body {
     transition: height 0.35s ease !important;
   }
   .lr-nav-progress .lr-nav-dot {
-    width: 8px !important;
-    height: 8px !important;
+    width: 10px !important;
+    height: 10px !important;
+    aspect-ratio: 1/1 !important;
+    flex-shrink: 0 !important;
     background: rgba(255, 255, 255, 0.4) !important;
     border-radius: 50% !important;
     border: none !important;
-    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease !important;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, box-shadow 0.3s ease !important;
   }
   .lr-nav-progress .lr-nav-dot.is-active {
-    transform: scale(1.6) !important;
+    transform: scale(1.4) !important;
     background: var(--color-pantone-yellow-raw) !important;
     box-shadow: 0 0 10px rgba(241, 180, 52, 0.9) !important;
   }
@@ -2425,7 +2500,8 @@ body {
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    padding-inline: 12px !important;
+    padding-left: 12px !important;
+    padding-right: 28px !important;
     opacity: 0;
     transform: translateY(12px);
     transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.65s ease;
@@ -2544,6 +2620,30 @@ body {
     width: 100% !important;
     box-sizing: border-box !important;
     padding-top: 0.35rem;
+  }
+  /* ESCENA 2: Nuestra Identidad en Mobile - Encuadre Fotográfico + Anclaje Inferior */
+  .lr-desc-desktop {
+    display: none !important;
+  }
+  .lr-desc-mobile {
+    display: block !important;
+    margin-bottom: 0.8rem !important;
+  }
+  #identity {
+    justify-content: flex-end !important;
+    padding-bottom: max(2.5rem, env(safe-area-inset-bottom)) !important;
+  }
+  #identity .lr-media img {
+    object-position: center 15% !important;
+  }
+  #identity .lr-overlay {
+    background: linear-gradient(180deg, rgba(12, 30, 54, 0.05) 0%, rgba(12, 30, 54, 0.35) 42%, rgba(12, 30, 54, 0.92) 80%, rgba(12, 30, 54, 0.98) 100%) !important;
+    opacity: 1 !important;
+  }
+  #identity .lr-content {
+    margin-top: auto !important;
+    justify-content: flex-end !important;
+    text-align: center !important;
   }
   .lr-identity-box {
     grid-template-columns: 1fr;

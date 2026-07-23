@@ -102,8 +102,8 @@
                             </div>
                             {% endif %}
                             
-                            <!-- Category Badge flotante -->
-                            <span class="category-badge" style="position: absolute; top: var(--space-sm); left: var(--space-sm); background-color: var(--color-white); color: var(--color-primary); border: 1px solid var(--color-border); font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; z-index: 2; box-shadow: var(--shadow-subtle);">
+                            <!-- Category Badge flotante con Color Sólido Alta Visibilidad -->
+                            <span class="category-badge lr-recursero-badge {% if r.categoria == 'Pedagógico' or r.categoria == 'Pedagogía' %}badge-institucional{% elif r.categoria == 'Gestión' or r.categoria == 'Editorial' %}badge-gestion{% elif r.categoria == 'Formación' %}badge-formacion{% elif r.categoria == 'Pastoral' %}badge-pastoral{% else %}badge-institucional{% endif %}" style="position: absolute; top: var(--space-sm); left: var(--space-sm); z-index: 2;">
                                 {{ r.categoria }}
                             </span>
                         </div>

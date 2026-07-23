@@ -26,10 +26,12 @@ echo ""
 # Comandos remotos a ejecutar secuencialmente
 REMOTE_COMMANDS="
   cd $VPS_PATH && \
-  echo '⚙️ [1/2] Configurando directorio seguro en Git...' && \
+  echo '⚙️ [1/3] Configurando directorio seguro en Git...' && \
   git config --global --add safe.directory $VPS_PATH 2>/dev/null || true && \
-  echo '📥 [2/2] Descargando cambios de GitHub (git pull)...' && \
+  echo '📥 [2/3] Descargando cambios de GitHub (git pull)...' && \
   git pull origin develop && \
+  echo '🔄 [3/3] Reiniciando servicio de aplicación...' && \
+  (sudo systemctl restart testing_fem 2>/dev/null || pkill -f uvicorn 2>/dev/null || true) && \
   echo '✅ ¡Actualización finalizada!'
 "
 

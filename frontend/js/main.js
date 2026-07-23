@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const arrow = toggle.querySelector(".arrow-down");
                 if (dropdownMenu) {
                     const isOpen = dropdownMenu.classList.toggle("open");
+                    toggle.classList.toggle("open", isOpen);
                     if (arrow) {
                         arrow.style.transform = isOpen ? "rotate(180deg)" : "";
                     }

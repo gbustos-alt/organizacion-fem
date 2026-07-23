@@ -991,6 +991,12 @@
    Corrección de Raíz para 400x941: Cero Solapamientos, 1 Columna Full-Width
    ========================================== */
 @media (max-width: 767px) {
+  html, body {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
   /* Ocultar barra lateral de puntos en mobile para liberar el 100% del ancho del viewport */
   .lr-nav-progress {
     display: none !important;
@@ -1001,6 +1007,8 @@
   }
 
   .lr-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
     height: 100dvh !important;
     max-height: 100dvh !important;
     max-width: 100vw !important;

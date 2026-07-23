@@ -300,14 +300,31 @@
   }
 
 
+  /* Badge de Identificación de Escena Narrativa (001, 002, 003...) */
+  .lr-scene-tag {
+    display: inline-block;
+    font-family: var(--font-brand-condensed, 'Barlow', sans-serif);
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--color-pantone-yellow-raw);
+    background: rgba(241, 180, 52, 0.16);
+    border: 1px solid rgba(241, 180, 52, 0.45);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    letter-spacing: 1.2px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+
   /* ==========================================
-     ESTADOS DE LA CAPA INTERACTIVA & FADE SERENO
+     ESTADOS DE LA CAPA INTERACTIVA & NARRATIVE MOTION
      ========================================== */
 
-  /* Estado IS-ACTIVE: Capa Foco (Fade In Suave + Lectura Calmada) */
+  /* Estado IS-ACTIVE: Capa Dominante en Foco */
   &.is-active {
     opacity: 1;
-    filter: brightness(1);
+    transform: scale(1) translateY(0);
+    filter: brightness(1) blur(0px);
     z-index: 10;
 
     &::before {
@@ -347,7 +364,8 @@
       .lr-cta-actions,
       .lr-identity-box,
       .lr-dimensions-photo-grid,
-      .lr-stories-photo-grid {
+      .lr-stories-photo-grid,
+      .lr-recursero-grid {
         opacity: 1;
         transform: translateY(0);
         transition-delay: 0.28s;
@@ -355,10 +373,26 @@
     }
   }
 
-  /* Estado IS-BEFORE: Capa Superior (Fade Out Suave al desvanecerse hacia arriba) */
+  /* Estados Transitorios (is-entering / is-exiting) */
+  &.is-entering {
+    opacity: 0.65;
+    transform: scale(0.98) translateY(12px);
+    filter: brightness(0.6) blur(1px);
+    z-index: 6;
+  }
+
+  &.is-exiting {
+    opacity: 0.65;
+    transform: scale(0.98) translateY(-12px);
+    filter: brightness(0.6) blur(1px);
+    z-index: 6;
+  }
+
+  /* Estado IS-BEFORE: Capa Superior (Cede protagonismo suavemente hacia arriba) */
   &.is-before {
-    opacity: 0.45;
-    filter: brightness(0.4);
+    opacity: 0.35;
+    transform: scale(0.96) translateY(-18px);
+    filter: brightness(0.4) blur(2px);
     z-index: 2;
 
     .lr-content {
@@ -366,7 +400,7 @@
       transform: translateY(-12px);
       pointer-events: none;
 
-      .lr-kicker, h2, p, .lr-cta-actions, .lr-identity-box, .lr-dimensions-photo-grid, .lr-stories-photo-grid {
+      .lr-kicker, h2, p, .lr-cta-actions, .lr-identity-box, .lr-dimensions-photo-grid, .lr-stories-photo-grid, .lr-recursero-grid {
         opacity: 0;
         transform: translateY(-10px);
         transition-delay: 0s;
@@ -374,10 +408,11 @@
     }
   }
 
-  /* Estado IS-AFTER: Capa Inferior (Fade Out Suave al desvanecerse hacia abajo) */
+  /* Estado IS-AFTER: Capa Inferior (Esperando turno hacia abajo) */
   &.is-after {
-    opacity: 0.45;
-    filter: brightness(0.4);
+    opacity: 0.35;
+    transform: scale(0.96) translateY(18px);
+    filter: brightness(0.4) blur(2px);
     z-index: 2;
 
     .lr-content {
@@ -385,7 +420,7 @@
       transform: translateY(12px);
       pointer-events: none;
 
-      .lr-kicker, h2, p, .lr-cta-actions, .lr-identity-box, .lr-dimensions-photo-grid, .lr-stories-photo-grid {
+      .lr-kicker, h2, p, .lr-cta-actions, .lr-identity-box, .lr-dimensions-photo-grid, .lr-stories-photo-grid, .lr-recursero-grid {
         opacity: 0;
         transform: translateY(10px);
         transition-delay: 0s;
@@ -393,7 +428,11 @@
     }
   }
 }
-
+@media (max-width: 768px) {
+  .recursero-section{
+    height: auto !important;
+  }
+}
 /* ==========================================
    SUB-COMPONENTES FOTOGRÁFICOS INTERIORES
    ========================================== */

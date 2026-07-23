@@ -39,26 +39,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Actualización serena de estados de sección y widget de navegación
     const updateActiveLayer = (activeIndex) => {
+        if (currentActiveIndex === activeIndex && layerItems[activeIndex].classList.contains("is-active")) return;
+        const scrollDir = container.getAttribute("data-scroll-dir") || "down";
         currentActiveIndex = activeIndex;
 
         layerItems.forEach((item, index) => {
-            item.classList.remove("is-active", "is-near", "is-before", "is-after");
+            item.classList.remove("is-active", "is-entering", "is-exiting", "is-before", "is-after");
 
             if (index === activeIndex) {
                 item.classList.add("is-active");
-            } else if (Math.abs(index - activeIndex) === 1) {
-                item.classList.add("is-near");
-                if (index < activeIndex) {
-                    item.classList.add("is-before");
-                } else {
-                    item.classList.add("is-after");
-                }
             } else if (index < activeIndex) {
                 item.classList.add("is-before");
+                if (index === activeIndex - 1 && scrollDir === "down") {
+                    item.classList.add("is-exiting");
+                }
             } else {
                 item.classList.add("is-after");
+                if (index === activeIndex + 1 && scrollDir === "up") {
+                    item.classList.add("is-entering");
+                }
             }
         });
+
+        // Actualizar atributo data-active-scene en el contenedor
+        const activeSceneNum = layerItems[activeIndex].getAttribute("data-scene-num") || `00${activeIndex + 1}`;
+        container.setAttribute("data-active-scene", activeSceneNum);
 
         // Actualizar puntos de navegación de progreso lateral
         navDots.forEach((dot, index) => {
@@ -78,12 +83,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // Observador de Intersección de alta precisión
+    // Observador de Intersección de alta precisión para Snap-Layered Narrative
     const isMobileScreen = window.innerWidth < 767;
     const observerOptions = {
         root: null,
-        rootMargin: isMobileScreen ? "-10% 0px -10% 0px" : "-10% 0px -10% 0px",
-        threshold: isMobileScreen ? [0.2, 0.4, 0.6] : [0.2, 0.4, 0.6, 0.8]
+        rootMargin: isMobileScreen ? "-5% 0px -5% 0px" : "-10% 0px -10% 0px",
+        threshold: isMobileScreen ? [0.15, 0.45, 0.75] : [0.2, 0.5, 0.8]
     };
 
     let visibleRatios = new Map();

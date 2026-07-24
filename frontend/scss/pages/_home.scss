@@ -1141,8 +1141,12 @@
       line-height: 1.4;
       min-height: 3.5rem;
 
-      @media (max-width: 768px) {
+      @media (max-width: 767px) {
         min-height: auto;
+        font-size: 1.15rem;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+        margin-bottom: var(--space-xs);
       }
     }
 
@@ -1152,6 +1156,10 @@
       color: var(--color-text-muted);
       margin-bottom: var(--space-lg);
       flex-grow: 1;
+
+      @media (max-width: 767px) {
+        display: none;
+      }
     }
 
     .news-link-btn {
@@ -1168,6 +1176,7 @@
       width: fit-content;
       transition: var(--transition-smooth);
       margin-top: auto;
+      min-height: 44px;
 
       &:hover {
         color: var(--color-accent-warm);

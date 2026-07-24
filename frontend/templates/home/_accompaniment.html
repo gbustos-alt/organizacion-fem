@@ -34,7 +34,10 @@
                     <div class="dim-bg" style="background-image: url('/static/img/fotos prueba/dimension_pedagogica.png');"></div>
                     <div class="dim-card-overlay"></div>
                     <div class="dim-card-content">
-                        <h3>Educación / Pedagogía</h3>
+                        <div class="dim-title-row">
+                            <h3>Educación y Pedagogía</h3>
+                            <span class="dim-arrow">&rarr;</span>
+                        </div>
                         <p class="dim-card-desc">Supervisión de planes educativos, capacitación docente y diseño curricular singular.</p>
                     </div>
                 </a>
@@ -44,7 +47,10 @@
                     <div class="dim-bg" style="background-image: url('/static/img/fotos prueba/dimension_pastoral.png');"></div>
                     <div class="dim-card-overlay"></div>
                     <div class="dim-card-content">
-                        <h3>Identidad / Pastoral</h3>
+                        <div class="dim-title-row">
+                            <h3>Identidad y Pastoral</h3>
+                            <span class="dim-arrow">&rarr;</span>
+                        </div>
                         <p class="dim-card-desc">Evangelización, animación pastoral, encuentros de discernimiento y carisma fundacional.</p>
                     </div>
                 </a>
@@ -54,7 +60,10 @@
                     <div class="dim-bg" style="background-image: url('/static/img/fotos prueba/dimension_economica.png');"></div>
                     <div class="dim-card-overlay"></div>
                     <div class="dim-card-content">
-                        <h3>Administración / Sostenibilidad</h3>
+                        <div class="dim-title-row">
+                            <h3>Administración y Sostenibilidad</h3>
+                            <span class="dim-arrow">&rarr;</span>
+                        </div>
                         <p class="dim-card-desc">Auditoría presupuestaria, saneamiento financiero y resguardo de puestos de trabajo.</p>
                     </div>
                 </a>
@@ -64,7 +73,10 @@
                     <div class="dim-bg" style="background-image: url('/static/img/fotos prueba/dimension_legal.png');"></div>
                     <div class="dim-card-overlay"></div>
                     <div class="dim-card-content">
-                        <h3>Gobernanza / Legal</h3>
+                        <div class="dim-title-row">
+                            <h3>Gobernanza y Legal</h3>
+                            <span class="dim-arrow">&rarr;</span>
+                        </div>
                         <p class="dim-card-desc">Cumplimiento normativo, estatutos civiles y acompañamiento jurídico institucional.</p>
                     </div>
                 </a>
@@ -107,7 +119,7 @@
         -webkit-backdrop-filter: blur(14px);
         border: 1px solid rgba(255, 255, 255, 0.22);
         box-shadow: 0 10px 25px rgba(12, 30, 54, 0.25);
-        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.35s ease, background-color 0.35s ease;
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
@@ -125,7 +137,7 @@
     .dim-carousel-card .dim-card-overlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg, rgba(12, 30, 54, 0.35) 0%, rgba(12, 30, 54, 0.85) 100%);
+        background: linear-gradient(to top, rgba(12, 30, 54, 0.95) 0%, rgba(12, 30, 54, 0.5) 50%, rgba(12, 30, 54, 0.1) 100%);
         z-index: 2;
     }
     .dim-carousel-card .dim-card-content {
@@ -133,41 +145,60 @@
         z-index: 3;
         color: var(--color-white);
     }
-
+    .dim-title-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin-bottom: 0.35rem;
+    }
     .dim-carousel-card h3 {
         font-family: var(--font-sans);
-        font-size: 1.1rem;
-        font-weight: 700;
+        font-size: 1.15rem;
+        font-weight: 800;
+        letter-spacing: -0.015em;
         color: var(--color-white);
-        margin: 0 0 0.35rem 0;
+        margin: 0;
         text-shadow: 0 2px 8px rgba(0,0,0,0.9);
         line-height: 1.25;
         transition: color 0.3s ease;
     }
+    .dim-arrow {
+        font-size: 1.1rem;
+        color: var(--color-pantone-yellow-raw);
+        opacity: 0.75;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        display: inline-block;
+    }
     .dim-carousel-card .dim-card-desc {
-        font-size: 0.84rem;
-        line-height: 1.4;
+        font-size: 0.86rem;
+        line-height: 1.45;
         color: #e2e8f0;
         font-weight: 400;
         margin: 0;
-        opacity: 1;
-        max-height: none;
+        opacity: 0.9;
         text-shadow: 0 1px 4px rgba(0,0,0,0.8);
     }
 
-    .dim-carousel-card:hover {
-        flex: 1;
-        transform: translateY(-6px) scale(1.02);
-        background: rgba(255, 255, 255, 0.2);
-        border-color: rgba(241, 180, 52, 0.8);
-        box-shadow: 0 16px 36px rgba(12, 30, 54, 0.4), 0 0 20px rgba(241, 180, 52, 0.25);
-    }
-    .dim-carousel-card:hover .dim-bg {
-        transform: scale(1.08);
-        filter: brightness(0.8) contrast(1.15);
-    }
-    .dim-carousel-card:hover h3 {
-        color: var(--color-pantone-yellow-raw);
+    @media (min-width: 768px) {
+        .dim-carousel-card:hover {
+            flex: 1;
+            transform: translateY(-5px) scale(1.015);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(241, 180, 52, 0.8);
+            box-shadow: 0 16px 36px rgba(12, 30, 54, 0.4), 0 0 20px rgba(241, 180, 52, 0.25);
+        }
+        .dim-carousel-card:hover .dim-bg {
+            transform: scale(1.08);
+            filter: brightness(0.8) contrast(1.15);
+        }
+        .dim-carousel-card:hover h3 {
+            color: var(--color-pantone-yellow-raw);
+        }
+        .dim-carousel-card:hover .dim-arrow {
+            transform: translateX(5px);
+            opacity: 1;
+        }
     }
 
     .dim-carousel-dots {
@@ -185,17 +216,33 @@
         .dim-carousel-strip {
             flex-direction: column;
             min-height: auto;
+            gap: 0.75rem;
         }
         .dim-carousel-card {
-            min-height: 180px;
+            min-height: 105px;
+            max-height: none;
+            padding: 0.75rem 0.9rem;
         }
         .dim-carousel-card:hover,
         .dim-carousel-card.active {
             flex: 1;
         }
+        .dim-title-row {
+            margin-bottom: 0.35rem;
+        }
+        .dim-carousel-card h3 {
+            font-size: 1.02rem;
+            line-height: 1.25;
+        }
         .dim-carousel-card .dim-card-desc {
-            opacity: 1;
-            max-height: none;
+            font-size: 0.82rem;
+            line-height: 1.35;
+            color: #e2e8f0;
+            opacity: 0.9;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
     }
 </style>
